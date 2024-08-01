@@ -12,7 +12,8 @@ public class GameStateMachine
         Debug.Log("Инициализирована StateMachine");
         _states = new Dictionary<Type, IExitableState>
         {
-            [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader)
+            [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader),
+            [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain)
         };
     }
 
@@ -21,7 +22,14 @@ public class GameStateMachine
         IState state = ChangeState<TState>();
         state.Enter();
     }
-    
+
+    public void Enter<TState, TPayload>(TPayload payload) where TState : class, IPayloadedState<TPayload>
+    {
+        Debug.Log("Перегрузка для метода загрузки");
+        TState state = ChangeState<TState>();
+        state.Enter(payload);
+    }
+
     private TState ChangeState<TState>() where TState : class, IExitableState
     {
         _activeState?.Exit();

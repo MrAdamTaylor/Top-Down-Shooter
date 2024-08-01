@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class GameBootstraper : MonoBehaviour, ICoroutineRunner
@@ -14,11 +13,6 @@ public class GameBootstraper : MonoBehaviour, ICoroutineRunner
     }
 }
 
-public interface ICoroutineRunner
-{
-    Coroutine StartCoroutine(IEnumerator coroutine);
-}
-
 public class Game
 {
     public GameStateMachine StateMachine;
@@ -26,13 +20,5 @@ public class Game
     public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain)
     {
         StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), curtain);
-    }
-}
-
-public class SceneLoader
-{
-    public SceneLoader(ICoroutineRunner coroutineRunner)
-    {
-        Debug.Log("Класс для загрузки сцен инициализирован!");
     }
 }
