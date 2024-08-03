@@ -1960,7 +1960,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1360788193
 Transform:
   m_ObjectHideFlags: 0
@@ -2655,13 +2655,34 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1951356874}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fced6914c78310047b9ce29d4616a018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _spawn: {fileID: 999393887}
-  seconds: 5
+--- !u!114 &1977050854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1951356874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0110dce0c0ee433ba7e518bc2bc05d1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _delay: 0.5
+  _distance: 10
+  _shootingSystem: {fileID: 1655276807252061645, guid: e75828e19f7cd7e42abf96415b0c1389, type: 3}
+  _bulletSpawn: {fileID: 999393887}
+  _bulletTrail: {fileID: 3106779475759250155, guid: 01f7c2411921fb34d8d4f6a10b5cfa7a, type: 3}
+  _impactSystem: {fileID: 7845764992034801570, guid: 4f34c7b84c3fc8a4f844fa2a0e54922f, type: 3}
+  Mask:
+    serializedVersion: 2
+    m_Bits: 136
+  _bulletSpeed: 100
 --- !u!1 &2010281342
 GameObject:
   m_ObjectHideFlags: 0
@@ -3064,6 +3085,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5632760386729761820, guid: 176a20bbe49484740b3497dbd2fd9c60, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1977050853}
+    - targetCorrespondingSourceObject: {fileID: 5632760386729761820, guid: 176a20bbe49484740b3497dbd2fd9c60, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1977050854}
   m_SourcePrefab: {fileID: 100100000, guid: 176a20bbe49484740b3497dbd2fd9c60, type: 3}
 --- !u!1001 &1666531778232024774
 PrefabInstance:
