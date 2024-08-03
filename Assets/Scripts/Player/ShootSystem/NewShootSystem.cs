@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class NewShootSystem : MonoBehaviour
 {
-    [Range(0.5f, 10f)][SerializeField] private float _delay = 5f;
+    [Range(0.1f, 10f)][SerializeField] private float _delay = 0.5f;
     [Range(0.5f, 50f)][SerializeField] private float _distance = 40f;
-
-
+    
     [SerializeField] private ParticleSystem _shootingSystem;
 
     [SerializeField] private Transform _bulletSpawn;

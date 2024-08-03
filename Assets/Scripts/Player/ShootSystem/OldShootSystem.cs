@@ -6,8 +6,7 @@ using UnityEngine;
 public class OldShootSystem : MonoBehaviour
 {
     [SerializeField]private Transform _spawn;
-
-
+    
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))

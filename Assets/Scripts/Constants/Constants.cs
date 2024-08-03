@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class Constants
 {
+
     #region Список уровней
 
     public const string SECOND_LEVEL = "GameScene";
@@ -29,6 +30,7 @@ public static class Constants
 
     public const float DEFAULT_MAXIMUM_FIRING_RANGE = 40f;
     public const float ROCKET_SPEED = 30f;
+    public static float DEFAULT_BULLET_SPEED;
 
     #endregion
 }
