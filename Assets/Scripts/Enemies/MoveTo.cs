@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 public class MoveTo : MonoBehaviour
@@ -60,9 +61,9 @@ public class MoveTo : MonoBehaviour
 
         #region Корректировка по константе
 
-        _tempPosition = FollowedTransform.position;
+        //_tempPosition = FollowedTransform.position;
         //_tempPosition.y = WorldConstants.NPCDownPointShift;
-        FollowedTransform.position = _tempPosition;
+        //FollowedTransform.position = _tempPosition;
 
         #endregion
     }
