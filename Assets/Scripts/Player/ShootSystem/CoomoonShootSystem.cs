@@ -3,43 +3,51 @@ using UnityEngine;
 
 public class CoomoonShootSystem : MonoBehaviour, IShootSystem
 {
-    [Range(0.1f,5f)][SerializeField] protected float _delay;
+    [SerializeField] protected Player _player;
     [SerializeField] protected ParticleSystem _shootingParticle;
-    [SerializeField] protected Transform _bulletPoint;
     [SerializeField] protected ParticleSystem _impactParticle;
     [SerializeField] protected LayerMask _layerMask;
     [SerializeField] protected TrailRenderer _trailRenderer;
 
+     //protected Transform _bulletPoint;
+     //protected float _delay;
      protected float _lastShootTime;
      protected float _realDistance = Constants.DEFAULT_MAXIMUM_FIRING_RANGE;
      protected float _realBulletSpeed = Constants.DEFAULT_BULLET_SPEED;
 
-    
-    public virtual void Shoot()
+     private ShootData _weaponData;
+     
+     public virtual void Construct(ShootData data)
+     {
+         _weaponData = data;
+         Debug.Log("Конструктор для загрузки данных");
+     }
+
+     public virtual void Shoot()
     {
-        if (_lastShootTime + _delay < Time.time)
+        if (_lastShootTime + _weaponData.Delay < Time.time)
         {
             _shootingParticle.Play();
-            Vector3 direction = transform.forward;
-            if (Physics.Raycast(_bulletPoint.position, direction, out RaycastHit hit, _realDistance, _layerMask))
+            Vector3 direction = GetDirection();
+            if (Physics.Raycast(_weaponData.BulletPoint.position, direction, out RaycastHit hit, _realDistance, _layerMask))
             {
-                TrailRenderer trail = Instantiate(_trailRenderer, _bulletPoint.position, Quaternion.identity);
+                TrailRenderer trail = Instantiate(_trailRenderer, _weaponData.BulletPoint.position, Quaternion.identity);
                 StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, true));
 
                 _lastShootTime = Time.time;
             }
             else
             {
-                TrailRenderer trail = Instantiate(_trailRenderer, _bulletPoint.position, Quaternion.identity);
+                TrailRenderer trail = Instantiate(_trailRenderer, _weaponData.BulletPoint.position, Quaternion.identity);
 
-                StartCoroutine(SpawnTrail(trail, _bulletPoint.position + transform.forward * _realDistance, Vector3.zero, false));
+                StartCoroutine(SpawnTrail(trail, _weaponData.BulletPoint.position + GetDirection() * _realDistance, Vector3.zero, false));
 
                 _lastShootTime = Time.time;
             }
         }
     }
     
-    protected IEnumerator SpawnTrail(TrailRenderer trail, Vector3 HitPoint, Vector3 HitNormal, bool MadeImpact)
+    private IEnumerator SpawnTrail(TrailRenderer trail, Vector3 HitPoint, Vector3 HitNormal, bool MadeImpact)
     {
         Vector3 startPosition = trail.transform.position;
         float distance = Vector3.Distance(trail.transform.position, HitPoint);
@@ -59,5 +67,53 @@ public class CoomoonShootSystem : MonoBehaviour, IShootSystem
             Instantiate(_impactParticle, HitPoint, Quaternion.LookRotation(HitNormal));
         }
         Destroy(trail.gameObject, trail.time);
+    }
+    
+    private Vector3 GetDirection()
+    {
+        Vector3 direction = _player.transform.forward;
+        return direction;
+    }
+}
+
+public class ShootData
+{
+    public int Damage;
+    public Transform BulletPoint;
+    public float Delay;
+
+    public ShootData(int damage, Transform shootPoint, float speedFireRange)
+    {
+        Damage = damage;
+        BulletPoint = shootPoint;
+        Delay = speedFireRange;
+    }
+}
+
+
+public class ShootDataShootgun : ShootData
+{
+    public float FovAngle;
+    public float Distance;
+    public int AmountFractions;
+    
+    public ShootDataShootgun(int damage, Transform shootPoint, float speedFireRange, 
+        float fovAngle, float distance, int amountFraction) 
+        : base(damage, shootPoint, speedFireRange)
+    {
+        Damage = damage;
+        BulletPoint = shootPoint;
+        Delay = speedFireRange;
+        FovAngle = fovAngle;
+        Distance = distance;
+        AmountFractions = amountFraction;
+
+    }
+}
+
+public class ShootDataGranadeLauncher : ShootData
+{
+    public ShootDataGranadeLauncher(int damage, Transform shootPoint, float speedFireRange) : base(damage, shootPoint, speedFireRange)
+    {
     }
 }

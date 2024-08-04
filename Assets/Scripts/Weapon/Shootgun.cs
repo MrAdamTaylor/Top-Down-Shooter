@@ -6,6 +6,13 @@ public class Shootgun : Weapon
     [Range(0,360)]public float FovAngle;
     [Range(0,40f)]public float Distance;
 
+    public override void Awake()
+    {
+        ShootDataShootgun data =
+            new ShootDataShootgun(Damage, ShootPoint, _speed_fire_range, FovAngle, Distance, AmountOfFraction);
+        _shootSystem.Construct(data);
+    }
+
     public void OnValidate()
     {
         if (AmountOfFraction % 2 == 0)

@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour
         if (_moveSystem != null)
         {
             _moveSystem.OnStart(_enemy.ReturnSpeed()*Constants.NPC_SPEED_MULTIPLYER);
-            _moveSystem.Move();
+            //_moveSystem.Move();
         }
     }
 }

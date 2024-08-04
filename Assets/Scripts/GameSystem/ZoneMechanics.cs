@@ -93,7 +93,7 @@ public class ZoneMechanics : MonoBehaviour
         {
             _drawer.SetRadius(_radius);
             //_radius = _drawer.Radius;
-            Debug.Log(_radius);
+            //Debug.Log(_radius);
         }
     }
 }

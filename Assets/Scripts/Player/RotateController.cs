@@ -30,7 +30,13 @@ public class RotateController : MonoBehaviour
                 Quaternion.LookRotation(mousePos - new Vector3(transform.position.x, 0, transform.position.z));
             _player.transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle(transform.eulerAngles.y,
                 _targetRotation.eulerAngles.y, _rotationSpeed * Time.deltaTime);
-                //Debug.Log($"{mousePos}  {_targetRotation.eulerAngles}  {_player.transform.eulerAngles}");
-        
+
+            
+                /*Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+                Vector3 motion = input;
+                motion *=((Mathf.Approximately(Mathf.Abs(input.x), 1f)) && (Mathf.Approximately(Mathf.Abs(input.z), 1f)))
+                    ? .7f
+                    : 1;
+                motion += Vector3.up * -8f;*/
     }
 }
