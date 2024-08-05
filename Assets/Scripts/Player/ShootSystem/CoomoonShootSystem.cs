@@ -17,6 +17,7 @@ public class CoomoonShootSystem : MonoBehaviour, IShootSystem
 
      private ShootData _weaponData;
      
+     
      public virtual void Construct(ShootData data)
      {
          _weaponData = data;
@@ -31,6 +32,17 @@ public class CoomoonShootSystem : MonoBehaviour, IShootSystem
             Vector3 direction = GetDirection();
             if (Physics.Raycast(_weaponData.BulletPoint.position, direction, out RaycastHit hit, _realDistance, _layerMask))
             {
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                {
+                    Debug.Log($"Имя {hit.collider.gameObject.name}");
+
+                    Checker checker = hit.collider.gameObject.GetComponent<Checker>();
+                    Enemy enemy = checker.Enemy;
+                    Health component = enemy.gameObject.GetComponent<Health>();
+                    component.DealDamage(_weaponData.Damage);
+                    //Debug.Log($"Отнять {_weaponData.Damage} единиц здоровья!");
+                }
+
                 TrailRenderer trail = Instantiate(_trailRenderer, _weaponData.BulletPoint.position, Quaternion.identity);
                 StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, true));
 

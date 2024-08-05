@@ -86,6 +86,15 @@ public class ShootSystemFraction : CoomoonShootSystem
                 if (Physics.Raycast(_weaponData.BulletPoint.position, _directions[i], out RaycastHit hit,
                         _realDistance, _layerMask))
                 {
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                    {Checker checker = hit.collider.gameObject.GetComponent<Checker>();
+                        Enemy enemy = checker.Enemy;
+                        Health component = enemy.gameObject.GetComponent<Health>();
+                        component.DealDamage(_weaponData.Damage);
+                        //Debug.Log($"Имя {hit.collider.gameObject.name}");
+                        /*Health component = gameObject.GetComponent<Health>();
+                        component.DealDamage(_weaponData.Damage);*/
+                    }
                     //Debug.Log("Есть контакт");
                     Debug.DrawRay(_weaponData.BulletPoint.position, _directions[i] * _realDistance,Color.red, 5f);
                     //TrailRenderer trail = Instantiate(_trailRenderer, _weaponData.BulletPoint.position, Quaternion.identity);

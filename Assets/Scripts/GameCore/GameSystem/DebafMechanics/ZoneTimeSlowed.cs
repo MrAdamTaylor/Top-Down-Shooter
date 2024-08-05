@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public enum ZoneWorkStage
 {
@@ -12,15 +13,17 @@ public enum ZoneWorkStage
     Make
 }
 
-public class ZoneMechanics : MonoBehaviour
+public class ZoneTimeSlowed : ZoneDebaf
 {
     [Range(0.1f, 1f)][SerializeField] private float _speedChange; 
     
-    [SerializeField] private Player _player;
+    [SerializeField] public Player Player;
     
     [SerializeField] private float _radius;
 
     [SerializeField] private CircleDrawer _drawer;
+
+    [SerializeField] private ParticleSystem _particleSystem;
 
     public ZoneWorkStage Stage;
     [Range(0, 100)] 
@@ -28,6 +31,7 @@ public class ZoneMechanics : MonoBehaviour
 
     private void Awake()
     {
+        _particleSystem.Play();
         Stage = ZoneWorkStage.No;
         _stageLevel = 0;
     }
@@ -74,12 +78,12 @@ public class ZoneMechanics : MonoBehaviour
             case ZoneWorkStage.Make:
                 if (playerInZone)
                 {
-                    _player.SwitchSpeed(_speedChange);
+                    Player.SwitchSpeed(_speedChange);
                     //_player.Speed = (_player.Speed - (_player.Speed * 0.6f));
                 }
                 else
                 {
-                    _player.SwitchSpeed(Constants.STANDART_VALUE_FOR_SPEED);
+                    Player.SwitchSpeed(Constants.STANDART_VALUE_FOR_SPEED);
                     Stage = ZoneWorkStage.Warning;
                 }
                 break;
@@ -97,5 +101,3 @@ public class ZoneMechanics : MonoBehaviour
         }
     }
 }
-
-
