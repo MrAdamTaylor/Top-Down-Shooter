@@ -7,6 +7,8 @@ public class MoveController : MonoBehaviour
     private IInputSystem _inputSystem;
     [SerializeField]
     private Player _player;
+
+
     
     public void Awake()
     {

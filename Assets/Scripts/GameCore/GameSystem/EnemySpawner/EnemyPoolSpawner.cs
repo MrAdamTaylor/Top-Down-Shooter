@@ -23,7 +23,6 @@ public class EnemyPoolSpawner : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Создаём префаб!");
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GameObject enemy = Instantiate(_objectsToSpawn[GetRandomPool()], GetRandomPoint(spawns));

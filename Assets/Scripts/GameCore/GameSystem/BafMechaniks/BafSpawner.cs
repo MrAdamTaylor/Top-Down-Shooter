@@ -4,13 +4,23 @@ using UnityEngine;
 
 public class BafSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private List<GameObject> weaponBuf;
+    [SerializeField] private float _weaponBustTime;
+    [SerializeField] private GameObject _speedBoost;
+    [SerializeField] private GameObject _immutable;
+    [SerializeField] private float _weapon;
+
+    [SerializeField] private Player _player;
+    
+    
+    
     void Start()
     {
         
     }
-
-    // Update is called once per frame
+    
+    
     void Update()
     {
         
