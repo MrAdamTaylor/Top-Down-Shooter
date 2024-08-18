@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enemies;
 using UnityEngine;
 
 public class EnemyPoolSpawner : MonoBehaviour
@@ -34,7 +35,7 @@ public class EnemyPoolSpawner : MonoBehaviour
             {
                 if (child.gameObject.name == "<Renderer>")
                 {
-                    PlayerDeathTriger trigger = child.GetComponent<PlayerDeathTriger>();
+                    DeathTriger trigger = child.GetComponent<DeathTriger>();
                     trigger.Killed = _player.transform;
 
                 }

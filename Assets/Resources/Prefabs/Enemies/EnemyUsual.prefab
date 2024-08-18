@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b6b68357d2d2c41a9029458dda1285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 1572867325279398450}
+  Enemy: {fileID: 8306744053634574307}
 --- !u!1 &1202463673635255170
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,8 +273,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deed0f857751cb246834a74a669e4491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Killed: {fileID: 0}
   _radius: 1.3
-  _killed: {fileID: 0}
 --- !u!1 &3244424651330003511
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,7 +420,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5596050723986116438}
-  - component: {fileID: 1572867325279398450}
+  - component: {fileID: 8306744053634574307}
   - component: {fileID: 5098859721698993624}
   - component: {fileID: 5960092344452067766}
   - component: {fileID: 7514204760056833839}
@@ -448,9 +448,9 @@ Transform:
   - {fileID: 2560830509842224114}
   - {fileID: 5880581777878626581}
   m_Father: {fileID: 0}
-  m_RootOrder: -2
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1572867325279398450
+--- !u!114 &8306744053634574307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -459,7 +459,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5232826499695941878}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 917d8eada48b4da5853eb263e626948e, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b9ae916c5a59084991ba5842095f417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3
@@ -478,8 +478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72bd9fecc0f749e7b7f5ad29eb45ba57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Body: {fileID: 5880581777878626581}
   LookedObject: {fileID: 0}
+  _body: {fileID: 5596050723986116438}
   RotateSpeed: 7
 --- !u!114 &5960092344452067766
 MonoBehaviour:
@@ -493,7 +493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: debafd4c640633f49ae60852b608e6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 1572867325279398450}
+  _enemy: {fileID: 8306744053634574307}
   _rotateSystem: {fileID: 5098859721698993624}
   _moveSystem: {fileID: 7514204760056833839}
 --- !u!114 &7514204760056833839
@@ -509,7 +509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Goal: {fileID: 0}
-  FollowedTransform: {fileID: 5880581777878626581}
+  _followedTransform: {fileID: 5596050723986116438}
 --- !u!114 &4077601630948104972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,7 +522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bebb9494300ec44a9910a29252b842d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 0
+  MaxHealth: 0
 --- !u!114 &4690487428442162221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,3 +536,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _position: {fileID: 0}
+  isDeath: 0

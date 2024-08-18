@@ -1,35 +1,34 @@
 using System;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+namespace Enemies
 {
-    [SerializeField] protected float _speed; 
-    [SerializeField] protected int _health;
+    public class Enemy : MonoBehaviour
+    {
+        [SerializeField] private float _speed; 
+        [SerializeField] private int _health;
 
-    [SerializeField] protected float _scores;
-    [SerializeField] protected float _probability;
+        [SerializeField] private float _scores;
+        [SerializeField] private float _probability;
 
-    private Health _healthComponent;
+        private Health _healthComponent;
     
-    public virtual void Awake()
-    {
-        try
+        public void Awake()
         {
-            _healthComponent = this.GetComponent<Health>();
-            _healthComponent._maxHealth = _health;
+            try
+            {
+                _healthComponent = this.GetComponent<Health>();
+                _healthComponent.MaxHealth = _health;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
-        catch (Exception e)
+        public float ReturnSpeed()
         {
-            Console.WriteLine(e);
-            throw;
+            return _speed;
         }
     }
-
-    public float ReturnSpeed()
-    {
-        return _speed;
-    }
-
 }

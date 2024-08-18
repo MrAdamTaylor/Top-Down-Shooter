@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8610331133363724165}
-  - component: {fileID: 930447285649256760}
+  - component: {fileID: 1490986958667091813}
   - component: {fileID: 968584276684941350}
   - component: {fileID: 1849290026450160254}
   - component: {fileID: 6274462439379245248}
@@ -37,9 +37,9 @@ Transform:
   - {fileID: 4744310109557514396}
   - {fileID: 6547224661975996986}
   m_Father: {fileID: 0}
-  m_RootOrder: -2
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &930447285649256760
+--- !u!114 &1490986958667091813
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1924639901005261161}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cbbe96c25814c34b6cb34e7465d1c52, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b9ae916c5a59084991ba5842095f417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 2
@@ -67,8 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72bd9fecc0f749e7b7f5ad29eb45ba57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Body: {fileID: 6547224661975996986}
   LookedObject: {fileID: 0}
+  _body: {fileID: 8610331133363724165}
   RotateSpeed: 7
 --- !u!114 &1849290026450160254
 MonoBehaviour:
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: debafd4c640633f49ae60852b608e6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 930447285649256760}
+  _enemy: {fileID: 1490986958667091813}
   _rotateSystem: {fileID: 968584276684941350}
   _moveSystem: {fileID: 6274462439379245248}
 --- !u!114 &6274462439379245248
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Goal: {fileID: 0}
-  FollowedTransform: {fileID: 6547224661975996986}
+  _followedTransform: {fileID: 8610331133363724165}
 --- !u!114 &1520711625004019628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bebb9494300ec44a9910a29252b842d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 0
+  MaxHealth: 0
 --- !u!114 &6561669122942423634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _position: {fileID: 0}
+  isDeath: 0
 --- !u!1 &2302507051563503924
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,7 +384,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b6b68357d2d2c41a9029458dda1285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 930447285649256760}
+  Enemy: {fileID: 1490986958667091813}
 --- !u!1 &7402625011046708901
 GameObject:
   m_ObjectHideFlags: 0
@@ -534,5 +535,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deed0f857751cb246834a74a669e4491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Killed: {fileID: 0}
   _radius: 1.5
-  _killed: {fileID: 0}

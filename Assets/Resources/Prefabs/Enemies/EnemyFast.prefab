@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b6b68357d2d2c41a9029458dda1285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemy: {fileID: 11354373492802408}
+  Enemy: {fileID: 986486181228082327}
 --- !u!1 &3632202251994695160
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6387384155902297317}
-  - component: {fileID: 11354373492802408}
+  - component: {fileID: 986486181228082327}
   - component: {fileID: 972885082245252070}
   - component: {fileID: 7282724487228001820}
   - component: {fileID: 3466590435097942641}
@@ -191,9 +191,9 @@ Transform:
   - {fileID: 2647236035617305827}
   - {fileID: 8207247713423403536}
   m_Father: {fileID: 0}
-  m_RootOrder: -2
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &11354373492802408
+--- !u!114 &986486181228082327
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3950592482610108717}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2ee2232fe364690abcd3ef85bb7db83, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b9ae916c5a59084991ba5842095f417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 4
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: debafd4c640633f49ae60852b608e6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 11354373492802408}
+  _enemy: {fileID: 986486181228082327}
   _rotateSystem: {fileID: 7282724487228001820}
   _moveSystem: {fileID: 3466590435097942641}
 --- !u!114 &7282724487228001820
@@ -236,8 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72bd9fecc0f749e7b7f5ad29eb45ba57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Body: {fileID: 8207247713423403536}
   LookedObject: {fileID: 0}
+  _body: {fileID: 6387384155902297317}
   RotateSpeed: 7
 --- !u!114 &3466590435097942641
 MonoBehaviour:
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Goal: {fileID: 0}
-  FollowedTransform: {fileID: 8207247713423403536}
+  _followedTransform: {fileID: 6387384155902297317}
 --- !u!114 &7455780004184723972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bebb9494300ec44a9910a29252b842d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 0
+  MaxHealth: 0
 --- !u!114 &4430493603336094023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _position: {fileID: 0}
+  isDeath: 0
 --- !u!1 &6033000340257447845
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,8 +325,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deed0f857751cb246834a74a669e4491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Killed: {fileID: 0}
   _radius: 1.5
-  _killed: {fileID: 0}
 --- !u!1 &7879760757278819728
 GameObject:
   m_ObjectHideFlags: 0

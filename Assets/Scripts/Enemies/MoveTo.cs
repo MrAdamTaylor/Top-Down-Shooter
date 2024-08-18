@@ -1,18 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Collections;
 using UnityEngine;
 
 public class MoveTo : MonoBehaviour
 {
-    [SerializeField] public Transform Goal;
+    public Transform Goal;
     
-    [SerializeField] public Transform FollowedTransform;
+    [SerializeField] private Transform _followedTransform;
 
     private float _speed;
-    public bool NeedMove { get; set; }
+    private bool _needMove;
     private Vector3 _direction;
-    private IEnumerator _makeStepRoutine;
     private Vector3 _tempPosition;
     private float _length;
     
@@ -24,25 +21,24 @@ public class MoveTo : MonoBehaviour
     
     public void Construct()
     {
-        _tempPosition = FollowedTransform.position;
-        _makeStepRoutine = MakeStep();
-        NeedMove = true;
+        _tempPosition = _followedTransform.position;
+        _needMove = true;
         _direction = Goal.transform.position - _tempPosition;
     }
     
     public void Move()
     {
-        StartCoroutine(_makeStepRoutine);
+        StartCoroutine(MakeStep());
     }
 
     public void StopMove()
     {
-        StopCoroutine(_makeStepRoutine);
+        StopCoroutine(MakeStep());
     }
     
     private IEnumerator MakeStep()
     {
-        while (NeedMove)
+        while (_needMove)
         {
             yield return null;
             yield return null;
@@ -53,19 +49,11 @@ public class MoveTo : MonoBehaviour
     
     private void Step()
     {
-        _length = Vector3.Distance(Goal.transform.position, FollowedTransform.position);
-        _tempPosition = FollowedTransform.position;
+        _length = Vector3.Distance(Goal.transform.position, _followedTransform.position);
+        _tempPosition = _followedTransform.position;
         _direction = Goal.transform.position - _tempPosition;
         Vector3 velocity = _direction.normalized * _speed;
-        FollowedTransform.position += velocity * Time.deltaTime;
-
-        #region Корректировка по константе
-
-        //_tempPosition = FollowedTransform.position;
-        //_tempPosition.y = WorldConstants.NPCDownPointShift;
-        //FollowedTransform.position = _tempPosition;
-
-        #endregion
+        _followedTransform.position += velocity * Time.deltaTime;
     }
 
 }

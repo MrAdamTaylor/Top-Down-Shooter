@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Death))]
 public class Health : MonoBehaviour
 {
-    public int _maxHealth;
+    [HideInInspector] public int MaxHealth;
     private int CurrentHealth { get; set; }
 
     private Death _death;
@@ -15,11 +16,6 @@ public class Health : MonoBehaviour
         _death = this.GetComponent<Death>();
     }
 
-    private void OnEnable()
-    {
-        CurrentHealth = _maxHealth;
-    }
-    
     public void DealDamage(int value)
     {
         CurrentHealth -= value;
@@ -28,14 +24,9 @@ public class Health : MonoBehaviour
             _death.MakeDeath();
         }
     }
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        
+        CurrentHealth = MaxHealth;
     }
 }

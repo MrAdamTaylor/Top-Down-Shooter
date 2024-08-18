@@ -1,19 +1,21 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class RotateSystem : MonoBehaviour
 {
-    public Transform Body;
     public Transform LookedObject;
-    [Range(0,10)]public float RotateSpeed = 1.5f;
+    [SerializeField]private Transform _body;
+    
+    [Range(0,10)]
+    [SerializeField]
+    private float RotateSpeed = 1.5f;
     
     private bool _autoRotate = false;
     private bool _coroutineRotate = false;
-    private IEnumerator _rotateCoroutine;
 
     public void OnStart()
     {
-        _rotateCoroutine = Rotate();
         _autoRotate = true;
     }
 
@@ -40,14 +42,14 @@ public class RotateSystem : MonoBehaviour
     {
         if (_coroutineRotate == false)
         {
-            StartCoroutine(_rotateCoroutine);
+            StartCoroutine(Rotate());
             _coroutineRotate = true;
         }
     }
     
     private void CalculateAngle(bool makeRotate = false)
     {
-        var transform1 = Body.transform;
+        var transform1 = _body.transform;
         Vector3 forwardDirection = transform1.forward;
         Vector3 goalDirection = LookedObject.transform.position - transform1.position;
         goalDirection = goalDirection.normalized;
@@ -66,7 +68,7 @@ public class RotateSystem : MonoBehaviour
         if (makeRotate)
         {
             if((angleXY * Mathf.Rad2Deg) > 10)
-                Body.transform.Rotate(0,angleXY * Mathf.Rad2Deg * clockwise * RotateSpeed *Time.deltaTime,0);
+                _body.transform.Rotate(0,angleXY * Mathf.Rad2Deg * clockwise * RotateSpeed *Time.deltaTime,0);
         }
     }
 }
