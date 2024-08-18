@@ -2213,7 +2213,7 @@ MonoBehaviour:
   _speed_fire_range: 1.25
   _shootSystem: {fileID: 1360788196}
   AmountOfFraction: 5
-  FovAngle: 10
+  FovAngle: 11
   Distance: 7
 --- !u!114 &1360788195
 MonoBehaviour:
@@ -3169,7 +3169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746e8eeeca604816a44cd0bcbcce075e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
+  Damage: 1
   ShootPoint: {fileID: 897061487}
   _speed_fire_range: 0.1
   _shootSystem: {fileID: 1895109773}
@@ -3411,7 +3411,6 @@ MonoBehaviour:
   - {fileID: 459905496}
   - {fileID: 1360788194}
   - {fileID: 1895109772}
-  - {fileID: 1082291228}
 --- !u!114 &1977050858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3437,11 +3436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1b6e6fe02224e14384f72d30c22a4ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinimalRadiusDiaposone: 5
-  MaximumRadiusDiaposone: 12
-  Provocateur: {fileID: 0}
-  PorogDistance: 2
-  IsInside: 0
+  _minimalRadiusDiaposone: 4
+  _maximumRadiusDiaposone: 7
 --- !u!114 &1977050860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4152,6 +4148,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RPG7
       objectReference: {fileID: 0}
+    - target: {fileID: 7870934177604487910, guid: d9aafcb46a154a7479ff63f582799afc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8862370394906033006, guid: d9aafcb46a154a7479ff63f582799afc, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4322,6 +4322,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bennelli_M4
       objectReference: {fileID: 0}
+    - target: {fileID: 2657492957822269561, guid: c9279b4546fdd3842af5bf4b8ec1fc97, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6305003514327109377, guid: c9279b4546fdd3842af5bf4b8ec1fc97, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -4430,6 +4434,10 @@ PrefabInstance:
     - target: {fileID: 8785507057721026828, guid: 592ff3cedc110ab49838be85bacce265, type: 3}
       propertyPath: m_Name
       value: M4_8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8785507057721026828, guid: 592ff3cedc110ab49838be85bacce265, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -8,28 +8,12 @@ public class WeaponTriger : MonoBehaviour
 {
     [SerializeField] private Transform _touching;
     [SerializeField] private float _radius;
-    private bool isInside;
+    private bool _isInside;
 
-    void Start()
-    {
-        
-    }
 
     private void OnDrawGizmos()
     {
-        /*Vector3 center = this.transform.position.ExcludeY();
-        
-        if(_touching == null)
-            return;
-
-        Vector3 provoceuterPos = _touching.position.ExcludeY();
-        Vector3 delta = center - provoceuterPos;
-        
-        //_killed.position
-        float sqrDistance = delta.x * delta.x + delta.z * delta.z;
-        isInside = sqrDistance <= _radius * _radius;*/
-        
-        Handles.color = isInside ? Color.green : Color.red;
+        Handles.color = _isInside ? Color.green : Color.red;
         Handles.DrawWireDisc(this.transform.position, Vector3.up, _radius);
     }
 
@@ -46,9 +30,9 @@ public class WeaponTriger : MonoBehaviour
         
         //_killed.position
         float sqrDistance = delta.x * delta.x + delta.z * delta.z;
-        isInside = sqrDistance <= _radius * _radius;
+        _isInside = sqrDistance <= _radius * _radius;
         
-        if (isInside)
+        if (_isInside)
         {
             this.gameObject.SetActive(false);
         }

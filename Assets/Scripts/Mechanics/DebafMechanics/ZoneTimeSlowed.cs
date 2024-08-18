@@ -1,22 +1,33 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class ZoneDeath : ZoneDebaf
+public enum ZoneWorkStage
 {
-    [Range(0.1f, 1f)] [SerializeField] private float _speedChange;
+    No,
+    Warning,
+    Make
+}
 
+public class ZoneTimeSlowed : MonoBehaviour
+{
+    [Range(0.1f, 1f)][SerializeField] private float _speedChange; 
+    
     [SerializeField] public Player Player;
-
+    
     [SerializeField] private float _radius;
 
     [SerializeField] private CircleDrawer _drawer;
 
-    public ZoneWorkStage Stage;
-    [Range(0, 100)] [SerializeField] private float _stageLevel;
-    
     [SerializeField] private ParticleSystem _particleSystem;
 
-    private Death _death;
+    public ZoneWorkStage Stage;
+    [Range(0, 100)] 
+    [SerializeField]private float _stageLevel;
 
     private void Awake()
     {
@@ -32,14 +43,12 @@ public class ZoneDeath : ZoneDebaf
 
         for (int i = 0; i < targetsZone.Length; i++)
         {
-            //Debug.Log(targetsZone[i].gameObject.name);
             if (targetsZone[i].gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 playerInZone = true;
                 break;
             }
         }
-
         UpdateZoneState(playerInZone);
     }
 
@@ -64,23 +73,20 @@ public class ZoneDeath : ZoneDebaf
                     if (_stageLevel <= 0)
                         Stage = ZoneWorkStage.No;
                 }
-
                 break;
             case ZoneWorkStage.Make:
                 if (playerInZone)
                 {
-                    _death = Player.gameObject.GetComponent<Death>();
-                    _death.MakeDeath();
-                    //_player.Speed = (_player.Speed - (_player.Speed * 0.6f));
+                    Player.SwitchSpeed(_speedChange);
                 }
                 else
                 {
-                    //_player.SwitchSpeed(Constants.STANDART_VALUE_FOR_SPEED);
-                    _death = null;
+                    Player.SwitchSpeed(Constants.STANDART_VALUE_FOR_SPEED);
                     Stage = ZoneWorkStage.Warning;
                 }
                 break;
         }
+        
     }
 
     public void OnValidate()
@@ -88,8 +94,6 @@ public class ZoneDeath : ZoneDebaf
         if (_drawer != null)
         {
             _drawer.SetRadius(_radius);
-            //_radius = _drawer.Radius;
-            //Debug.Log(_radius);
         }
     }
 }

@@ -36,33 +36,6 @@ public class ZoneSpawnerTrigger : MonoBehaviour
         Handles.DrawWireDisc(this.transform.position, Vector3.up, MaxRadius);
     }
 
-    private void Update()
-    {
-        GetBool();
-    }
-
-    private void GetBool()
-    {
-        /*if(_provocateur == null)
-            return;
-
-        _currentPosition = transform.position;
-        _currentPosition = _currentPosition.ExcludeY();
-        _center = _provocateur.transform.position;
-        _center = _center.ExcludeY();
-        Vector3 delta = _currentPosition - _center;
-
-        //float sqrDistance = delta.x * delta.x + delta.y * delta.y;
-        float sqrDistance = delta.x * delta.x + delta.z * delta.z;
-        
-        bool moreMinimal = sqrDistance >= _minRadius * _minRadius;
-        bool lessMaximal = sqrDistance <= _maxRadius * _maxRadius;
-
-        IsInside = moreMinimal && lessMaximal;
-        Debug.Log(false);*/
-        
-    }
-
     public bool CheckPosition(Vector3 vec)
     {
         Vector3 center = transform.position.ExcludeY();
