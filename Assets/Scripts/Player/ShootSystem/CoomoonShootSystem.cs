@@ -10,8 +10,6 @@ public class CoomoonShootSystem : MonoBehaviour, IShootSystem
     [SerializeField] protected LayerMask _layerMask;
     [SerializeField] protected TrailRenderer _trailRenderer;
 
-     //protected Transform _bulletPoint;
-     //protected float _delay;
      protected float _lastShootTime;
      protected float _realDistance = Constants.DEFAULT_MAXIMUM_FIRING_RANGE;
      protected float _realBulletSpeed = Constants.DEFAULT_BULLET_SPEED;
@@ -89,40 +87,6 @@ public class CoomoonShootSystem : MonoBehaviour, IShootSystem
     }
 }
 
-public class ShootData
-{
-    public int Damage;
-    public Transform BulletPoint;
-    public float Delay;
-
-    public ShootData(int damage, Transform shootPoint, float speedFireRange)
-    {
-        Damage = damage;
-        BulletPoint = shootPoint;
-        Delay = speedFireRange;
-    }
-}
-
-
-public class ShootDataShootgun : ShootData
-{
-    public float FovAngle;
-    public float Distance;
-    public int AmountFractions;
-    
-    public ShootDataShootgun(int damage, Transform shootPoint, float speedFireRange, 
-        float fovAngle, float distance, int amountFraction) 
-        : base(damage, shootPoint, speedFireRange)
-    {
-        Damage = damage;
-        BulletPoint = shootPoint;
-        Delay = speedFireRange;
-        FovAngle = fovAngle;
-        Distance = distance;
-        AmountFractions = amountFraction;
-
-    }
-}
 
 public class ShootDataGranadeLauncher : ShootData
 {

@@ -14,6 +14,7 @@ public class Health : MonoBehaviour
     public void Awake()
     {
         _death = this.GetComponent<Death>();
+        ServiceLocator.Instance.BindData(typeof(Health), this);
     }
 
     public void DealDamage(int value)

@@ -1,22 +1,29 @@
+using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class RotateSystem : MonoBehaviour
 {
-    public Transform LookedObject;
     [SerializeField]private Transform _body;
-    
+
     [Range(0,10)]
     [SerializeField]
     private float RotateSpeed = 1.5f;
-    
+
+    private Transform _lookedObject;
+
     private bool _autoRotate = false;
     private bool _coroutineRotate = false;
 
     public void OnStart()
     {
         _autoRotate = true;
+    }
+
+    public void OnEnable()
+    {
+        Player player = (Player)ServiceLocator.Instance.GetData(typeof(Player));
+        _lookedObject = player.transform;
     }
 
     public void Update()
@@ -51,7 +58,7 @@ public class RotateSystem : MonoBehaviour
     {
         var transform1 = _body.transform;
         Vector3 forwardDirection = transform1.forward;
-        Vector3 goalDirection = LookedObject.transform.position - transform1.position;
+        Vector3 goalDirection = _lookedObject.transform.position - transform1.position;
         goalDirection = goalDirection.normalized;
             
         float dotXZ = GeometryMath.DotProductXZ(forwardDirection, goalDirection);

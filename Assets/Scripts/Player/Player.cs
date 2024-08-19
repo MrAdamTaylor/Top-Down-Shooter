@@ -9,13 +9,14 @@ public class Player : MonoBehaviour
 {
     
     public float Speed = 2.5f;
-
-    [ReadOnly]
-    [SerializeField]private float _innerSpeed;
+    
+    private float _innerSpeed;
 
     public void Awake()
     {
+        Debug.Log(this);
         _innerSpeed = Speed;
+        ServiceLocator.Instance.BindData(typeof(Player),this);
     }
 
     public void Move(Vector3 offset)

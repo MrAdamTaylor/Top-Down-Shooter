@@ -9,8 +9,7 @@ public class EnemyPoolSpawner : MonoBehaviour
     [SerializeField] float[] _percantage;
     [SerializeField] GameObject[] _objectsToSpawn;
     [SerializeField] GameObject _spawnPoints;
-
-    [SerializeField] GameObject _player;
+    
 
     private List<Transform> spawns = new List<Transform>();
 
@@ -26,20 +25,7 @@ public class EnemyPoolSpawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject enemy = Instantiate(_objectsToSpawn[GetRandomPool()], GetRandomPoint(spawns));
-            RotateSystem rotateSystem = enemy.GetComponent<RotateSystem>();
-            rotateSystem.LookedObject = _player.transform;
-            MoveTo moving = enemy.GetComponent<MoveTo>();
-            moving.Goal = _player.transform;
-            foreach (Transform child in enemy.transform)
-            {
-                if (child.gameObject.name == "<Renderer>")
-                {
-                    DeathTriger trigger = child.GetComponent<DeathTriger>();
-                    trigger.Killed = _player.transform;
-
-                }
-            }
+            Instantiate(_objectsToSpawn[GetRandomPool()], GetRandomPoint(spawns));
         }
     }
 
@@ -73,3 +59,6 @@ public class EnemyPoolSpawner : MonoBehaviour
         return 0;
     }
 }
+
+
+

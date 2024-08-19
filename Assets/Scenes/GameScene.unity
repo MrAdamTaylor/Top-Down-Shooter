@@ -457,14 +457,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 297685611}
-  - component: {fileID: 297685612}
   m_Layer: 0
   m_Name: '[BafSpawner]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &297685611
 Transform:
   m_ObjectHideFlags: 0
@@ -483,25 +482,6 @@ Transform:
   m_Father: {fileID: 503972023}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &297685612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 297685610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d4f6fcee81bcd543b77227cd2fc1a4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particleSystem: {fileID: 0}
-  weaponBuf: []
-  _weaponBustTime: 0
-  _speedBoost: {fileID: 0}
-  _immutable: {fileID: 0}
-  _weapon: 0
-  _player: {fileID: 0}
 --- !u!1 &311961114
 GameObject:
   m_ObjectHideFlags: 0
@@ -2157,7 +2137,6 @@ MonoBehaviour:
   - {fileID: 3950592482610108717, guid: 42a06fbfde7c3fe459ca4287f8d59cf5, type: 3}
   - {fileID: 1924639901005261161, guid: eac0858261f294144b10f13f64d51a3d, type: 3}
   _spawnPoints: {fileID: 110188771}
-  _player: {fileID: 1951356874}
 --- !u!1 &1360788192
 GameObject:
   m_ObjectHideFlags: 0

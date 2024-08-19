@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -5,22 +6,27 @@ namespace Enemies
 {
     public class DeathTriger : MonoBehaviour
     {
-        public Transform Killed;
-
         [SerializeField] private float _radius;
-    
+
+        private Transform _killed;
         private bool _isInside;
 
         private Death _death;
+
+        private void OnEnable()
+        {
+            Player player = (Player)ServiceLocator.Instance.GetData(typeof(Player));
+            _killed = player.transform;
+        }
 
         public void OnDrawGizmos()
         {
             Vector3 center = transform.position.ExcludeY();
         
-            if(Killed == null)
+            if(_killed == null)
                 return;
 
-            Vector3 provoceuterPos = Killed.position.ExcludeY();
+            Vector3 provoceuterPos = _killed.position.ExcludeY();
             Vector3 delta = center - provoceuterPos;
         
             //_killed.position
@@ -35,10 +41,10 @@ namespace Enemies
         {
             Vector3 center = this.transform.position.ExcludeY();
         
-            if(Killed == null)
+            if(_killed == null)
                 return;
 
-            Vector3 provoceuterPos = Killed.position.ExcludeY();
+            Vector3 provoceuterPos = _killed.position.ExcludeY();
             Vector3 delta = center - provoceuterPos;
         
             //_killed.position
@@ -47,7 +53,7 @@ namespace Enemies
         
             if (_isInside)
             {
-                _death = Killed.gameObject.GetComponent<Death>();
+                _death = _killed.gameObject.GetComponent<Death>();
                 _death.MakeDeath();
                 _death = null;
             }

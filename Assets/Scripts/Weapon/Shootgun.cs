@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Shootgun : Weapon
 {
-    [Range(3,7)]public int AmountOfFraction;
+    [Range(3,5)]public int AmountOfFraction;
     [Range(0,360)]public float FovAngle;
     [Range(0,40f)]public float Distance;
 
