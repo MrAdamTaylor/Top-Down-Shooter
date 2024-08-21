@@ -273,7 +273,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: deed0f857751cb246834a74a669e4491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Killed: {fileID: 0}
   _radius: 1.3
 --- !u!1 &3244424651330003511
 GameObject:
@@ -432,7 +431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5596050723986116438
 Transform:
   m_ObjectHideFlags: 0
@@ -478,7 +477,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72bd9fecc0f749e7b7f5ad29eb45ba57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LookedObject: {fileID: 0}
   _body: {fileID: 5596050723986116438}
   RotateSpeed: 7
 --- !u!114 &5960092344452067766
@@ -508,7 +506,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acff1388c6c0c554b96f654450cb3326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Goal: {fileID: 0}
   _followedTransform: {fileID: 5596050723986116438}
 --- !u!114 &4077601630948104972
 MonoBehaviour:

@@ -1,41 +1,23 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Enemies;
+using Mechanics.Spawners.NewArchitecture;
 using UnityEngine;
 
-public class EnemyPoolSpawner : MonoBehaviour
+public class SpawnController : MonoBehaviour
 {
     [SerializeField] float[] _percantage;
-    [SerializeField] GameObject[] _objectsToSpawn;
-    [SerializeField] GameObject _spawnPoints;
-    
 
-    private List<Transform> spawns = new List<Transform>();
+    [SerializeField] private EnemySpawner[] _enemySpawners;
 
-    private void Start()
-    {
-        foreach (Transform spawnObj in _spawnPoints.transform)
-        {
-            spawns.Add(spawnObj);
-        }
-    }
 
-    private void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Instantiate(_objectsToSpawn[GetRandomPool()], GetRandomPoint(spawns));
+            _enemySpawners[GetRandomPool()].Spawn();
         }
     }
-
     
-
-    private Transform GetRandomPoint(List<Transform> spawnPoints)
-    {
-        return spawnPoints[UnityEngine.Random.Range(0,spawnPoints.Count-1)];
-    }
-
     private int GetRandomPool()
     {
         float random = UnityEngine.Random.Range(0f, 1f);
@@ -45,7 +27,7 @@ public class EnemyPoolSpawner : MonoBehaviour
         {
             total += _percantage[i];
         }
-        for (int i = 0; i < _objectsToSpawn.Length; i++)
+        for (int i = 0; i < _enemySpawners.Length; i++)
         {
             if (_percantage[i] / total + numForAdding >= random)
             {
@@ -59,6 +41,3 @@ public class EnemyPoolSpawner : MonoBehaviour
         return 0;
     }
 }
-
-
-
