@@ -31,7 +31,8 @@ namespace Mechanics.Spawners
 
         public T Get()
         {
-            T item = _pool.Count > 0 ? _pool.Dequeue() : _preloadFunc();
+            //T item = _pool.Count > 0 ? _pool.Dequeue() : _preloadFunc();
+            T item = _pool.Count > 0 ? _pool.Dequeue() : throw new Exception("В пуле нет объектов");
             _getAction(item);
             _active.Add(item);
 

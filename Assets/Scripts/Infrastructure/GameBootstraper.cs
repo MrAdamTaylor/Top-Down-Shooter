@@ -7,7 +7,6 @@ public class GameBootstraper : MonoBehaviour, ICoroutineRunner
     
     public void StartGame()
     {
-        Debug.Log("Метод старт запустился");
         _game = new Game(this,Curtain);
         _game.StateMachine.Enter<BootstrapState>();
     }

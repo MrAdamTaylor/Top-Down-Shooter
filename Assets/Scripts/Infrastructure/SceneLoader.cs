@@ -8,7 +8,6 @@ public class SceneLoader
     private readonly ICoroutineRunner _coroutineRunner;
     public SceneLoader(ICoroutineRunner coroutineRunner)
     {
-        Debug.Log("Класс для загрузки сцен инициализирован!");
         _coroutineRunner = coroutineRunner;
     }
 

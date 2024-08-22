@@ -20,7 +20,6 @@ public class CoomoonShootSystem : MonoBehaviour, IShootSystem
      public virtual void Construct(ShootData data)
      {
          _weaponData = data;
-         Debug.Log("Конструктор для загрузки данных");
      }
 
      public virtual void Shoot()

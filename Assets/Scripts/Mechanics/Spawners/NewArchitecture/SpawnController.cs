@@ -11,6 +11,7 @@ public class SpawnController : MonoBehaviour
 
     [SerializeField] private EnemySpawner[] _enemySpawners;
 
+    [Range(10,100)]
     [SerializeField] private int _maxEnemyOnLevel;
 
     private void Awake()

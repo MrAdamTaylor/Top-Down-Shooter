@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class RotateSystem : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class RotateSystem : MonoBehaviour
 
     [Range(0,10)]
     [SerializeField]
-    private float RotateSpeed = 1.5f;
+    private float _rotateSpeed = 1.5f;
 
     private Transform _lookedObject;
 
@@ -33,7 +34,13 @@ public class RotateSystem : MonoBehaviour
             AutoRotate();
         }
     }
-    
+
+    public void Stop()
+    {
+        StopCoroutine(Rotate());
+        _coroutineRotate = false;
+    }
+
     private IEnumerator Rotate()
     {
         while (_autoRotate)
@@ -75,7 +82,7 @@ public class RotateSystem : MonoBehaviour
         if (makeRotate)
         {
             if((angleXY * Mathf.Rad2Deg) > 10)
-                _body.transform.Rotate(0,angleXY * Mathf.Rad2Deg * clockwise * RotateSpeed *Time.deltaTime,0);
+                _body.transform.Rotate(0,angleXY * Mathf.Rad2Deg * clockwise * _rotateSpeed *Time.deltaTime,0);
         }
     }
 }

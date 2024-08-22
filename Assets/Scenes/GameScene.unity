@@ -202,7 +202,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 228414477}
-  - component: {fileID: 228414478}
   - component: {fileID: 228414479}
   m_Layer: 0
   m_Name: '[FastEnemies]'
@@ -226,18 +225,6 @@ Transform:
   m_Father: {fileID: 1246364622}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &228414478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 228414476}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9dfef62dc8e2be478731caf1cff8ef1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &228414479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1877,7 +1864,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1246364622}
-  - component: {fileID: 1246364623}
   - component: {fileID: 1246364624}
   m_Layer: 0
   m_Name: '[EnemiesPool]'
@@ -1904,32 +1890,6 @@ Transform:
   m_Father: {fileID: 503972023}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1246364623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246364621}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5ea0339d483b4a4999d106015005a31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _percantage:
-  - 60
-  - 30
-  - 10
-  _objectsToSpawn:
-  - {fileID: 5232826499695941878, guid: 2fc84b61a2bc8ad45befb73eea2bb673, type: 3}
-  - {fileID: 3950592482610108717, guid: 42a06fbfde7c3fe459ca4287f8d59cf5, type: 3}
-  - {fileID: 1924639901005261161, guid: eac0858261f294144b10f13f64d51a3d, type: 3}
-  _spawnPoints: {fileID: 110188771}
-  _spawnerParent:
-  - {fileID: 1453629525}
-  - {fileID: 228414476}
-  - {fileID: 2122384907}
-  _maxCount: 20
 --- !u!114 &1246364624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1950,7 +1910,7 @@ MonoBehaviour:
   - {fileID: 1453629528}
   - {fileID: 228414479}
   - {fileID: 2122384910}
-  _maxEnemyOnLevel: 30
+  _maxEnemyOnLevel: 10
 --- !u!1 &1360788192
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
-using System;
-using Enemies;
+
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Mechanics.Spawners.NewArchitecture
@@ -13,11 +14,12 @@ namespace Mechanics.Spawners.NewArchitecture
 
         private void Start()
         {
-            Debug.Log(transform);
             GameObjectPool._parent = this.transform;
             _pool = new GameObjectPool(_spawnObject, _objectsCount);
-            foreach (EnemyController controller in transform.GetComponentsInChildren<EnemyController>())
+            List<Transform> childs = transform.Cast<Transform>().ToList();
+            for (int i = 0; i < childs.Count; i++)
             {
+                EnemyController controller = childs[i].GetComponent<EnemyController>();
                 controller.Construct(this);
                 controller.SubscribeDeath();
             }

@@ -32,7 +32,12 @@ public class EnemyController : MonoBehaviour
             _moveSystem.OnStart(_enemy.ReturnSpeed()*Constants.NPC_SPEED_MULTIPLYER);
             _moveSystem.Move();
         }
+    }
 
+    public void OnEnable()
+    {
+        _moveSystem.Move();
+        _rotateSystem.OnStart();
     }
 
     public void SubscribeDeath()
@@ -42,13 +47,18 @@ public class EnemyController : MonoBehaviour
 
     private void ReturnPool()
     {
-        Debug.Log("Привет, я пул!");
         _spawner.ReturnPool(this.gameObject);
     }
 
-    /*
+    
     public void OnDestroy()
     {
         _death.OnDeath -= ReturnPool;
-    }*/
+    }
+
+    public void OnDisable()
+    {
+        _moveSystem.StopMove();
+        _rotateSystem.Stop();
+    }
 }

@@ -22,15 +22,11 @@ public class WeaponController : MonoBehaviour
             IMouseInput inputSystem = weapon.gameObject.GetComponent<MouseInputClick>();
             if (inputSystem != null)
             {
-                //inputSystem  = weapon.gameObject.GetComponent<MouseInputTouch>();
                 _inputSystem = this.AddComponent<MouseInputClick>();
-                Debug.Log("Система c зажатием клавиши найдена в "+weapon.gameObject.name);
             }
             else
             {
                 _inputSystem = this.AddComponent<MouseInputTouch>();
-                //inputSystem  = weapon.gameObject.GetComponent<MouseInputClick>();
-                Debug.Log("Система c одиночным нажатием найдена в "+weapon.gameObject.name);
             }
             _inputSystem.OnFire += this.OnShoot;
         }
@@ -41,15 +37,11 @@ public class WeaponController : MonoBehaviour
         IMouseInput inputSystem = weapon.gameObject.GetComponent<MouseInputClick>();
         if (inputSystem != null)
         {
-            //inputSystem  = weapon.gameObject.GetComponent<MouseInputTouch>();
             _inputSystem = this.AddComponent<MouseInputClick>();
-            Debug.Log("Система c зажатием клавиши найдена в "+weapon.gameObject.name);
         }
         else
         {
             _inputSystem = this.AddComponent<MouseInputTouch>();
-            //inputSystem  = weapon.gameObject.GetComponent<MouseInputClick>();
-            Debug.Log("Система c одиночным нажатием найдена в "+weapon.gameObject.name);
         }
         _inputSystem.OnFire += this.OnShoot;
     }
