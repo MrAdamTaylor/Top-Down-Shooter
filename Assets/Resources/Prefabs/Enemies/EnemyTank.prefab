@@ -14,14 +14,14 @@ GameObject:
   - component: {fileID: 1849290026450160254}
   - component: {fileID: 6274462439379245248}
   - component: {fileID: 1520711625004019628}
-  - component: {fileID: 6561669122942423634}
+  - component: {fileID: 4829666685660253035}
   m_Layer: 7
   m_Name: EnemyTank
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8610331133363724165
 Transform:
   m_ObjectHideFlags: 0
@@ -37,7 +37,7 @@ Transform:
   - {fileID: 4744310109557514396}
   - {fileID: 6547224661975996986}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1490986958667091813
 MonoBehaviour:
@@ -84,6 +84,7 @@ MonoBehaviour:
   _enemy: {fileID: 1490986958667091813}
   _rotateSystem: {fileID: 968584276684941350}
   _moveSystem: {fileID: 6274462439379245248}
+  _death: {fileID: 4829666685660253035}
 --- !u!114 &6274462439379245248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 0
---- !u!114 &6561669122942423634
+--- !u!114 &4829666685660253035
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,11 +120,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1924639901005261161}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c7f33d022c575b488730a45d9c3aa53, type: 3}
+  m_Script: {fileID: 11500000, guid: 27fd01f612ab4f3fb7d75addd7be776c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _position: {fileID: 0}
-  isDeath: 0
 --- !u!1 &2302507051563503924
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,7 +30,6 @@ public class KeyboardInput : MonoBehaviour, IInputSystem
         {
             if (this.transform.position.z <= zBorder)
             {
-                Debug.Log($"MyPos{this.transform.position} and border {zBorder}");
                 this.Move(Vector2.up);
             }
         }

@@ -6,6 +6,8 @@ namespace Mechanics
     {
         [SerializeField] private Transform _position;
 
+        //[SerializeField] private EnemySpawner _enemySpawner;
+        
         public bool isDeath;
     
         public void MakeDeath()
@@ -14,7 +16,5 @@ namespace Mechanics
             gameObject.transform.position = _position.position;
             isDeath = true;
         }
-    
-    
     }
 }

@@ -5,16 +5,16 @@ using Mechanics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-[RequireComponent(typeof(Death))]
+[RequireComponent(typeof(EnemyDeath))]
 public class Health : MonoBehaviour
 {
     [HideInInspector] public int MaxHealth;
     private int CurrentHealth { get; set; }
 
-    private Death _death;
+    private EnemyDeath _death;
     public void Awake()
     {
-        _death = this.GetComponent<Death>();
+        _death = this.GetComponent<EnemyDeath>();
         ServiceLocator.Instance.BindData(typeof(Health), this);
     }
 

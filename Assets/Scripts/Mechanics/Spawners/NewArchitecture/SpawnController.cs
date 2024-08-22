@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Mechanics.Spawners.NewArchitecture;
 using UnityEngine;
 
@@ -8,6 +10,20 @@ public class SpawnController : MonoBehaviour
     [SerializeField] float[] _percantage;
 
     [SerializeField] private EnemySpawner[] _enemySpawners;
+
+    [SerializeField] private int _maxEnemyOnLevel;
+
+    private void Awake()
+    {
+        float sum = _percantage.Sum();
+        for (int i = 0; i < _enemySpawners.Length; i++)
+        {
+            float koef = _percantage[i] / sum;
+            float maxEnemy = _maxEnemyOnLevel * koef;
+            int enemyCount = (int)maxEnemy;
+            _enemySpawners[i].Construct(enemyCount);
+        }
+    }
 
 
     void Update()

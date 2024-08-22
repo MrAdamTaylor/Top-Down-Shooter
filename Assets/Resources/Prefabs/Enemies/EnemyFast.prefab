@@ -168,14 +168,14 @@ GameObject:
   - component: {fileID: 7282724487228001820}
   - component: {fileID: 3466590435097942641}
   - component: {fileID: 7455780004184723972}
-  - component: {fileID: 4430493603336094023}
+  - component: {fileID: 5493664069178414342}
   m_Layer: 7
   m_Name: EnemyFast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6387384155902297317
 Transform:
   m_ObjectHideFlags: 0
@@ -191,7 +191,7 @@ Transform:
   - {fileID: 2647236035617305827}
   - {fileID: 8207247713423403536}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &986486181228082327
 MonoBehaviour:
@@ -224,6 +224,7 @@ MonoBehaviour:
   _enemy: {fileID: 986486181228082327}
   _rotateSystem: {fileID: 7282724487228001820}
   _moveSystem: {fileID: 3466590435097942641}
+  _death: {fileID: 5493664069178414342}
 --- !u!114 &7282724487228001820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 0
---- !u!114 &4430493603336094023
+--- !u!114 &5493664069178414342
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -273,11 +274,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3950592482610108717}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c7f33d022c575b488730a45d9c3aa53, type: 3}
+  m_Script: {fileID: 11500000, guid: 27fd01f612ab4f3fb7d75addd7be776c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _position: {fileID: 0}
-  isDeath: 0
 --- !u!1 &6033000340257447845
 GameObject:
   m_ObjectHideFlags: 0

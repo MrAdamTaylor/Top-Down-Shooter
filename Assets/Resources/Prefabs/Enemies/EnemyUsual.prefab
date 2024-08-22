@@ -424,14 +424,14 @@ GameObject:
   - component: {fileID: 5960092344452067766}
   - component: {fileID: 7514204760056833839}
   - component: {fileID: 4077601630948104972}
-  - component: {fileID: 4690487428442162221}
+  - component: {fileID: 2954412472027190526}
   m_Layer: 7
   m_Name: EnemyUsual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5596050723986116438
 Transform:
   m_ObjectHideFlags: 0
@@ -447,7 +447,7 @@ Transform:
   - {fileID: 2560830509842224114}
   - {fileID: 5880581777878626581}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8306744053634574307
 MonoBehaviour:
@@ -494,6 +494,7 @@ MonoBehaviour:
   _enemy: {fileID: 8306744053634574307}
   _rotateSystem: {fileID: 5098859721698993624}
   _moveSystem: {fileID: 7514204760056833839}
+  _death: {fileID: 2954412472027190526}
 --- !u!114 &7514204760056833839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,7 +521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 0
---- !u!114 &4690487428442162221
+--- !u!114 &2954412472027190526
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -529,8 +530,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 5232826499695941878}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c7f33d022c575b488730a45d9c3aa53, type: 3}
+  m_Script: {fileID: 11500000, guid: 27fd01f612ab4f3fb7d75addd7be776c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _position: {fileID: 0}
-  isDeath: 0

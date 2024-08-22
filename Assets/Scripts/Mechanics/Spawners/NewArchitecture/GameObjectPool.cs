@@ -3,17 +3,11 @@ using UnityEngine;
 
 public class GameObjectPool : PoolBase<GameObject>
 {
-    private static Transform _parent;
+    public static Transform _parent;
     
     public GameObjectPool(GameObject prefab, int preloadCount)
         :base(()=> Preload(prefab),GetAction, ReturnAction, preloadCount)
     {
-    }
-    
-    public GameObjectPool(GameObject prefab, int preloadCount, Transform parent)
-        :base(()=> Preload(prefab),GetAction, ReturnAction, preloadCount)
-    {
-        _parent = parent;
     }
 
     public static GameObject Preload(GameObject prefab)
