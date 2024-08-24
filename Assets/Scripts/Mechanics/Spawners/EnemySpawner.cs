@@ -25,14 +25,14 @@ namespace Mechanics.Spawners.NewArchitecture
             }
         }
 
-        public void Spawn()
-        {
-            GameObject obj = _pool.Get();
-        }
-
         public void Construct(int enemyCount)
         {
             _objectsCount = enemyCount;
+        }
+
+        public void Spawn()
+        {
+            GameObject obj = _pool.Get();
         }
 
         public void ReturnPool(GameObject o)

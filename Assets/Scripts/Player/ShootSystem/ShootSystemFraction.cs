@@ -37,8 +37,6 @@ public class ShootSystemFraction : CoomoonShootSystem
         }
     }
 
-   
-
     private void FourAngleShoot()
     {
         _shootingParticle.Play();
