@@ -38,7 +38,7 @@ namespace Enemies
             Handles.DrawWireDisc(this.transform.position, Vector3.up, _radius);
         }
 
-        public void Update()
+        public void FixedUpdate()
         {
             Vector3 center = this.transform.position.ExcludeY();
         

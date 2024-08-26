@@ -1,13 +1,23 @@
+using System;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
 namespace Mechanics.BafMechaniks
 {
-    public class WeaponTriger : MonoBehaviour
+    public class TouchTriger : MonoBehaviour
     {
-        [SerializeField] private Transform _touching;
         [SerializeField] private float _radius;
+        [SerializeField] private Bonus _bonus;
         private bool _isInside;
+        private Transform _touching;
+        public event Action OnTouch;
+
+        private void Start()
+        {
+            Player player = (Player)ServiceLocator.Instance.GetData(typeof(Player));
+            _touching = player.transform;
+        }
 
 
         private void OnDrawGizmos()
@@ -17,7 +27,7 @@ namespace Mechanics.BafMechaniks
         }
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
             Vector3 center = this.transform.position.ExcludeY();
         
@@ -33,6 +43,7 @@ namespace Mechanics.BafMechaniks
         
             if (_isInside)
             {
+                OnTouch?.Invoke();
                 this.gameObject.SetActive(false);
             }
         }

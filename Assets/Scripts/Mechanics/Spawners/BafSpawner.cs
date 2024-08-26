@@ -34,7 +34,6 @@ public class BafSpawner : MonoBehaviour
                  Vector3 vec = new Vector3(Random.Range(-20f, 20f), 1f, Random.Range(-15f, 15f));
                  _vec = transform.TransformPoint(vec);
                 _trueSpawn = _spawnPositions.Position(_vec);
-                Debug.Log("Неверные кординаты");
             }
             Instantiate(_bafs[Random.Range(0, _bafs.Count)], _vec, Quaternion.identity);
             _trueSpawn = false;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Mechanics.BafMechaniks;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -32,5 +33,10 @@ public class Player : MonoBehaviour
     public void SwitchSpeed(float speedChange)
     {
         _innerSpeed = Speed - (Speed * speedChange);
+    }
+
+    public void AddBonus<T>() where T : MonoBehaviour, IPlayerBonusComponent
+    {
+        this.gameObject.AddComponent<T>();
     }
 }

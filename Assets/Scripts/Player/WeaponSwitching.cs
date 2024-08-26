@@ -1,43 +1,73 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class WeaponSwitching : MonoBehaviour
 {
-    public List<Weapon> weapons;
-    private int selectedWeapon;
+    [SerializeField] private List<Weapon> _weapons;
+    private int _selectedWeapon;
+    private int _weaponCount = 0;
 
     private WeaponController _weaponController;
 
+    public void Construct(WeaponController weaponController)
+    {
+        _weaponController = weaponController;
+        for (int i = 0; i < _weapons.Count; i++)
+        {
+            _weaponCount++;
+        }
+    }
+
+    public int GetWeaponsGount()
+    {
+        return _weaponCount;
+    }
+
+    public Weapon[] GetWeaponsComponent()
+    {
+        Weapon[] weapons = new Weapon[_weaponCount];
+        
+        for (int i = 0; i < _weapons.Count; i++)
+        {
+            Weapon weapon = _weapons[i].gameObject.GetComponent<Weapon>();
+            weapons[i] = weapon;
+        }
+
+        return weapons;
+    }
+
     void Update()
     {
-        int previousSelectedWeapon = selectedWeapon;
+        int previousSelectedWeapon = _selectedWeapon;
         
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
-            if (selectedWeapon >= weapons.Count - 1)
+            if (_selectedWeapon >= _weapons.Count - 1)
             {
-                selectedWeapon = 0;
+                _selectedWeapon = 0;
             }
             else
             {
-                selectedWeapon++;
+                _selectedWeapon++;
             }
         }
 
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
-            if (selectedWeapon <= 0)
+            if (_selectedWeapon <= 0)
             {
-                selectedWeapon = weapons.Count-1;
+                _selectedWeapon = _weapons.Count-1;
             }
             else
             {
-                selectedWeapon--;
+                _selectedWeapon--;
             }
         }
 
-        if (previousSelectedWeapon != selectedWeapon)
+        if (previousSelectedWeapon != _selectedWeapon)
         {
             SelectWeapon();
         }
@@ -46,16 +76,16 @@ public class WeaponSwitching : MonoBehaviour
     void SelectWeapon()
     {
         int j = 0;
-        for (int i = 0; i < weapons.Count; i++)
+        for (int i = 0; i < _weapons.Count; i++)
         {
-            if (i == selectedWeapon)
+            if (i == _selectedWeapon)
             {
-                weapons[i].gameObject.SetActive(true);
-                _weaponController.SwitchInput(weapons[i]);
+                _weapons[i].gameObject.SetActive(true);
+                _weaponController.SwitchInput(_weapons[i]);
             }
             else
             {
-                weapons[i].gameObject.SetActive(false);
+                _weapons[i].gameObject.SetActive(false);
             }
             j++;
         }
@@ -64,11 +94,11 @@ public class WeaponSwitching : MonoBehaviour
     public Weapon GetActiveWeapon()
     {
         Weapon weapon = null;
-        for (int i = 0; i < weapons.Count; i++)
+        for (int i = 0; i < _weapons.Count; i++)
         {
-            if (weapons[i].gameObject.activeSelf)
+            if (_weapons[i].gameObject.activeSelf)
             {
-                weapon = weapons[i];
+                weapon = _weapons[i];
             }
         }
 
@@ -80,10 +110,5 @@ public class WeaponSwitching : MonoBehaviour
         {
             return weapon;
         }
-    }
-
-    public void Construct(WeaponController weaponController)
-    {
-        _weaponController = weaponController;
     }
 }
