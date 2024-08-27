@@ -38,7 +38,6 @@ public class CoomoonShootSystem : MonoBehaviour, IShootSystem
                     Enemy enemy = checker.Enemy;
                     Health component = enemy.gameObject.GetComponent<Health>();
                     component.DealDamage(_weaponData.Damage);
-                    //Debug.Log($"Отнять {_weaponData.Damage} единиц здоровья!");
                 }
 
                 TrailRenderer trail = Instantiate(_trailRenderer, _weaponData.BulletPoint.position, Quaternion.identity);

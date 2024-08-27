@@ -1,13 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] WeaponSwitching _weaponSwitching;
+    [SerializeField] private PlayerUI _playerUI;
     private IMouseInput _inputSystem;
 
     private List<IMouseInput> _mouseInputs;
@@ -18,14 +17,14 @@ public class WeaponController : MonoBehaviour
     {
         ServiceLocator.Instance.BindData(typeof(WeaponController), this);
         _weaponInputController = this.gameObject.AddComponent<WeaponInputController>();
+        _weaponSwitching.Construct(this);
+        _weaponsCount = _weaponSwitching.GetWeaponsGount();
+        _weaponInputController.GetWeapons(_weaponSwitching.GetWeaponsComponent());
     }
 
     void Start()
     {
         FindClickSystem();
-        _weaponSwitching.Construct(this);
-        _weaponsCount = _weaponSwitching.GetWeaponsGount();
-        _weaponInputController.GetWeapons(_weaponSwitching.GetWeaponsComponent());
     }
 
     private void FindClickSystem()
@@ -33,31 +32,19 @@ public class WeaponController : MonoBehaviour
         if (_weaponSwitching != null)
         {
             Weapon weapon = _weaponSwitching.GetActiveWeapon();
-            IMouseInput inputSystem = weapon.gameObject.GetComponent<MouseInputClick>();
-            if (inputSystem != null)
-            {
-                _inputSystem = this.AddComponent<MouseInputClick>();
-            }
-            else
-            {
-                _inputSystem = this.AddComponent<MouseInputTouch>();
-            }
+            Type inputSystem = weapon.gameObject.GetComponent<IMouseInput>().GetType();
+            _inputSystem = _weaponInputController.FindEqual(inputSystem);
             _inputSystem.OnFire += this.OnShoot;
+            _playerUI.SetAmmoText(weapon.gameObject.GetComponent<Ammo>());
         }
     }
 
     private void FindClickSystem(Weapon weapon)
     {
-        IMouseInput inputSystem = weapon.gameObject.GetComponent<MouseInputClick>();
-        if (inputSystem != null)
-        {
-            _inputSystem = this.AddComponent<MouseInputClick>();
-        }
-        else
-        {
-            _inputSystem = this.AddComponent<MouseInputTouch>();
-        }
+        Type inputSystem = weapon.gameObject.GetComponent<IMouseInput>().GetType();
+        _inputSystem = _weaponInputController.FindEqual(inputSystem);
         _inputSystem.OnFire += this.OnShoot;
+        _playerUI.SetAmmoText(weapon.gameObject.GetComponent<Ammo>());
     }
 
     public void SwitchInput(Weapon weaponObject)
@@ -65,11 +52,6 @@ public class WeaponController : MonoBehaviour
         _inputSystem.OnFire -= this.OnShoot;
         _inputSystem = null;
         FindClickSystem(weaponObject);
-    }
-
-    void Update()
-    {
-        
     }
 
     private void OnDestroy()
@@ -82,46 +64,16 @@ public class WeaponController : MonoBehaviour
         if (_weaponSwitching != null)
         {
             Weapon weapon = _weaponSwitching.GetActiveWeapon();
-            weapon.Fire();
+            if (weapon.gameObject.GetComponent<Ammo>().CanShoot())
+            {
+                weapon.Fire();
+                weapon.gameObject.GetComponent<Ammo>().WasteAmmo();
+                _playerUI.SetAmmoText(weapon.gameObject.GetComponent<Ammo>());
+            }
         }
         else
         {
             throw new Exception("Script of switching weapon disable!");
         }
-    }
-}
-
-public class WeaponInputController : MonoBehaviour
-{
-    private List<IMouseInput> _mouseInputs = new List<IMouseInput>(); 
-    
-    private void Awake()
-    {
-        ServiceLocator.Instance.BindData(typeof(WeaponInputController), this);
-    }
-
-    public void GetWeapons(Weapon[] getWeaponsComponent)
-    {
-        for (int i = 0; i < getWeaponsComponent.Length; i++)
-        {
-            IMouseInput inputSystem = getWeaponsComponent[i].gameObject.GetComponent<MouseInputClick>();
-            if (inputSystem != null)
-            {
-                MouseInputClick mouseClickSystem = this.AddComponent<MouseInputClick>();
-                _mouseInputs.Add(mouseClickSystem);
-            }
-            else
-            {
-                MouseInputTouch mouseTouchSystem = this.AddComponent<MouseInputTouch>();
-                _mouseInputs.Add(mouseTouchSystem);
-            }
-        }
-
-        _mouseInputs = _mouseInputs.DistinctBy(x => x.GetType()).ToList();
-
-        /*for (int i = 0; i < _mouseInputs.Count; i++)
-        {
-            Debug.Log($"System is "+_mouseInputs[i]);
-        }*/
     }
 }

@@ -1,9 +1,12 @@
 using System;
+using UnityEngine;
 
 namespace Mechanics.BafMechaniks
 {
     public class WeaponBonus : Bonus
     {
+        [SerializeField] private Weapon _weapon;
+        [SerializeField] private int _ammoBonus;
         private WeaponController _weaponController;
 
         private void Start()
@@ -19,7 +22,7 @@ namespace Mechanics.BafMechaniks
 
         private void AddWeaponBonus()
         {
-            throw new NotImplementedException();
+            _weapon.gameObject.AddComponent<Ammo>().AddAmmo(_ammoBonus);
         }
 
         private void OnDestroy()
