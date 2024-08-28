@@ -84,11 +84,3 @@ public class CoomoonShootSystem : MonoBehaviour, IShootSystem
         return direction;
     }
 }
-
-
-public class ShootDataGranadeLauncher : ShootData
-{
-    public ShootDataGranadeLauncher(int damage, Transform shootPoint, float speedFireRange) : base(damage, shootPoint, speedFireRange)
-    {
-    }
-}
