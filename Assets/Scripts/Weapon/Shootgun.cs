@@ -10,7 +10,7 @@ public class Shootgun : Weapon
     {
         ShootDataShootgun data =
             new ShootDataShootgun(Damage, ShootPoint, _speed_fire_range, FovAngle, Distance, AmountOfFraction);
-        _shootSystem.Construct(data);
+        _shootSystem.ConstructShootSystem(data);
     }
 
     public void OnValidate()

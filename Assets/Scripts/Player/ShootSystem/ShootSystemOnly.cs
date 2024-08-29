@@ -1,39 +1,37 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
+using Enemies;
 using UnityEngine;
 
-public class BulletShootSystem : CommonShootSystem
+public class ShootSystemOnly : CoomoonShootSystem
 {
-    [SerializeField] private ParticleSystem _shootingParticle;
     [SerializeField] private ParticleSystem _impactParticle;
     [SerializeField] private TrailRenderer _trailRenderer;
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private float _distance;
 
-    private float _lastShootTime;
-    
     public override void Shoot()
     {
-        
-            Vector3 direction = GetDirection();
-            if (Physics.Raycast(_weaponData.BulletPoint.position, direction, out RaycastHit hit, _distance, _layerMask))
+        Vector3 direction = GetDirection();
+        if (Physics.Raycast(_weaponData.BulletPoint.position, direction, out RaycastHit hit, _distance, _layerMask))
+        {
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
-                TrailRenderer trail = Instantiate(_trailRenderer, _weaponData.BulletPoint.position, Quaternion.identity);
-                StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, true));
-
-                _lastShootTime = Time.time;
+                Checker checker = hit.collider.gameObject.GetComponent<Checker>();
+                Enemy enemy = checker.Enemy;
+                Health component = enemy.gameObject.GetComponent<Health>();
+                component.DealDamage(_weaponData.Damage);
             }
-            else
-            {
-                TrailRenderer trail = Instantiate(_trailRenderer, _weaponData.BulletPoint.position, Quaternion.identity);
-
-                StartCoroutine(SpawnTrail(trail, _weaponData.BulletPoint.position + GetDirection() * _distance, Vector3.zero, false));
-
-                _lastShootTime = Time.time;
-            }
+            TrailRenderer trail = Instantiate(_trailRenderer, _weaponData.BulletPoint.position, Quaternion.identity);
+            StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, true));
+        }
+        else
+        {
+            TrailRenderer trail = Instantiate(_trailRenderer, _weaponData.BulletPoint.position, Quaternion.identity);
+            StartCoroutine(SpawnTrail(trail, _weaponData.BulletPoint.position + GetDirection() * _distance, Vector3.zero, false));
+        }
     }
-
+    
     private IEnumerator SpawnTrail(TrailRenderer trail, Vector3 HitPoint, Vector3 HitNormal, bool MadeImpact)
     {
         Vector3 startPosition = trail.transform.position;

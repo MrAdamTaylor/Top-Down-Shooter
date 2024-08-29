@@ -12,6 +12,7 @@ public class WeaponController : MonoBehaviour
     private List<IMouseInput> _mouseInputs;
     private int _weaponsCount;
     private WeaponInputController _weaponInputController;
+    private Ammo _ammo;
     
     private void Awake()
     {
@@ -35,7 +36,9 @@ public class WeaponController : MonoBehaviour
             Type inputSystem = weapon.gameObject.GetComponent<IMouseInput>().GetType();
             _inputSystem = _weaponInputController.FindEqual(inputSystem);
             _inputSystem.OnFire += this.OnShoot;
-            _playerUI.SetAmmoText(weapon.gameObject.GetComponent<Ammo>());
+            _ammo = weapon.GetComponent<Ammo>();
+            _ammo.ChangeAmmo += _playerUI.UpdateAmmoText;
+            _playerUI.UpdateAmmoText(weapon.GetComponent<Ammo>().GetAmmo(),weapon.GetComponent<Ammo>().IsInfinity());
         }
     }
 
@@ -44,13 +47,17 @@ public class WeaponController : MonoBehaviour
         Type inputSystem = weapon.gameObject.GetComponent<IMouseInput>().GetType();
         _inputSystem = _weaponInputController.FindEqual(inputSystem);
         _inputSystem.OnFire += this.OnShoot;
-        _playerUI.SetAmmoText(weapon.gameObject.GetComponent<Ammo>());
+        _ammo = weapon.GetComponent<Ammo>();
+        _ammo.ChangeAmmo += _playerUI.UpdateAmmoText;
+        _playerUI.UpdateAmmoText(weapon.GetComponent<Ammo>().GetAmmo(),weapon.GetComponent<Ammo>().IsInfinity());
     }
 
     public void SwitchInput(Weapon weaponObject)
     {
         _inputSystem.OnFire -= this.OnShoot;
         _inputSystem = null;
+        _ammo.ChangeAmmo -= _playerUI.UpdateAmmoText;
+        _ammo = null;
         FindClickSystem(weaponObject);
     }
 
@@ -67,13 +74,16 @@ public class WeaponController : MonoBehaviour
             if (weapon.gameObject.GetComponent<Ammo>().CanShoot())
             {
                 weapon.Fire();
-                weapon.gameObject.GetComponent<Ammo>().WasteAmmo();
-                _playerUI.SetAmmoText(weapon.gameObject.GetComponent<Ammo>());
             }
         }
         else
         {
             throw new Exception("Script of switching weapon disable!");
         }
+    }
+
+    public Weapon GetWeaponByType(WeaponType weaponType)
+    {
+        return _weaponSwitching.FindByType(weaponType);
     }
 }

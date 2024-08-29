@@ -20,7 +20,6 @@ public class ShootSystemFraction : CoomoonShootSystem
     public override void Construct(ShootData data)
     {
         _weaponData = (ShootDataShootgun)data;
-        
     }
 
     public override void Shoot()
@@ -39,7 +38,6 @@ public class ShootSystemFraction : CoomoonShootSystem
 
     private void FourAngleShoot()
     {
-        _shootingParticle.Play();
         _directions = new List<Vector3>();
         Vector3 direction = _weaponData.BulletPoint.transform.forward;
         _directions.Add(direction);
@@ -64,10 +62,7 @@ public class ShootSystemFraction : CoomoonShootSystem
 
     private void ShootFraction()
     {
-        _realDistance = _distance;
-
-        if (_lastShootTime + _weaponData.Delay < Time.time)
-        {
+        
             foreach (Transform child in _shootTrash.transform)
             {
                 Destroy(child.gameObject);
@@ -76,7 +71,7 @@ public class ShootSystemFraction : CoomoonShootSystem
             for (int i = 0; i < _weaponData.AmountFractions; i++)
             {
                 if (Physics.Raycast(_weaponData.BulletPoint.position, _directions[i], out RaycastHit hit,
-                        _realDistance, _layerMask))
+                        _distance, _layerMask))
                 {
                     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                     {
@@ -85,18 +80,17 @@ public class ShootSystemFraction : CoomoonShootSystem
                         Health component = enemy.gameObject.GetComponent<Health>();
                         component.DealDamage(_weaponData.Damage);
                     }
-                    Debug.DrawRay(_weaponData.BulletPoint.position, _directions[i] * _realDistance,Color.red, 5f);
+                    Debug.DrawRay(_weaponData.BulletPoint.position, _directions[i] * _distance,Color.red, 5f);
                     CreateLaser(_weaponData.BulletPoint.position,hit.point);
                 }
                 else
                 {
-                    Debug.DrawRay(_weaponData.BulletPoint.position, _directions[i] * _realDistance, Color.blue, 5f);
-                    CreateLaser(_weaponData.BulletPoint.position,_weaponData.BulletPoint.position + _directions[i] * _realDistance);
+                    Debug.DrawRay(_weaponData.BulletPoint.position, _directions[i] * _distance, Color.blue, 5f);
+                    CreateLaser(_weaponData.BulletPoint.position,_weaponData.BulletPoint.position + _directions[i] * _distance);
                 }
             }
             
-            _lastShootTime = Time.time;
-        }
+        
     }
 
     void CreateLaser(Vector3 start,Vector3 end)
@@ -121,7 +115,6 @@ public class ShootSystemFraction : CoomoonShootSystem
 
     private void TwoAngleShoot()
     {
-        _shootingParticle.Play();
         _directions = new List<Vector3>();
         Vector3 direction = _weaponData.BulletPoint.transform.forward;
         _directions.Add(direction);

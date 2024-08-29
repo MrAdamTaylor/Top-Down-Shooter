@@ -9,12 +9,12 @@ public class Weapon : MonoBehaviour
     [SerializeField] public Transform ShootPoint;
     [SerializeField] protected float _speed_fire_range;
 
-    [SerializeField] protected CoomoonShootSystem _shootSystem;
+    [SerializeField] protected ShootControlSystem _shootSystem;
 
     public virtual void Awake()
     {
         ShootData data = new ShootData(Damage, ShootPoint, _speed_fire_range);
-        _shootSystem.Construct(data);
+        _shootSystem.ConstructShootSystem(data);
     }
 
     public void Fire()

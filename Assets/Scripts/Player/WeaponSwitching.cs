@@ -111,4 +111,30 @@ public class WeaponSwitching : MonoBehaviour
             return weapon;
         }
     }
+
+    public Weapon FindByType(WeaponType weaponType)
+    {
+        Weapon weapon = null;
+        for (int i = 0; i < _weapons.Count; i++)
+        {
+            switch (weaponType)
+            {
+                case WeaponType.Pistol:
+                    if (_weapons[i].GetType() == typeof(Pistol))
+                        weapon = _weapons[i];
+                    break;
+                case WeaponType.ShootGun:
+                    if (_weapons[i].GetType() == typeof(Shootgun))
+                        weapon= _weapons[i];
+                    break;
+                case WeaponType.Rifle:
+                    if (_weapons[i].GetType() == typeof(Rifle))
+                        weapon = _weapons[i];
+                    break;
+                default:
+                    throw new Exception("Don't known type of weapon");
+            }
+        }
+        return weapon;
+    }
 }

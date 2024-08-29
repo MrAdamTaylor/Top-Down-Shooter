@@ -1,5 +1,6 @@
 using System;
 using Mechanics;
+using Mechanics.BafMechaniks;
 using UnityEditor;
 using UnityEngine;
 
@@ -54,9 +55,16 @@ namespace Enemies
         
             if (_isInside)
             {
-                _death = _killed.gameObject.GetComponent<Death>();
-                _death.MakeDeath();
-                _death = null;
+                if (_killed.gameObject.GetComponent<PlayerInvincible>() != null)
+                {
+                    return;
+                }
+                else
+                {
+                    _death = _killed.gameObject.GetComponent<Death>();
+                    _death.MakeDeath();
+                    _death = null;
+                }
             }
         }
     }
