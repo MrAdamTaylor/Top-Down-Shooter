@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Mover : AIComponent
@@ -13,10 +14,14 @@ public class Mover : AIComponent
         ComputeDesiredVelocity();
     }
 
+    public void Update()
+    {
+    }
+
     public Vector3 ComputeDesiredVelocity()
     {
-        if (!_reached)
-        {
+        /*if (!_reached)
+        {*/
             Vector3 diff3 = _target.position - transform.position;
             _desiredVelocity = diff3;
             Debug.Log("Dezired Velocity is "+_desiredVelocity + " for "+this.gameObject.name);
@@ -25,11 +30,12 @@ public class Mover : AIComponent
             Vector3 VMax = new Vector3(_speed, 0f, _speed);
             _desiredVelocity.Scale(VMax);
             Debug.Log("Dezired Velocity after scale VMax"+_desiredVelocity+ "for " + this.gameObject.name);
-        }
-        else
-        {
-            _desiredVelocity = Vector2.zero;
-        }
+        //}
+        //else
+        //{
+            //Debug.Log("ZeroVector");
+            //_desiredVelocity = Vector2.zero;
+        //}
         return _desiredVelocity;
     }
     

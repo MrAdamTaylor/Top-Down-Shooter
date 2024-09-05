@@ -58,10 +58,12 @@ public class RVO_Controller : MonoBehaviour
                     if (_controllers[j].isActiveAndEnabled)
                     {
                         BA.Trans.Set(PA.x + 0.5f * (VA.x + VB.x), 0f,PA.z + 0.5f * (VA.z + VB.z));
+                        Debug.Log($"Position - {BA.Trans}");
                     }
                     else
                     {
                         BA.Trans.Set(PA.x + 0.5f * (VA.x + VB.x), 0f, PA.z + 0.5f * (VA.z + VB.z));
+                        Debug.Log($"Position - {BA.Trans}");
                     }
                     BA.Dist = Vector3.Distance(PA, PB);
                     float theta_BA = Mathf.Atan2(PB.z - PA.z, PB.x - PA.x);
@@ -101,7 +103,7 @@ public class RVO_Controller : MonoBehaviour
             float velStep = normVelo / 10.0f;
             for(float rad = 0.02f;rad< normVelo + 0.02f; rad += velStep)
             {
-                newVel.Set(rad*Mathf.Cos(theta),0,rad * Mathf.Sin(theta));
+                newVel.Set(rad*Mathf.Sin(theta),0,rad * Mathf.Cos(theta));
                 Debug.DrawRay(controller.transform.position, newVel, Color.blue, 0.1f);
                 suit = true;
                 foreach(RVO_BA BA in rvoAll)
