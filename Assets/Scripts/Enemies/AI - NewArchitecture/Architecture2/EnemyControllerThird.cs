@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class EnemyControllerThird : MonoBehaviour
 {
-    [Range(0.1f,1f)]
+    [Range(0.02f,0.2f)]
     [SerializeField] private float _controllerWorkFrequently;
     [SerializeField] private List<AIPart> _aiParts;
 

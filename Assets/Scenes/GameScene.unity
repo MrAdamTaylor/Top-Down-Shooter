@@ -1477,7 +1477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 510262845}
   _lookedObject: {fileID: 1977050848}
-  _rotateSpeed: 5
+  _rotateSpeed: 10
 --- !u!114 &510262841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1492,7 +1492,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _goal: {fileID: 1977050848}
   _followedTransform: {fileID: 510262845}
-  _speed: 4
+  _speed: 5
 --- !u!114 &510262842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1529,7 +1529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86b54c0663054d4687cd2cbdf96971e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _controllerWorkFrequently: 0.1
+  _controllerWorkFrequently: 0.051
   _aiParts:
   - {fileID: 510262841}
   - {fileID: 510262840}
@@ -4971,7 +4971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 1573560099}
   _lookedObject: {fileID: 1977050848}
-  _rotateSpeed: 5
+  _rotateSpeed: 10
 --- !u!114 &1573560095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4986,7 +4986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _goal: {fileID: 1977050848}
   _followedTransform: {fileID: 1573560099}
-  _speed: 4
+  _speed: 5
 --- !u!114 &1573560096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6035,7 +6035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _goal: {fileID: 1977050848}
   _followedTransform: {fileID: 1920470491}
-  _speed: 4
+  _speed: 5
 --- !u!114 &1920470496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6050,7 +6050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _body: {fileID: 1920470491}
   _lookedObject: {fileID: 1977050848}
-  _rotateSpeed: 5
+  _rotateSpeed: 10
 --- !u!114 &1920470497
 MonoBehaviour:
   m_ObjectHideFlags: 0

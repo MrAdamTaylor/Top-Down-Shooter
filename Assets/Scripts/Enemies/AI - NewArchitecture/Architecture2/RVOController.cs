@@ -50,6 +50,7 @@ public class RVOController : MonoBehaviour
             _dynamicAvoids[i].SetVelocity(velocity);
             _dynamicAvoids[i].MakeStep();
         }
+        _desiredVectors.Clear();
     }
 
     private void CalculateStartVectors()
@@ -86,7 +87,7 @@ public class RVO_Handler : MonoBehaviour
                 RVOData BA = new RVOData();
                 BA.AvoidRadius = dynamicAvoids[i].GetRadius();
                 BA.Trans.Set(pa.x + 0.5f * (va.x + VB.x), 0, pa.z + 0.5f * (va.z + VB.z));
-                Debug.Log(BA.Trans);
+                //Debug.Log(BA.Trans);
                 BA.Dist = Vector3.Distance(pa, PB);
                 float theta_BA = Mathf.Atan2(PB.z - pa.z, PB.x - pa.x);
                 if (dynamicAvoids[j].GetRadius() > BA.Dist)
@@ -96,50 +97,49 @@ public class RVO_Handler : MonoBehaviour
                 float thetaBAOrt = Mathf.Asin(dynamicAvoids[j].GetRadius() / BA.Dist);
                 float thetaOrtLeft = theta_BA + thetaBAOrt;
                 BA.LeftBound.Set(Mathf.Cos(thetaOrtLeft),0f, Mathf.Sin(thetaOrtLeft));
-                Debug.DrawRay(dynamicAvoids[i].gameObject.transform.position, BA.LeftBound, Color.red, 0.2f);
+                Debug.DrawRay(dynamicAvoids[i].gameObject.transform.position, BA.LeftBound, Color.red, 0.1f);
                 float thetaOrtRight = theta_BA - thetaBAOrt;
                 BA.RightBound.Set(Mathf.Cos(thetaOrtRight),0f, Mathf.Sin(thetaOrtRight));
-                Debug.DrawRay(dynamicAvoids[i].gameObject.transform.position, BA.RightBound, Color.red, 0.2f);
+                Debug.DrawRay(dynamicAvoids[i].gameObject.transform.position, BA.RightBound, Color.red, 0.1f);
                 _rvoDatas.Add(BA);
             }
         }
-        //_rvoDatas.Clear();
     }
 
 
     public Vector3 GetResultVelocity(AIExecuter dynamicAvoid, Vector3 desiredVector)
     {
         Vector3 VAPost = Vector3.zero;
-        Vector3 newVel = Vector2.zero;
+        Vector3 newVel = Vector3.zero;
         bool suit = true;
         float normVelo = desiredVector.magnitude;
         List<Vector3> suitableVelo = new List<Vector3>();
         List<Vector3> unSuitableVelo = new List<Vector3>();
-        CheckArround(dynamicAvoid, normVelo, newVel, suitableVelo, unSuitableVelo);
+        CheckArround(dynamicAvoid, normVelo, newVel, suitableVelo, unSuitableVelo, ref suit);
         newVel = desiredVector;
         suit = true;
-        CheckForward(dynamicAvoid, normVelo, newVel, suitableVelo, unSuitableVelo, suit);
+        CheckForward(dynamicAvoid,newVel, suitableVelo, unSuitableVelo,ref suit);
         if(suitableVelo.Count > 0)
         {
-            Debug.Log(dynamicAvoid.name + " has " + suitableVelo.Count + " suitable velo");
+            //Debug.Log(dynamicAvoid.name + " has " + suitableVelo.Count + " suitable velo");
             VAPost = SpecificSort.Min(suitableVelo, desiredVector);
             //Debug.Log("min" + VAPost);
         }
         else
         {
-            VAPost = CalculateVec(dynamicAvoid, desiredVector, unSuitableVelo);
+            VAPost = CalculateVec(dynamicAvoid, desiredVector, unSuitableVelo,ref VAPost);
         }
         _rvoDatas.Clear();
         return VAPost;
     }
 
-    private Vector3 CalculateVec(AIExecuter dynamicAvoid, Vector3 desiredVector, List<Vector3> unSuitableVelo)
+    private Vector3 CalculateVec(AIExecuter dynamicAvoid, Vector3 desiredVector, List<Vector3> unSuitableVelo, ref Vector3 VAPost)
     {
-        Vector3 VAPost;
-        IDictionary<Vector3,float> tc_V = new Dictionary<Vector3, float>();
+        //Vector3 VAPost;
+        IDictionary<Vector3,float> dictionary = new Dictionary<Vector3, float>();
         foreach(Vector3 unsuitV in unSuitableVelo)
         {
-            tc_V[unsuitV] = 0;
+            dictionary[unsuitV] = 0;
             List<float> tc = new List<float>();
                
             foreach (RVOData BA in _rvoDatas)
@@ -147,29 +147,30 @@ public class RVO_Handler : MonoBehaviour
                 Vector3 dif = Vector3.zero;
                 float rad = BA.AvoidRadius;
                 dif.Set(unsuitV.x + dynamicAvoid.transform.position.x - BA.Trans.x, 0,unsuitV.z + dynamicAvoid.transform.position.z - BA.Trans.z);
-                float theta_dif = Mathf.Atan2(dif.z, dif.x);
-                float theta_right = Mathf.Atan2(BA.RightBound.z, BA.RightBound.x);
-                float theta_left= Mathf.Atan2(BA.LeftBound.y, BA.LeftBound.x);
-                if (Triginometry.InBetween(theta_right, theta_dif, theta_left))
+                float thetaDif = Mathf.Atan2(dif.z, dif.x);
+                float thetaRight = Mathf.Atan2(BA.RightBound.z, BA.RightBound.x);
+                float thetaLeft= Mathf.Atan2(BA.LeftBound.z, BA.LeftBound.x);
+                if (Triginometry.InBetween(thetaRight, thetaDif, thetaLeft))
                 {
-                    float small_theta = Mathf.Abs(theta_dif -0.5f*(theta_left+ theta_right));
-                    float temp = Mathf.Abs(BA.Dist * Mathf.Sin(small_theta));
+                    Debug.DrawRay(dynamicAvoid.transform.position, BA.LeftBound, Color.white, 0.1f);
+                    float smallTheta = Mathf.Abs(thetaDif -0.5f*(thetaLeft+ thetaRight));
+                    float temp = Mathf.Abs(BA.Dist * Mathf.Sin(smallTheta));
                     if (temp >= rad)
                     {
                         rad = temp;
                     }
-                    float big_theta = Mathf.Asin(Mathf.Abs(BA.Dist * Mathf.Sin(small_theta)) / rad);
-                    float dist_tg = Mathf.Abs(BA.Dist * Mathf.Cos(small_theta)) - Mathf.Abs(rad * Mathf.Cos(big_theta));
-                    if(dist_tg < 0)
+                    float bigTheta = Mathf.Asin(Mathf.Abs(BA.Dist * Mathf.Sin(smallTheta)) / rad);
+                    float distTg = Mathf.Abs(BA.Dist * Mathf.Cos(smallTheta)) - Mathf.Abs(rad * Mathf.Cos(bigTheta));
+                    if(distTg < 0)
                     {
-                        dist_tg = 0;
+                        distTg = 0;
                     }
-                    float tc_v = dist_tg / dif.magnitude;
-                    tc.Add(tc_v);
+                    float tcV = distTg / dif.magnitude;
+                    tc.Add(tcV);
                 }
 
             }
-            tc_V[unsuitV] = SpecificSort.Min(tc) + 0.001f;
+            dictionary[unsuitV] = SpecificSort.Min(tc) + 0.001f;
         }
         float WT = 0.2f;
         VAPost = unSuitableVelo[0];
@@ -177,8 +178,8 @@ public class RVO_Handler : MonoBehaviour
         foreach (Vector3 v in unSuitableVelo)
         {
                 
-            Vector2 temp = v - desiredVector;
-            float key = ((WT / tc_V[v])) + temp.magnitude;
+            Vector3 temp = v - desiredVector;
+            float key = ((WT / dictionary[v])) + temp.magnitude;
             if (!VAPost.Equals(v))
             {
                 if (key< lastKey)
@@ -196,25 +197,21 @@ public class RVO_Handler : MonoBehaviour
         return VAPost;
     }
 
-    private void CheckForward(AIExecuter dynamicAvoid, float normVelo, Vector3 newVel, List<Vector3> suitableVelo, List<Vector3> unSuitableVelo, bool suit)
+    private void CheckForward(AIExecuter dynamicAvoid, Vector3 newVel, List<Vector3> suitableVelo, List<Vector3> unSuitableVelo,ref bool suit)
     {
         for (int k = 0; k < _rvoDatas.Count; k++)
         {
             Vector3 dif=Vector3.zero;
             dif.Set(newVel.x + dynamicAvoid.transform.position.x - _rvoDatas[k].Trans.x, 0,newVel.z + dynamicAvoid.transform.position.z - _rvoDatas[k].Trans.z);
-            Debug.DrawRay(dynamicAvoid.transform.position, newVel, Color.green, 0.1f);
-            float theta_diff = Mathf.Atan2(dif.y, dif.x);
-            float theta_right = Mathf.Atan2(_rvoDatas[k].RightBound.y, _rvoDatas[k].RightBound.x);
-            float theta_left = Mathf.Atan2(_rvoDatas[k].LeftBound.y, _rvoDatas[k].LeftBound.x);
-            if (Triginometry.InBetween(theta_right, theta_diff, theta_left))
+            //Debug.DrawRay(dynamicAvoid.transform.position, newVel, Color.green, 0.1f);
+            float thetaDiff = Mathf.Atan2(dif.z, dif.x);
+            float thetaRight = Mathf.Atan2(_rvoDatas[k].RightBound.z, _rvoDatas[k].RightBound.x);
+            float thetaLeft = Mathf.Atan2(_rvoDatas[k].LeftBound.z, _rvoDatas[k].LeftBound.x);
+            if (Triginometry.InBetween(thetaRight, thetaDiff, thetaLeft))
             {
                 Debug.DrawRay(dynamicAvoid.transform.position, newVel, Color.magenta, 0.1f);
                 suit = false;
                 break;
-            }
-            else
-            {
-                Debug.DrawRay(dynamicAvoid.transform.position, newVel, Color.cyan, 0.1f);
             }
         }
         if (suit)
@@ -230,32 +227,31 @@ public class RVO_Handler : MonoBehaviour
     }
 
     private void CheckArround(AIExecuter dynamicAvoid, float normVelo, Vector3 newVel, List<Vector3> suitableVelo,
-        List<Vector3> unSuitableVelo)
+        List<Vector3> unSuitableVelo, ref bool suit)
     {
-        bool suit;
-        float PI2 = Mathf.PI*2;
-        for (float theta = 0f; theta < PI2; theta += 0.1f)
+        
+        float pi2 = Mathf.PI*2;
+        for (float theta = 0f; theta < pi2; theta += 0.1f)
         {
             float velStep = normVelo / 10.0f;
             for (float rad = 0.02f; rad < normVelo + 0.02f; rad += velStep)
             {
                 newVel.Set(rad*Mathf.Cos(theta),0,rad * Mathf.Sin(theta));
-                //Debug.DrawRay(dynamicAvoid.transform.position, newVel, Color.blue, 0.1f);
+                Debug.DrawRay(dynamicAvoid.transform.position, newVel, Color.blue, 0.1f);
                 suit = true;
                 for(int k = 0; k < _rvoDatas.Count; k++)
                 {
                     Vector3 dif=Vector3.zero;
                     dif.Set(newVel.x + dynamicAvoid.transform.position.x - _rvoDatas[k].Trans.x, 0,newVel.z + dynamicAvoid.transform.position.z -_rvoDatas[k].Trans.z);
-                    float theta_diff = Mathf.Atan2(dif.z, dif.x);
-                    float theta_right = Mathf.Atan2(_rvoDatas[k].RightBound.z, _rvoDatas[k].RightBound.x);
-                    float theta_left = Mathf.Atan2(_rvoDatas[k].LeftBound.z, _rvoDatas[k].RightBound.x);
-                    if (Triginometry.InBetween(theta_right,theta_diff,theta_left))
+                    float thetaDiff = Mathf.Atan2(dif.z, dif.x);
+                    float thetaRight = Mathf.Atan2(_rvoDatas[k].RightBound.z, _rvoDatas[k].RightBound.x);
+                    float thetaLeft = Mathf.Atan2(_rvoDatas[k].LeftBound.z, _rvoDatas[k].LeftBound.x);
+                    if (Triginometry.InBetween(thetaRight,thetaDiff,thetaLeft))
                     {
                         Debug.DrawRay(dynamicAvoid.transform.position, newVel, Color.yellow, 0.1f);
                         suit = false;
                         break;
                     }
-
                 }
                 if (suit)
                 {
