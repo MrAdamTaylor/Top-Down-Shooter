@@ -37,7 +37,6 @@ public class AIMover : AIPart
 
     public void SetVelocity(Vector3 velocity)
     {
-        //Debug.Log("Final Result "+velocity);
         _velocity = velocity;
     }
 }

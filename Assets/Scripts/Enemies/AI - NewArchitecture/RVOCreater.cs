@@ -8,9 +8,9 @@ public class RVOCreater
     private bool _isCreated;
     private RVOController _rvoController;
     
-    public static RVOCreater getInstance()
+    public static RVOCreater GetInstance()
     {
-        return Instance ?? (Instance = new RVOCreater());
+        return Instance ??= new RVOCreater();
     }
 
     public RVOController Create()
@@ -18,7 +18,6 @@ public class RVOCreater
         Debug.Log("Creater!");
         if (!_isCreated)
         {
-            RVOController controller;
             GameObject
                 instancedObj =
                     new GameObject(

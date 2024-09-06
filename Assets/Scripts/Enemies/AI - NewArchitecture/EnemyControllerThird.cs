@@ -10,8 +10,6 @@ public class EnemyControllerThird : MonoBehaviour
     [SerializeField] private List<AIPart> _aiParts;
 
     [SerializeField] private AIExecuter _aiExecuter;
-
-    
     
     void Awake()
     {
@@ -33,18 +31,5 @@ public class EnemyControllerThird : MonoBehaviour
     private void OnDestroy()
     {
         StopCoroutine(ControllerWork());
-    }
-}
-
-public class AIPart : MonoBehaviour, ISubscribe
-{
-    public virtual void Subscribe(Action missing_name)
-    {
-        
-    }
-
-    public virtual void Unsubscribe(Action missing_name)
-    {
-        
     }
 }
