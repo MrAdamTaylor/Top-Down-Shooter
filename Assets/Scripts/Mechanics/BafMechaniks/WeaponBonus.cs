@@ -6,7 +6,8 @@ public enum WeaponType
 {
     Pistol,
     Rifle,
-    ShootGun
+    ShootGun,
+    Undefinded
 }
 
 namespace Mechanics.BafMechaniks

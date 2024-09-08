@@ -5,6 +5,8 @@ using UnityEngine.Serialization;
 public class Ammo : MonoBehaviour
 {
     public Action<int, bool> ChangeAmmo;
+
+    public event Action<long> ChangeAmmoUI; 
     
     [SerializeField] private int _ammoCount;
     [SerializeField] private bool _infinity;
@@ -28,7 +30,10 @@ public class Ammo : MonoBehaviour
         if(!_infinity)
             _currentAmmo -= 1;
         ChangeAmmo?.Invoke(_currentAmmo, _infinity);
+        ChangeAmmoUI?.Invoke(_currentAmmo);
     }
+    
+    
 
     public bool CanShoot()
     {

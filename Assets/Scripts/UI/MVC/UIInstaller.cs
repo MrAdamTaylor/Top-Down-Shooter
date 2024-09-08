@@ -10,9 +10,18 @@ public class UIInstaller : MonoBehaviour
         AmmoBind(view.AmmoView);
         ScoresBind(view.ScoresView);
         MoneyBind(view.MoneyView);
+        LoadStaticData();
     }
 
-    private void AmmoBind(CurrencyView view)
+    private void LoadStaticData()
+    {
+        UIWeaponStaticDataIcons icons = Resources.Load<UIWeaponStaticDataIcons>("StaticData/UI/UIWeaponIcons");
+        Debug.Log(icons);
+        AmmoAdapter adapter = (AmmoAdapter)ServiceLocator.Instance.GetData(typeof(AmmoAdapter));
+        adapter.PictureConstruct(icons);
+    }
+
+    private void AmmoBind(CurrencyViewWithImage view)
     {
         ServiceLocator.Instance.BindData(typeof(AmmoStorage), new AmmoStorage(10L));
         Debug.Log("Ammo Storage is Install");

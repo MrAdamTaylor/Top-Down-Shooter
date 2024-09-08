@@ -137,4 +137,22 @@ public class WeaponSwitching : MonoBehaviour
         }
         return weapon;
     }
+
+    public WeaponType FindByClass(Weapon weapon)
+    {
+        switch (weapon)
+        {
+            case Pistol:
+                return WeaponType.Pistol;
+                break;
+             case   Shootgun:
+                return WeaponType.ShootGun;
+                break;
+             case Rifle:
+                return WeaponType.Rifle;
+                break;
+             default:
+                return WeaponType.Undefinded;
+        }
+    }
 }

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 322a4048756db9041b00d56242544df5, type: 3}
+  m_Name: UIWeaponIcons
+  m_EditorClassIdentifier: 
+  IcoConfigs:
+  - WeaponPicture: {fileID: 21300000, guid: d6a98cda48c99614dad8d009eb7afe0d, type: 3}
+    WeaponType: 0
+  - WeaponPicture: {fileID: 21300000, guid: 360594132a5160243a2697948fa11cf2, type: 3}
+    WeaponType: 2
+  - WeaponPicture: {fileID: 21300000, guid: 1f53c5e6b9cc17844a7d65f085be233a, type: 3}
+    WeaponType: 1

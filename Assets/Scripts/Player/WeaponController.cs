@@ -13,6 +13,7 @@ public class WeaponController : MonoBehaviour
     private int _weaponsCount;
     private WeaponInputController _weaponInputController;
     private Ammo _ammo;
+    private AmmoAdapter _ammoAdapter;
     
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class WeaponController : MonoBehaviour
 
     void Start()
     {
+        _ammoAdapter = (AmmoAdapter)ServiceLocator.Instance.GetData(typeof(AmmoAdapter));
         FindClickSystem();
     }
 
@@ -37,6 +39,8 @@ public class WeaponController : MonoBehaviour
             _inputSystem = _weaponInputController.FindEqual(inputSystem);
             _inputSystem.OnFire += this.OnShoot;
             _ammo = weapon.GetComponent<Ammo>();
+            _ammoAdapter.UpdatePicture(ReturnType(weapon));
+            //_ammo.ChangeAmmoUI += _ammoAdapter.UpdateAmmo;
             //TODO before MVC
             //_ammo.ChangeAmmo += _playerUI.UpdateAmmoText;
             //_playerUI.UpdateAmmoText(weapon.GetComponent<Ammo>().GetAmmo(),weapon.GetComponent<Ammo>().IsInfinity());
@@ -49,6 +53,8 @@ public class WeaponController : MonoBehaviour
         _inputSystem = _weaponInputController.FindEqual(inputSystem);
         _inputSystem.OnFire += this.OnShoot;
         _ammo = weapon.GetComponent<Ammo>();
+        _ammoAdapter.UpdatePicture(ReturnType(weapon));
+        //TODO before MVC
         //_ammo.ChangeAmmo += _playerUI.UpdateAmmoText;
         //_playerUI.UpdateAmmoText(weapon.GetComponent<Ammo>().GetAmmo(),weapon.GetComponent<Ammo>().IsInfinity());
     }
@@ -80,6 +86,19 @@ public class WeaponController : MonoBehaviour
         else
         {
             throw new Exception("Script of switching weapon disable!");
+        }
+    }
+
+    public WeaponType ReturnType(Weapon weapon)
+    {
+        WeaponType type = _weaponSwitching.FindByClass(weapon);
+        if (type == WeaponType.Undefinded)
+        {
+            throw new Exception("Not find of Weapon Type by Class");
+        }
+        else
+        {
+            return type;
         }
     }
 
