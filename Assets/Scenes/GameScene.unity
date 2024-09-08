@@ -356,9 +356,10 @@ GameObject:
   m_Component:
   - component: {fileID: 215877341}
   - component: {fileID: 215877343}
+  - component: {fileID: 215877344}
   - component: {fileID: 215877342}
   m_Layer: 5
-  m_Name: Image
+  m_Name: AmmoViewCurrency
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -383,7 +384,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 130, y: -50}
+  m_AnchoredPosition: {x: 130, y: -80}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &215877342
@@ -424,6 +425,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 215877340}
   m_CullTransparentMesh: 1
+--- !u!114 &215877344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215877340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e0edeedf89efb448a57d55c44914fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 1271882376}
 --- !u!1 &228414476
 GameObject:
   m_ObjectHideFlags: 0
@@ -657,6 +671,64 @@ MonoBehaviour:
   _bafs:
   - {fileID: 6087170923494313769, guid: 70b7b6dc8acf03c46b782bee68e5e42b, type: 3}
   - {fileID: 9112111873047472170, guid: 5997c4d596393324d9af7c8a065aad57, type: 3}
+--- !u!1 &310698509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 310698510}
+  - component: {fileID: 310698511}
+  - component: {fileID: 310698512}
+  m_Layer: 0
+  m_Name: '[UIDebuger]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &310698510
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310698509}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1256408031}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &310698511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310698509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d639fdeb98aeddc478422284285d28c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _current: 10
+--- !u!114 &310698512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310698509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b41532d9fac50214ab477616685fa855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &311961114
 GameObject:
   m_ObjectHideFlags: 0
@@ -1616,12 +1688,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b593846a23d3ff344b86ef899b84e0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _xMax: 160
-  _yMax: 100
-  _startPointX: {x: 0, y: 0, z: 0}
-  _endPointX: {x: 0, y: 0, z: 0}
-  _startPointY: {x: 0, y: 0, z: 0}
-  _endPointY: {x: 0, y: 0, z: 0}
 --- !u!1 &605366532
 GameObject:
   m_ObjectHideFlags: 0
@@ -2179,9 +2245,10 @@ GameObject:
   m_Component:
   - component: {fileID: 742944058}
   - component: {fileID: 742944060}
+  - component: {fileID: 742944061}
   - component: {fileID: 742944059}
   m_Layer: 5
-  m_Name: Scores
+  m_Name: ScoresViewCurrency
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2246,6 +2313,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742944057}
   m_CullTransparentMesh: 1
+--- !u!114 &742944061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742944057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e0edeedf89efb448a57d55c44914fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 494496084}
 --- !u!1 &757125443
 GameObject:
   m_ObjectHideFlags: 0
@@ -3130,8 +3210,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1241234645}
+  - component: {fileID: 1241234646}
   m_Layer: 5
-  m_Name: Bar
+  m_Name: Currency
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3160,6 +3241,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1241234646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241234644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 977e3b38781e1864b85958414d76da63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ammoView: {fileID: 215877344}
+  _scoresView: {fileID: 742944061}
+  _moneyView: {fileID: 1690290062}
 --- !u!1 &1246364621
 GameObject:
   m_ObjectHideFlags: 0
@@ -3246,6 +3342,7 @@ Transform:
   m_Children:
   - {fileID: 796294421}
   - {fileID: 2108893466}
+  - {fileID: 310698510}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4723,9 +4820,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92dffd11136c15b4495fb63e30f74f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roboRadius: 0.5
-  _radiusBuffer: 0.2
-  _twiceRadius: 0
 --- !u!114 &1672724607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4738,11 +4832,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2faa41b21c1f9e94c9faf55199f00918, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 1977050848}
-  Agengts:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1 &1680200677
 GameObject:
   m_ObjectHideFlags: 0
@@ -4759,7 +4848,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1680200678
 Transform:
   m_ObjectHideFlags: 0
@@ -4801,9 +4890,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1690290059}
   - component: {fileID: 1690290061}
+  - component: {fileID: 1690290062}
   - component: {fileID: 1690290060}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: MoneyViewCurrency
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4828,7 +4918,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -130, y: -50}
+  m_AnchoredPosition: {x: -130, y: -80}
   m_SizeDelta: {x: 250, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1690290060
@@ -4869,6 +4959,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690290058}
   m_CullTransparentMesh: 1
+--- !u!114 &1690290062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1690290058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e0edeedf89efb448a57d55c44914fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _text: {fileID: 1800488077}
 --- !u!1 &1703365569
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,8 +37,9 @@ public class WeaponController : MonoBehaviour
             _inputSystem = _weaponInputController.FindEqual(inputSystem);
             _inputSystem.OnFire += this.OnShoot;
             _ammo = weapon.GetComponent<Ammo>();
-            _ammo.ChangeAmmo += _playerUI.UpdateAmmoText;
-            _playerUI.UpdateAmmoText(weapon.GetComponent<Ammo>().GetAmmo(),weapon.GetComponent<Ammo>().IsInfinity());
+            //TODO before MVC
+            //_ammo.ChangeAmmo += _playerUI.UpdateAmmoText;
+            //_playerUI.UpdateAmmoText(weapon.GetComponent<Ammo>().GetAmmo(),weapon.GetComponent<Ammo>().IsInfinity());
         }
     }
 
@@ -48,15 +49,15 @@ public class WeaponController : MonoBehaviour
         _inputSystem = _weaponInputController.FindEqual(inputSystem);
         _inputSystem.OnFire += this.OnShoot;
         _ammo = weapon.GetComponent<Ammo>();
-        _ammo.ChangeAmmo += _playerUI.UpdateAmmoText;
-        _playerUI.UpdateAmmoText(weapon.GetComponent<Ammo>().GetAmmo(),weapon.GetComponent<Ammo>().IsInfinity());
+        //_ammo.ChangeAmmo += _playerUI.UpdateAmmoText;
+        //_playerUI.UpdateAmmoText(weapon.GetComponent<Ammo>().GetAmmo(),weapon.GetComponent<Ammo>().IsInfinity());
     }
 
     public void SwitchInput(Weapon weaponObject)
     {
         _inputSystem.OnFire -= this.OnShoot;
         _inputSystem = null;
-        _ammo.ChangeAmmo -= _playerUI.UpdateAmmoText;
+        //_ammo.ChangeAmmo -= _playerUI.UpdateAmmoText;
         _ammo = null;
         FindClickSystem(weaponObject);
     }
