@@ -8,6 +8,7 @@ public class RefactoringCodeEditor : Editor
 {
     public override void OnInspectorGUI()
     {
+        base.OnInspectorGUI();
         DrawDefaultInspector();
 
         if (GUILayout.Button("Why this not trash! (Click Me)"))
