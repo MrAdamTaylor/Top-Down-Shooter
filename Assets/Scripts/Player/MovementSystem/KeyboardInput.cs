@@ -9,19 +9,15 @@ public class KeyboardInput : MonoBehaviour, IInputSystem
 
     public event Action<Vector2> OnMove;
     
-    /*public void OnUpdate(float timeDelta)
-    {
-        this.HandleKeyboard();
-    }*/
 
     public void Update()
     {
-        this.HandleKeyboard();
+        HandleKeyboard();
     }
 
     private void Move(Vector2 direction)
     {
-        this.OnMove?.Invoke(direction);
+        OnMove?.Invoke(direction);
     }
 
     private void HandleKeyboard()

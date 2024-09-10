@@ -2,17 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EInputSystem
+{
+    OldSystem,
+    NewSystem
+}
+
+
 public class MoveController : MonoBehaviour
 {
+    [SerializeField] private Player _player;
+    [SerializeField] private EInputSystem _inputSystmType;
+
     private IInputSystem _inputSystem;
-    [SerializeField]
-    private Player _player;
 
-
-    
     public void Awake()
     {
-        _inputSystem = gameObject.AddComponent<KeyboardInput>();
+        if (_inputSystmType == EInputSystem.OldSystem)
+        {
+            _inputSystem = gameObject.AddComponent<KeyboardInput>();
+        }
+        else
+        {
+            _inputSystem = gameObject.AddComponent<AxisInputSustem>();
+        }
+
         _inputSystem.OnMove += this.OnMove;
     }
     

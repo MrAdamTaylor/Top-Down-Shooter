@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,14 +12,14 @@ namespace Mechanics.BafMechaniks
         private bool _isInside;
         private Transform _touching;
 
-        private void Start()
+        void Start()
         {
             Player player = (Player)ServiceLocator.Instance.GetData(typeof(Player));
             _touching = player.transform;
         }
 
 
-        private void OnDrawGizmos()
+        void OnDrawGizmos()
         {
             Handles.color = _isInside ? Color.green : Color.red;
             Handles.DrawWireDisc(this.transform.position, Vector3.up, _radius);

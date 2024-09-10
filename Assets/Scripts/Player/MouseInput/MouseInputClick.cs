@@ -6,9 +6,9 @@ public class MouseInputClick : MonoBehaviour, IMouseInput
 {
     public event Action OnFire;
     
-    public void Update()
+    void Update()
     {
-        this.HandleMouse();
+        HandleMouse();
     }
 
     private void HandleMouse()

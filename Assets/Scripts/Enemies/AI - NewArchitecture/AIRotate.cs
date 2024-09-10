@@ -1,7 +1,7 @@
 using UnityEngine;
 
 //TODO - A component of the test AI that is in the process of being finalized
-public class AIRotate : AIPart
+public class AIRotate : AIComponent
 {
     [SerializeField] private Transform _body;
     [SerializeField] private Transform _lookedObject;

@@ -10,13 +10,17 @@ namespace Mechanics.BafMechaniks
         private WeaponController _weaponController;
         private Ammo _ammo;
 
-        private void Start()
+        void Start()
         {
             _weaponController = (WeaponController)ServiceLocator.Instance.GetData(typeof(WeaponController));
             Subscribe();
             _weapon = _weaponController.GetWeaponByType(_weaponType);
-            Debug.Log(_weapon.gameObject.name + " is Aded to WeaponBonus");
             _weapon.gameObject.TryGetComponent(out _ammo);
+        }
+
+        void OnDestroy()
+        {
+            _touchTriger.OnTouch -= AddWeaponBonus;
         }
 
         private void Subscribe()
@@ -27,11 +31,6 @@ namespace Mechanics.BafMechaniks
         private void AddWeaponBonus()
         {
             _ammo.AddAmmo(_ammoBonus);
-        }
-
-        private void OnDestroy()
-        {
-            _touchTriger.OnTouch -= AddWeaponBonus;
         }
     }
 }

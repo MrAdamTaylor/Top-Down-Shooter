@@ -17,17 +17,17 @@ namespace Mechanics.DebafMechanics
 
         private float _maxDistance;
         
-        private void Awake()
+        void Awake()
         {
             _maxDistance = _trigger.MaxRadius;
         }
 
-        private void Start()
+        void Start()
         {
             for (int i = 0; i < _zoneDeathCount; i++)
             {
                 bool isEnough = false;
-                Vector3 workVector = new Vector3(0f,0f,0f);
+                Vector3 workVector = Vector3.zero;
                 while (!isEnough)
                 {
                     Vector3 vec = new Vector3(Random.Range(-_maxDistance, _maxDistance),
@@ -41,7 +41,7 @@ namespace Mechanics.DebafMechanics
             for (int i = 0; i < _zoneSlowedCount; i++)
             {
                 bool isEnough = false;
-                Vector3 workVector = new Vector3(0f,0f,0f);
+                Vector3 workVector = Vector3.zero;
                 while (!isEnough)
                 {
                     Vector3 vec = new Vector3(Random.Range(-_maxDistance, _maxDistance),

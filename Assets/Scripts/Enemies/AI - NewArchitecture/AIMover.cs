@@ -1,7 +1,7 @@
 using UnityEngine;
 
 //TODO - A component of the test AI that is in the process of being finalized
-public class AIMover : AIPart
+public class AIMover : AIComponent
 {
     [SerializeField] private Transform _goal;
     [SerializeField] private Transform _followedTransform;

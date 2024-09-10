@@ -11,7 +11,7 @@ public class AIExecuter : MonoBehaviour
     private bool _isDynamicAvoid;
     private static RVOController _rvoController;
     
-    public void Construct(List<AIPart> parts)
+    public void Construct(List<AIComponent> parts)
     {
         for (int i = 0; i < parts.Count; i++)
         {
@@ -57,7 +57,7 @@ public class AIExecuter : MonoBehaviour
         _mover.DoStep();
     }
 
-    private void ComponentValidate(List<AIPart> parts, int i)
+    private void ComponentValidate(List<AIComponent> parts, int i)
     {
         if (parts[i].GetType() == typeof(AIMover))
         {

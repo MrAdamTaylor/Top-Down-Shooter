@@ -10,14 +10,14 @@ public class GameObjectPool : PoolBase<GameObject>
     {
     }
 
-    public static GameObject Preload(GameObject prefab)
+    private static GameObject Preload(GameObject prefab)
     {
         var gameObject = Object.Instantiate(prefab, _parent, true);
         return gameObject;
     }
 
 
-    public static void GetAction(GameObject gObject) => gObject.SetActive(true);
+    private static void GetAction(GameObject gObject) => gObject.SetActive(true);
     
-    public static void ReturnAction(GameObject gObject) => gObject.SetActive(false);
+    private static void ReturnAction(GameObject gObject) => gObject.SetActive(false);
 }

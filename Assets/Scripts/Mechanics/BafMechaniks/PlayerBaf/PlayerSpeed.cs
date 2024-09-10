@@ -10,7 +10,7 @@ namespace Mechanics.BafMechaniks
         private Player _player;
         
         
-        public void Awake()
+        void Awake()
         {
             _player = this.gameObject.GetComponent<Player>();
             _player.SwitchSpeed(_speedKoef);

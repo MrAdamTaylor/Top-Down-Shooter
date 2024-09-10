@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Mechanics.Spawners.NewArchitecture;
 using UnityEngine;
@@ -14,7 +11,7 @@ public class SpawnController : MonoBehaviour
     [Range(10,100)]
     [SerializeField] private int _maxEnemyOnLevel;
 
-    private void Awake()
+    void Awake()
     {
         float sum = _percantage.Sum();
         for (int i = 0; i < _enemySpawners.Length; i++)
@@ -25,8 +22,7 @@ public class SpawnController : MonoBehaviour
             _enemySpawners[i].Construct(enemyCount);
         }
     }
-
-
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
@@ -37,7 +33,7 @@ public class SpawnController : MonoBehaviour
     
     private int GetRandomPool()
     {
-        float random = UnityEngine.Random.Range(0f, 1f);
+        float random = Random.Range(0f, 1f);
         float numForAdding = 0;
         float total = 0;
         for (int i = 0; i < _percantage.Length; i++)

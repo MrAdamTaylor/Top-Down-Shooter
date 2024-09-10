@@ -8,7 +8,7 @@ namespace Mechanics.BafMechaniks
         [SerializeField] private PlayerBonus _playerBonus;
         private Player _player;
         
-        private void Start()
+        void Start()
         {
             _player = (Player)ServiceLocator.Instance.GetData(typeof(Player));
             Subscribe();

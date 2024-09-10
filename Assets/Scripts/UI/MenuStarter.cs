@@ -10,7 +10,7 @@ public class MenuStarter : MonoBehaviour
     [SerializeField] private Canvas _canvas;
     private void Update()
     {
-        if (_death.isDeath)
+        if (_death.IsDeath)
         {
             _canvas.gameObject.SetActive(true);
         }

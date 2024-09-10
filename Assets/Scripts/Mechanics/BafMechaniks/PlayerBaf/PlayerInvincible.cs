@@ -7,7 +7,7 @@ namespace Mechanics.BafMechaniks
     {
         [SerializeField] private float _liefTime = 10f;
         
-        public void Awake()
+        void Awake()
         {
             StartCoroutine(Waiter());
         }

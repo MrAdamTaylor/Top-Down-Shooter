@@ -17,12 +17,12 @@ namespace Mechanics.BafMechaniks
 
         private bool _isInside;
 
-        private void Awake()
+        void Awake()
         {
             ServiceLocator.Instance.BindData(typeof(BafSpawnPositions), this);
         }
 
-        private void OnDrawGizmos()
+        void OnDrawGizmos()
         {
             Handles.color = Color.cyan;
             Handles.DrawWireDisc(_center, Vector3.up, _minimalRadiusDiaposone);

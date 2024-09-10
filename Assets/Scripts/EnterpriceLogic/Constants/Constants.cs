@@ -33,4 +33,22 @@ public static class Constants
     public static float DEFAULT_BULLET_SPEED;
 
     #endregion
+
+    #region Константы для ограничения области карты
+
+    public const float XBORDER_MAX = 20f;
+    public const float ZBORDER_MAX = 15f;
+
+    public const float STANDART_Y_POSITION = 1f;
+
+    #endregion
+
+    #region Показатели состояний зон дебафов
+
+    public const float MAX_DEBUF_STAGE_LEVEL = 100;
+    public const float MIN_DEBUF_STAGE_LEVEL = 0f;
+
+    #endregion
+    
+    
 }

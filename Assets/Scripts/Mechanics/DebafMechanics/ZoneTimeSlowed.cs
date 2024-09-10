@@ -20,26 +20,26 @@ namespace Mechanics.DebafMechanics
 
         [SerializeField] private ParticleSystem _particleSystem;
 
-        [Range(0, 100)] 
+        [Range(0, Constants.MAX_DEBUF_STAGE_LEVEL)] 
         [SerializeField]private float _stageLevel;
         
         public ZoneWorkStage Stage;
 
         private Player _player;
 
-        private void Awake()
+        void Awake()
         {
             _particleSystem.Play();
             Stage = ZoneWorkStage.No;
             _stageLevel = 0;
         }
 
-        private void Start()
+        void Start()
         {
             _player = (Player)ServiceLocator.Instance.GetData(typeof(Player));
         }
 
-        private void OnValidate()
+        void OnValidate()
         {
             if (_drawer != null)
             {
@@ -47,7 +47,7 @@ namespace Mechanics.DebafMechanics
             }
         }
 
-        private void Update()
+        void Update()
         {
             bool playerInZone = false;
             Collider[] targetsZone = Physics.OverlapSphere(transform.position, _radius);
@@ -75,13 +75,13 @@ namespace Mechanics.DebafMechanics
                     if (playerInZone)
                     {
                         _stageLevel++;
-                        if (_stageLevel >= 100)
+                        if (_stageLevel >= Constants.MAX_DEBUF_STAGE_LEVEL)
                             Stage = ZoneWorkStage.Make;
                     }
                     else
                     {
                         _stageLevel--;
-                        if (_stageLevel <= 0)
+                        if (_stageLevel <= Constants.MIN_DEBUF_STAGE_LEVEL)
                             Stage = ZoneWorkStage.No;
                     }
                     break;

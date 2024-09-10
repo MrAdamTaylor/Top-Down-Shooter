@@ -7,7 +7,7 @@ public class EnemyBehaviour : MonoBehaviour
 {
     [Range(0.02f,0.2f)]
     [SerializeField] private float _controllerWorkFrequently;
-    [SerializeField] private List<AIPart> _aiParts;
+    [SerializeField] private List<AIComponent> _aiParts;
 
    [SerializeField] private AIExecuter _aiExecuter;
     
