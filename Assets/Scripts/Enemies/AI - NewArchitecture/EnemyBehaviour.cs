@@ -1,15 +1,15 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyControllerThird : MonoBehaviour
+//TODO - A component of the test AI that is in the process of being finalized
+public class EnemyBehaviour : MonoBehaviour
 {
     [Range(0.02f,0.2f)]
     [SerializeField] private float _controllerWorkFrequently;
     [SerializeField] private List<AIPart> _aiParts;
 
-    [SerializeField] private AIExecuter _aiExecuter;
+   [SerializeField] private AIExecuter _aiExecuter;
     
     void Awake()
     {
@@ -18,18 +18,17 @@ public class EnemyControllerThird : MonoBehaviour
         StartCoroutine(ControllerWork());
     }
 
+    private void OnDestroy()
+    {
+        StopCoroutine(ControllerWork());
+    }
+
     private IEnumerator ControllerWork()
     {
         while (true)
         {
             yield return new WaitForSeconds(_controllerWorkFrequently);
-            //Debug.Log("Hello everyone");
             _aiExecuter.DoStep();
         }
-    }
-
-    private void OnDestroy()
-    {
-        StopCoroutine(ControllerWork());
     }
 }

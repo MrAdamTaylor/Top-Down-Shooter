@@ -1,15 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Mechanics;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(EnemyDeath))]
 public class Health : MonoBehaviour
 {
-    [HideInInspector] public int MaxHealth;
     private int CurrentHealth { get; set; }
+    
+    [HideInInspector] public int MaxHealth;
 
     private EnemyDeath _death;
     public void Awake()

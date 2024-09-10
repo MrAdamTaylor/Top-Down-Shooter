@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Enemies;
 using Mechanics;
 using Mechanics.Spawners.NewArchitecture;
@@ -20,7 +17,7 @@ public class EnemyController : MonoBehaviour
         _spawner = spawner;
     }
 
-    public void Start()
+    private void Start()
     {
         if (_rotateSystem != null)
         {
@@ -34,10 +31,21 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    public void OnEnable()
+    private void OnEnable()
     {
         _moveSystem.Move();
         _rotateSystem.OnStart();
+    }
+
+    private void OnDisable()
+    {
+        _moveSystem.StopMove();
+        _rotateSystem.Stop();
+    }
+
+    private void OnDestroy()
+    {
+        _death.OnDeath -= ReturnPool;
     }
 
     public void SubscribeDeath()
@@ -48,17 +56,5 @@ public class EnemyController : MonoBehaviour
     private void ReturnPool()
     {
         _spawner.ReturnPool(this.gameObject);
-    }
-
-    
-    public void OnDestroy()
-    {
-        _death.OnDeath -= ReturnPool;
-    }
-
-    public void OnDisable()
-    {
-        _moveSystem.StopMove();
-        _rotateSystem.Stop();
     }
 }

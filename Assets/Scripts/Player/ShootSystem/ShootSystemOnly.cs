@@ -17,8 +17,8 @@ public class ShootSystemOnly : CoomoonShootSystem
         {
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
-                Checker checker = hit.collider.gameObject.GetComponent<Checker>();
-                Enemy enemy = checker.Enemy;
+                EnemyComponentProvider enemyComponentProvider = hit.collider.gameObject.GetComponent<EnemyComponentProvider>();
+                Enemy enemy = enemyComponentProvider.Enemy;
                 Health component = enemy.gameObject.GetComponent<Health>();
                 component.DealDamage(_weaponData.Damage);
             }

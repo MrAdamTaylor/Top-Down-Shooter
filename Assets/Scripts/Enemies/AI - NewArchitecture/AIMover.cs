@@ -1,6 +1,6 @@
-using TMPro.EditorUtilities;
 using UnityEngine;
 
+//TODO - A component of the test AI that is in the process of being finalized
 public class AIMover : AIPart
 {
     [SerializeField] private Transform _goal;

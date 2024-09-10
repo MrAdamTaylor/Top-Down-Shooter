@@ -4,18 +4,16 @@ namespace Mechanics.DebafMechanics
 {
     public class ZoneDeath : MonoBehaviour
     {
-        [Range(0.1f, 1f)] [SerializeField] private float _speedChange;
-
-        public Player Player;
-
+        [Range(0.1f, 1f)] 
+        [SerializeField] private float _speedChange;
+        
         [SerializeField] private float _radius;
-
         [SerializeField] private CircleDrawer _drawer;
+        [Range(0, 100)] [SerializeField] private float _stageLevel;
+        [SerializeField] private ParticleSystem _particleSystem;
 
         public ZoneWorkStage Stage;
-        [Range(0, 100)] [SerializeField] private float _stageLevel;
-    
-        [SerializeField] private ParticleSystem _particleSystem;
+        private Player _player;
 
         private Death _death;
 
@@ -26,7 +24,20 @@ namespace Mechanics.DebafMechanics
             _stageLevel = 0;
         }
 
-        public void Update()
+        private void Start()
+        {
+            _player = (Player)ServiceLocator.Instance.GetData(typeof(Player));
+        }
+
+        private void OnValidate()
+        {
+            if (_drawer != null)
+            {
+                _drawer.SetRadius(_radius);
+            }
+        }
+
+        private void Update()
         {
             bool playerInZone = false;
             Collider[] targetsZone = Physics.OverlapSphere(transform.position, _radius);
@@ -68,7 +79,7 @@ namespace Mechanics.DebafMechanics
                 case ZoneWorkStage.Make:
                     if (playerInZone)
                     {
-                        _death = Player.gameObject.GetComponent<Death>();
+                        _death = _player.gameObject.GetComponent<Death>();
                         _death.MakeDeath();
                     }
                     else
@@ -77,14 +88,6 @@ namespace Mechanics.DebafMechanics
                         Stage = ZoneWorkStage.Warning;
                     }
                     break;
-            }
-        }
-
-        public void OnValidate()
-        {
-            if (_drawer != null)
-            {
-                _drawer.SetRadius(_radius);
             }
         }
     }

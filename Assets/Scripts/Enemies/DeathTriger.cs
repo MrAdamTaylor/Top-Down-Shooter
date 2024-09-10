@@ -1,4 +1,3 @@
-using System;
 using Mechanics;
 using Mechanics.BafMechaniks;
 using UnityEditor;
@@ -21,25 +20,13 @@ namespace Enemies
             _killed = player.transform;
         }
 
-        public void OnDrawGizmos()
+        private void OnDrawGizmos()
         {
-            Vector3 center = transform.position.ExcludeY();
-        
-            if(_killed == null)
-                return;
-
-            Vector3 provoceuterPos = _killed.position.ExcludeY();
-            Vector3 delta = center - provoceuterPos;
-        
-            //_killed.position
-            float sqrDistance = delta.x * delta.x + delta.z * delta.z;
-            _isInside = sqrDistance <= _radius * _radius;
-        
-            Handles.color = _isInside ? Color.green : Color.red;
+            Handles.color = Color.green;
             Handles.DrawWireDisc(this.transform.position, Vector3.up, _radius);
         }
 
-        public void FixedUpdate()
+        private void FixedUpdate()
         {
             Vector3 center = this.transform.position.ExcludeY();
         
@@ -49,7 +36,6 @@ namespace Enemies
             Vector3 provoceuterPos = _killed.position.ExcludeY();
             Vector3 delta = center - provoceuterPos;
         
-            //_killed.position
             float sqrDistance = delta.x * delta.x + delta.z * delta.z;
             _isInside = sqrDistance <= _radius * _radius;
         

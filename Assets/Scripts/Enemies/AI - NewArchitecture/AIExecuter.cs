@@ -1,12 +1,11 @@
-using System;
 using System.Collections.Generic;
-using System.Reflection.Emit;
 using UnityEngine;
 
+//TODO - A component of the test AI that is in the process of being finalized
 public class AIExecuter : MonoBehaviour
 {
     private AIMover _mover;
-    private AIDynamicAvoid _aiDynamicAvoid;
+    private AIDynamicAvoidComponent _aiDynamicAvoidComponent;
     private AIRotate _aiRotate;
 
     private bool _isDynamicAvoid;
@@ -16,7 +15,7 @@ public class AIExecuter : MonoBehaviour
     {
         for (int i = 0; i < parts.Count; i++)
         {
-            ComponentValidator(parts, i);
+            ComponentValidate(parts, i);
         }
     }
 
@@ -45,7 +44,7 @@ public class AIExecuter : MonoBehaviour
 
     public float GetRadius()
     {
-        return _aiDynamicAvoid.GetRadius();
+        return _aiDynamicAvoidComponent.GetRadius();
     }
 
     public void SetVelocity(Vector3 velocity)
@@ -58,16 +57,16 @@ public class AIExecuter : MonoBehaviour
         _mover.DoStep();
     }
 
-    private void ComponentValidator(List<AIPart> parts, int i)
+    private void ComponentValidate(List<AIPart> parts, int i)
     {
         if (parts[i].GetType() == typeof(AIMover))
         {
             _mover = (AIMover)parts[i];
         }
 
-        if (parts[i].GetType() == typeof(AIDynamicAvoid))
+        if (parts[i].GetType() == typeof(AIDynamicAvoidComponent))
         {
-            _aiDynamicAvoid = (AIDynamicAvoid)parts[i];
+            _aiDynamicAvoidComponent = (AIDynamicAvoidComponent)parts[i];
             _isDynamicAvoid = true;
             _rvoController = RVOCreater.GetInstance().Create();
             _rvoController.AddAgent(this);
@@ -84,7 +83,7 @@ public class AIExecuter : MonoBehaviour
         _mover.CalculateDirection();
         _mover.DoStep();
         if(_aiRotate != null)
-            _aiRotate.Rotate(true);
+            _aiRotate.MakeRotate(true);
     }
 
     private void DoDynamic()
@@ -92,8 +91,8 @@ public class AIExecuter : MonoBehaviour
         if(_mover == null)
             return;
         
-        _rvoController.FullCirlcle();
+        _rvoController.OneFrameOfDunamicAI();
         if(_aiRotate != null)
-            _aiRotate.Rotate(true);
+            _aiRotate.MakeRotate(true);
     }
 }

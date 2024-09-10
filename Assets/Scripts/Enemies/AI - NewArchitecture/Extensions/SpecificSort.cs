@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class SpecificSort
 {
-    public static Vector2 Min(List<Vector3> mylist, Vector3 desVel)
+    public static Vector2 GetMin(List<Vector3> mylist, Vector3 desVel)
     {
         Vector3 result = -desVel;
         float diff =2*desVel.magnitude;
@@ -17,21 +17,5 @@ public static class SpecificSort
             }
         }
         return result;
-    }
-    
-
-    public static float Min(List<float> mylist)
-    {
-        float diff = mylist[0];
-        foreach (float vel in mylist)
-        {
-            
-            if (vel < diff)
-            {
-                diff = vel;
-            
-            }
-        }
-        return diff;
     }
 }

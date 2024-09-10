@@ -1,14 +1,4 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-
-public enum WeaponType
-{
-    Pistol,
-    Rifle,
-    ShootGun,
-    Undefinded
-}
 
 namespace Mechanics.BafMechaniks
 {
@@ -26,7 +16,7 @@ namespace Mechanics.BafMechaniks
             Subscribe();
             _weapon = _weaponController.GetWeaponByType(_weaponType);
             Debug.Log(_weapon.gameObject.name + " is Aded to WeaponBonus");
-            _weapon.gameObject.TryGetComponent<Ammo>(out _ammo);
+            _weapon.gameObject.TryGetComponent(out _ammo);
         }
 
         private void Subscribe()

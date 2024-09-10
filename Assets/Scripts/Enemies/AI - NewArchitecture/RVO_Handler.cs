@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
+//TODO - A component of the test AI that is in the process of being finalized
 public class RVO_Handler : MonoBehaviour
 {
     private struct RVOData
@@ -17,7 +17,7 @@ public class RVO_Handler : MonoBehaviour
     private List<RVOData> _rvoDatas = new List<RVOData>();
     
     //NOTE - I don't delete comments here because in some places the code is complicated and I don't want to remember in the future where I need to add ray drawing
-    public void Full(int i, Vector3 va, Vector3 pa, List<AIExecuter> dynamicAvoids)
+    public void FullRvoData(int i, Vector3 va, Vector3 pa, List<AIExecuter> dynamicAvoids)
     {
         for (int j = 0; j < dynamicAvoids.Count; j++)
         {
@@ -62,7 +62,7 @@ public class RVO_Handler : MonoBehaviour
         if(suitableVelo.Count > 0)
         {
             //Debug.Log(dynamicAvoid.name + " has " + suitableVelo.Count + " suitable velo");
-            resultVelocity = SpecificSort.Min(suitableVelo, desiredVector);
+            resultVelocity = SpecificSort.GetMin(suitableVelo, desiredVector);
         }
         else
         {
@@ -108,7 +108,8 @@ public class RVO_Handler : MonoBehaviour
                 }
 
             }
-            dictionary[unsuitV] = SpecificSort.Min(tc) + 0.001f;
+            //dictionary[unsuitV] = SpecificSort.Min(tc) + 0.001f;
+            dictionary[unsuitV] = tc.Min() + 0.001f;
         }
         float wt = 0.2f;
         VAPost = unSuitableVelo[0];

@@ -13,7 +13,7 @@ namespace Enemies
 
         private Health _healthComponent;
     
-        public void Awake()
+        private void Awake()
         {
             try
             {

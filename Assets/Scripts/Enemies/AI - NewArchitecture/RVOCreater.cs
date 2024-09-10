@@ -1,16 +1,16 @@
-using System;
 using UnityEngine;
 
+//TODO - A component of the test AI that is in the process of being finalized
 public class RVOCreater
 {
-    public static RVOCreater Instance;
+    private static RVOCreater _instance;
 
     private bool _isCreated;
     private RVOController _rvoController;
     
     public static RVOCreater GetInstance()
     {
-        return Instance ??= new RVOCreater();
+        return _instance ??= new RVOCreater();
     }
 
     public RVOController Create()

@@ -11,19 +11,21 @@ namespace Mechanics.DebafMechanics
 
     public class ZoneTimeSlowed : MonoBehaviour
     {
-        [Range(0.1f, 1f)][SerializeField] private float _speedChange; 
-    
-        [SerializeField] public Player Player;
-    
+        [Range(0.1f, 1f)][SerializeField] private float _speedChange;
+
+
         [SerializeField] private float _radius;
 
         [SerializeField] private CircleDrawer _drawer;
 
         [SerializeField] private ParticleSystem _particleSystem;
 
-        public ZoneWorkStage Stage;
         [Range(0, 100)] 
         [SerializeField]private float _stageLevel;
+        
+        public ZoneWorkStage Stage;
+
+        private Player _player;
 
         private void Awake()
         {
@@ -32,7 +34,20 @@ namespace Mechanics.DebafMechanics
             _stageLevel = 0;
         }
 
-        public void Update()
+        private void Start()
+        {
+            _player = (Player)ServiceLocator.Instance.GetData(typeof(Player));
+        }
+
+        private void OnValidate()
+        {
+            if (_drawer != null)
+            {
+                _drawer.SetRadius(_radius);
+            }
+        }
+
+        private void Update()
         {
             bool playerInZone = false;
             Collider[] targetsZone = Physics.OverlapSphere(transform.position, _radius);
@@ -73,24 +88,16 @@ namespace Mechanics.DebafMechanics
                 case ZoneWorkStage.Make:
                     if (playerInZone)
                     {
-                        Player.SwitchSpeed(_speedChange);
+                        _player.SwitchSpeed(_speedChange);
                     }
                     else
                     {
-                        Player.SwitchSpeed(Constants.STANDART_VALUE_FOR_SPEED);
+                        _player.SwitchSpeed(Constants.STANDART_VALUE_FOR_SPEED);
                         Stage = ZoneWorkStage.Warning;
                     }
                     break;
             }
         
-        }
-
-        public void OnValidate()
-        {
-            if (_drawer != null)
-            {
-                _drawer.SetRadius(_radius);
-            }
         }
     }
 }

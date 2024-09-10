@@ -1,25 +1,17 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class RotateSystem : MonoBehaviour
 {
-    [SerializeField]private Transform _body;
+    [SerializeField] private Transform _body;
 
     [Range(0,10)]
-    [SerializeField]
-    private float _rotateSpeed = 1.5f;
+    [SerializeField] private float _rotateSpeed = 1.5f;
 
     private Transform _lookedObject;
 
     private bool _autoRotate = false;
     private bool _coroutineRotate = false;
-
-    public void OnStart()
-    {
-        _autoRotate = true;
-    }
 
     public void OnEnable()
     {
@@ -33,6 +25,11 @@ public class RotateSystem : MonoBehaviour
         {
             AutoRotate();
         }
+    }
+
+    public void OnStart()
+    {
+        _autoRotate = true;
     }
 
     public void Stop()

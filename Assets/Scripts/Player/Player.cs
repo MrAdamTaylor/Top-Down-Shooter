@@ -1,42 +1,36 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Mechanics.BafMechaniks;
-using Unity.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
-    
-    public float Speed = 2.5f;
+    [SerializeField] private float _speed = 2.5f;
     
     private float _innerSpeed;
 
     public void Awake()
     {
         Debug.Log(this);
-        _innerSpeed = Speed;
+        _innerSpeed = _speed;
         ServiceLocator.Instance.BindData(typeof(Player),this);
     }
 
     public void Move(Vector3 offset)
     {
-        this.transform.position += offset * this._innerSpeed;
+        transform.position += offset * _innerSpeed;
     }
 
     public Vector3 GetPosition()
     {
-        return this.transform.position;
+        return transform.position;
     }
 
     public void SwitchSpeed(float speedChange)
     {
-        _innerSpeed = Speed - (Speed * speedChange);
+        _innerSpeed = _speed - (_speed * speedChange);
     }
 
     public void AddBonus<T>() where T : MonoBehaviour, IPlayerBonusComponent
     {
-        this.gameObject.AddComponent<T>();
+        gameObject.AddComponent<T>();
     }
 }

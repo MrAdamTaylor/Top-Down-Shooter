@@ -1,12 +1,13 @@
 using UnityEngine;
 
+//TODO - A component of the test AI that is in the process of being finalized
 public class AIRotate : AIPart
 {
     [SerializeField] private Transform _body;
     [SerializeField] private Transform _lookedObject;
     [SerializeField] private float _rotateSpeed = 2;
     
-    public void Rotate(bool makeRotate = false)
+    public void MakeRotate(bool makeRotate = false)
     {
         Transform transform1 = _body;
         Vector3 forwardDirection = transform1.forward;
