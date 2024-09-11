@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class WeaponSwitching : MonoBehaviour
 {
@@ -11,33 +9,6 @@ public class WeaponSwitching : MonoBehaviour
     private int _weaponCount = 0;
 
     private WeaponController _weaponController;
-
-    public void Construct(WeaponController weaponController)
-    {
-        _weaponController = weaponController;
-        for (int i = 0; i < _weapons.Count; i++)
-        {
-            _weaponCount++;
-        }
-    }
-
-    public int GetWeaponsGount()
-    {
-        return _weaponCount;
-    }
-
-    public Weapon[] GetWeaponsComponent()
-    {
-        Weapon[] weapons = new Weapon[_weaponCount];
-        
-        for (int i = 0; i < _weapons.Count; i++)
-        {
-            Weapon weapon = _weapons[i].gameObject.GetComponent<Weapon>();
-            weapons[i] = weapon;
-        }
-
-        return weapons;
-    }
 
     void Update()
     {
@@ -73,22 +44,26 @@ public class WeaponSwitching : MonoBehaviour
         }
     }
 
-    void SelectWeapon()
+    public void Construct(WeaponController weaponController)
     {
-        int j = 0;
+        _weaponController = weaponController;
         for (int i = 0; i < _weapons.Count; i++)
         {
-            if (i == _selectedWeapon)
-            {
-                _weapons[i].gameObject.SetActive(true);
-                _weaponController.SwitchInput(_weapons[i]);
-            }
-            else
-            {
-                _weapons[i].gameObject.SetActive(false);
-            }
-            j++;
+            _weaponCount++;
         }
+    }
+
+    public Weapon[] GetWeaponsComponent()
+    {
+        Weapon[] weapons = new Weapon[_weaponCount];
+        
+        for (int i = 0; i < _weapons.Count; i++)
+        {
+            Weapon weapon = _weapons[i].gameObject.GetComponent<Weapon>();
+            weapons[i] = weapon;
+        }
+
+        return weapons;
     }
 
     public Weapon GetActiveWeapon()
@@ -153,6 +128,24 @@ public class WeaponSwitching : MonoBehaviour
                 break;
              default:
                 return WeaponType.Undefinded;
+        }
+    }
+
+    private void SelectWeapon()
+    {
+        int j = 0;
+        for (int i = 0; i < _weapons.Count; i++)
+        {
+            if (i == _selectedWeapon)
+            {
+                _weapons[i].gameObject.SetActive(true);
+                _weaponController.SwitchInput(_weapons[i]);
+            }
+            else
+            {
+                _weapons[i].gameObject.SetActive(false);
+            }
+            j++;
         }
     }
 }

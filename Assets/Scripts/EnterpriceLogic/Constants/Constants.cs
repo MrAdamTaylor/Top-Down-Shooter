@@ -49,6 +49,10 @@ public static class Constants
     public const float MIN_DEBUF_STAGE_LEVEL = 0f;
 
     #endregion
-    
-    
+
+    #region Weapon Constants
+
+    public const long STANDART_WASTE_WALUE = 1L;
+
+    #endregion
 }

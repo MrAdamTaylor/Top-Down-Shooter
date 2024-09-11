@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
-using UnityEngine;
+
 
 public class ServiceLocator 
 {
@@ -25,6 +25,12 @@ public class ServiceLocator
     public object GetData(Type type)
     {
         return _servicesDataBase[type];
+    }
+
+    public object GetCloneData(Type type)
+    {
+       var obj = _servicesDataBase[type];
+           return obj.PrototypeDeepClone();
     }
 
     public void BindData(Type type, object data)

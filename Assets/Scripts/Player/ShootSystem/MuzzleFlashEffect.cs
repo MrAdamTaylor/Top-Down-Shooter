@@ -7,18 +7,24 @@ public class MuzzleFlashEffect : MonoBehaviour
     [SerializeField] private ParticleSystem _particleSystem;
     private ParticleSystem _effect;
     private ShootControlSystem _shootControlSystem;
-    private void Awake()
+    void Awake()
     {
-        _shootControlSystem = this.gameObject.GetComponent<ShootControlSystem>();
+        _shootControlSystem = gameObject.GetComponent<ShootControlSystem>();
         _shootControlSystem.ShootAction += MuzzleEffect;
     }
-    private void OnEnable()
+    void OnEnable()
     {
         if (_effect != null)
         {
             _effect.Stop();
         }
     }
+
+    void OnDestroy()
+    {
+        _shootControlSystem.ShootAction -= MuzzleEffect;
+    }
+
     private void MuzzleEffect()
     {
         if (_effect == null)
@@ -39,10 +45,5 @@ public class MuzzleFlashEffect : MonoBehaviour
                 _effect.Play();
             }
         }
-    }
-
-    private void OnDestroy()
-    {
-        _shootControlSystem.ShootAction -= MuzzleEffect;
     }
 }

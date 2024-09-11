@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System;
-using UnityEngine;
 
 public class ScoresAdapter : IDisposable
 {
@@ -20,13 +16,13 @@ public class ScoresAdapter : IDisposable
         _scoresStorage.OnScoresChanged += UpdateScores;
     }
 
-    private void UpdateScores(long value)
-    {
-        _currencyView.UpdateCurrency(value);
-    }
-
     public void Dispose()
     {
         _scoresStorage.OnScoresChanged -= UpdateScores;
+    }
+
+    private void UpdateScores(long value)
+    {
+        _currencyView.UpdateCurrency(value);
     }
 }

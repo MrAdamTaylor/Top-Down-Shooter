@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+[Serializable]
 public class CurrencyViewWithImage : CurrencyView
 {
     [SerializeField] private Image _image;

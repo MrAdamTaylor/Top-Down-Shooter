@@ -7,9 +7,8 @@ public class Player : MonoBehaviour
     
     private float _innerSpeed;
 
-    public void Awake()
+    void Awake()
     {
-        Debug.Log(this);
         _innerSpeed = _speed;
         ServiceLocator.Instance.BindData(typeof(Player),this);
     }

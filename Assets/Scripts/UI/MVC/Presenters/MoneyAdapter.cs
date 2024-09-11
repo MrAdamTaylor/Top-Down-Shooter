@@ -15,13 +15,13 @@ public class MoneyAdapter : IDisposable
         _moneyStorage.OnMoneyChanged += UpdateAmmo;
     }
 
-    private void UpdateAmmo(long value)
-    {
-        _currencyView.UpdateCurrency(value);
-    }
-
     public void Dispose()
     {
         _moneyStorage.OnMoneyChanged -= UpdateAmmo;
+    }
+
+    private void UpdateAmmo(long value)
+    {
+        _currencyView.UpdateCurrency(value);
     }
 }

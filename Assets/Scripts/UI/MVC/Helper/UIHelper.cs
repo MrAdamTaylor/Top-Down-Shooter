@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIHelper : MonoBehaviour
@@ -10,7 +8,7 @@ public class UIHelper : MonoBehaviour
     private AmmoStorage _ammoStorage;
     private ScoresStorage _scoresStorage;
     
-    public void Start()
+    void Start()
     {
         _ammoStorage = (AmmoStorage)ServiceLocator.Instance.GetData(typeof(AmmoStorage));
         _moneyStorage = (MoneyStorage)ServiceLocator.Instance.GetData(typeof(MoneyStorage));

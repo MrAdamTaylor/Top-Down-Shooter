@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -12,7 +9,14 @@ public class CurrencyView : MonoBehaviour
 
    public void UpdateCurrency(long value)
    {
-      _currentValueUI = value;
-      _text.text = _currentValueUI.ToString();
+      if (value == -long.MaxValue)
+      {
+         _text.text = "Infinity";
+      }
+      else
+      {
+         _currentValueUI = value;
+         _text.text = _currentValueUI.ToString();
+      }
    }
 }

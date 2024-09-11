@@ -3,10 +3,13 @@ using UnityEngine;
 
 public class ShootControlSystem : MonoBehaviour
 {
-    public Action ShootAction;
     [SerializeField] private CoomoonShootSystem _shootSystem;
+    
+    public Action ShootAction;
+    
     private float _weaponDelay;
     private float _lastShootTime;
+    
     public void ConstructShootSystem(ShootData data)
     {
         _weaponDelay = data.Delay;

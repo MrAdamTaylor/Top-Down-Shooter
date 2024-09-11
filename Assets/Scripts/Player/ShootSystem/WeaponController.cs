@@ -1,26 +1,22 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] WeaponSwitching _weaponSwitching;
-    [SerializeField] private PlayerUI _playerUI;
     private IMouseInput _inputSystem;
 
     private List<IMouseInput> _mouseInputs;
     private int _weaponsCount;
     private WeaponInputController _weaponInputController;
-    private Ammo _ammo;
     private AmmoAdapter _ammoAdapter;
     
-    private void Awake()
+    void Awake()
     {
         ServiceLocator.Instance.BindData(typeof(WeaponController), this);
         _weaponInputController = this.gameObject.AddComponent<WeaponInputController>();
         _weaponSwitching.Construct(this);
-        _weaponsCount = _weaponSwitching.GetWeaponsGount();
         _weaponInputController.GetWeapons(_weaponSwitching.GetWeaponsComponent());
     }
 
@@ -28,6 +24,23 @@ public class WeaponController : MonoBehaviour
     {
         _ammoAdapter = (AmmoAdapter)ServiceLocator.Instance.GetData(typeof(AmmoAdapter));
         FindClickSystem();
+    }
+
+    void OnDestroy()
+    {
+        _inputSystem.OnFire -= OnShoot;
+    }
+
+    public void SwitchInput(Weapon weaponObject)
+    {
+        _inputSystem.OnFire -= OnShoot;
+        _inputSystem = null;
+        FindClickSystem(weaponObject);
+    }
+
+    public Weapon GetWeaponByType(WeaponType weaponType)
+    {
+        return _weaponSwitching.FindByType(weaponType);
     }
 
     private void FindClickSystem()
@@ -38,12 +51,8 @@ public class WeaponController : MonoBehaviour
             Type inputSystem = weapon.gameObject.GetComponent<IMouseInput>().GetType();
             _inputSystem = _weaponInputController.FindEqual(inputSystem);
             _inputSystem.OnFire += this.OnShoot;
-            _ammo = weapon.GetComponent<Ammo>();
             _ammoAdapter.UpdatePicture(ReturnType(weapon));
-            //_ammo.ChangeAmmoUI += _ammoAdapter.UpdateAmmo;
-            //TODO before MVC
-            //_ammo.ChangeAmmo += _playerUI.UpdateAmmoText;
-            //_playerUI.UpdateAmmoText(weapon.GetComponent<Ammo>().GetAmmo(),weapon.GetComponent<Ammo>().IsInfinity());
+            _ammoAdapter.UpdateUI(weapon);
         }
     }
 
@@ -52,33 +61,16 @@ public class WeaponController : MonoBehaviour
         Type inputSystem = weapon.gameObject.GetComponent<IMouseInput>().GetType();
         _inputSystem = _weaponInputController.FindEqual(inputSystem);
         _inputSystem.OnFire += this.OnShoot;
-        _ammo = weapon.GetComponent<Ammo>();
         _ammoAdapter.UpdatePicture(ReturnType(weapon));
-        //TODO before MVC
-        //_ammo.ChangeAmmo += _playerUI.UpdateAmmoText;
-        //_playerUI.UpdateAmmoText(weapon.GetComponent<Ammo>().GetAmmo(),weapon.GetComponent<Ammo>().IsInfinity());
+        _ammoAdapter.UpdateUI(weapon);
     }
 
-    public void SwitchInput(Weapon weaponObject)
-    {
-        _inputSystem.OnFire -= this.OnShoot;
-        _inputSystem = null;
-        //_ammo.ChangeAmmo -= _playerUI.UpdateAmmoText;
-        _ammo = null;
-        FindClickSystem(weaponObject);
-    }
-
-    private void OnDestroy()
-    {
-        _inputSystem.OnFire -= this.OnShoot;
-    }
-
-    public void OnShoot()
+    private void OnShoot()
     {
         if (_weaponSwitching != null)
         {
             Weapon weapon = _weaponSwitching.GetActiveWeapon();
-            if (weapon.gameObject.GetComponent<Ammo>().CanShoot())
+            if (weapon.gameObject.GetComponent<AmmoController>().CanShoot())
             {
                 weapon.Fire();
             }
@@ -89,7 +81,7 @@ public class WeaponController : MonoBehaviour
         }
     }
 
-    public WeaponType ReturnType(Weapon weapon)
+    private WeaponType ReturnType(Weapon weapon)
     {
         WeaponType type = _weaponSwitching.FindByClass(weapon);
         if (type == WeaponType.Undefinded)
@@ -100,10 +92,5 @@ public class WeaponController : MonoBehaviour
         {
             return type;
         }
-    }
-
-    public Weapon GetWeaponByType(WeaponType weaponType)
-    {
-        return _weaponSwitching.FindByType(weaponType);
     }
 }

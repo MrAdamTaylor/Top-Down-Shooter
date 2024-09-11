@@ -1,28 +1,32 @@
 using System;
-using UnityEngine;
 
+[Serializable]
 public class AmmoStorage
 {
     public event Action<long> OnAmmoChanged;
         
     public long Ammo { get; private set; }
-    
-    public AmmoStorage(long ammo)
+
+    public void Construct(long ammo)
     {
         Ammo = ammo;
     }
-    
+
+    public void UpdateScreen(long ammo = 0L)
+    {
+        Ammo += ammo;
+        OnAmmoChanged?.Invoke(Ammo);
+    }
+
     public void AddAmmo(long current)
     {
         Ammo += current;
-        Debug.Log("Current Ammo: "+Ammo);
         OnAmmoChanged?.Invoke(Ammo);
     }
 
     public void SpendAmmo(long current)
     {
         Ammo -= current;
-        Debug.Log("Current Ammo: "+Ammo);
         OnAmmoChanged?.Invoke(Ammo);
     }
 }

@@ -14,14 +14,12 @@ public class ScoresStorage
     public void AddScores(long current)
     {
         Scores += current;
-        //Debug.Log("Current Scores: "+Scores);
         OnScoresChanged?.Invoke(Scores);
     }
 
     public void SpendScores(long current)
     {
         Scores -= current;
-        //Debug.Log("Current Scores: "+Scores);
         OnScoresChanged?.Invoke(Scores);
     }
 }
