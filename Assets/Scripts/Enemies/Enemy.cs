@@ -13,6 +13,7 @@ namespace Enemies
 
         private Health _healthComponent;
     
+        //TODO - Dependency (Level - Awake+GetComponent) (class - Player)
         private void Awake()
         {
             try

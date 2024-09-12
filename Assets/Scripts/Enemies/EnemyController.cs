@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     
     private EnemySpawner _spawner;
 
+    //TODO - Dependency (Level - SelfConstruct) (class - EnemySpawner)
     public void Construct(EnemySpawner spawner)
     {
         _spawner = spawner;

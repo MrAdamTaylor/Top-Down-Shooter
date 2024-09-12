@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-internal interface IInputSystem
+public interface IInputSystem : IService
 {
     event Action<Vector2> OnMove;
 }

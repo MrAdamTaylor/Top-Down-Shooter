@@ -2,8 +2,16 @@ using UnityEngine;
 
 public class UIInstaller : MonoBehaviour
 {
+    private bool _selfRegistration = true;
+    
     public void Awake()
     {
+        Debug.Log("Installer - выполнился в Awake");
+        if ((GameBootstraper)FindObjectOfType(typeof(GameBootstraper)))
+        {
+            _selfRegistration = false;
+            Debug.Log("Работаем по другому");
+        }
         var view = FindObjectOfType<CurrencyProvider>();
         var ammo = FindObjectOfType<AmmoProvider>();
         ScoresBind(view.ScoresView);

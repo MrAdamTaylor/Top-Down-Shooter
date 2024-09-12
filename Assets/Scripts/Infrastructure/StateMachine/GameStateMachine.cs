@@ -7,13 +7,13 @@ public class GameStateMachine
     
     private Dictionary<Type, IExitableState> _states;
     private IExitableState _activeState;
-    public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain curtain)
+    public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain curtain, AllServices services)
     {
         Debug.Log("Инициализирована StateMachine");
         _states = new Dictionary<Type, IExitableState>
         {
-            [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader),
-            [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain)
+            [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services),
+            [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, services.Single<IGameFactory>())
         };
     }
 

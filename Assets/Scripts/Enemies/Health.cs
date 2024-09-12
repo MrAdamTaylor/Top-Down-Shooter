@@ -9,6 +9,9 @@ public class Health : MonoBehaviour
     [HideInInspector] public int MaxHealth;
 
     private EnemyDeath _death;
+    
+    //TODO - DependencyCreate (Level - Awake) (class - Health)
+    //TODO - Dependency (Level - Awake+GetComponent) (class - EnemyDeath)
     public void Awake()
     {
         _death = this.GetComponent<EnemyDeath>();

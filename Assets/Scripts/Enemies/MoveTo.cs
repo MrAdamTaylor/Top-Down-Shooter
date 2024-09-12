@@ -10,7 +10,7 @@ public class MoveTo : MonoBehaviour
     private bool _needMove;
     private Vector3 _direction;
     private Vector3 _tempPosition;
-
+    
     public void Construct()
     {
         _tempPosition = _followedTransform.position;
@@ -24,6 +24,7 @@ public class MoveTo : MonoBehaviour
         Construct();
     }
 
+    //TODO - Dependency (Level - OnEnable) (class - Player)
     public void OnEnable()
     {
         Player player = (Player)ServiceLocator.Instance.GetData(typeof(Player));

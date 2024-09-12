@@ -9,15 +9,7 @@ public class GameBootstraper : MonoBehaviour, ICoroutineRunner
     {
         _game = new Game(this,Curtain);
         _game.StateMachine.Enter<BootstrapState>();
-    }
-}
-
-public class Game
-{
-    public GameStateMachine StateMachine;
-    
-    public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain)
-    {
-        StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), curtain);
+        
+        DontDestroyOnLoad(this);
     }
 }

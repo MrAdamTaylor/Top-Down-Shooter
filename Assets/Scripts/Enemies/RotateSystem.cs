@@ -13,6 +13,7 @@ public class RotateSystem : MonoBehaviour
     private bool _autoRotate = false;
     private bool _coroutineRotate = false;
 
+    //TODO - Dependency (Level - OnEnable) (class - Player)
     public void OnEnable()
     {
         Player player = (Player)ServiceLocator.Instance.GetData(typeof(Player));

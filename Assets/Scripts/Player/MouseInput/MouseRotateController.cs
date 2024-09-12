@@ -1,15 +1,22 @@
 using UnityEngine;
 
-public class MouseRotateController : MonoBehaviour
+public class MouseRotateController : MonoBehaviour, IMouseRotateController
 {
     
-    [SerializeField] private float _rotationSpeed;
+    [SerializeField] private float _rotationSpeed = 450f;
     
     [SerializeField] private Player _player;
 
     [SerializeField] private Camera _camera;
 
     private Quaternion _targetRotation;
+
+    public void Construct(Camera cam, Player player)
+    {
+        _camera = cam;
+        _player = player;
+    }
+
     void Update()
     {
         MouseRotate();

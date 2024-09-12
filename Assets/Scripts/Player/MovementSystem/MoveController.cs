@@ -14,18 +14,25 @@ public class MoveController : MonoBehaviour
 
     private IInputSystem _inputSystem;
 
+    public void Construct(Player player, IInputSystem inputSystem)
+    {
+        _player = player;
+        _inputSystem = inputSystem;
+        _inputSystem.OnMove += this.OnMove;
+    }
+
     public void Awake()
     {
-        if (_inputSystmType == EInputSystem.OldSystem)
+        /*if (_inputSystmType == EInputSystem.OldSystem)
         {
             _inputSystem = gameObject.AddComponent<KeyboardInput>();
         }
         else
         {
-            _inputSystem = gameObject.AddComponent<AxisInputSustem>();
+            _inputSystem = gameObject.AddComponent<AxisInputSystem>();
         }
 
-        _inputSystem.OnMove += this.OnMove;
+        _inputSystem.OnMove += this.OnMove;*/
     }
     
     private void OnMove(Vector2 direction)

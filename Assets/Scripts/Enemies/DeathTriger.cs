@@ -14,6 +14,7 @@ namespace Enemies
 
         private Death _death;
 
+        //TODO - Dependency (Level - OnEnable) (class - Player)
         private void OnEnable()
         {
             Player player = (Player)ServiceLocator.Instance.GetData(typeof(Player));
@@ -26,6 +27,7 @@ namespace Enemies
             Handles.DrawWireDisc(this.transform.position, Vector3.up, _radius);
         }
 
+        //TODO - Transfer to class trigonometry some logic
         private void FixedUpdate()
         {
             Vector3 center = this.transform.position.ExcludeY();

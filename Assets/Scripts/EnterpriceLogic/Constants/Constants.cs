@@ -31,6 +31,7 @@ public static class Constants
     public const float DEFAULT_MAXIMUM_FIRING_RANGE = 40f;
     public const float ROCKET_SPEED = 30f;
     public static float DEFAULT_BULLET_SPEED;
+    public static string INITIAL_POSITION = "InitialPoint";
 
     #endregion
 
@@ -53,6 +54,13 @@ public static class Constants
     #region Weapon Constants
 
     public const long STANDART_WASTE_WALUE = 1L;
+
+    #endregion
+    
+
+    #region Константы путей к префабам
+
+    public const string PLAYER_PATH = "Prefabs/PlayerEmpty";
 
     #endregion
 }

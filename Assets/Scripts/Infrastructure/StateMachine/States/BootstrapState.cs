@@ -4,25 +4,30 @@ public class BootstrapState : IState
 {
     private GameStateMachine _stateMachine;
     private readonly SceneLoader _sceneLoader;
+    private readonly AllServices _services;
     
-    public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader)
+    public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, AllServices services)
     {
         Debug.Log("Создано состояние BootstrapState");
+        _services = services;
         _stateMachine = stateMachine;
         _sceneLoader = sceneLoader;
+        RegisterServices();
     }
 
     public void Enter()
     {
         Debug.Log("Вход в начальное состояние StateMachine");
-        RegisterServices();
         _sceneLoader.Load(Constants.First_LEVEL, onLoaded: EnterLoadLevel);
     }
 
     private void RegisterServices()
     {
-        Debug.Log("Регистрация сервисов");
+        _services.RegisterSingle<IAsserts>(new Asserts());
+        _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAsserts>()));
     }
+
+
 
     public void Exit()
     {
