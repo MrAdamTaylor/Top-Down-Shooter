@@ -15,7 +15,7 @@ public class WeaponController : MonoBehaviour
     void Awake()
     {
         ServiceLocator.Instance.BindData(typeof(WeaponController), this);
-        _weaponInputController = this.gameObject.AddComponent<WeaponInputController>();
+        _weaponInputController = gameObject.AddComponent<WeaponInputController>();
         _weaponSwitching.Construct(this);
         _weaponInputController.GetWeapons(_weaponSwitching.GetWeaponsComponent());
     }

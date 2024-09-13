@@ -20,7 +20,7 @@ public class MoveController : MonoBehaviour
         _inputSystem = inputSystem;
         _inputSystem.OnMove += this.OnMove;
     }
-
+    
     public void Awake()
     {
         /*if (_inputSystmType == EInputSystem.OldSystem)

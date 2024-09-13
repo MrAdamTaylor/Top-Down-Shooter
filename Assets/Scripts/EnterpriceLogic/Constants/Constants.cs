@@ -54,6 +54,8 @@ public static class Constants
     #region Weapon Constants
 
     public const long STANDART_WASTE_WALUE = 1L;
+    public const bool SWITCH_WEAPON_MODE = true;
+    public const bool ONE_WEAPON_MODE = false;
 
     #endregion
     

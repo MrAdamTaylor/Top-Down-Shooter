@@ -1,3 +1,4 @@
+using Scripts.Player.NewWeaponControllSystem;
 using UnityEngine;
 
 public class GameFactory : IGameFactory
@@ -31,6 +32,28 @@ public class GameFactory : IGameFactory
         gameObject.AddComponent<AxisInputSystem>();
         IInputSystem system = gameObject.GetComponent<AxisInputSystem>();
         gameObject.AddComponent<MoveController>().Construct(player, system);
+        bool flag = Constants.SWITCH_WEAPON_MODE;
+        if (flag)
+        {
+            gameObject.AddComponent<WeaponSwitcher>();
+            gameObject.AddComponent<Scripts.Player.NewWeaponControllSystem.WeaponController>();
+            WeaponProvider provider = gameObject.transform.GetComponentInChildren<WeaponProvider>();
+            WeaponSwitcher switcher = gameObject.GetComponent<WeaponSwitcher>();
+            Scripts.Player.NewWeaponControllSystem.WeaponController controller =
+                gameObject.GetComponent<Scripts.Player.NewWeaponControllSystem.WeaponController>();
+            CurrentWeaponConstructor currentWeaponConstructor = new CurrentWeaponConstructor(controller);
+            switcher.Construct(provider, currentWeaponConstructor);
+            controller.Construct(provider.ReturnWeapons(), switcher);
+        }
+        else
+        {
+            gameObject.AddComponent<Scripts.Player.NewWeaponControllSystem.WeaponController>();
+            WeaponProvider provider = gameObject.transform.GetComponentInChildren<WeaponProvider>();
+            Scripts.Player.NewWeaponControllSystem.WeaponController controller =
+                gameObject.GetComponent<Scripts.Player.NewWeaponControllSystem.WeaponController>();
+            controller.Construct(provider.GetActiveWeapon());
+        }
+
         return gameObject;
     }
 }

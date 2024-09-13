@@ -79,7 +79,7 @@ public class WeaponSwitching : MonoBehaviour
 
         if (weapon == null)
         {
-            throw new Exception("Нет активного оружия");
+            throw new Exception("No active weapon");
         }
         else
         {
@@ -133,7 +133,7 @@ public class WeaponSwitching : MonoBehaviour
 
     private void SelectWeapon()
     {
-        int j = 0;
+        //int j = 0;
         for (int i = 0; i < _weapons.Count; i++)
         {
             if (i == _selectedWeapon)
@@ -145,7 +145,7 @@ public class WeaponSwitching : MonoBehaviour
             {
                 _weapons[i].gameObject.SetActive(false);
             }
-            j++;
+            //j++;
         }
     }
 }
