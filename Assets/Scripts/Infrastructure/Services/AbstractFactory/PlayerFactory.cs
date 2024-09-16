@@ -1,32 +1,23 @@
 using Scripts.Player.NewWeaponControllSystem;
 using UnityEngine;
 
-public class GameFactory : IGameFactory
+public class PlayerFactory : IPlayerFactory
 {
     private readonly IAsserts _asserts;
+    private readonly IWeaponFactory _weaponFactory;
     
-    public GameFactory(IAsserts assets)
+    public PlayerFactory(IAsserts assets, IWeaponFactory weaponFactory)
     {
         _asserts = assets;
-    }
-    
-    public static GameObject Instantiate(string path)
-    {
-        GameObject prefab = Resources.Load<GameObject>(path);
-        return Object.Instantiate(prefab);
-    }
-
-    public static GameObject Instantiate(string path, Vector3 at)
-    {
-        GameObject prefab = Resources.Load<GameObject>(path);
-        return Object.Instantiate(prefab, at, Quaternion.identity);
+        _weaponFactory = weaponFactory;
+        _weaponFactory.LoadData();
     }
 
     public GameObject CreatePlayer(Vector3 position, Camera camera)
     {
         GameObject gameObject = _asserts.Instantiate(Constants.PLAYER_PATH, position);
-        gameObject.AddComponent<Player>();
-        Player player = gameObject.GetComponent<Player>();
+        Player player = gameObject.AddComponent<Player>();
+        ServiceLocator.Instance.BindData(typeof(Transform), player.transform);
         gameObject.AddComponent<CameraFollower>().Construct(camera, player);
         gameObject.AddComponent<MouseRotateController>().Construct(camera, player);
         gameObject.AddComponent<AxisInputSystem>();
@@ -38,6 +29,8 @@ public class GameFactory : IGameFactory
             gameObject.AddComponent<WeaponSwitcher>();
             gameObject.AddComponent<Scripts.Player.NewWeaponControllSystem.WeaponController>();
             WeaponProvider provider = gameObject.transform.GetComponentInChildren<WeaponProvider>();
+            _weaponFactory.CreateWeapons(provider.ReturnWeapons(), gameObject.transform);
+            ServiceLocator.Instance.CleanData(typeof(Transform));
             WeaponSwitcher switcher = gameObject.GetComponent<WeaponSwitcher>();
             Scripts.Player.NewWeaponControllSystem.WeaponController controller =
                 gameObject.GetComponent<Scripts.Player.NewWeaponControllSystem.WeaponController>();

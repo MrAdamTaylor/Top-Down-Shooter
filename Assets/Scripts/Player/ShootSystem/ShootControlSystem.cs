@@ -9,12 +9,20 @@ public class ShootControlSystem : MonoBehaviour
     
     private float _weaponDelay;
     private float _lastShootTime;
-    
-    public void ConstructShootSystem(ShootData data)
+
+    public void Construct(WeaponStaticData data, WeaponEffectsConteiner weaponEffectsConteiner, CoomoonShootSystem shootSystem)
+    {
+        _weaponDelay = data.SpeedFireRange;
+        _shootSystem = shootSystem;
+        _shootSystem.Construct(data, weaponEffectsConteiner);
+    }
+
+    /*public void ConstructShootSystem(ShootData data)
     {
         _weaponDelay = data.Delay;
         _shootSystem.Construct(data);
-    }
+    }*/
+
 
     public void Shoot()
     {

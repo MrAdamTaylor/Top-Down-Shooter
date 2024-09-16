@@ -15,7 +15,7 @@ public class AmmoController : MonoBehaviour
     private AmmoStorage _ammoStorage;
     private Weapon _weapon;
 
-    public void Construct()
+    public void Construct(ShootControlSystem _shootControlSystem)
     {
         _weapon = gameObject.GetComponent<Weapon>();
         _ammoStorage = (AmmoStorage)ServiceLocator.Instance.GetCloneData(typeof(AmmoStorage));

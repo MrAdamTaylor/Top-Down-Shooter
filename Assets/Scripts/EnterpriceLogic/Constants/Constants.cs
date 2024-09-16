@@ -30,8 +30,11 @@ public static class Constants
 
     public const float DEFAULT_MAXIMUM_FIRING_RANGE = 40f;
     public const float ROCKET_SPEED = 30f;
-    public static float DEFAULT_BULLET_SPEED;
+    public static float DEFAULT_BULLET_SPEED = 100f;
+    public static float DEFAULT_BULLET_DISTANCE = 40f;
     public static string INITIAL_POSITION = "InitialPoint";
+    public static LayerMask WEAPON_LAYER_MASK = LayerMask.GetMask("Enemy","Obstacle");
+    
 
     #endregion
 
@@ -62,7 +65,12 @@ public static class Constants
 
     #region Константы путей к префабам
 
-    public const string PLAYER_PATH = "Prefabs/PlayerEmpty";
-
+    //public const string PLAYER_PATH = "Prefabs/PlayerEmpty";
+    public const string PLAYER_PATH = "Prefabs/PlayerEmptyFull";
+    public const string HOT_TRAIL_PATH = "Prefabs/WeaponsPrefabs/HotTrail";
+    public const string IMPACT_PARTICLE_EFFECT = "Prefabs/WeaponsPrefabs/SparksEffect";
+    public static string LINE_RENDERER_PATH = "Prefabs/WeaponsPrefabs/LaserShootgun";
+    
+    
     #endregion
 }

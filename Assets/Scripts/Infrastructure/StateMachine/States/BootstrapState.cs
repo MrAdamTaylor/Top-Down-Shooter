@@ -24,7 +24,9 @@ public class BootstrapState : IState
     private void RegisterServices()
     {
         _services.RegisterSingle<IAsserts>(new Asserts());
-        _services.RegisterSingle<IGameFactory>(new GameFactory(_services.Single<IAsserts>()));
+        _services.RegisterSingle<IWeaponFactory>(new WeaponFactory(_services.Single<IAsserts>()));
+        _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_services.Single<IAsserts>(), 
+            _services.Single<IWeaponFactory>()));
     }
 
 

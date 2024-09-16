@@ -45,4 +45,8 @@ public class ServiceLocator
         }
     }
 
+    public void CleanData(Type type)
+    {
+        _servicesDataBase.Remove(type);
+    }
 }

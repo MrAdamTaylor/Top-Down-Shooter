@@ -16,11 +16,11 @@ public class AmmoProvider : MonoBehaviour
      public void Construct()
      {
           
-          for (int i = 0; i < _ammoControllers.Count; i++)
+          /*for (int i = 0; i < _ammoControllers.Count; i++)
           {
                _ammoControllers[i].Construct();
-          }
-          Count = _ammoControllers.Count;
+          }*/
+          //Count = _ammoControllers.Count;
      }
 
      public (Weapon, AmmoStorage) GetTypeStorageCortege(int i)

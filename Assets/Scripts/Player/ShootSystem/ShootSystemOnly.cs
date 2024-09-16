@@ -1,5 +1,7 @@
 using System.Collections;
 using Enemies;
+using EnterpriceLogic.Utilities;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShootSystemOnly : CoomoonShootSystem
@@ -9,25 +11,41 @@ public class ShootSystemOnly : CoomoonShootSystem
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private float _distance;
 
+    private Transform _bulletPoint;
+    private int _damage;
+    
+    public override void Construct(WeaponStaticData staticData, WeaponEffectsConteiner conteiner)
+    {
+        _layerMask = Constants.WEAPON_LAYER_MASK;
+        _directionObject = (Transform)ServiceLocator.Instance.GetData(typeof(Transform));
+        _directionObject.IsNullWithException("Transform not constructed in ShootSystemOnly");
+        _impactParticle = conteiner.GetParticleEffect();
+        _trailRenderer = conteiner.GetTrailRenderer();
+        _bulletSpeed = Constants.DEFAULT_BULLET_SPEED;
+        _distance = Constants.DEFAULT_BULLET_DISTANCE;
+        _damage = staticData.Damage;
+        _bulletPoint = staticData.BulletPoint;
+    }
+
     public override void Shoot()
     {
         Vector3 direction = GetDirection();
-        if (Physics.Raycast(_weaponData.BulletPoint.position, direction, out RaycastHit hit, _distance, _layerMask))
+        if (Physics.Raycast(_bulletPoint.position, direction, out RaycastHit hit, _distance, _layerMask))
         {
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
                 EnemyComponentProvider enemyComponentProvider = hit.collider.gameObject.GetComponent<EnemyComponentProvider>();
                 Enemy enemy = enemyComponentProvider.Enemy;
                 Health component = enemy.gameObject.GetComponent<Health>();
-                component.DealDamage(_weaponData.Damage);
+                component.DealDamage(_damage);
             }
-            TrailRenderer trail = Instantiate(_trailRenderer, _weaponData.BulletPoint.position, Quaternion.identity);
+            TrailRenderer trail = Instantiate(_trailRenderer, _bulletPoint.position, Quaternion.identity);
             StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, true));
         }
         else
         {
-            TrailRenderer trail = Instantiate(_trailRenderer, _weaponData.BulletPoint.position, Quaternion.identity);
-            StartCoroutine(SpawnTrail(trail, _weaponData.BulletPoint.position + GetDirection() * _distance, Vector3.zero, false));
+            TrailRenderer trail = Instantiate(_trailRenderer, _bulletPoint.position, Quaternion.identity);
+            StartCoroutine(SpawnTrail(trail, _bulletPoint.position + GetDirection() * _distance, Vector3.zero, false));
         }
     }
     
