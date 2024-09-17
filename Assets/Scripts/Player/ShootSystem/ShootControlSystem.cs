@@ -33,4 +33,10 @@ public class ShootControlSystem : MonoBehaviour
             _lastShootTime = Time.time;
         }
     }
+
+    public void UpdateValues(WeaponCharacteristics characteristics)
+    {
+        _weaponDelay = characteristics.FireSpeedRange;
+        _shootSystem.UpdateValues(characteristics);
+    }
 }

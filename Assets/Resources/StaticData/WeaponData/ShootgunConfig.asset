@@ -16,10 +16,10 @@ MonoBehaviour:
   Damage: 2
   SpeedFireRange: 1.25
   InpType: 0
-  IsMuzzle: 0
+  IsMuzzle: 1
   IsAmmo: 1
   BulletPoint: {fileID: 0}
   AmountOfRaction: 3
-  FovAngle: 11
+  FovAngle: 10
   Distance: 7
   FadeDuration: 0.3

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class Constants
@@ -70,7 +68,10 @@ public static class Constants
     public const string HOT_TRAIL_PATH = "Prefabs/WeaponsPrefabs/HotTrail";
     public const string IMPACT_PARTICLE_EFFECT = "Prefabs/WeaponsPrefabs/SparksEffect";
     public static string LINE_RENDERER_PATH = "Prefabs/WeaponsPrefabs/LaserShootgun";
-    
-    
+    public static string MUZZLE_FLASH_WEAPON_PATH = "Prefabs/WeaponsPrefabs/MuzzleFlash";
+    public static string WEAPON_POINTSHOOT_NAME = "Point";
+    public static bool MADE_IMPACT = true;
+    public static bool NON_MADE_IMPACT = false;
+
     #endregion
 }

@@ -16,6 +16,6 @@ MonoBehaviour:
   Damage: 1
   SpeedFireRange: 0.1
   InpType: 1
-  IsMuzzle: 0
+  IsMuzzle: 1
   IsAmmo: 1
   BulletPoint: {fileID: 0}

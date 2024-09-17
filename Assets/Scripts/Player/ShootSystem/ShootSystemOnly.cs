@@ -1,7 +1,5 @@
-using System.Collections;
 using Enemies;
 using EnterpriceLogic.Utilities;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ShootSystemOnly : CoomoonShootSystem
@@ -11,6 +9,7 @@ public class ShootSystemOnly : CoomoonShootSystem
     [SerializeField] private float _bulletSpeed;
     [SerializeField] private float _distance;
 
+    private ISpecialEffectFactory _specialEffectFactory;
     private Transform _bulletPoint;
     private int _damage;
     
@@ -25,6 +24,12 @@ public class ShootSystemOnly : CoomoonShootSystem
         _distance = Constants.DEFAULT_BULLET_DISTANCE;
         _damage = staticData.Damage;
         _bulletPoint = staticData.BulletPoint;
+        _specialEffectFactory = (ISpecialEffectFactory)ServiceLocator.Instance.GetData(typeof(ISpecialEffectFactory));
+    }
+
+    public override void UpdateValues(WeaponCharacteristics characteristics)
+    {
+        _damage = characteristics.Damage;
     }
 
     public override void Shoot()
@@ -39,36 +44,13 @@ public class ShootSystemOnly : CoomoonShootSystem
                 Health component = enemy.gameObject.GetComponent<Health>();
                 component.DealDamage(_damage);
             }
-            TrailRenderer trail = Instantiate(_trailRenderer, _bulletPoint.position, Quaternion.identity);
-            StartCoroutine(SpawnTrail(trail, hit.point, hit.normal, true));
+
+            _specialEffectFactory.CreateBullet(this, _bulletPoint.position, hit.point, hit.normal, _bulletSpeed, Constants.MADE_IMPACT);
         }
         else
         {
-            TrailRenderer trail = Instantiate(_trailRenderer, _bulletPoint.position, Quaternion.identity);
-            StartCoroutine(SpawnTrail(trail, _bulletPoint.position + GetDirection() * _distance, Vector3.zero, false));
+            _specialEffectFactory.CreateBullet(this, _bulletPoint.position, 
+                _bulletPoint.position + GetDirection() * _distance, Vector3.zero, _bulletSpeed, Constants.NON_MADE_IMPACT);
         }
-    }
-    
-    private IEnumerator SpawnTrail(TrailRenderer trail, Vector3 HitPoint, Vector3 HitNormal, bool MadeImpact)
-    {
-        Vector3 startPosition = trail.transform.position;
-        float distance = Vector3.Distance(trail.transform.position, HitPoint);
-        float remainingDistance = distance;
-
-        while (remainingDistance > 0)
-        {
-            trail.transform.position = Vector3.Lerp(startPosition, HitPoint, 1 - (remainingDistance / distance));
-
-            remainingDistance -= _bulletSpeed * Time.deltaTime;
-
-            yield return null;
-        }
-        trail.transform.position = HitPoint;
-        if (MadeImpact)
-        {
-            
-            Instantiate(_impactParticle, HitPoint, Quaternion.LookRotation(HitNormal));
-        }
-        Destroy(trail.gameObject, trail.time);
     }
 }

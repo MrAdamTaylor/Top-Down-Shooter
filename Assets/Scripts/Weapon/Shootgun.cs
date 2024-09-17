@@ -6,9 +6,9 @@ public class Shootgun : Weapon
     [Range(0,360)]public float FovAngle;
     [Range(0,40f)]public float Distance;
 
-    public override void Construct(ShootControlSystem shootControlSystem)
+    public override void Construct(ShootControlSystem shootControlSystem,WeaponStaticData data)
     {
-        base.Construct(shootControlSystem);
+        base.Construct(shootControlSystem, data);
     }
     
     /*public override void Awake()

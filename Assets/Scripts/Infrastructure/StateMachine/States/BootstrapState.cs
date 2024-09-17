@@ -24,9 +24,11 @@ public class BootstrapState : IState
     private void RegisterServices()
     {
         _services.RegisterSingle<IAsserts>(new Asserts());
+        _services.RegisterSingle<ISpecialEffectFactory>(new SpecialEffectFactory(_services.Single<IAsserts>()));
         _services.RegisterSingle<IWeaponFactory>(new WeaponFactory(_services.Single<IAsserts>()));
         _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_services.Single<IAsserts>(), 
             _services.Single<IWeaponFactory>()));
+        ServiceLocator.Instance.BindData(typeof(ISpecialEffectFactory),_services.Single<ISpecialEffectFactory>());
     }
 
 

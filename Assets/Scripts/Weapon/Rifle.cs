@@ -1,8 +1,8 @@
 public class Rifle : Weapon
 {
-    public override void Construct(ShootControlSystem shootControlSystem)
+    public override void Construct(ShootControlSystem shootControlSystem,WeaponStaticData data)
     {
-        base.Construct(shootControlSystem);
+        base.Construct(shootControlSystem, data);
     }
     
     /*public override void Awake()

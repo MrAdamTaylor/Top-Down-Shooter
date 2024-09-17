@@ -31,5 +31,9 @@ public class CoomoonShootSystem : MonoBehaviour, IShootSystem
         return direction;
     }
 
-    
+
+    public virtual void UpdateValues(WeaponCharacteristics characteristics)
+    {
+        
+    }
 }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -5,15 +6,19 @@ public class Weapon : MonoBehaviour
     //TODO - понадобится для будущего рефактора
     public WeaponType TypeWeapon;
     
-    public int Damage;
+    //public int Damage;
     [SerializeField] public Transform ShootPoint;
-    [SerializeField] protected float _speed_fire_range;
+    //[SerializeField] protected float _speed_fire_range;
 
     [SerializeField] protected ShootControlSystem _shootSystem;
 
-    public virtual void Construct(ShootControlSystem shootControlSystem)
+    [SerializeField] private WeaponCharacteristics Characteristics;
+    
+    public virtual void Construct(ShootControlSystem shootControlSystem, WeaponStaticData data)
     {
         _shootSystem = shootControlSystem;
+        Characteristics.Damage = data.Damage;
+        Characteristics.FireSpeedRange = data.SpeedFireRange;
     }
 
     /*public virtual void Awake()
@@ -24,6 +29,14 @@ public class Weapon : MonoBehaviour
 
     public void Fire()
     {
+        _shootSystem.UpdateValues(Characteristics);
         _shootSystem.Shoot();
     }
+}
+
+[Serializable]
+public struct WeaponCharacteristics
+{
+    public int Damage;
+    public float FireSpeedRange;
 }

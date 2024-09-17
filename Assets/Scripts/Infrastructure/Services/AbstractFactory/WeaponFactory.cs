@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using EnterpriceLogic.Utilities;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -22,21 +23,21 @@ public class WeaponFactory : IWeaponFactory
         for (int i = 0; i < weapon.Length; i++)
         {
             WeaponStaticData data = _weaponDictionary[weapon[i].TypeWeapon];
-            data.BulletPoint = weapon[i].transform.Find("Point");
+            data.BulletPoint = weapon[i].transform.Find(Constants.WEAPON_POINTSHOOT_NAME);
             ShootControlSystem shootControlSystem = weapon[i].AddComponent<ShootControlSystem>();
-            weapon[i].Construct(shootControlSystem);
+            weapon[i].Construct(shootControlSystem, data);
             _weaponComponentHandler.GetShootSystem(weapon[i].transform, data.WType);
             CoomoonShootSystem shootSystem = weapon[i].gameObject.GetComponent<CoomoonShootSystem>();
             shootControlSystem.Construct(data, _weaponEffectsConteiner, shootSystem);
             _weaponComponentHandler.GetInputSytem(weapon[i].transform, data.InpType);
             if (data.IsMuzzle)
             {
-                weapon[i].AddComponent<MuzzleFlashEffect>();
+                MuzzleFlashEffect muzzleFlashEffect = weapon[i].AddComponent<MuzzleFlashEffect>();
+                muzzleFlashEffect.Construct(shootControlSystem, _weaponEffectsConteiner, data.BulletPoint);
             }
             if (data.IsAmmo)
             {
                 weapon[i].AddComponent<AmmoController>();
-                weapon[i].Construct(shootControlSystem);
             }
         }
     }
@@ -60,15 +61,22 @@ public class WeaponEffectsConteiner
     public WeaponEffectsConteiner(IAsserts asserts)
     {
         _asserts = asserts;
-        _particleSystem = _asserts.InstantiateParticle(Constants.IMPACT_PARTICLE_EFFECT);
-        _trailRenderer = _asserts.InstantiateTrailRenderer(Constants.HOT_TRAIL_PATH);
-        _lineRenderer = _asserts.InstantiateLineRenderer(Constants.LINE_RENDERER_PATH);
+        _particleSystem = _asserts.LoadParticle(Constants.IMPACT_PARTICLE_EFFECT);
+        _trailRenderer = _asserts.LoadTrailRenderer(Constants.HOT_TRAIL_PATH);
+        _lineRenderer = _asserts.LoadLineRenderer(Constants.LINE_RENDERER_PATH);
     }
 
 
-    public ParticleSystem GetParticleEffect()
+    public ParticleSystem GetParticleEffect(string path = "", Transform position = null, Transform parent = null)
     {
-        return _particleSystem;
+        if (path.IsEmpty())
+            return _particleSystem;
+        if (position.IsNullBoolWarning(""))
+            return _asserts.LoadParticle(path);
+        else if(parent.IsNullBoolWarning())
+                return _asserts.InstantiateParticle(path, position.position);
+            else
+                return _asserts.InstantiateParticleWithParent(path, position.position, parent);
     }
 
     public TrailRenderer GetTrailRenderer()

@@ -1,3 +1,6 @@
+using System.Reflection.Emit;
+using EnterpriceLogic.Utilities;
+using Scripts.Player.NewWeaponControllSystem;
 using UnityEngine;
 
 [RequireComponent(typeof(ShootControlSystem))]
@@ -7,17 +10,24 @@ public class MuzzleFlashEffect : MonoBehaviour
     [SerializeField] private ParticleSystem _particleSystem;
     private ParticleSystem _effect;
     private ShootControlSystem _shootControlSystem;
-    void Awake()
+    /*void Awake()
     {
         _shootControlSystem = gameObject.GetComponent<ShootControlSystem>();
         _shootControlSystem.ShootAction += MuzzleEffect;
+    }*/
+
+    public void Construct(ShootControlSystem shootControlSystem, WeaponEffectsConteiner conteiner, Transform data)
+    {
+        _shootControlSystem = shootControlSystem;
+        _shootControlSystem.ShootAction += MuzzleEffect;
+        _position = data;
+        _effect = conteiner.GetParticleEffect(Constants.MUZZLE_FLASH_WEAPON_PATH, _position, gameObject.transform);
     }
+
     void OnEnable()
     {
-        if (_effect != null)
-        {
+        if (!_effect.IsNullBoolWarning("MuzzleEffectIsNull"))
             _effect.Stop();
-        }
     }
 
     void OnDestroy()
