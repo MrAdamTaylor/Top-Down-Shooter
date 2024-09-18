@@ -7,13 +7,20 @@ public class UIHelper : MonoBehaviour
     private MoneyStorage _moneyStorage;
     private AmmoStorage _ammoStorage;
     private ScoresStorage _scoresStorage;
-    
-    void Start()
+
+    public void Construct()
+    {
+        //_ammoStorage = (AmmoStorage)ServiceLocator.Instance.GetData(typeof(AmmoStorage));
+        _moneyStorage = (MoneyStorage)ServiceLocator.Instance.GetData(typeof(MoneyStorage));
+        _scoresStorage = (ScoresStorage)ServiceLocator.Instance.GetData(typeof(ScoresStorage));
+    }
+
+    /*void Start()
     {
         _ammoStorage = (AmmoStorage)ServiceLocator.Instance.GetData(typeof(AmmoStorage));
         _moneyStorage = (MoneyStorage)ServiceLocator.Instance.GetData(typeof(MoneyStorage));
         _scoresStorage = (ScoresStorage)ServiceLocator.Instance.GetData(typeof(ScoresStorage));
-    }
+    }*/
 
     public void AddMoney()
     {

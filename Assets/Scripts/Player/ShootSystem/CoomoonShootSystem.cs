@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class CoomoonShootSystem : MonoBehaviour, IShootSystem
 {
-    [SerializeField] protected Transform _directionObject;
-    [SerializeField] protected LayerMask _layerMask;
+    //[SerializeField] 
+    protected Transform _directionObject;
+    //[SerializeField] 
+    protected LayerMask _layerMask;
 
      //protected ShootData _weaponData;
 

@@ -6,8 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(ShootControlSystem))]
 public class MuzzleFlashEffect : MonoBehaviour
 {
-    [SerializeField] private Transform _position;
-    [SerializeField] private ParticleSystem _particleSystem;
+    //[SerializeField] 
+    private Transform _position;
+    //[SerializeField] private ParticleSystem _particleSystem;
     private ParticleSystem _effect;
     private ShootControlSystem _shootControlSystem;
     /*void Awake()
@@ -39,9 +40,9 @@ public class MuzzleFlashEffect : MonoBehaviour
     {
         if (_effect == null)
         {
-            _effect = Instantiate(_particleSystem, _position.position, Quaternion.identity);
-            _effect.gameObject.transform.parent = _position;
-            _effect.Play();
+            //_effect = Instantiate(_particleSystem, _position.position, Quaternion.identity);
+            //_effect.gameObject.transform.parent = _position;
+            //_effect.Play();
         }
         else
         {

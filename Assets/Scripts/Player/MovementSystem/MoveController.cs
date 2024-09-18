@@ -9,8 +9,11 @@ public enum EInputSystem
 
 public class MoveController : MonoBehaviour
 {
-    [SerializeField] private Player _player;
-    [SerializeField] private EInputSystem _inputSystmType;
+    //[SerializeField] 
+    private Player _player;
+    
+    //[SerializeField] 
+    //private EInputSystem _inputSystmType;
 
     private IInputSystem _inputSystem;
 

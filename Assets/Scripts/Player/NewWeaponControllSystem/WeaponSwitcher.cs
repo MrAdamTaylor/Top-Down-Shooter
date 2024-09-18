@@ -1,3 +1,4 @@
+using EnterpriceLogic.Utilities;
 using UnityEngine;
 
 namespace Scripts.Player.NewWeaponControllSystem
@@ -14,11 +15,7 @@ namespace Scripts.Player.NewWeaponControllSystem
         {
             _currentWeaponConstructor = constructor;
             _conteiner = new WeaponConteiner(provider.ReturnWeapons());
-            if (_conteiner == null)
-            {
-                Debug.Log("Ошибка загрузки контейнера");
-            }
-
+            _conteiner.IsNullWithException("Error on load WeaponConteiner");
             _isConstructed = true;
         }
         
@@ -63,16 +60,12 @@ namespace Scripts.Player.NewWeaponControllSystem
 
         private void SelectWeapon()
         {
-            //int j = 0;
             for (int i = 0; i < _conteiner.Count; i++)
             {
                 if (i == _selectedWeapon)
                 {
                     Weapon weapon = _conteiner.GetByIndex(i);
                     weapon.gameObject.SetActive(true);
-                    
-                    //TODO - посредник по шаблону GRASP
-                    //_weaponController.SwitchInput(_weapons[i]);
                     _currentWeaponConstructor.SwitchInput(weapon);
                 }
                 else
@@ -80,7 +73,6 @@ namespace Scripts.Player.NewWeaponControllSystem
                     Weapon weapon = _conteiner.GetByIndex(i);
                     weapon.gameObject.SetActive(false);
                 }
-                //j++;
             }
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using EnterpriceLogic.Utilities;
 using UnityEngine;
 
 [RequireComponent(typeof(ShootControlSystem), typeof(Weapon))]
@@ -6,47 +7,51 @@ public class AmmoController : MonoBehaviour
 {
     public Action<long, bool> ChangeAmmo;
 
-    [SerializeField] private long _ammoCount;
-    [SerializeField] private bool _infinity;
-    [SerializeField] private ShootControlSystem _shootControlSystem;
-    [SerializeField] private long _ammoWaste = Constants.STANDART_WASTE_WALUE;
-    
+    //[SerializeField] 
+    private long _ammoCount;
+    //[SerializeField] 
+    private bool _infinity;
+    //[SerializeField] 
+    private ShootControlSystem _shootControlSystem;
+    //[SerializeField] private long _ammoWaste = Constants.STANDART_WASTE_WALUE;
+
+    private long _ammoWaste;
     private long _currentAmmo;
     private AmmoStorage _ammoStorage;
     private Weapon _weapon;
 
-    public void Construct(ShootControlSystem shootControlSystem)
+    public void Construct(ShootControlSystem shootControlSystem, AmmoCharacteristics characteristics)
     {
+        if (characteristics.WastedAmmo.IsNull())
+            _ammoWaste = Constants.STANDART_WASTE_WALUE;
+        else
+            _ammoWaste = characteristics.WastedAmmo;
+
         _shootControlSystem = shootControlSystem;
         _weapon = gameObject.GetComponent<Weapon>();
         _ammoStorage = (AmmoStorage)ServiceLocator.Instance.GetCloneData(typeof(AmmoStorage));
+        _infinity = characteristics.IsInfinity;
         if (_infinity)
-        {
             _currentAmmo = -long.MaxValue;
-        }
         else
-        {
-            _currentAmmo = _ammoCount;
-        }
-
+            _currentAmmo = characteristics.StarterAmmo;
         _ammoStorage.Construct(_currentAmmo);
-    }
-
-    void Awake()
-    {
-        _currentAmmo = _ammoCount;
-    }
-
-    void Start()
-    {
         _shootControlSystem.ShootAction += WasteAmmo;
     }
+
+    /*void Awake()
+    {
+        _currentAmmo = _ammoCount;
+    }*/
+
+    /*void Start()
+    {
+    }*/
 
     void OnDestroy()
     {
         _shootControlSystem.ShootAction -= WasteAmmo;
     }
-
 
     public bool CanShoot()
     {
@@ -89,6 +94,7 @@ public class AmmoController : MonoBehaviour
         if (!_infinity)
         {
             _currentAmmo -= _ammoWaste;
+            Debug.Log("Current Ammo: "+_currentAmmo);
             ChangeAmmo?.Invoke(_currentAmmo, _infinity);
             _ammoStorage.SpendAmmo(_ammoWaste);
         }

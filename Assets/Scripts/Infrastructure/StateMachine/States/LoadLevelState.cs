@@ -1,3 +1,4 @@
+using System.Reflection.Emit;
 using UnityEngine;
 
 public class LoadLevelState : IPayloadedState<string>
@@ -18,22 +19,51 @@ public class LoadLevelState : IPayloadedState<string>
     
     public void Enter(string sceneName)
     {
-        Debug.Log("Переход в состояние загрузки уровня");
         _sceneLoader.Load(sceneName, OnLoaded);
     }
 
     private void OnLoaded()
     {
-        Debug.Log("Выполняем действия на новой сцене");
         GameObject warning = GameObject.FindGameObjectWithTag("Warning");
         warning.SetActive(false);
-        Camera camera = GameObject.FindObjectOfType<Camera>();
+        Camera camera = Object.FindObjectOfType<Camera>();
         GameObject startPosition = GameObject.FindGameObjectWithTag(Constants.INITIAL_POSITION);
         GameObject player = _playerFactory.CreatePlayer(startPosition.transform.position, camera);
+        ConstructUI();
+    }
+
+    public void ConstructUI()
+    {
+        GameObject ui = GameObject.FindGameObjectWithTag("PlayerUI");
+        ui.gameObject.GetComponent<Canvas>().enabled = true;
+        UIHelper helper = Object.FindObjectOfType<UIHelper>();
+        ui.gameObject.SetActive(true);
+        helper.gameObject.SetActive(true);
+        var view = Object.FindObjectOfType<CurrencyProvider>();
+
+        #region BindScores
+        ServiceLocator.Instance.BindData(typeof(ScoresStorage), new ScoresStorage(Constants.STANDART_UI_VALUE));
+        ServiceLocator.Instance.BindData(typeof(ScoresAdapter), new ScoresAdapter(
+            view.ScoresView,
+            (ScoresStorage)ServiceLocator.Instance.GetData(typeof(ScoresStorage))));
+        ScoresAdapter scoresAdapter = (ScoresAdapter)ServiceLocator.Instance.GetData(typeof(ScoresAdapter));
+        scoresAdapter.Initialize();
+        #endregion
+
+        #region BindMoney
+        ServiceLocator.Instance.BindData(typeof(MoneyStorage), new MoneyStorage(Constants.STANDART_UI_VALUE));
+        ServiceLocator.Instance.BindData(typeof(MoneyAdapter), new MoneyAdapter(
+            view.MoneyView,
+            (MoneyStorage)ServiceLocator.Instance.GetData(typeof(MoneyStorage))));
+        MoneyAdapter moneyAdapter = (MoneyAdapter)ServiceLocator.Instance.GetData(typeof(MoneyAdapter));
+        moneyAdapter.Initialize();
+        helper.Construct();
+
+        #endregion
+
     }
 
     public void Exit()
     {
-        Debug.Log("Выход из состояния загрузки уровня");
     }
 }

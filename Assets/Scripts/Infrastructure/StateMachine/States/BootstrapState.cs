@@ -8,7 +8,6 @@ public class BootstrapState : IState
     
     public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, AllServices services)
     {
-        Debug.Log("Создано состояние BootstrapState");
         _services = services;
         _stateMachine = stateMachine;
         _sceneLoader = sceneLoader;
@@ -17,7 +16,6 @@ public class BootstrapState : IState
 
     public void Enter()
     {
-        Debug.Log("Вход в начальное состояние StateMachine");
         _sceneLoader.Load(Constants.First_LEVEL, onLoaded: EnterLoadLevel);
     }
 
@@ -31,11 +29,8 @@ public class BootstrapState : IState
         ServiceLocator.Instance.BindData(typeof(ISpecialEffectFactory),_services.Single<ISpecialEffectFactory>());
     }
 
-
-
     public void Exit()
     {
-        Debug.Log("Выход из начального состояния StateMachine");
     }
     
     private void EnterLoadLevel() => 

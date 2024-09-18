@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class ShootSystemFraction : CoomoonShootSystem
 {
-    [SerializeField] private float _distance;
-    [SerializeField] private LineRenderer _laser;
-    [SerializeField] private float _fadeDuration = 0.3f;
-    [SerializeField] private GameObject _shootTrash;
+    //[SerializeField] 
+    private float _distance;
+   // [SerializeField] 
+    private LineRenderer _laser;
+    //[SerializeField] 
+    private float _fadeDuration = 0.3f;
+    //[SerializeField] 
+    private GameObject _shootTrash;
 
     [SerializeField] private FractionShotCharacteristics _fractionShotCharacteristics;
     

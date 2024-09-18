@@ -6,7 +6,7 @@ public class UIInstaller : MonoBehaviour
     
     public void Awake()
     {
-        Debug.Log("Installer - выполнился в Awake");
+        /*Debug.Log("Installer - выполнился в Awake");
         if ((GameBootstraper)FindObjectOfType(typeof(GameBootstraper)))
         {
             _selfRegistration = false;
@@ -17,7 +17,7 @@ public class UIInstaller : MonoBehaviour
         ScoresBind(view.ScoresView);
         MoneyBind(view.MoneyView);
         AmmoBind(ammo, view.AmmoView);
-        LoadStaticData();
+        LoadStaticData();*/
     }
 
     private void AmmoBind(AmmoProvider ammo, CurrencyViewWithImage view)

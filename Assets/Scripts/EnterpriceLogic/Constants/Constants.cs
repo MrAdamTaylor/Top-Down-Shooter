@@ -32,37 +32,30 @@ public static class Constants
     public static float DEFAULT_BULLET_DISTANCE = 40f;
     public static string INITIAL_POSITION = "InitialPoint";
     public static LayerMask WEAPON_LAYER_MASK = LayerMask.GetMask("Enemy","Obstacle");
-    
-
     #endregion
 
+    
+    public static long STANDART_UI_VALUE = 10;
+    
     #region Константы для ограничения области карты
-
     public const float XBORDER_MAX = 20f;
     public const float ZBORDER_MAX = 15f;
-
     public const float STANDART_Y_POSITION = 1f;
-
     #endregion
 
     #region Показатели состояний зон дебафов
-
     public const float MAX_DEBUF_STAGE_LEVEL = 100;
     public const float MIN_DEBUF_STAGE_LEVEL = 0f;
-
     #endregion
 
     #region Weapon Constants
-
     public const long STANDART_WASTE_WALUE = 1L;
     public const bool SWITCH_WEAPON_MODE = true;
     public const bool ONE_WEAPON_MODE = false;
-
     #endregion
-    
+
 
     #region Константы путей к префабам
-
     //public const string PLAYER_PATH = "Prefabs/PlayerEmpty";
     public const string PLAYER_PATH = "Prefabs/PlayerEmptyFull";
     public const string HOT_TRAIL_PATH = "Prefabs/WeaponsPrefabs/HotTrail";
@@ -72,6 +65,5 @@ public static class Constants
     public static string WEAPON_POINTSHOOT_NAME = "Point";
     public static bool MADE_IMPACT = true;
     public static bool NON_MADE_IMPACT = false;
-
     #endregion
 }

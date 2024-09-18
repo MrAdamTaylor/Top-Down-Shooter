@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class ShootSystemOnly : CoomoonShootSystem
 {
-    [SerializeField] private ParticleSystem _impactParticle;
-    [SerializeField] private TrailRenderer _trailRenderer;
-    [SerializeField] private float _bulletSpeed;
-    [SerializeField] private float _distance;
+    //[SerializeField] private ParticleSystem _impactParticle;
+    
+    //[SerializeField] private TrailRenderer _trailRenderer;
+    
+    //[SerializeField] 
+    private float _bulletSpeed;
+    
+    //[SerializeField] 
+    private float _distance;
 
     private ISpecialEffectFactory _specialEffectFactory;
     private Transform _bulletPoint;
@@ -18,8 +23,8 @@ public class ShootSystemOnly : CoomoonShootSystem
         _layerMask = Constants.WEAPON_LAYER_MASK;
         _directionObject = (Transform)ServiceLocator.Instance.GetData(typeof(Transform));
         _directionObject.IsNullWithException("Transform not constructed in ShootSystemOnly");
-        _impactParticle = conteiner.GetParticleEffect();
-        _trailRenderer = conteiner.GetTrailRenderer();
+        //_impactParticle = conteiner.GetParticleEffect();
+        //_trailRenderer = conteiner.GetTrailRenderer();
         _bulletSpeed = Constants.DEFAULT_BULLET_SPEED;
         _distance = Constants.DEFAULT_BULLET_DISTANCE;
         _damage = staticData.Damage;

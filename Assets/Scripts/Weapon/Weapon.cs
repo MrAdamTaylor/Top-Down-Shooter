@@ -10,7 +10,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] public Transform ShootPoint;
     //[SerializeField] protected float _speed_fire_range;
 
-    [SerializeField] protected ShootControlSystem _shootSystem;
+    //[SerializeField] 
+    protected ShootControlSystem _shootSystem;
 
     [SerializeField] private WeaponCharacteristics Characteristics;
     

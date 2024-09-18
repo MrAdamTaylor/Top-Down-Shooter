@@ -50,7 +50,7 @@ public class WeaponController : MonoBehaviour
             Weapon weapon = _weaponSwitching.GetActiveWeapon();
             Type inputSystem = weapon.gameObject.GetComponent<IMouseInput>().GetType();
             _inputSystem = _weaponInputController.FindEqual(inputSystem);
-            _inputSystem.OnFire += this.OnShoot;
+            _inputSystem.OnFire += OnShoot;
             _ammoAdapter.UpdatePicture(ReturnType(weapon));
             _ammoAdapter.UpdateUI(weapon);
         }
@@ -60,7 +60,7 @@ public class WeaponController : MonoBehaviour
     {
         Type inputSystem = weapon.gameObject.GetComponent<IMouseInput>().GetType();
         _inputSystem = _weaponInputController.FindEqual(inputSystem);
-        _inputSystem.OnFire += this.OnShoot;
+        _inputSystem.OnFire += OnShoot;
         _ammoAdapter.UpdatePicture(ReturnType(weapon));
         _ammoAdapter.UpdateUI(weapon);
     }

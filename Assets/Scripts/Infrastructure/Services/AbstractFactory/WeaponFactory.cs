@@ -20,6 +20,7 @@ public class WeaponFactory : IWeaponFactory
 
     public void CreateWeapons(Weapon[] weapon, Transform player)
     {
+        ServiceLocator.Instance.BindData(typeof(AmmoStorage), new AmmoStorage());
         for (int i = 0; i < weapon.Length; i++)
         {
             WeaponStaticData data = _weaponDictionary[weapon[i].TypeWeapon];
@@ -37,7 +38,8 @@ public class WeaponFactory : IWeaponFactory
             }
             if (data.IsAmmo)
             {
-                weapon[i].AddComponent<AmmoController>();
+                AmmoController controller = weapon[i].AddComponent<AmmoController>();
+                controller.Construct(shootControlSystem, data.AmmoValues);
             }
         }
     }

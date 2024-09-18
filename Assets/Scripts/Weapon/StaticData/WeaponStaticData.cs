@@ -8,11 +8,28 @@ public class WeaponStaticData : ScriptableObject
     public float SpeedFireRange;
     public WeaponInputType InpType;
 
-    [Header("Эффект вспышки при стрельбе")]
+    [Header("Add Flash Effect")]
     public bool IsMuzzle;
 
-    [Header("Ограниченные патроны")] 
+    [Header("Add Ammo Component")] 
     public bool IsAmmo;
 
+    [Header("Working if Ammo true")] 
+    public AmmoCharacteristics AmmoValues;
+
     [HideInInspector]public Transform BulletPoint;
+}
+
+
+[System.Serializable]
+public struct AmmoCharacteristics
+{
+    public bool IsInfinity;
+
+    [Header("Number of cartiges at game start")]
+    public long StarterAmmo;
+    
+    [Header("Сartridge consumption per shot")]
+    public long WastedAmmo;
+    
 }

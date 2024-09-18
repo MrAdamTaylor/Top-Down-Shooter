@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class ShootControlSystem : MonoBehaviour
 {
-    [SerializeField] private CoomoonShootSystem _shootSystem;
+    //[SerializeField] 
+    private CoomoonShootSystem _shootSystem;
     
     public Action ShootAction;
     

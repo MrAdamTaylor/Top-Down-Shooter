@@ -1,19 +1,32 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using UnityEngine;
 
 public class AmmoAdapter : IDisposable
 {
-    private readonly CurrencyViewWithImage _currencyView;
+    private CurrencyViewWithImage _currencyView;
     private AmmoStorage _ammoStorage;
     private Dictionary<WeaponType, Sprite> _icoImage = new();
     private Dictionary<Weapon,AmmoStorage> _dataDictionary = new();
+
+
+    public AmmoAdapter()
+    {
+        
+    }
 
     public AmmoAdapter(CurrencyViewWithImage view)
     {
         _currencyView = view;
     }
+
+    public void Construct(CurrencyViewWithImage view)
+    {
+        _currencyView = view;
+    }
+
 
     public void PictureConstruct(UIWeaponStaticDataIcons staticDataIcons)
     {

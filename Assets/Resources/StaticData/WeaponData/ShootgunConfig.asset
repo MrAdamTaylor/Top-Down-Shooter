@@ -18,6 +18,10 @@ MonoBehaviour:
   InpType: 0
   IsMuzzle: 1
   IsAmmo: 1
+  AmmoValues:
+    IsInfinity: 0
+    StarterAmmo: 6
+    WastedAmmo: 3
   BulletPoint: {fileID: 0}
   AmountOfRaction: 3
   FovAngle: 10
