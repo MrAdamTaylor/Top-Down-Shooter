@@ -62,6 +62,10 @@ public static class Constants
     public const string IMPACT_PARTICLE_EFFECT = "Prefabs/WeaponsPrefabs/SparksEffect";
     public static string LINE_RENDERER_PATH = "Prefabs/WeaponsPrefabs/LaserShootgun";
     public static string MUZZLE_FLASH_WEAPON_PATH = "Prefabs/WeaponsPrefabs/MuzzleFlash";
+
+    public static string WEAPON_ICO_PATH = "StaticData/UI/UIWeaponIcons";
+    public static string DEFAULT_WEAPON_AMMO_TEXT = "Infinity";
+    
     public static string WEAPON_POINTSHOOT_NAME = "Point";
     public static bool MADE_IMPACT = true;
     public static bool NON_MADE_IMPACT = false;

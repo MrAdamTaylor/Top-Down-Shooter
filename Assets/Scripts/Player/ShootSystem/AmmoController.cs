@@ -84,6 +84,11 @@ public class AmmoController : MonoBehaviour
         return _weapon;
     }
 
+    public AmmoStorage ReturnStorage()
+    {
+        return _ammoStorage;
+    }
+
     public AmmoStorage GetStorage()
     {
         return _ammoStorage;

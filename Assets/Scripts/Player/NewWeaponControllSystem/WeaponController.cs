@@ -24,6 +24,7 @@ namespace Scripts.Player.NewWeaponControllSystem
         {
             _weaponInputHandler = new WeaponInputHandler(this, getActiveWeapon);
             _weaponSwitcher = weaponSwitcher;
+
             ConstructActiveWeapon();
         }
 
@@ -46,6 +47,11 @@ namespace Scripts.Player.NewWeaponControllSystem
             _mouseInput = _weaponInputHandler.FindEqual(inputSystem);
             _mouseInput.OnFire += OnShoot;
         }
+
+        /*public (WeaponType, AmmoStorage) GetWeaponAmmo()
+        {
+            (WeaponType, AmmoStorage)result = ()
+        }*/
 
         private void ConstructActiveWeapon()
         {

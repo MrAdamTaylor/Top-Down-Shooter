@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -7,16 +8,23 @@ public class CurrencyView : MonoBehaviour
 
    private long _currentValueUI;
 
-   public void UpdateCurrency(long value)
+
+   private void Start()
    {
-      if (value == -long.MaxValue)
-      {
-         _text.text = "Infinity";
-      }
-      else
-      {
-         _currentValueUI = value;
-         _text.text = _currentValueUI.ToString();
-      }
+      _text.text = Constants.DEFAULT_WEAPON_AMMO_TEXT;
+   }
+
+
+   public virtual void UpdateCurrency(long value)
+   {
+         if (value == -long.MaxValue)
+         {
+            _text.text = Constants.DEFAULT_WEAPON_AMMO_TEXT;
+         }
+         else
+         {
+            _currentValueUI = value;
+            _text.text = _currentValueUI.ToString();
+         }
    }
 }

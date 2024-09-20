@@ -10,7 +10,7 @@ public class PlayerFactory : IPlayerFactory
     {
         _asserts = assets;
         _weaponFactory = weaponFactory;
-        _weaponFactory.LoadData();
+        _weaponFactory.Construct();
     }
 
     public GameObject CreatePlayer(Vector3 position, Camera camera)

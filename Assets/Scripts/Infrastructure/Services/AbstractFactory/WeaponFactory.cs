@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using EnterpriceLogic.Utilities;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -13,9 +12,19 @@ public class WeaponFactory : IWeaponFactory
 
     private Dictionary<WeaponType, WeaponStaticData> _weaponDictionary;
 
+    private WeaponData _data;
+    
     public WeaponFactory(IAsserts asserts)
     {
         _weaponEffectsConteiner = new WeaponEffectsConteiner(asserts);
+        _data = new WeaponData();
+    }
+
+    public void Construct()
+    {
+        _weaponStaticDatas = Resources.LoadAll<WeaponStaticData>("StaticData/WeaponData");
+        _weaponDictionary = _weaponStaticDatas.ToDictionary(x => x.WType, y => y);
+        _weaponComponentHandler = new WeaponComponentHandler();
     }
 
     public void CreateWeapons(Weapon[] weapon, Transform player)
@@ -23,6 +32,7 @@ public class WeaponFactory : IWeaponFactory
         ServiceLocator.Instance.BindData(typeof(AmmoStorage), new AmmoStorage());
         for (int i = 0; i < weapon.Length; i++)
         {
+            _data.AddWeaponTypeWithIndex(weapon[i].TypeWeapon,i);
             WeaponStaticData data = _weaponDictionary[weapon[i].TypeWeapon];
             data.BulletPoint = weapon[i].transform.Find(Constants.WEAPON_POINTSHOOT_NAME);
             ShootControlSystem shootControlSystem = weapon[i].AddComponent<ShootControlSystem>();
@@ -40,92 +50,56 @@ public class WeaponFactory : IWeaponFactory
             {
                 AmmoController controller = weapon[i].AddComponent<AmmoController>();
                 controller.Construct(shootControlSystem, data.AmmoValues);
+                _data.AddAmmoWithIndex(i, controller);
+            }
+            else
+            {
+                _data.AddAmmoWithIndex(i);
             }
         }
-    }
-
-    public void LoadData()
-    {
-        _weaponStaticDatas = Resources.LoadAll<WeaponStaticData>("StaticData/WeaponData");
-        _weaponDictionary = _weaponStaticDatas.ToDictionary(x => x.WType, y => y);
-        _weaponComponentHandler = new WeaponComponentHandler();
+        ServiceLocator.Instance.BindData(typeof(WeaponData), _data);
     }
 }
 
-public class WeaponEffectsConteiner
+public class WeaponData
 {
-    private IAsserts _asserts;
-
-    private TrailRenderer _trailRenderer;
-    private ParticleSystem _particleSystem;
-    private LineRenderer _lineRenderer;
-
-    public WeaponEffectsConteiner(IAsserts asserts)
+    private Dictionary<int, WeaponType> _weaponTypes = new();
+    private Dictionary<int, AmmoController> _weaponAmmo = new();
+    
+    
+    public void AddWeaponTypeWithIndex(WeaponType weaponType, int index)
     {
-        _asserts = asserts;
-        _particleSystem = _asserts.LoadParticle(Constants.IMPACT_PARTICLE_EFFECT);
-        _trailRenderer = _asserts.LoadTrailRenderer(Constants.HOT_TRAIL_PATH);
-        _lineRenderer = _asserts.LoadLineRenderer(Constants.LINE_RENDERER_PATH);
+        _weaponTypes.Add(index,weaponType);
     }
 
-
-    public ParticleSystem GetParticleEffect(string path = "", Transform position = null, Transform parent = null)
+    public void AddAmmoWithIndex(int index, AmmoController controller=null)
     {
-        if (path.IsEmpty())
-            return _particleSystem;
-        if (position.IsNullBoolWarning(""))
-            return _asserts.LoadParticle(path);
-        else if(parent.IsNullBoolWarning())
-                return _asserts.InstantiateParticle(path, position.position);
-            else
-                return _asserts.InstantiateParticleWithParent(path, position.position, parent);
+        if(controller != null)
+            _weaponAmmo.Add(index, controller);
     }
 
-    public TrailRenderer GetTrailRenderer()
+    public Dictionary<int, (WeaponType, AmmoController)> GetAmmoData()
     {
-        return _trailRenderer;
-    }
-
-    public LineRenderer GetLineRenderer()
-    {
-        return _lineRenderer;
-    }
-
-
-}
-
-public class WeaponComponentHandler
-{
-    public void GetShootSystem(Transform obj, WeaponType dataWType)
-    {
-        switch (dataWType)
+        if (_weaponAmmo.Count != 0)
         {
-            case WeaponType.Pistol:
-                obj.gameObject.AddComponent<ShootSystemOnly>();
-                break;
-            case WeaponType.ShootGun:
-                obj.gameObject.AddComponent<ShootSystemFraction>();
-                break;
-            case WeaponType.Rifle:
-                obj.gameObject.AddComponent<ShootSystemOnly>();
-                break;
-            case WeaponType.Undefinded:
-                throw new Exception("Not find Weapon Type in WeaponFabric.WeaponHandler");
-        }
-    }
+            Dictionary<int, (WeaponType, AmmoController)> _ammoDictionary = new();
+            int k = 0;
+            for (int i = 0; i < _weaponTypes.Count; i++)
+            {
+                if (_weaponAmmo.Keys.Contains(i))
+                {
+                    Debug.Log("Ammo Dictionary added Weapon Ammo: "+ _weaponAmmo[i] + " added Weapon Type"+_weaponTypes);
+                    _ammoDictionary.Add(k, (_weaponTypes[i], _weaponAmmo[i]));
+                    k++;
+                }
+            }
 
-    public void GetInputSytem(Transform transform, WeaponInputType dataInpType)
-    {
-        switch (dataInpType)
-        {
-            case WeaponInputType.OnClickInput:
-                transform.gameObject.AddComponent<MouseInputClick>();
-                break;
-            case WeaponInputType.OnTouchInput:
-                transform.gameObject.AddComponent<MouseInputTouch>();
-                break;
-            case WeaponInputType.Undefinded:
-                throw new Exception("Not find Input System in WeaponFabric.WeaponHandler");
+            return _ammoDictionary;
         }
+        else
+        {
+            throw new WarningException("Not AmmoData");
+        }
+        
     }
 }

@@ -1,4 +1,3 @@
-using System.Reflection.Emit;
 using UnityEngine;
 
 public class LoadLevelState : IPayloadedState<string>
@@ -58,7 +57,14 @@ public class LoadLevelState : IPayloadedState<string>
         MoneyAdapter moneyAdapter = (MoneyAdapter)ServiceLocator.Instance.GetData(typeof(MoneyAdapter));
         moneyAdapter.Initialize();
         helper.Construct();
-
+        #endregion
+        
+        #region BindAmmo
+        
+        UIWeaponStaticDataIcons icons = Resources.Load<UIWeaponStaticDataIcons>(Constants.WEAPON_ICO_PATH);
+        ServiceLocator.Instance.BindData(typeof(AmmoAdapter), new AmmoAdapter(view.AmmoView,icons));
+        
+        
         #endregion
 
     }

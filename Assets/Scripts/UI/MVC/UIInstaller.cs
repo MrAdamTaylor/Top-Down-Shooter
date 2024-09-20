@@ -24,7 +24,7 @@ public class UIInstaller : MonoBehaviour
     {
         ServiceLocator.Instance.BindData(typeof(AmmoStorage), new AmmoStorage());
         ammo.Construct();
-        ServiceLocator.Instance.BindData(typeof(AmmoAdapter), new AmmoAdapter(view));
+        //ServiceLocator.Instance.BindData(typeof(AmmoAdapter), new AmmoAdapter(view));
         AmmoAdapter adapter = (AmmoAdapter)ServiceLocator.Instance.GetData(typeof(AmmoAdapter));
         for (int i = 0; i < ammo.Count; i++)
         {
@@ -36,7 +36,7 @@ public class UIInstaller : MonoBehaviour
     {
         UIWeaponStaticDataIcons icons = Resources.Load<UIWeaponStaticDataIcons>("StaticData/UI/UIWeaponIcons");
         AmmoAdapter adapter = (AmmoAdapter)ServiceLocator.Instance.GetData(typeof(AmmoAdapter));
-        adapter.PictureConstruct(icons);
+        //adapter.PictureConstruct(icons);
     }
 
 
