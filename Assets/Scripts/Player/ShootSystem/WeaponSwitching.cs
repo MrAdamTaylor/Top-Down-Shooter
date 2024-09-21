@@ -87,7 +87,7 @@ public class WeaponSwitching : MonoBehaviour
         }
     }
 
-    public Weapon FindByType(WeaponType weaponType)
+    /*public Weapon FindByType(WeaponType weaponType)
     {
         Weapon weapon = null;
         for (int i = 0; i < _weapons.Count; i++)
@@ -111,9 +111,9 @@ public class WeaponSwitching : MonoBehaviour
             }
         }
         return weapon;
-    }
+    }*/
 
-    public WeaponType FindByClass(Weapon weapon)
+    /*public WeaponType FindByClass(Weapon weapon)
     {
         switch (weapon)
         {
@@ -129,7 +129,7 @@ public class WeaponSwitching : MonoBehaviour
              default:
                 return WeaponType.Undefinded;
         }
-    }
+    }*/
 
     private void SelectWeapon()
     {

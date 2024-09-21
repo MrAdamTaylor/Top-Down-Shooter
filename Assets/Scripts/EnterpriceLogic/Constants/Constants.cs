@@ -5,6 +5,7 @@ public static class Constants
 
     #region Список уровней
 
+    //public const string SECOND_LEVEL = "GameScene";
     public const string SECOND_LEVEL = "GameScene";
     public const string First_LEVEL = "StartScene";
 

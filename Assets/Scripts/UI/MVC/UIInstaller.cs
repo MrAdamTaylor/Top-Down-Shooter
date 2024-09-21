@@ -25,11 +25,11 @@ public class UIInstaller : MonoBehaviour
         ServiceLocator.Instance.BindData(typeof(AmmoStorage), new AmmoStorage());
         ammo.Construct();
         //ServiceLocator.Instance.BindData(typeof(AmmoAdapter), new AmmoAdapter(view));
-        AmmoAdapter adapter = (AmmoAdapter)ServiceLocator.Instance.GetData(typeof(AmmoAdapter));
+        /*AmmoAdapter adapter = (AmmoAdapter)ServiceLocator.Instance.GetData(typeof(AmmoAdapter));
         for (int i = 0; i < ammo.Count; i++)
         {
             adapter.AddAmmoStorage(ammo.GetTypeStorageCortege(i));
-        }
+        }*/
     }
 
     private void LoadStaticData()

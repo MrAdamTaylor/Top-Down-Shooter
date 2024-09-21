@@ -11,6 +11,7 @@ namespace Scripts.Player.NewWeaponControllSystem
         private Weapon _weapon;
         private IMouseInput _mouseInput;
         private AmmoController _ammoController;
+        private AmmoAdapter _ammoAdapter;
         
         public void Construct(Weapon getActiveWeapon)
         {
@@ -24,7 +25,6 @@ namespace Scripts.Player.NewWeaponControllSystem
         {
             _weaponInputHandler = new WeaponInputHandler(this, getActiveWeapon);
             _weaponSwitcher = weaponSwitcher;
-
             ConstructActiveWeapon();
         }
 
@@ -46,12 +46,25 @@ namespace Scripts.Player.NewWeaponControllSystem
             Type inputSystem = weapon.gameObject.GetComponent<IMouseInput>().GetType();
             _mouseInput = _weaponInputHandler.FindEqual(inputSystem);
             _mouseInput.OnFire += OnShoot;
+            if (!_ammoAdapter.IsNull())
+            {
+                _ammoAdapter.UpdateUI(_weapon.TypeWeapon);
+                _ammoAdapter.UpdatePicture(_weapon.TypeWeapon);
+            }
+        }
+
+        public void ConstructUI(AmmoAdapter ammoAdapter)
+        {
+            _ammoAdapter = ammoAdapter;
+            _ammoAdapter.UpdateUI(_weapon.TypeWeapon);
+            _ammoAdapter.UpdatePicture(_weapon.TypeWeapon);
         }
 
         /*public (WeaponType, AmmoStorage) GetWeaponAmmo()
         {
             (WeaponType, AmmoStorage)result = ()
         }*/
+
 
         private void ConstructActiveWeapon()
         {
@@ -69,8 +82,13 @@ namespace Scripts.Player.NewWeaponControllSystem
             }
             else
             {
-                if(_ammoController.CanShoot())
+                if (_ammoController.CanShoot())
+                {
                     _weapon.Fire();
+                    if(!_ammoAdapter.IsNull())
+                        _ammoAdapter.UpdateUI(_weapon.TypeWeapon);
+                }
+
             }
         }
     }

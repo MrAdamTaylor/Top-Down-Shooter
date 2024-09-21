@@ -19,4 +19,9 @@ public class CurrencyViewWithImage : CurrencyView
         _currentSprite = sprite;
         _image.sprite = sprite;
     }
+
+    public void SetDefaultCurrency()
+    {
+        _text.text = Constants.DEFAULT_WEAPON_AMMO_TEXT;
+    }
 }

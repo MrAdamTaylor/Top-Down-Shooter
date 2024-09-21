@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 417349049147407404}
-  - component: {fileID: 4227131646797880598}
+  - component: {fileID: 959982522545782752}
   m_Layer: 6
   m_Name: Pistol
   m_TagString: Untagged
@@ -65,7 +65,7 @@ Transform:
   m_Father: {fileID: 2615287793684703515}
   m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &4227131646797880598
+--- !u!114 &959982522545782752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,12 +74,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2158142629316686276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea007bfac49c49f2b1067dcb5255d365, type: 3}
+  m_Script: {fileID: 11500000, guid: 317d7f4abc7912f46bddce6964936b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TypeWeapon: 0
   ShootPoint: {fileID: 6374535305026298298}
-  _shootSystem: {fileID: 0}
   Characteristics:
     Damage: 0
     FireSpeedRange: 0
@@ -633,7 +632,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9039926589153194483}
-  - component: {fileID: 4819898438277458089}
+  - component: {fileID: 4661429870996864751}
   m_Layer: 6
   m_Name: Shootgun
   m_TagString: Untagged
@@ -659,7 +658,7 @@ Transform:
   m_Father: {fileID: 2615287793684703515}
   m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4819898438277458089
+--- !u!114 &4661429870996864751
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -668,18 +667,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 8227190068328879965}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 045df0a6a1964fd7831a1eba2db219cf, type: 3}
+  m_Script: {fileID: 11500000, guid: 317d7f4abc7912f46bddce6964936b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TypeWeapon: 2
   ShootPoint: {fileID: 3425835037940814044}
-  _shootSystem: {fileID: 0}
   Characteristics:
     Damage: 0
     FireSpeedRange: 0
-  AmountOfFraction: 5
-  FovAngle: 360
-  Distance: 6.9
 --- !u!1 &8441746087599402660
 GameObject:
   m_ObjectHideFlags: 0
@@ -689,7 +684,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5926680212634598816}
-  - component: {fileID: 7952151024411960984}
+  - component: {fileID: 3439089325886840877}
   m_Layer: 6
   m_Name: Rifle
   m_TagString: Untagged
@@ -714,7 +709,7 @@ Transform:
   m_Father: {fileID: 2615287793684703515}
   m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &7952151024411960984
+--- !u!114 &3439089325886840877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -723,12 +718,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8441746087599402660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 746e8eeeca604816a44cd0bcbcce075e, type: 3}
+  m_Script: {fileID: 11500000, guid: 317d7f4abc7912f46bddce6964936b4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TypeWeapon: 1
   ShootPoint: {fileID: 6124335837452502672}
-  _shootSystem: {fileID: 0}
   Characteristics:
     Damage: 0
     FireSpeedRange: 0
@@ -781,9 +775,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _weapons:
-  - {fileID: 4227131646797880598}
-  - {fileID: 4819898438277458089}
-  - {fileID: 7952151024411960984}
+  - {fileID: 959982522545782752}
+  - {fileID: 4661429870996864751}
+  - {fileID: 3439089325886840877}
 --- !u!1001 &1261363447747192908
 PrefabInstance:
   m_ObjectHideFlags: 0

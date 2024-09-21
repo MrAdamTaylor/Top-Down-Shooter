@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CurrencyView : MonoBehaviour
 {
-   [SerializeField] private TMP_Text _text;
+   [SerializeField] protected TMP_Text _text;
 
    private long _currentValueUI;
 

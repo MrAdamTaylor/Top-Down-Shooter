@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
+using EnterpriceLogic.Utilities;
 using UnityEngine;
 
 public class AmmoAdapter : IDisposable
@@ -12,25 +13,26 @@ public class AmmoAdapter : IDisposable
     private Dictionary<WeaponType,AmmoStorage> _dataDictionary = new();
 
 
-    public AmmoAdapter()
+    /*public AmmoAdapter()
     {
         
-    }
+    }*/
 
-    public AmmoAdapter(CurrencyViewWithImage view, UIWeaponStaticDataIcons staticDataIcons)
+    public AmmoAdapter(CurrencyViewWithImage view, UIWeaponStaticDataIcons staticDataIcons, Scripts.Player.NewWeaponControllSystem.WeaponController controller)
     {
         _currencyView = view;
         _icoImage = staticDataIcons.IcoConfigs.ToDictionary(x => x.WeaponType, y => y.WeaponPicture);
         WeaponData data = (WeaponData)ServiceLocator.Instance.GetData(typeof(WeaponData));
         Dictionary<int, (WeaponType, AmmoController)> dictionary = data.GetAmmoData();
         _dataDictionary = dictionary.ToDictionary(x => x.Value.Item1, y => y.Value.Item2.ReturnStorage());
-        Debug.Log("Ammo Adapter Dictionary: "+_dataDictionary.Count);
+        controller.ConstructUI(this);
+        //Debug.Log("Ammo Adapter Dictionary: "+_dataDictionary.Count);
     }
 
-    public void Construct(CurrencyViewWithImage view)
+    /*public void Construct(CurrencyViewWithImage view)
     {
         _currencyView = view;
-    }
+    }*/
 
 
     /*public void PictureConstruct(UIWeaponStaticDataIcons staticDataIcons)
@@ -49,17 +51,31 @@ public class AmmoAdapter : IDisposable
         _currencyView.UpdateImage(sprite);
     }
 
-    public void AddAmmoStorage((Weapon, AmmoStorage) getTypeStorageCortege)
+    /*public void AddAmmoStorage((Weapon, AmmoStorage) getTypeStorageCortege)
     {
         //_dataDictionary.Add(getTypeStorageCortege.Item1,getTypeStorageCortege.Item2);
-    }
+    }*/
 
-    public void UpdateUI(Weapon getWeaponByType)
+    /*public void UpdateUI(Weapon getWeaponByType)
     {
         CleanAmmoStorageEvent();
         //_ammoStorage = _dataDictionary[getWeaponByType];
         _ammoStorage.OnAmmoChanged += UpdateAmmo;
         _ammoStorage.UpdateScreen();
+    }*/
+
+    public void UpdateUI(WeaponType weaponType)
+    {
+        if (_dataDictionary.ContainsKey(weaponType))
+        {
+            _ammoStorage = _dataDictionary[weaponType];
+            _ammoStorage.OnAmmoChanged += UpdateAmmo;
+            _ammoStorage.UpdateScreen();
+        }
+        else
+        {
+            _currencyView.SetDefaultCurrency();
+        }
     }
 
     private void UpdateAmmo(long value)

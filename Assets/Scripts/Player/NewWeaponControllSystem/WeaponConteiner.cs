@@ -43,15 +43,15 @@ namespace Scripts.Player.NewWeaponControllSystem
                 switch (weaponType)
                 {
                     case WeaponType.Pistol:
-                        if (_weapons[i].GetType() == typeof(Pistol))
+                        if (_weapons[i].TypeWeapon == WeaponType.Pistol)
                             weapon = _weapons[i];
                         break;
                     case WeaponType.ShootGun:
-                        if (_weapons[i].GetType() == typeof(Shootgun))
+                        if (_weapons[i].TypeWeapon == WeaponType.ShootGun)
                             weapon= _weapons[i];
                         break;
                     case WeaponType.Rifle:
-                        if (_weapons[i].GetType() == typeof(Rifle))
+                        if (_weapons[i].TypeWeapon == WeaponType.Rifle)
                             weapon = _weapons[i];
                         break;
                     default:
@@ -61,9 +61,9 @@ namespace Scripts.Player.NewWeaponControllSystem
             return weapon;
         }
 
-        public WeaponType ReturnWeaponEnumType(Weapon weapon)
+        public WeaponType ReturnWeaponEnumType(WeaponType weaponType)
         {
-            WeaponType enumType = ReturnType(weapon);
+            WeaponType enumType = ReturnType(weaponType);
             if (enumType == WeaponType.Undefinded)
             {
                 throw new Exception("Not find of Weapon Type by Class");
@@ -79,15 +79,19 @@ namespace Scripts.Player.NewWeaponControllSystem
             return _weapons[i];
         }
 
-        private static WeaponType ReturnType(Weapon weapon)
+        private static WeaponType ReturnType(WeaponType weapon)
         {
-            return weapon switch
+            switch (weapon)
             {
-                Pistol => WeaponType.Pistol,
-                Shootgun => WeaponType.ShootGun,
-                Rifle => WeaponType.Rifle,
-                _ => WeaponType.Undefinded
-            };
+                case WeaponType.Pistol:
+                    return WeaponType.Pistol;
+                case WeaponType.ShootGun:
+                    return WeaponType.ShootGun;
+                case WeaponType.Rifle:
+                    return WeaponType.Rifle;
+                default:
+                    return WeaponType.Undefinded;
+            }
         }
     }
 }

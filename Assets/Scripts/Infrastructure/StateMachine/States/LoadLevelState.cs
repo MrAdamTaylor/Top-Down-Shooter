@@ -28,10 +28,10 @@ public class LoadLevelState : IPayloadedState<string>
         Camera camera = Object.FindObjectOfType<Camera>();
         GameObject startPosition = GameObject.FindGameObjectWithTag(Constants.INITIAL_POSITION);
         GameObject player = _playerFactory.CreatePlayer(startPosition.transform.position, camera);
-        ConstructUI();
+        ConstructUI(player);
     }
 
-    public void ConstructUI()
+    public void ConstructUI(GameObject player)
     {
         GameObject ui = GameObject.FindGameObjectWithTag("PlayerUI");
         ui.gameObject.GetComponent<Canvas>().enabled = true;
@@ -62,7 +62,7 @@ public class LoadLevelState : IPayloadedState<string>
         #region BindAmmo
         
         UIWeaponStaticDataIcons icons = Resources.Load<UIWeaponStaticDataIcons>(Constants.WEAPON_ICO_PATH);
-        ServiceLocator.Instance.BindData(typeof(AmmoAdapter), new AmmoAdapter(view.AmmoView,icons));
+        ServiceLocator.Instance.BindData(typeof(AmmoAdapter), new AmmoAdapter(view.AmmoView,icons, player.GetComponent<Scripts.Player.NewWeaponControllSystem.WeaponController>()));
         
         
         #endregion
