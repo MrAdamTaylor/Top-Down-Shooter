@@ -10,7 +10,6 @@ public class PlayerFactory : IPlayerFactory
     {
         _asserts = assets;
         _weaponFactory = weaponFactory;
-        _weaponFactory.Construct();
     }
 
     public GameObject CreatePlayer(Vector3 position, Camera camera)
@@ -29,7 +28,7 @@ public class PlayerFactory : IPlayerFactory
             gameObject.AddComponent<WeaponSwitcher>();
             gameObject.AddComponent<Scripts.Player.NewWeaponControllSystem.WeaponController>();
             WeaponProvider provider = gameObject.transform.GetComponentInChildren<WeaponProvider>();
-            _weaponFactory.CreateWeapons(provider.ReturnWeapons(), gameObject.transform);
+            _weaponFactory.CreateWeapons(provider.ReturnWeapons());
             ServiceLocator.Instance.CleanData(typeof(Transform));
             WeaponSwitcher switcher = gameObject.GetComponent<WeaponSwitcher>();
             Scripts.Player.NewWeaponControllSystem.WeaponController controller =

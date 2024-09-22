@@ -6,14 +6,16 @@ public class LoadLevelState : IPayloadedState<string>
     private readonly SceneLoader _sceneLoader;
     private readonly LoadingCurtain _loadingCurtain;
     private readonly IPlayerFactory _playerFactory;
+    private readonly IUIFactory _uiFactory;
     
     public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingCurtain loadingCurtain,
-    IPlayerFactory playerFactory)
+    IPlayerFactory playerFactory, IUIFactory uiFactory)
     {
         _playerFactory = playerFactory;
         _stateMachine = gameStateMachine;
         _sceneLoader = sceneLoader;
         _loadingCurtain = loadingCurtain;
+        _uiFactory = uiFactory;
     }
     
     public void Enter(string sceneName)
@@ -23,50 +25,21 @@ public class LoadLevelState : IPayloadedState<string>
 
     private void OnLoaded()
     {
-        GameObject warning = GameObject.FindGameObjectWithTag("Warning");
-        warning.SetActive(false);
         Camera camera = Object.FindObjectOfType<Camera>();
         GameObject startPosition = GameObject.FindGameObjectWithTag(Constants.INITIAL_POSITION);
         GameObject player = _playerFactory.CreatePlayer(startPosition.transform.position, camera);
-        ConstructUI(player);
+        GameObject canvas = GameObject.FindGameObjectWithTag("PlayerUI");
+        GameObject ui = _uiFactory.CreateWithLoadConnect(Constants.UI_PLAYER_PATH, canvas, player);
+        ConstructUI();
     }
 
-    public void ConstructUI(GameObject player)
+    public void ConstructUI()
     {
-        GameObject ui = GameObject.FindGameObjectWithTag("PlayerUI");
-        ui.gameObject.GetComponent<Canvas>().enabled = true;
+        GameObject warning = GameObject.FindGameObjectWithTag("Warning");
+        warning.SetActive(false);
         UIHelper helper = Object.FindObjectOfType<UIHelper>();
-        ui.gameObject.SetActive(true);
         helper.gameObject.SetActive(true);
-        var view = Object.FindObjectOfType<CurrencyProvider>();
-
-        #region BindScores
-        ServiceLocator.Instance.BindData(typeof(ScoresStorage), new ScoresStorage(Constants.STANDART_UI_VALUE));
-        ServiceLocator.Instance.BindData(typeof(ScoresAdapter), new ScoresAdapter(
-            view.ScoresView,
-            (ScoresStorage)ServiceLocator.Instance.GetData(typeof(ScoresStorage))));
-        ScoresAdapter scoresAdapter = (ScoresAdapter)ServiceLocator.Instance.GetData(typeof(ScoresAdapter));
-        scoresAdapter.Initialize();
-        #endregion
-
-        #region BindMoney
-        ServiceLocator.Instance.BindData(typeof(MoneyStorage), new MoneyStorage(Constants.STANDART_UI_VALUE));
-        ServiceLocator.Instance.BindData(typeof(MoneyAdapter), new MoneyAdapter(
-            view.MoneyView,
-            (MoneyStorage)ServiceLocator.Instance.GetData(typeof(MoneyStorage))));
-        MoneyAdapter moneyAdapter = (MoneyAdapter)ServiceLocator.Instance.GetData(typeof(MoneyAdapter));
-        moneyAdapter.Initialize();
         helper.Construct();
-        #endregion
-        
-        #region BindAmmo
-        
-        UIWeaponStaticDataIcons icons = Resources.Load<UIWeaponStaticDataIcons>(Constants.WEAPON_ICO_PATH);
-        ServiceLocator.Instance.BindData(typeof(AmmoAdapter), new AmmoAdapter(view.AmmoView,icons, player.GetComponent<Scripts.Player.NewWeaponControllSystem.WeaponController>()));
-        
-        
-        #endregion
-
     }
 
     public void Exit()

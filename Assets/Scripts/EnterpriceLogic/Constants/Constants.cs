@@ -6,7 +6,7 @@ public static class Constants
     #region Список уровней
 
     //public const string SECOND_LEVEL = "GameScene";
-    public const string SECOND_LEVEL = "GameScene";
+    public const string SECOND_LEVEL = "Level2";
     public const string First_LEVEL = "StartScene";
 
     #endregion
@@ -70,5 +70,10 @@ public static class Constants
     public static string WEAPON_POINTSHOOT_NAME = "Point";
     public static bool MADE_IMPACT = true;
     public static bool NON_MADE_IMPACT = false;
+    public static object UI_PLAYER_PATH = "Prefabs/UI/PlayerHudContent";
+
+    public static float SCREEN_OVERLAY_WIDTH = 1920f;
+    public static float SCREEN_OVERLAY_HEIGHT = 1080f;
+
     #endregion
 }

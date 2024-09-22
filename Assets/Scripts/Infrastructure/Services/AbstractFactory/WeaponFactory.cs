@@ -17,16 +17,12 @@ public class WeaponFactory : IWeaponFactory
     {
         _weaponEffectsConteiner = new WeaponEffectsConteiner(asserts);
         _data = new WeaponData();
-    }
-
-    public void Construct()
-    {
         _weaponStaticDatas = Resources.LoadAll<WeaponStaticData>("StaticData/WeaponData");
         _weaponDictionary = _weaponStaticDatas.ToDictionary(x => x.WType, y => y);
         _weaponComponentHandler = new WeaponComponentHandler();
     }
 
-    public void CreateWeapons(Weapon[] weapon, Transform player)
+    public void CreateWeapons(Weapon[] weapon)
     {
         ServiceLocator.Instance.BindData(typeof(AmmoStorage), new AmmoStorage());
         for (int i = 0; i < weapon.Length; i++)
