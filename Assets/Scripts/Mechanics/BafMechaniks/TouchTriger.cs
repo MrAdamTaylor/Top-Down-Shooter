@@ -19,11 +19,11 @@ namespace Mechanics.BafMechaniks
         }
 
 
-        void OnDrawGizmos()
+        /*void OnDrawGizmos()
         {
             Handles.color = _isInside ? Color.green : Color.red;
             Handles.DrawWireDisc(this.transform.position, Vector3.up, _radius);
-        }
+        }*/
 
         void FixedUpdate()
         {

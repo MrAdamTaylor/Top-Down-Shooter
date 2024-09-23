@@ -5,8 +5,7 @@ public sealed class CameraFollower : MonoBehaviour
     //[SerializeField]
     private Camera _targetCamera;
 
-    [SerializeField]
-    private Vector3 _offset = new Vector3(0,5f,0);
+    [SerializeField] private Vector3 _offset = Constants.CAMERA_POSITION; //new Vector3(0,5f,0);
 
     //[SerializeField]
     private Player _player;

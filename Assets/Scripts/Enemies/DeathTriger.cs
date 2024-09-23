@@ -21,11 +21,11 @@ namespace Enemies
             _killed = player.transform;
         }
 
-        private void OnDrawGizmos()
+        /*private void OnDrawGizmos()
         {
             Handles.color = Color.green;
             Handles.DrawWireDisc(this.transform.position, Vector3.up, _radius);
-        }
+        }*/
 
         //TODO - Transfer to class trigonometry some logic
         private void FixedUpdate()

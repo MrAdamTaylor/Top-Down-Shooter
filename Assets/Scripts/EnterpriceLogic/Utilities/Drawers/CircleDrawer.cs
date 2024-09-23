@@ -10,11 +10,11 @@ public class CircleDrawer : MonoBehaviour
     public float Radius;
     public Color ColorValue;
 
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         Handles.color = ColorValue;
         Handles.DrawSolidDisc(transform.position, transform.up, Radius);
-    }
+    }*/
 
     public void SetRadius(float radius)
     {

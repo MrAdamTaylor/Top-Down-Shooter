@@ -24,9 +24,9 @@ namespace Mechanics.BafMechaniks
 
         void OnDrawGizmos()
         {
-            Handles.color = Color.cyan;
-            Handles.DrawWireDisc(_center, Vector3.up, _minimalRadiusDiaposone);
-            Handles.DrawWireDisc(_center, Vector3.up, _maximumRadiusDiaposone);
+            //Handles.color = Color.cyan;
+            //Handles.DrawWireDisc(_center, Vector3.up, _minimalRadiusDiaposone);
+            //Handles.DrawWireDisc(_center, Vector3.up, _maximumRadiusDiaposone);
         }
 
         public bool Position(Vector3 otherPosition)
