@@ -29,6 +29,10 @@ public class MuzzleFlashEffect : MonoBehaviour
     {
         if (!_effect.IsNullBoolWarning("MuzzleEffectIsNull"))
             _effect.Stop();
+        else
+        {
+            _effect = null;
+        }
     }
 
     void OnDestroy()

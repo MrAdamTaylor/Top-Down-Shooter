@@ -7,12 +7,11 @@ public class GameStateMachine
     
     private Dictionary<Type, IExitableState> _states;
     private IExitableState _activeState;
-    public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain curtain, AllServices services)
+    public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain curtain, AllServices services, GameParams gameParams)
     {
-        Debug.Log("Инициализирована StateMachine");
         _states = new Dictionary<Type, IExitableState>
         {
-            [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services),
+            [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services, gameParams),
             [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, 
                 services.Single<IPlayerFactory>(), 
                 services.Single<IUIFactory>())
@@ -27,7 +26,6 @@ public class GameStateMachine
 
     public void Enter<TState, TPayload>(TPayload payload) where TState : class, IPayloadedState<TPayload>
     {
-        Debug.Log("Перегрузка для метода загрузки");
         TState state = ChangeState<TState>();
         state.Enter(payload);
     }

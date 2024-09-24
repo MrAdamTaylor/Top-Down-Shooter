@@ -30,16 +30,18 @@ public class LoadLevelState : IPayloadedState<string>
         GameObject player = _playerFactory.CreatePlayer(startPosition.transform.position, camera);
         GameObject canvas = GameObject.FindGameObjectWithTag("PlayerUI");
         GameObject ui = _uiFactory.CreateWithLoadConnect(Constants.UI_PLAYER_PATH, canvas, player);
-        ConstructUI();
+        ConstructUI(ui);
     }
 
-    public void ConstructUI()
+    public void ConstructUI(GameObject ui)
     {
         GameObject warning = GameObject.FindGameObjectWithTag("Warning");
         warning.SetActive(false);
-        UIHelper helper = Object.FindObjectOfType<UIHelper>();
-        helper.gameObject.SetActive(true);
+        UIHelper helper = ui.AddComponent<UIHelper>();
         helper.Construct();
+        //UIHelper helper = Object.FindObjectOfType<UIHelper>();
+        //helper.gameObject.SetActive(true);
+        //helper.Construct();
     }
 
     public void Exit()

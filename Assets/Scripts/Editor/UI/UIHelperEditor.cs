@@ -32,7 +32,7 @@ public class UIHelperEditor : Editor
             helper.SpendScores();
         }
 
-        if (GUILayout.Button("Add Ammo"))
+        /*if (GUILayout.Button("Add Ammo"))
         {
             helper.AddAmmo();
         }
@@ -40,7 +40,7 @@ public class UIHelperEditor : Editor
         if (GUILayout.Button("Spend Ammo"))
         {
             helper.SpendAmmo();
-        }
+        }*/
     }
     
 }

@@ -32,7 +32,7 @@ public class UIHelper : MonoBehaviour
         _moneyStorage.SpendMoney(_current);
     }
     
-    public void AddAmmo()
+    /*public void AddAmmo()
     {
         _ammoStorage.AddAmmo(_current);
     }
@@ -40,7 +40,7 @@ public class UIHelper : MonoBehaviour
     public void SpendAmmo()
     {
         _ammoStorage.SpendAmmo(_current);
-    }
+    }*/
     
     public void AddScores()
     {

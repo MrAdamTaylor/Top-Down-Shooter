@@ -14,7 +14,18 @@ public class PlayerFactory : IPlayerFactory
 
     public GameObject CreatePlayer(Vector3 position, Camera camera)
     {
-        GameObject gameObject = _asserts.Instantiate(Constants.PLAYER_PATH, position);
+        GameParams gameParams = (GameParams)ServiceLocator.Instance.GetData(typeof(GameParams));
+        string playerName = "";
+        if (gameParams.EPlayer == PlayerType.Player1)
+        {
+            playerName = Constants.PLAYER_PATH_FIRST;
+        }
+        else
+        {
+            playerName = Constants.PLAYER_PATH_SECOND;
+        }
+
+        GameObject gameObject = _asserts.Instantiate(playerName, position);
         Player player = gameObject.AddComponent<Player>();
         ServiceLocator.Instance.BindData(typeof(Transform), player.transform);
         gameObject.AddComponent<CameraFollower>().Construct(camera, player);
