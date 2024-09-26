@@ -6359,6 +6359,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2834113038054310008, guid: ceebc3798ff79e24aaaa8c695e3a5bf3, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2834113038054310008, guid: ceebc3798ff79e24aaaa8c695e3a5bf3, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2834113038054310008, guid: ceebc3798ff79e24aaaa8c695e3a5bf3, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 2834113038054310008, guid: ceebc3798ff79e24aaaa8c695e3a5bf3, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 8241911049433231345, guid: ceebc3798ff79e24aaaa8c695e3a5bf3, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -7163,7 +7179,6 @@ GameObject:
   - component: {fileID: 1524911591}
   - component: {fileID: 1524911590}
   - component: {fileID: 1524911589}
-  - component: {fileID: 1524911592}
   m_Layer: 0
   m_Name: RegularCanvas
   m_TagString: Untagged
@@ -7255,19 +7270,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &1524911592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1524911587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d639fdeb98aeddc478422284285d28c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _current: 10
 --- !u!1001 &1525158268
 PrefabInstance:
   m_ObjectHideFlags: 0
