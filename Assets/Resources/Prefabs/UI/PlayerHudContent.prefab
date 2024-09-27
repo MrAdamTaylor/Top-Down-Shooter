@@ -830,6 +830,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _text: {fileID: 8793836288838498424}
   _image: {fileID: 921670070939259860}
+  _startScroolTween:
+    Scale: {x: 1.3, y: 1.3, z: 1.3}
+    Duration: 0.5
+    AnimationLine: 12
+  _endScroolTween:
+    Scale: {x: 1, y: 1, z: 1}
+    Duration: 0.5
+    AnimationLine: 2
 --- !u!114 &1757779188484992202
 MonoBehaviour:
   m_ObjectHideFlags: 0

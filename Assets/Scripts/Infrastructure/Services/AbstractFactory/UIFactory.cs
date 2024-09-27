@@ -32,12 +32,9 @@ public class UIFactory : IUIFactory
 
         GameObject ui = _assert.Instantiate(path, position);
         ui.transform.SetParent(parentTransform.transform, false); 
-        //parent = parentTransform.transform;
         RectTransform rt = ui.GetComponent<RectTransform>();
         rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, 0, Constants.SCREEN_OVERLAY_WIDTH);
         rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, Constants.SCREEN_OVERLAY_HEIGHT);
-        //transform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, 0, transform.rect.width);
-        //transform.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, transform.rect.height);
 
         CurrencyProvider currencyProvider = ui.transform.GetComponentInChildren<CurrencyProvider>();
         #region BindScores

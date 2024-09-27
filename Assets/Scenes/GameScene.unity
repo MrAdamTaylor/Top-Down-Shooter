@@ -539,8 +539,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 310698510}
-  - component: {fileID: 310698511}
-  - component: {fileID: 310698512}
   m_Layer: 0
   m_Name: '[UIDebuger]'
   m_TagString: Untagged
@@ -563,31 +561,6 @@ Transform:
   m_Father: {fileID: 165346048}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &310698511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 310698509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d639fdeb98aeddc478422284285d28c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _current: 10
---- !u!114 &310698512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 310698509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b41532d9fac50214ab477616685fa855, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &311961114
 GameObject:
   m_ObjectHideFlags: 0

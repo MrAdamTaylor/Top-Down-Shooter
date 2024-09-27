@@ -39,9 +39,6 @@ public class LoadLevelState : IPayloadedState<string>
         warning.SetActive(false);
         UIHelper helper = ui.AddComponent<UIHelper>();
         helper.Construct();
-        //UIHelper helper = Object.FindObjectOfType<UIHelper>();
-        //helper.gameObject.SetActive(true);
-        //helper.Construct();
     }
 
     public void Exit()
