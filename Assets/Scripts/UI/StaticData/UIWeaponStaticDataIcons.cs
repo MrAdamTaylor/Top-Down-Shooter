@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "UIWeaponIcons", menuName = "UI/weaponICO")]
 public class UIWeaponStaticDataIcons : ScriptableObject
@@ -8,35 +10,59 @@ public class UIWeaponStaticDataIcons : ScriptableObject
     public List<WeaponUIConfig> IcoConfigs;
 }
 
-[System.Serializable]
+
+[Serializable]
 public struct WeaponUIConfig
 {
     public Sprite WeaponPicture;
     public WeaponType WeaponType;
-
-    public ImageTweenConfigs ImageGonfigs;
-    public TextTweenConfigs StartScale;
-    public TextTweenConfigs EndScale;
-}
-
-[System.Serializable]
-public struct TextTweenConfigs
-{
-    public Vector3 Scale;
-    public float RillRate;
-}
-
-public enum ShakingPictureType
-{
-    TopDown,
-    LeftRight,
-    Scale2x
+    public AnimationConfigs AnimationConfigs;
 }
 
 [Serializable]
-public struct ImageTweenConfigs
+public struct AnimationConfigs
 {
-    ShakingPictureType Type;
-    
-    
+    public AnimationSequenceType AnimationSequenceType;
+    [Header("Duration if middle value is Active")]
+    public float MiddleDuration;
+    public ElementAnimationConfigs ImageConfigs;
+    public ElementAnimationConfigs TextConfigs;
+    /*public AnimationType _animationType;
+    public TweenConfigs StartScale;
+    public TweenConfigs EndScale;
+    public float ValueChangeDuration;*/
 }
+
+[Serializable]
+public struct ElementAnimationConfigs
+{
+    public AnimationType AnimationType;
+    public TweenConfigs StartConfigs;
+    public TweenConfigs EndConfigs;
+}
+
+[Serializable]
+public struct TweenConfigs
+{
+    [Header("Don't have change in End Configs if animation type is Shaking")]
+    public Vector3 Scale;
+    [Space]
+    public float RillRate;
+    public Ease EaseType;
+}
+
+public enum AnimationType
+{
+    Shaking,
+    Scale
+}
+
+public enum AnimationSequenceType
+{
+    Start_Middle_End,
+    StartMiddle_End,
+    Start_MiddleEnd,
+    Start_End
+}
+
+

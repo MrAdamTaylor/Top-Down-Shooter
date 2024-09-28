@@ -20,7 +20,7 @@ MonoBehaviour:
   IsAmmo: 1
   AmmoValues:
     IsInfinity: 0
-    StarterAmmo: 6
+    StarterAmmo: 12
     WastedAmmo: 3
   BulletPoint: {fileID: 0}
   AmountOfRaction: 3

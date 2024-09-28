@@ -10,6 +10,7 @@ public class CurrencyViewWithImage : CurrencyView
     [SerializeField] private StartScroolTween _startScroolTween;
     [SerializeField] private EndScroolTween _endScroolTween;
     private Sprite _currentSprite;
+    public Transform ImageTransform => _image.transform;
 
     public override void UpdateCurrency(long value)
     {
@@ -42,7 +43,6 @@ public class CurrencyViewWithImage : CurrencyView
             .Append(_text.transform.DOScale(_endScroolTween.Scale, _endScroolTween.Duration)).SetEase(_endScroolTween.AnimationLine)
             .Insert(0,_image.transform.DOScale(_endScroolTween.Scale, _endScroolTween.Duration)).SetEase(_endScroolTween.AnimationLine);
     }
-
 }
 
 [System.Serializable]

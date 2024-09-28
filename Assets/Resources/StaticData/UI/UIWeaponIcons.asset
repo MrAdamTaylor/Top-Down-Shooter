@@ -15,7 +15,76 @@ MonoBehaviour:
   IcoConfigs:
   - WeaponPicture: {fileID: 21300000, guid: d6a98cda48c99614dad8d009eb7afe0d, type: 3}
     WeaponType: 0
+    AnimationConfigs:
+      AnimationSequenceType: 0
+      MiddleDuration: 0
+      ImageConfigs:
+        AnimationType: 0
+        StartConfigs:
+          Scale: {x: 0, y: 0, z: 0}
+          RillRate: 0
+          EaseType: 0
+        EndConfigs:
+          Scale: {x: 0, y: 0, z: 0}
+          RillRate: 0
+          EaseType: 0
+      TextConfigs:
+        AnimationType: 0
+        StartConfigs:
+          Scale: {x: 0, y: 0, z: 0}
+          RillRate: 0
+          EaseType: 0
+        EndConfigs:
+          Scale: {x: 0, y: 0, z: 0}
+          RillRate: 0
+          EaseType: 0
   - WeaponPicture: {fileID: 21300000, guid: 360594132a5160243a2697948fa11cf2, type: 3}
     WeaponType: 2
+    AnimationConfigs:
+      AnimationSequenceType: 0
+      MiddleDuration: 0.2
+      ImageConfigs:
+        AnimationType: 0
+        StartConfigs:
+          Scale: {x: 0, y: 2, z: 0}
+          RillRate: 0.2
+          EaseType: 0
+        EndConfigs:
+          Scale: {x: 0, y: 0, z: 0}
+          RillRate: 0.1
+          EaseType: 0
+      TextConfigs:
+        AnimationType: 1
+        StartConfigs:
+          Scale: {x: 0, y: 2, z: 0}
+          RillRate: 0.2
+          EaseType: 0
+        EndConfigs:
+          Scale: {x: 0, y: 0, z: 0}
+          RillRate: 0.1
+          EaseType: 0
   - WeaponPicture: {fileID: 21300000, guid: 1f53c5e6b9cc17844a7d65f085be233a, type: 3}
     WeaponType: 1
+    AnimationConfigs:
+      AnimationSequenceType: 3
+      MiddleDuration: 0
+      ImageConfigs:
+        AnimationType: 0
+        StartConfigs:
+          Scale: {x: 1, y: 0, z: 0}
+          RillRate: 0.05
+          EaseType: 0
+        EndConfigs:
+          Scale: {x: 0, y: 0, z: 0}
+          RillRate: 0.05
+          EaseType: 0
+      TextConfigs:
+        AnimationType: 0
+        StartConfigs:
+          Scale: {x: 1, y: 0, z: 0}
+          RillRate: 0.05
+          EaseType: 0
+        EndConfigs:
+          Scale: {x: 0, y: 0, z: 0}
+          RillRate: 0.05
+          EaseType: 0

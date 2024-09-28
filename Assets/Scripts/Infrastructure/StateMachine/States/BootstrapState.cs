@@ -49,6 +49,7 @@ public class BootstrapState : IState
             _services.Single<IWeaponFactory>()));
         _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAsserts>()));
         ServiceLocator.Instance.BindData(typeof(ISpecialEffectFactory),_services.Single<ISpecialEffectFactory>());
+        ServiceLocator.Instance.BindData(typeof(UIAnimationPlayer), new UIAnimationPlayer());
     }
 
     public void Exit()
