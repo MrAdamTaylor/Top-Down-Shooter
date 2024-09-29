@@ -1,4 +1,5 @@
 using System.IO;
+using EnterpriceLogic.Constants;
 using UnityEngine;
 
 public class UIFactory : IUIFactory
@@ -33,8 +34,8 @@ public class UIFactory : IUIFactory
         GameObject ui = _assert.Instantiate(path, position);
         ui.transform.SetParent(parentTransform.transform, false); 
         RectTransform rt = ui.GetComponent<RectTransform>();
-        rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, 0, Constants.SCREEN_OVERLAY_WIDTH);
-        rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, Constants.SCREEN_OVERLAY_HEIGHT);
+        //rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, 0, Constants.SCREEN_OVERLAY_WIDTH);
+        //rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, Constants.SCREEN_OVERLAY_HEIGHT);
 
         CurrencyProvider currencyProvider = ui.transform.GetComponentInChildren<CurrencyProvider>();
         #region BindScores
@@ -58,7 +59,7 @@ public class UIFactory : IUIFactory
         
         #region BindAmmo
         
-        UIWeaponStaticDataIcons icons = Resources.Load<UIWeaponStaticDataIcons>(Constants.WEAPON_ICO_PATH);
+        UIWeaponStaticDataIcons icons = Resources.Load<UIWeaponStaticDataIcons>(PrefabPath.WEAPON_ICO_PATH);
         ServiceLocator.Instance.BindData(typeof(AmmoAdapter), new AmmoAdapter(currencyProvider.AmmoView,icons, 
             playerObject.GetComponent<Scripts.Player.NewWeaponControllSystem.WeaponController>()));
         

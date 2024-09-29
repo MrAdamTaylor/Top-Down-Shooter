@@ -1,4 +1,5 @@
 using System;
+using EnterpriceLogic.Constants;
 using TMPro;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ public class CurrencyView : MonoBehaviour
 
    private void Start()
    {
-      _text.text = Constants.DEFAULT_WEAPON_AMMO_TEXT;
+      _text.text = PrefabPath.DEFAULT_WEAPON_AMMO_TEXT;
    }
 
 
@@ -22,7 +23,7 @@ public class CurrencyView : MonoBehaviour
    {
          if (value == -long.MaxValue)
          {
-            _text.text = Constants.DEFAULT_WEAPON_AMMO_TEXT;
+            _text.text = PrefabPath.DEFAULT_WEAPON_AMMO_TEXT;
          }
          else
          {

@@ -1,4 +1,5 @@
 using System.Collections;
+using EnterpriceLogic.Constants;
 using UnityEngine;
 
 public class SpecialEffectFactory : ISpecialEffectFactory
@@ -21,7 +22,7 @@ public class SpecialEffectFactory : ISpecialEffectFactory
     public void CreateBullet(MonoBehaviour behaviour, Vector3 bulletPointPosition, Vector3 startPoint, 
         Vector3 endPoint, float bulletSpeed, bool madeImpact)
     {
-        TrailRenderer trail = _asserts.InstantiateTrailRender(Constants.HOT_TRAIL_PATH, bulletPointPosition);
+        TrailRenderer trail = _asserts.InstantiateTrailRender(PrefabPath.HOT_TRAIL_PATH, bulletPointPosition);
         behaviour.StartCoroutine(SpawnTrail(trail, startPoint, endPoint, bulletSpeed, madeImpact));
     }
     
@@ -55,7 +56,7 @@ public class SpecialEffectFactory : ISpecialEffectFactory
         trail.transform.position = hitPoint;
         if (madeImpact)
         {
-            _asserts.InstantiateParticle(Constants.IMPACT_PARTICLE_EFFECT, hitPoint, Quaternion.LookRotation(hitNormal));
+            _asserts.InstantiateParticle(PrefabPath.IMPACT_PARTICLE_EFFECT, hitPoint, Quaternion.LookRotation(hitNormal));
         }
         Object.Destroy(trail.gameObject, trail.time);
     }

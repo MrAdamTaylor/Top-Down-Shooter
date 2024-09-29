@@ -1,3 +1,4 @@
+using EnterpriceLogic.Constants;
 using Scripts.Player.NewWeaponControllSystem;
 using UnityEngine;
 
@@ -18,11 +19,11 @@ public class PlayerFactory : IPlayerFactory
         string playerName = "";
         if (gameParams.EPlayer == PlayerType.Player1)
         {
-            playerName = Constants.PLAYER_PATH_FIRST;
+            playerName = PrefabPath.PLAYER_PATH_FIRST;
         }
         else
         {
-            playerName = Constants.PLAYER_PATH_SECOND;
+            playerName = PrefabPath.PLAYER_PATH_SECOND;
         }
 
         GameObject gameObject = _asserts.Instantiate(playerName, position);

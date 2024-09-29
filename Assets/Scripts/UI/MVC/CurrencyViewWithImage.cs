@@ -1,5 +1,6 @@
 using System;
 using DG.Tweening;
+using EnterpriceLogic.Constants;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,7 +26,7 @@ public class CurrencyViewWithImage : CurrencyView
 
     public void SetDefaultCurrency()
     {
-        _text.text = Constants.DEFAULT_WEAPON_AMMO_TEXT;
+        _text.text = PrefabPath.DEFAULT_WEAPON_AMMO_TEXT;
     }
 
     public Sequence AnimateTextImageStart()

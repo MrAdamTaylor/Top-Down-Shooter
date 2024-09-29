@@ -1,3 +1,4 @@
+using EnterpriceLogic.Constants;
 using UnityEngine;
 
 public class LoadLevelState : IPayloadedState<string>
@@ -29,7 +30,7 @@ public class LoadLevelState : IPayloadedState<string>
         GameObject startPosition = GameObject.FindGameObjectWithTag(Constants.INITIAL_POSITION);
         GameObject player = _playerFactory.CreatePlayer(startPosition.transform.position, camera);
         GameObject canvas = GameObject.FindGameObjectWithTag("PlayerUI");
-        GameObject ui = _uiFactory.CreateWithLoadConnect(Constants.UI_PLAYER_PATH, canvas, player);
+        GameObject ui = _uiFactory.CreateWithLoadConnect(PrefabPath.UI_PLAYER_PATH, canvas, player);
         ConstructUI(ui);
     }
 

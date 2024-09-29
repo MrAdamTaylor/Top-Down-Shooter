@@ -1,4 +1,5 @@
 using System.Reflection.Emit;
+using EnterpriceLogic.Constants;
 using EnterpriceLogic.Utilities;
 using Scripts.Player.NewWeaponControllSystem;
 using UnityEngine;
@@ -22,7 +23,7 @@ public class MuzzleFlashEffect : MonoBehaviour
         _shootControlSystem = shootControlSystem;
         _shootControlSystem.ShootAction += MuzzleEffect;
         _position = data;
-        _effect = conteiner.GetParticleEffect(Constants.MUZZLE_FLASH_WEAPON_PATH, _position, gameObject.transform);
+        _effect = conteiner.GetParticleEffect(PrefabPath.MUZZLE_FLASH_WEAPON_PATH, _position, gameObject.transform);
     }
 
     void OnEnable()

@@ -1,3 +1,4 @@
+using EnterpriceLogic.Constants;
 using EnterpriceLogic.Utilities;
 using UnityEngine;
 
@@ -12,9 +13,9 @@ public class WeaponEffectsConteiner
     public WeaponEffectsConteiner(IAsserts asserts)
     {
         _asserts = asserts;
-        _particleSystem = _asserts.LoadParticle(Constants.IMPACT_PARTICLE_EFFECT);
-        _trailRenderer = _asserts.LoadTrailRenderer(Constants.HOT_TRAIL_PATH);
-        _lineRenderer = _asserts.LoadLineRenderer(Constants.LINE_RENDERER_PATH);
+        _particleSystem = _asserts.LoadParticle(PrefabPath.IMPACT_PARTICLE_EFFECT);
+        _trailRenderer = _asserts.LoadTrailRenderer(PrefabPath.HOT_TRAIL_PATH);
+        _lineRenderer = _asserts.LoadLineRenderer(PrefabPath.LINE_RENDERER_PATH);
     }
 
 

@@ -1,4 +1,5 @@
 using Enemies;
+using EnterpriceLogic.Constants;
 using EnterpriceLogic.Utilities;
 using UnityEngine;
 
@@ -23,8 +24,6 @@ public class ShootSystemOnly : CoomoonShootSystem
         _layerMask = Constants.WEAPON_LAYER_MASK;
         _directionObject = (Transform)ServiceLocator.Instance.GetData(typeof(Transform));
         _directionObject.IsNullWithException("Transform not constructed in ShootSystemOnly");
-        //_impactParticle = conteiner.GetParticleEffect();
-        //_trailRenderer = conteiner.GetTrailRenderer();
         _bulletSpeed = Constants.DEFAULT_BULLET_SPEED;
         _distance = Constants.DEFAULT_BULLET_DISTANCE;
         _damage = staticData.Damage;

@@ -1,3 +1,4 @@
+using EnterpriceLogic.Constants;
 using UnityEngine;
 
 public sealed class CameraFollower : MonoBehaviour

@@ -18,13 +18,6 @@ public class ShootControlSystem : MonoBehaviour
         _shootSystem.Construct(data, weaponEffectsConteiner);
     }
 
-    /*public void ConstructShootSystem(ShootData data)
-    {
-        _weaponDelay = data.Delay;
-        _shootSystem.Construct(data);
-    }*/
-
-
     public void Shoot()
     {
         if (_lastShootTime + _weaponDelay < Time.time)
