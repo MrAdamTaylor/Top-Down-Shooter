@@ -23,7 +23,7 @@ public class WeaponFactory : IWeaponFactory
         _weaponComponentHandler = new WeaponComponentHandler();
     }
 
-    public void CreateWeapons(Weapon[] weapon)
+    public void CreateAll(Weapon[] weapon)
     {
         ServiceLocator.Instance.BindData(typeof(AmmoStorage), new AmmoStorage());
         for (int i = 0; i < weapon.Length; i++)

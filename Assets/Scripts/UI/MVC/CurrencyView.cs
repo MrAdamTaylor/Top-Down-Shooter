@@ -1,4 +1,3 @@
-using System;
 using EnterpriceLogic.Constants;
 using TMPro;
 using UnityEngine;
@@ -9,9 +8,6 @@ public class CurrencyView : MonoBehaviour
 
    public Transform TextTransform => _text.transform;
    private long _currentValueUI = 0;
-
-   //public long PreviousValueUI { get; private set; }
-
 
    private void Start()
    {
@@ -29,7 +25,6 @@ public class CurrencyView : MonoBehaviour
          {
             _currentValueUI = value;
             _text.text = _currentValueUI.ToString();
-            //PreviousValueUI = _currentValueUI;
          }
    }
 }

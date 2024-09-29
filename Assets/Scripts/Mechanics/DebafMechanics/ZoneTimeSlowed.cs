@@ -98,7 +98,6 @@ namespace Mechanics.DebafMechanics
                     }
                     break;
             }
-        
         }
     }
 }

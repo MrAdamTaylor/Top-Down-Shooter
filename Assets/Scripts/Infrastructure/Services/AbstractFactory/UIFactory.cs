@@ -33,9 +33,6 @@ public class UIFactory : IUIFactory
 
         GameObject ui = _assert.Instantiate(path, position);
         ui.transform.SetParent(parentTransform.transform, false); 
-        RectTransform rt = ui.GetComponent<RectTransform>();
-        //rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, 0, Constants.SCREEN_OVERLAY_WIDTH);
-        //rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 0, Constants.SCREEN_OVERLAY_HEIGHT);
 
         CurrencyProvider currencyProvider = ui.transform.GetComponentInChildren<CurrencyProvider>();
         #region BindScores
@@ -54,16 +51,12 @@ public class UIFactory : IUIFactory
             (MoneyStorage)ServiceLocator.Instance.GetData(typeof(MoneyStorage))));
         MoneyAdapter moneyAdapter = (MoneyAdapter)ServiceLocator.Instance.GetData(typeof(MoneyAdapter));
         moneyAdapter.Initialize();
-        //helper.Construct();
         #endregion
         
         #region BindAmmo
-        
         UIWeaponStaticDataIcons icons = Resources.Load<UIWeaponStaticDataIcons>(PrefabPath.WEAPON_ICO_PATH);
         ServiceLocator.Instance.BindData(typeof(AmmoAdapter), new AmmoAdapter(currencyProvider.AmmoView,icons, 
             playerObject.GetComponent<Scripts.Player.NewWeaponControllSystem.WeaponController>()));
-        
-        
         #endregion
         return ui;
     }

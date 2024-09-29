@@ -10,7 +10,6 @@ public class GameBootstraper : MonoBehaviour, ICoroutineRunner
     {
         _game = new Game(this,Curtain, _gameParams);
         _game.StateMachine.Enter<BootstrapState>();
-        
         DontDestroyOnLoad(this);
     }
 }

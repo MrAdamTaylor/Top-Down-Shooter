@@ -6,10 +6,8 @@ public class MouseRotateController : MonoBehaviour, IMouseRotateController
     [SerializeField] 
     private float _rotationSpeed = 450f;
     
-    //[SerializeField] 
     private Player _player;
 
-    //[SerializeField] 
     private Camera _camera;
 
     private Quaternion _targetRotation;

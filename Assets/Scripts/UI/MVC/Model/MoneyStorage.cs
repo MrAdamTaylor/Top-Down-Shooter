@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 public class MoneyStorage
 {
@@ -15,14 +14,12 @@ public class MoneyStorage
     public void AddMoney(long money)
     {
         Money += money;
-        Debug.Log("Current Money: "+Money);
         OnMoneyChanged?.Invoke(Money);
     }
 
     public void SpendMoney(long money)
     {
         Money -= money;
-        Debug.Log("Current Money: "+Money);
         OnMoneyChanged?.Invoke(Money);
     }
 }

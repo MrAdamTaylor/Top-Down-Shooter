@@ -1,15 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class CircleDrawer : MonoBehaviour
 {
     public float Radius;
     public Color ColorValue;
 
+    //TODO - commented during compilation WebGL app
     /*private void OnDrawGizmos()
     {
         Handles.color = ColorValue;

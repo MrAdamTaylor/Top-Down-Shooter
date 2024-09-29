@@ -7,14 +7,10 @@ using UnityEngine;
 public class AmmoController : MonoBehaviour
 {
     public Action<long, bool> ChangeAmmo;
-
-    //[SerializeField] 
+    
     private long _ammoCount;
-    //[SerializeField] 
     private bool _infinity;
-    //[SerializeField] 
     private ShootControlSystem _shootControlSystem;
-    //[SerializeField] private long _ammoWaste = Constants.STANDART_WASTE_WALUE;
 
     private long _ammoWaste;
     private long _currentAmmo;
@@ -39,15 +35,6 @@ public class AmmoController : MonoBehaviour
         _ammoStorage.Construct(_currentAmmo);
         _shootControlSystem.ShootAction += WasteAmmo;
     }
-
-    /*void Awake()
-    {
-        _currentAmmo = _ammoCount;
-    }*/
-
-    /*void Start()
-    {
-    }*/
 
     void OnDestroy()
     {

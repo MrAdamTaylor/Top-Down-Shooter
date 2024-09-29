@@ -18,6 +18,15 @@ public class BootstrapState : IState
         _level = ChoseLevel(gameParams.ELevel);
     }
 
+    public void Enter()
+    {
+        _sceneLoader.Load(_level, onLoaded: EnterLoadLevel);
+    }
+
+    public void Exit()
+    {
+    }
+
     private string ChoseLevel(Level gameParamsELevel)
     {
         string levelName = "";
@@ -36,11 +45,6 @@ public class BootstrapState : IState
         return levelName;
     }
 
-    public void Enter()
-    {
-        _sceneLoader.Load(_level, onLoaded: EnterLoadLevel);
-    }
-
     private void RegisterServices()
     {
         _services.RegisterSingle<IAsserts>(new Asserts());
@@ -53,10 +57,6 @@ public class BootstrapState : IState
         ServiceLocator.Instance.BindData(typeof(UIAnimationPlayer), new UIAnimationPlayer());
     }
 
-    public void Exit()
-    {
-    }
-    
     private void EnterLoadLevel() => 
         _stateMachine.Enter<LoadLevelState, string>(_level);
 }

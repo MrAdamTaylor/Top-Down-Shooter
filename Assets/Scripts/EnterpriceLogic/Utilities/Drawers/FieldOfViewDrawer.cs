@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 public class FieldOfViewDrawer : MonoBehaviour
@@ -7,6 +6,7 @@ public class FieldOfViewDrawer : MonoBehaviour
     public Color ColorValue;
     [Range(0f, 360f)] public float AngleFov;
 
+    //TODO - commented during compilation WebGL app
     /*private void OnDrawGizmos()
     {
         Handles.color = ColorValue;

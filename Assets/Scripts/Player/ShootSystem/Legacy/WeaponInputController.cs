@@ -4,6 +4,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//TODO - this code using before refactoring
 public class WeaponInputController : MonoBehaviour
 {
     private List<IMouseInput> _mouseInputs = new List<IMouseInput>();

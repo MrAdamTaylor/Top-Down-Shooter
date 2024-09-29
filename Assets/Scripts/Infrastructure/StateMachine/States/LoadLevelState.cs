@@ -24,25 +24,25 @@ public class LoadLevelState : IPayloadedState<string>
         _sceneLoader.Load(sceneName, OnLoaded);
     }
 
+    public void Exit()
+    {
+    }
+
     private void OnLoaded()
     {
         Camera camera = Object.FindObjectOfType<Camera>();
         GameObject startPosition = GameObject.FindGameObjectWithTag(Constants.INITIAL_POSITION);
-        GameObject player = _playerFactory.CreatePlayer(startPosition.transform.position, camera);
+        GameObject player = _playerFactory.Create(startPosition.transform.position, camera);
         GameObject canvas = GameObject.FindGameObjectWithTag("PlayerUI");
         GameObject ui = _uiFactory.CreateWithLoadConnect(PrefabPath.UI_PLAYER_PATH, canvas, player);
         ConstructUI(ui);
     }
 
-    public void ConstructUI(GameObject ui)
+    private void ConstructUI(GameObject ui)
     {
         GameObject warning = GameObject.FindGameObjectWithTag("Warning");
         warning.SetActive(false);
         UIHelper helper = ui.AddComponent<UIHelper>();
         helper.Construct();
-    }
-
-    public void Exit()
-    {
     }
 }

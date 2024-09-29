@@ -5,14 +5,7 @@ using UnityEngine;
 
 public class ShootSystemOnly : CoomoonShootSystem
 {
-    //[SerializeField] private ParticleSystem _impactParticle;
-    
-    //[SerializeField] private TrailRenderer _trailRenderer;
-    
-    //[SerializeField] 
     private float _bulletSpeed;
-    
-    //[SerializeField] 
     private float _distance;
 
     private ISpecialEffectFactory _specialEffectFactory;

@@ -18,7 +18,6 @@ public class WeaponEffectsConteiner
         _lineRenderer = _asserts.LoadLineRenderer(PrefabPath.LINE_RENDERER_PATH);
     }
 
-
     public ParticleSystem GetParticleEffect(string path = "", Transform position = null, Transform parent = null)
     {
         if (path.IsEmpty())
@@ -40,6 +39,4 @@ public class WeaponEffectsConteiner
     {
         return _lineRenderer;
     }
-
-
 }

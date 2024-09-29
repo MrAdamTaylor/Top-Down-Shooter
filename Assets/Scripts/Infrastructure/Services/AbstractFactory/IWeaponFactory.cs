@@ -1,6 +1,5 @@
-using UnityEngine;
 
 public interface IWeaponFactory : IGameFactory
 {
-    public void CreateWeapons(Weapon[] weapon);
+    public void CreateAll(Weapon[] weapon);
 }

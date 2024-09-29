@@ -1,5 +1,4 @@
 using System;
-using UnityEditor;
 using UnityEngine;
 
 namespace Mechanics.BafMechaniks
@@ -18,7 +17,7 @@ namespace Mechanics.BafMechaniks
             _touching = player.transform;
         }
 
-
+        //TODO - commented during compilation WebGL app
         /*void OnDrawGizmos()
         {
             Handles.color = _isInside ? Color.green : Color.red;

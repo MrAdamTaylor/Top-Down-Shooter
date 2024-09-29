@@ -13,7 +13,12 @@ namespace Mechanics.BafMechaniks
             _player = (Player)ServiceLocator.Instance.GetData(typeof(Player));
             Subscribe();
         }
-        
+
+        void OnDestroy()
+        {
+            _touchTriger.OnTouch -= AddPlayerBonus;
+        }
+
         private void Subscribe()
         {
             _touchTriger.OnTouch += AddPlayerBonus;
@@ -30,11 +35,6 @@ namespace Mechanics.BafMechaniks
                     _player.AddBonus<PlayerSpeed>();
                     break;
             }
-        }
-
-        private void OnDestroy()
-        {
-            _touchTriger.OnTouch -= AddPlayerBonus;
         }
     }
 }

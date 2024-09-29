@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface ISpecialEffectFactory : IGameFactory
 {
-    public void CreateLaser(MonoBehaviour behaviour, LineRenderer laser, Vector3 bulletPointPosition,
+    void CreateLaser(MonoBehaviour behaviour, LineRenderer laser, Vector3 bulletPointPosition,
         Vector3 hitInfoPoint, float fadeDuration, Transform shootTrashTransform);
 
     void CreateBullet(MonoBehaviour behaviour, Vector3 bulletPointPosition, Vector3 startPoint, 

@@ -14,7 +14,6 @@ namespace Mechanics.BafMechaniks
         {
             _weaponController = (WeaponController)ServiceLocator.Instance.GetData(typeof(WeaponController));
             Subscribe();
-            //_weapon = _weaponController.GetWeaponByType(_weaponType);
             _weapon.gameObject.TryGetComponent(out _ammoController);
         }
 

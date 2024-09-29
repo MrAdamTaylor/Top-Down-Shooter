@@ -1,16 +1,15 @@
 using System;
 using UnityEngine;
 
+//NOTE - Old input system(not using)
 public class KeyboardInput : MonoBehaviour, IInputSystem
 {
     [SerializeField]private double zBorder = 15;
     [SerializeField]private double xBorder = 20;
 
-
     public event Action<Vector2> OnMove;
-    
 
-    public void Update()
+    void Update()
     {
         HandleKeyboard();
     }

@@ -46,7 +46,7 @@ public class CurrencyViewWithImage : CurrencyView
     }
 }
 
-[System.Serializable]
+[Serializable]
 public struct StartScroolTween
 {
     public Vector3 Scale;
@@ -54,7 +54,7 @@ public struct StartScroolTween
     public Ease AnimationLine;
 }
 
-[System.Serializable]
+[Serializable]
 public struct EndScroolTween
 {
     public Vector3 Scale;

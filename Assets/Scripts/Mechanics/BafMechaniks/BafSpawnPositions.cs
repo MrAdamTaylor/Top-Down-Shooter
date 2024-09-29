@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 namespace Mechanics.BafMechaniks
@@ -22,6 +21,7 @@ namespace Mechanics.BafMechaniks
             ServiceLocator.Instance.BindData(typeof(BafSpawnPositions), this);
         }
 
+        //TODO - commented during compilation WebGL app
         void OnDrawGizmos()
         {
             //Handles.color = Color.cyan;

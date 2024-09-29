@@ -11,7 +11,7 @@ namespace Mechanics.Spawners.NewArchitecture
         private GameObjectPool _pool;
         private int _objectsCount;
 
-        private void Start()
+        void Start()
         {
             GameObjectPool._parent = this.transform;
             _pool = new GameObjectPool(_spawnObject, _objectsCount);

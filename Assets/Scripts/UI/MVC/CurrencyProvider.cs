@@ -6,7 +6,6 @@ public class CurrencyProvider : MonoBehaviour
     [SerializeField] private CurrencyView _scoresView;
     [SerializeField] private CurrencyView _moneyView;
 
-
     public CurrencyView ScoresView => _scoresView;
     public CurrencyViewWithImage AmmoView => _ammoView;
     public CurrencyView MoneyView => _moneyView;

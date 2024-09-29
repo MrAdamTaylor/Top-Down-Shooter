@@ -12,14 +12,6 @@ namespace Scripts.Player.NewWeaponControllSystem
         private IMouseInput _mouseInput;
         private AmmoController _ammoController;
         private AmmoAdapter _ammoAdapter;
-        
-        public void Construct(Weapon getActiveWeapon)
-        {
-            _weapon = getActiveWeapon;
-            _mouseInput = _weapon.gameObject.GetComponent<IMouseInput>();
-            _mouseInput.OnFire += OnShoot;
-            _ammoController = _weapon.GetComponent<AmmoController>();
-        }
 
         public void Construct(Weapon[] getActiveWeapon, WeaponSwitcher weaponSwitcher)
         {
@@ -28,7 +20,7 @@ namespace Scripts.Player.NewWeaponControllSystem
             ConstructActiveWeapon();
         }
 
-        private void OnDestroy()
+        void OnDestroy()
         {
             _mouseInput.OnFire -= OnShoot;
         }
@@ -59,11 +51,6 @@ namespace Scripts.Player.NewWeaponControllSystem
             _ammoAdapter.UpdateUI(_weapon.TypeWeapon);
             _ammoAdapter.UpdatePicture(_weapon.TypeWeapon);
         }
-
-        /*public (WeaponType, AmmoStorage) GetWeaponAmmo()
-        {
-            (WeaponType, AmmoStorage)result = ()
-        }*/
 
 
         private void ConstructActiveWeapon()

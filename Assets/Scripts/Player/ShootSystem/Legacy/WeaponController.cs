@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO - this code using before refactoring
 public class WeaponController : MonoBehaviour
 {
     [SerializeField] WeaponSwitching _weaponSwitching;
@@ -38,16 +39,6 @@ public class WeaponController : MonoBehaviour
         FindClickSystem(weaponObject);
     }
 
-    /*public Weapon GetWeaponByType(WeaponType weaponType)
-    {
-        //return _weaponSwitching.FindByType(weaponType);
-    }*/
-
-    /*public void ConstructUI(AmmoAdapter ammoAdapter)
-    {
-        _ammoAdapter = ammoAdapter;
-    }*/
-
     private void FindClickSystem()
     {
         if (_weaponSwitching != null)
@@ -56,8 +47,6 @@ public class WeaponController : MonoBehaviour
             Type inputSystem = weapon.gameObject.GetComponent<IMouseInput>().GetType();
             _inputSystem = _weaponInputController.FindEqual(inputSystem);
             _inputSystem.OnFire += OnShoot;
-            //_ammoAdapter.UpdatePicture(ReturnType(weapon));
-            //_ammoAdapter.UpdateUI(weapon.TypeWeapon);
         }
     }
 
@@ -66,8 +55,6 @@ public class WeaponController : MonoBehaviour
         Type inputSystem = weapon.gameObject.GetComponent<IMouseInput>().GetType();
         _inputSystem = _weaponInputController.FindEqual(inputSystem);
         _inputSystem.OnFire += OnShoot;
-        //_ammoAdapter.UpdatePicture(ReturnType(weapon));
-        //_ammoAdapter.UpdateUI(weapon);
     }
 
     private void OnShoot()
@@ -85,17 +72,5 @@ public class WeaponController : MonoBehaviour
             throw new Exception("Script of switching weapon disable!");
         }
     }
-
-    /*private WeaponType ReturnType(Weapon weapon)
-    {
-        //WeaponType type = _weaponSwitching.FindByClass(weapon);
-        if (type == WeaponType.Undefinded)
-        {
-            throw new Exception("Not find of Weapon Type by Class");
-        }
-        else
-        {
-            return type;
-        }
-    }*/
+    
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO - this code using before refactoring
 public class WeaponSwitching : MonoBehaviour
 {
     [SerializeField] private List<Weapon> _weapons;

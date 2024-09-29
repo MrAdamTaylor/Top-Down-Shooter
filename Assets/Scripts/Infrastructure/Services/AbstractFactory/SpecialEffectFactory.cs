@@ -60,7 +60,4 @@ public class SpecialEffectFactory : ISpecialEffectFactory
         }
         Object.Destroy(trail.gameObject, trail.time);
     }
-    
-
-    
 }

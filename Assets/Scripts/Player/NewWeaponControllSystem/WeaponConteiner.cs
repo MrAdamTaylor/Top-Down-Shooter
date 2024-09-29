@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 namespace Scripts.Player.NewWeaponControllSystem
 {
@@ -35,7 +34,7 @@ namespace Scripts.Player.NewWeaponControllSystem
             }
         }
         
-        public Weapon FindByType(WeaponType weaponType)
+        /*public Weapon FindByType(WeaponType weaponType)
         {
             Weapon weapon = null;
             for (int i = 0; i < _weapons.Length; i++)
@@ -72,7 +71,7 @@ namespace Scripts.Player.NewWeaponControllSystem
             {
                 return enumType;
             }
-        }
+        }*/
 
         public Weapon GetByIndex(int i)
         {

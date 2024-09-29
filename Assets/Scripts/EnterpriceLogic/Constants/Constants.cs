@@ -17,6 +17,7 @@ namespace EnterpriceLogic.Constants
         #region Enemy Characteristics
 
         public const float NPC_SPEED_MULTIPLYER = 3f;
+        public const float DELTA_VALUE_FOR_NPC_ROTATE_SYSTEM = 10;
 
         #endregion
 

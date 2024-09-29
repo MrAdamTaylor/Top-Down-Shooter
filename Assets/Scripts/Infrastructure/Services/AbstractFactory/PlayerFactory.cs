@@ -13,7 +13,7 @@ public class PlayerFactory : IPlayerFactory
         _weaponFactory = weaponFactory;
     }
 
-    public GameObject CreatePlayer(Vector3 position, Camera camera)
+    public GameObject Create(Vector3 position, Camera camera)
     {
         GameParams gameParams = (GameParams)ServiceLocator.Instance.GetData(typeof(GameParams));
         string playerName = "";
@@ -34,13 +34,10 @@ public class PlayerFactory : IPlayerFactory
         gameObject.AddComponent<AxisInputSystem>();
         IInputSystem system = gameObject.GetComponent<AxisInputSystem>();
         gameObject.AddComponent<MoveController>().Construct(player, system);
-        bool flag = Constants.SWITCH_WEAPON_MODE;
-        if (flag)
-        {
             gameObject.AddComponent<WeaponSwitcher>();
             gameObject.AddComponent<Scripts.Player.NewWeaponControllSystem.WeaponController>();
             WeaponProvider provider = gameObject.transform.GetComponentInChildren<WeaponProvider>();
-            _weaponFactory.CreateWeapons(provider.ReturnWeapons());
+            _weaponFactory.CreateAll(provider.ReturnWeapons());
             ServiceLocator.Instance.CleanData(typeof(Transform));
             WeaponSwitcher switcher = gameObject.GetComponent<WeaponSwitcher>();
             Scripts.Player.NewWeaponControllSystem.WeaponController controller =
@@ -48,16 +45,6 @@ public class PlayerFactory : IPlayerFactory
             CurrentWeaponConstructor currentWeaponConstructor = new CurrentWeaponConstructor(controller);
             switcher.Construct(provider, currentWeaponConstructor);
             controller.Construct(provider.ReturnWeapons(), switcher);
-        }
-        else
-        {
-            gameObject.AddComponent<Scripts.Player.NewWeaponControllSystem.WeaponController>();
-            WeaponProvider provider = gameObject.transform.GetComponentInChildren<WeaponProvider>();
-            Scripts.Player.NewWeaponControllSystem.WeaponController controller =
-                gameObject.GetComponent<Scripts.Player.NewWeaponControllSystem.WeaponController>();
-            controller.Construct(provider.GetActiveWeapon());
-        }
-
         return gameObject;
     }
 }

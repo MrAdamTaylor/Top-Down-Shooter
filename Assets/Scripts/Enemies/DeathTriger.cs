@@ -1,6 +1,5 @@
 using Mechanics;
 using Mechanics.BafMechaniks;
-using UnityEditor;
 using UnityEngine;
 
 namespace Enemies
@@ -21,6 +20,7 @@ namespace Enemies
             _killed = player.transform;
         }
 
+        //TODO - commented during compilation WebGL app
         /*private void OnDrawGizmos()
         {
             Handles.color = Color.green;

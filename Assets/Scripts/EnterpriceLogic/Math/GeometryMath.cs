@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class GeometryMath 
@@ -28,7 +26,6 @@ public static class GeometryMath
     public static float DotProductXY(Vector3 dir1, Vector3 dir2)
     {
         float dot = dir1.x * dir2.x + dir1.y * dir2.y;
-        Debug.Log("Dot calculate Operation: "+dot);
         return dot;
     }
 

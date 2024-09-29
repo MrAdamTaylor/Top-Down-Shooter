@@ -14,7 +14,7 @@ namespace Mechanics.Spawners
 
         private Transform _parent;
 
-        public PoolBase(Func<T> preloadFunc, Action<T> getAction, Action<T> returnAction, int preloadCount)
+        protected PoolBase(Func<T> preloadFunc, Action<T> getAction, Action<T> returnAction, int preloadCount)
         {
             _preloadFunc = preloadFunc;
             _getAction = getAction;

@@ -1,19 +1,15 @@
 using UnityEngine;
 
-public enum EInputSystem
+/*public enum EInputSystem
 {
     OldSystem,
     NewSystem
-}
+}*/
 
 
 public class MoveController : MonoBehaviour
 {
-    //[SerializeField] 
     private Player _player;
-    
-    //[SerializeField] 
-    //private EInputSystem _inputSystmType;
 
     private IInputSystem _inputSystem;
 
@@ -22,20 +18,6 @@ public class MoveController : MonoBehaviour
         _player = player;
         _inputSystem = inputSystem;
         _inputSystem.OnMove += this.OnMove;
-    }
-    
-    public void Awake()
-    {
-        /*if (_inputSystmType == EInputSystem.OldSystem)
-        {
-            _inputSystem = gameObject.AddComponent<KeyboardInput>();
-        }
-        else
-        {
-            _inputSystem = gameObject.AddComponent<AxisInputSystem>();
-        }
-
-        _inputSystem.OnMove += this.OnMove;*/
     }
     
     private void OnMove(Vector2 direction)

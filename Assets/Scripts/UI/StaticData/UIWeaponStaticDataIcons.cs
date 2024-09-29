@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "UIWeaponIcons", menuName = "UI/weaponICO")]
 public class UIWeaponStaticDataIcons : ScriptableObject
@@ -27,10 +26,6 @@ public struct AnimationConfigs
     public float MiddleDuration;
     public ElementAnimationConfigs ImageConfigs;
     public ElementAnimationConfigs TextConfigs;
-    /*public AnimationType _animationType;
-    public TweenConfigs StartScale;
-    public TweenConfigs EndScale;
-    public float ValueChangeDuration;*/
 }
 
 [Serializable]

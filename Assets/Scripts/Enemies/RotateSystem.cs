@@ -1,4 +1,5 @@
 using System.Collections;
+using EnterpriceLogic.Constants;
 using UnityEngine;
 
 public class RotateSystem : MonoBehaviour
@@ -79,7 +80,7 @@ public class RotateSystem : MonoBehaviour
 
         if (makeRotate)
         {
-            if((angleXY * Mathf.Rad2Deg) > 10)
+            if((angleXY * Mathf.Rad2Deg) > Constants.DELTA_VALUE_FOR_NPC_ROTATE_SYSTEM)
                 _body.transform.Rotate(0,angleXY * Mathf.Rad2Deg * clockwise * _rotateSpeed *Time.deltaTime,0);
         }
     }

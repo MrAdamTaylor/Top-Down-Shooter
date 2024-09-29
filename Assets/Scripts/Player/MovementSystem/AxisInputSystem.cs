@@ -9,17 +9,17 @@ internal class AxisInputSystem : MonoBehaviour, IInputSystem
     private float _verticalInput;
 
     private Vector2 _moveDirection;
-    
-    private void Move(Vector2 direction)
-    {
-        OnMove?.Invoke(direction);
-    }
-    
-    public void Update()
+
+    void Update()
     {
         GetInputValues();
         _moveDirection =  Vector2.up * _verticalInput + Vector2.right * _horizontalInput;
         Move(_moveDirection);
+    }
+
+    private void Move(Vector2 direction)
+    {
+        OnMove?.Invoke(direction);
     }
 
     private void GetInputValues()
