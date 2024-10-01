@@ -31,6 +31,7 @@ public class WeaponFactory : IWeaponFactory
             _data.AddWeaponTypeWithIndex(weapon[i].TypeWeapon,i);
             WeaponStaticData data = _weaponDictionary[weapon[i].TypeWeapon];
             data.BulletPoint = weapon[i].transform.Find(PrefabPath.WEAPON_POINTSHOOT_NAME);
+            data.ShootPosition = weapon[i].GetShootPosition();
             ShootControlSystem shootControlSystem = weapon[i].AddComponent<ShootControlSystem>();
             weapon[i].Construct(shootControlSystem, data);
             _weaponComponentHandler.GetShootSystem(weapon[i].transform, data.WType);

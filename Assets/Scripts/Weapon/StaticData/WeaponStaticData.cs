@@ -18,6 +18,7 @@ public class WeaponStaticData : ScriptableObject
     public AmmoCharacteristics AmmoValues;
 
     [HideInInspector]public Transform BulletPoint;
+    [HideInInspector] public Vector3 ShootPosition;
 }
 
 

@@ -15,6 +15,7 @@ public class ShootSystemFraction : CoomoonShootSystem
     
     private List<Vector3> _directions;
     private Transform _bulletPoint;
+    //private Vector3 _bulletPoint;
     private int _damage;
     private ISpecialEffectFactory _specialEffectFactory;
 
@@ -64,7 +65,7 @@ public class ShootSystemFraction : CoomoonShootSystem
     private void FourAngleShoot()
     {
         _directions = new List<Vector3>();
-        Vector3 direction = _bulletPoint.transform.forward;
+        Vector3 direction = _bulletPoint.forward;
         _directions.Add(direction);
         Vector3 axisRight = _bulletPoint.up;
         Quaternion axisRotationRight = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / 2, axisRight);
@@ -124,7 +125,7 @@ public class ShootSystemFraction : CoomoonShootSystem
     private void TwoAngleShoot()
     {
         _directions = new List<Vector3>();
-        Vector3 direction = _bulletPoint.transform.forward;
+        Vector3 direction = _bulletPoint.forward;
         _directions.Add(direction);
         Vector3 axisRight = _bulletPoint.up;
         Quaternion axisRotationRight = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / 2, axisRight);
