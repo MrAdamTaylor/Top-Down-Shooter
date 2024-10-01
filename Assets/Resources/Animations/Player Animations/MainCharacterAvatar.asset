@@ -6,7 +6,7 @@ Avatar:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Characters@Run ForwardAvatar
+  m_Name: MainCharacterAvatar
   m_AvatarSize: 13852
   m_Avatar:
     serializedVersion: 3
