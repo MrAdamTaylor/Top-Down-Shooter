@@ -7,11 +7,11 @@ public class GameStateMachine
     
     private Dictionary<Type, IExitableState> _states;
     private IExitableState _activeState;
-    public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain curtain, AllServices services, GameParams gameParams)
+    public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain curtain, AllServices services, LevelConfigs levelConfigs)
     {
         _states = new Dictionary<Type, IExitableState>
         {
-            [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services, gameParams),
+            [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services, levelConfigs),
             [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, 
                 services.Single<IPlayerFactory>(), 
                 services.Single<IUIFactory>())

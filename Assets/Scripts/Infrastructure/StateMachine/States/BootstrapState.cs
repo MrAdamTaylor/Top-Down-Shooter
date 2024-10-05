@@ -8,14 +8,15 @@ public class BootstrapState : IState
     private readonly AllServices _services;
     private string _level;
     
-    public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, AllServices services, GameParams gameParams)
+    public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, AllServices services, LevelConfigs levelConfigs)
     {
         _services = services;
         _stateMachine = stateMachine;
         _sceneLoader = sceneLoader;
         RegisterServices();
-        ServiceLocator.Instance.BindData(typeof(GameParams), gameParams);
-        _level = ChoseLevel(gameParams.ELevel);
+        ServiceLocator.Instance.BindData(typeof(LevelConfigs), levelConfigs);
+        ServiceLocator.Instance.BindData(typeof(PlayerConfigs), levelConfigs.PlayerConfigs);
+        _level = levelConfigs.LevelName;
     }
 
     public void Enter()
@@ -25,24 +26,6 @@ public class BootstrapState : IState
 
     public void Exit()
     {
-    }
-
-    private string ChoseLevel(Level gameParamsELevel)
-    {
-        string levelName = "";
-        switch (gameParamsELevel)
-        {
-            case Level.Level1:
-                levelName = Constants.FIRST_LEVEL;
-                break;
-            case Level.Level2:
-                levelName = Constants.SECOND_LEVEL;
-                break;
-            case Level.Level3:
-                levelName = Constants.LEVEL_THREE;
-                break;
-        }
-        return levelName;
     }
 
     private void RegisterServices()

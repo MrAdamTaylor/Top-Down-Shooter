@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TestedLevel
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 3b7237c9a5a9475285788e8b449c63c6, type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: LevelName
+    value: GameScene
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnerConfigsList.Array.size
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnerConfigsList.Array.data[0]
+    value: 
+    objectReference: {fileID: 11400000, guid: 68a0a19d92ab68149a14328ff8a17962, type: 2}
+  - target: {fileID: 0}
+    propertyPath: SpawnerConfigsList.Array.data[1]
+    value: 
+    objectReference: {fileID: 11400000, guid: 76ffe8238abb9544bbd467d095b18e68, type: 2}
+  - target: {fileID: 0}
+    propertyPath: PlayerConfigs
+    value: 
+    objectReference: {fileID: 11400000, guid: 379595518228ad04fba25ebe3e4500ba, type: 2}
+  - target: {fileID: 0}
+    propertyPath: WalkToEnd
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: KillAllMobs
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: MobsCount
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IsTime
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: PerSeconds
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: DestroyTower
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: TowerHealth
+    value: 0
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []

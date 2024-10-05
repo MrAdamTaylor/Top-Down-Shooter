@@ -1,35 +1,17 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameBootstraper : MonoBehaviour, ICoroutineRunner
 {
-    public LoadingCurtain Curtain;
+    [SerializeField] private LevelConfigs _levelConfigs;
+    [SerializeField] private LoadingCurtain _curtain;
     private Game _game;
-    [SerializeField] private GameParams _gameParams;
     
     public void StartGame()
     {
-        _game = new Game(this,Curtain, _gameParams);
+        _game = new Game(this,_curtain, _levelConfigs);
         _game.StateMachine.Enter<BootstrapState>();
         DontDestroyOnLoad(this);
     }
 }
 
-[System.Serializable]
-public struct GameParams
-{
-    public Level ELevel;
-    public PlayerType EPlayer;
-}
-
-public enum Level
-{
-    Level1,
-    Level2,
-    Level3
-}
-
-public enum PlayerType
-{
-    Player1,
-    Player2
-}
