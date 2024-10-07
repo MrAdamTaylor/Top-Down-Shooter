@@ -1,4 +1,5 @@
 using System;
+using EnterpriceLogic.Constants;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Enemy", menuName = "Enemy/Turret")]
@@ -13,7 +14,7 @@ public class EnemyTurretConfigs : EnemyConfigs
 public struct TurretSensorCharacteristics
 {
     public float TurretRotateSpeed;
-    [Range(-1, 1)] public float TurningRange;
+    [Range(-Constants.MAX_DOT_PRODUCT_VALUE, Constants.MAX_DOT_PRODUCT_VALUE)] public float TurningRange;
     public float DetectionHeight;
 }
 

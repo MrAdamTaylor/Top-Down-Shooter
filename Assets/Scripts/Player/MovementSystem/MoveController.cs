@@ -1,12 +1,5 @@
 using UnityEngine;
 
-/*public enum EInputSystem
-{
-    OldSystem,
-    NewSystem
-}*/
-
-
 public class MoveController : MonoBehaviour
 {
     private Player _player;

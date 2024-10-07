@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class GameStateMachine
 {
@@ -14,7 +13,8 @@ public class GameStateMachine
             [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services, levelConfigs),
             [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, 
                 services.Single<IPlayerFactory>(), 
-                services.Single<IUIFactory>())
+                services.Single<IUIFactory>()),
+            [typeof(GameLoopState)] = new GameLoopState(this),
         };
     }
 

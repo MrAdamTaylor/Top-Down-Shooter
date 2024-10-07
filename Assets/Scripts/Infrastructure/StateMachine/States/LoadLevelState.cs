@@ -21,11 +21,15 @@ public class LoadLevelState : IPayloadedState<string>
     
     public void Enter(string sceneName)
     {
+        var canvas = _loadingCurtain.GetComponent<Canvas>();
+        canvas.enabled = true;
+        _loadingCurtain.Show();
         _sceneLoader.Load(sceneName, OnLoaded);
     }
 
     public void Exit()
     {
+        _loadingCurtain.Hide();
     }
 
     private void OnLoaded()
@@ -36,6 +40,8 @@ public class LoadLevelState : IPayloadedState<string>
         GameObject canvas = GameObject.FindGameObjectWithTag("PlayerUI");
         GameObject ui = _uiFactory.CreateWithLoadConnect(PrefabPath.UI_PLAYER_PATH, canvas, player);
         ConstructUI(ui);
+        
+        _stateMachine.Enter<GameLoopState>();
     }
 
     private void ConstructUI(GameObject ui)

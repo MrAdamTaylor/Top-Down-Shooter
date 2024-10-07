@@ -6,7 +6,6 @@ using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using UnityEngine;
 
-
 public class AmmoAdapter : IDisposable
 {
     private CurrencyViewWithImage _currencyView;

@@ -15,7 +15,6 @@ public class ShootSystemFraction : CoomoonShootSystem
     
     private List<Vector3> _directions;
     private Transform _bulletPoint;
-    //private Vector3 _bulletPoint;
     private int _damage;
     private ISpecialEffectFactory _specialEffectFactory;
 

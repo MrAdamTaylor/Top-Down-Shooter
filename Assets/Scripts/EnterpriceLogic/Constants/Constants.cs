@@ -18,7 +18,9 @@ namespace EnterpriceLogic.Constants
 
         public const float NPC_SPEED_MULTIPLYER = 3f;
         public const float DELTA_VALUE_FOR_NPC_ROTATE_SYSTEM = 10;
+        public const int MAXIMUM_KAMIKAZE_EXPLOSION_LEVEL = 3;
 
+        public const float MAX_DOT_PRODUCT_VALUE = 1f;
         #endregion
 
 

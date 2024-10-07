@@ -15,17 +15,6 @@ public class PlayerFactory : IPlayerFactory
 
     public GameObject Create(Vector3 position, Camera camera)
     {
-        /*GameParams gameParams = (GameParams)ServiceLocator.Instance.GetData(typeof(GameParams));
-        string playerName = "";
-        if (gameParams.EPlayer == PlayerType.Player1)
-        {
-            playerName = PrefabPath.PLAYER_PATH_FIRST;
-        }
-        else
-        {
-            playerName = PrefabPath.PLAYER_PATH_SECOND;
-        }*/
-        //LevelConfigs data = (LevelConfigs)ServiceLocator.Instance.GetData(typeof(LevelConfigs));
         PlayerConfigs playerConfigs = (PlayerConfigs)ServiceLocator.Instance.GetData(typeof(PlayerConfigs));
         GameObject gameObject = _asserts.Instantiate(playerConfigs.PathToPlayer, position);
         Player player = gameObject.AddComponent<Player>();

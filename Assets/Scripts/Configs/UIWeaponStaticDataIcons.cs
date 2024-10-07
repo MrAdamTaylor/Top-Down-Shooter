@@ -9,7 +9,6 @@ public class UIWeaponStaticDataIcons : ScriptableObject
     public List<WeaponUIConfig> IcoConfigs;
 }
 
-
 [Serializable]
 public struct WeaponUIConfig
 {

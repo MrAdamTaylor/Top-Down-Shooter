@@ -77,11 +77,6 @@ public class AmmoController : MonoBehaviour
         return _ammoStorage;
     }
 
-    public AmmoStorage GetStorage()
-    {
-        return _ammoStorage;
-    }
-
     private void WasteAmmo()
     {
         if (!_infinity)

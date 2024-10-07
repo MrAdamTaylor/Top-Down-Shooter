@@ -56,7 +56,7 @@ MonoBehaviour:
       TextConfigs:
         AnimationType: 1
         StartConfigs:
-          Scale: {x: 0, y: 2, z: 0}
+          Scale: {x: 0, y: 4, z: 0}
           RillRate: 0.2
           EaseType: 0
         EndConfigs:
@@ -71,7 +71,7 @@ MonoBehaviour:
       ImageConfigs:
         AnimationType: 0
         StartConfigs:
-          Scale: {x: 1, y: 0, z: 0}
+          Scale: {x: 2, y: 0, z: 0}
           RillRate: 0.05
           EaseType: 0
         EndConfigs:

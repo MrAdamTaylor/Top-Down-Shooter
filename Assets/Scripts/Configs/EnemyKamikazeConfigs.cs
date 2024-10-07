@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using EnterpriceLogic.Constants;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Enemy", menuName = "Enemy/Kimikaze")]
@@ -9,9 +10,10 @@ public class EnemyKamikazeConfigs : EnemyWalkingConfigs
 
     public void OnValidate()
     {
-        if (ExplosionRadius.Count > 3)
+        if (ExplosionRadius.Count > Constants.MAXIMUM_KAMIKAZE_EXPLOSION_LEVEL)
         {
-            ExplosionRadius.RemoveRange(3-1, ExplosionRadius.Count-3);
+            ExplosionRadius.RemoveRange(Constants.MAXIMUM_KAMIKAZE_EXPLOSION_LEVEL-1, 
+                ExplosionRadius.Count-Constants.MAXIMUM_KAMIKAZE_EXPLOSION_LEVEL);
         }
 
         if (ExplosionRadius.Count > 1)

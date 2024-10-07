@@ -34,44 +34,6 @@ namespace Scripts.Player.NewWeaponControllSystem
             }
         }
         
-        /*public Weapon FindByType(WeaponType weaponType)
-        {
-            Weapon weapon = null;
-            for (int i = 0; i < _weapons.Length; i++)
-            {
-                switch (weaponType)
-                {
-                    case WeaponType.Pistol:
-                        if (_weapons[i].TypeWeapon == WeaponType.Pistol)
-                            weapon = _weapons[i];
-                        break;
-                    case WeaponType.ShootGun:
-                        if (_weapons[i].TypeWeapon == WeaponType.ShootGun)
-                            weapon= _weapons[i];
-                        break;
-                    case WeaponType.Rifle:
-                        if (_weapons[i].TypeWeapon == WeaponType.Rifle)
-                            weapon = _weapons[i];
-                        break;
-                    default:
-                        throw new Exception("Don't known type of weapon");
-                }
-            }
-            return weapon;
-        }
-
-        public WeaponType ReturnWeaponEnumType(WeaponType weaponType)
-        {
-            WeaponType enumType = ReturnType(weaponType);
-            if (enumType == WeaponType.Undefinded)
-            {
-                throw new Exception("Not find of Weapon Type by Class");
-            }
-            else
-            {
-                return enumType;
-            }
-        }*/
 
         public Weapon GetByIndex(int i)
         {

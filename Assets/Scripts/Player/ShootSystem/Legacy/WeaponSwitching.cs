@@ -11,6 +11,15 @@ public class WeaponSwitching : MonoBehaviour
 
     private WeaponController _weaponController;
 
+    public void Construct(WeaponController weaponController)
+    {
+        _weaponController = weaponController;
+        for (int i = 0; i < _weapons.Count; i++)
+        {
+            _weaponCount++;
+        }
+    }
+
     void Update()
     {
         int previousSelectedWeapon = _selectedWeapon;
@@ -42,15 +51,6 @@ public class WeaponSwitching : MonoBehaviour
         if (previousSelectedWeapon != _selectedWeapon)
         {
             SelectWeapon();
-        }
-    }
-
-    public void Construct(WeaponController weaponController)
-    {
-        _weaponController = weaponController;
-        for (int i = 0; i < _weapons.Count; i++)
-        {
-            _weaponCount++;
         }
     }
 
@@ -88,53 +88,8 @@ public class WeaponSwitching : MonoBehaviour
         }
     }
 
-    /*public Weapon FindByType(WeaponType weaponType)
-    {
-        Weapon weapon = null;
-        for (int i = 0; i < _weapons.Count; i++)
-        {
-            switch (weaponType)
-            {
-                case WeaponType.Pistol:
-                    if (_weapons[i].GetType() == typeof(Pistol))
-                        weapon = _weapons[i];
-                    break;
-                case WeaponType.ShootGun:
-                    if (_weapons[i].GetType() == typeof(Shootgun))
-                        weapon= _weapons[i];
-                    break;
-                case WeaponType.Rifle:
-                    if (_weapons[i].GetType() == typeof(Rifle))
-                        weapon = _weapons[i];
-                    break;
-                default:
-                    throw new Exception("Don't known type of weapon");
-            }
-        }
-        return weapon;
-    }*/
-
-    /*public WeaponType FindByClass(Weapon weapon)
-    {
-        switch (weapon)
-        {
-            case Pistol:
-                return WeaponType.Pistol;
-                break;
-             case   Shootgun:
-                return WeaponType.ShootGun;
-                break;
-             case Rifle:
-                return WeaponType.Rifle;
-                break;
-             default:
-                return WeaponType.Undefinded;
-        }
-    }*/
-
     private void SelectWeapon()
     {
-        //int j = 0;
         for (int i = 0; i < _weapons.Count; i++)
         {
             if (i == _selectedWeapon)
@@ -146,7 +101,6 @@ public class WeaponSwitching : MonoBehaviour
             {
                 _weapons[i].gameObject.SetActive(false);
             }
-            //j++;
         }
     }
 }

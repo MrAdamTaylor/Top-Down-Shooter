@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
@@ -7,7 +8,6 @@ using UnityEngine;
 
 public class UIAnimationPlayer
 {
-
     private Sequence _sequence;
     
     public void Play(AnimationConfigs animationConfigs, Transform image, Transform text, TweenerCore<long,long, NoOptions> tweenerCore = null)
@@ -16,22 +16,27 @@ public class UIAnimationPlayer
         _sequence = DOTween.Sequence();
         Vector3 imagePosition = image.position;
         Vector3 textPosition = text.position;
+        
         if (tweenerCore.IsNull())
+        {
             _sequence.Append(ReturnStarterSequence(animationConfigs.ImageConfigs.StartConfigs,
-                    animationConfigs.TextConfigs.StartConfigs, text, image))
+                    animationConfigs.TextConfigs.StartConfigs, text, image,
+                    animationConfigs.ImageConfigs.AnimationType))
                 .Append(ReturnEndedSequence(animationConfigs.ImageConfigs.EndConfigs, 
                     animationConfigs.TextConfigs.EndConfigs, text, image, textPosition, imagePosition));
+        }
         else
         {
             _sequence.Append(ReturnStarterSequence(animationConfigs.ImageConfigs.StartConfigs,
-                    animationConfigs.TextConfigs.StartConfigs, text, image))
+                    animationConfigs.TextConfigs.StartConfigs, text, image, 
+                    animationConfigs.ImageConfigs.AnimationType))
                 .Append(tweenerCore)
                 .Append(ReturnEndedSequence(animationConfigs.ImageConfigs.EndConfigs, 
                     animationConfigs.TextConfigs.EndConfigs, text, image, textPosition, imagePosition));
         }
     }
 
-    private Tween ReturnEndedSequence(TweenConfigs imageConfigsEndConfigs, TweenConfigs textConfigsEndConfigs, Transform text, Transform image, Vector3 textPosition, Vector3 imagePosition)
+    private Sequence ReturnEndedSequence(TweenConfigs imageConfigsEndConfigs, TweenConfigs textConfigsEndConfigs, Transform text, Transform image, Vector3 textPosition, Vector3 imagePosition)
     {
         return DOTween
             .Sequence()
@@ -41,14 +46,32 @@ public class UIAnimationPlayer
             .SetEase(imageConfigsEndConfigs.EaseType);
     }
 
-    private Tween ReturnStarterSequence(TweenConfigs imageConfigsStartConfigs, TweenConfigs textConfigsStartConfigs, Transform text, Transform image)
+    private Sequence ReturnStarterSequence(TweenConfigs imageStartConfigs, TweenConfigs textStartConfigs, 
+        Transform text, Transform image, AnimationType animationType)
     {
         return DOTween
             .Sequence()
-            .Append(text.transform.DOShakePosition(textConfigsStartConfigs.RillRate, textConfigsStartConfigs.Scale, Constants.UI_ELEMENT_VIBRATION))
-            .SetEase(textConfigsStartConfigs.EaseType)
-            .Insert(0, image.transform.DOShakePosition(imageConfigsStartConfigs.RillRate, imageConfigsStartConfigs.Scale, Constants.UI_ELEMENT_VIBRATION))
-            .SetEase(imageConfigsStartConfigs.EaseType);
+            .Append(ReturnAnimationByType(animationType,imageStartConfigs, image))
+            .SetEase(textStartConfigs.EaseType)
+            .Insert(0, (ReturnAnimationByType(animationType,textStartConfigs, text)))
+            .SetEase(imageStartConfigs.EaseType);
     }
-    
+
+    private Sequence ReturnAnimationByType(AnimationType animationType ,TweenConfigs tweenConfigs, Transform transform)
+    {
+        switch (animationType)
+        {
+            case AnimationType.Scale:
+                return DOTween.Sequence()
+                    .Append(transform.DOMove(tweenConfigs.Scale, tweenConfigs.RillRate));
+            break;
+            case AnimationType.Shaking:
+                return DOTween.Sequence()
+                    .Append(transform.DOShakePosition(tweenConfigs.RillRate, tweenConfigs.Scale, Constants.UI_ELEMENT_VIBRATION));
+                break;
+            default:
+                throw new Exception("Unknown Type of Tween Weapon UI Animation");
+        }
+    }
+
 }

@@ -1,7 +1,5 @@
-using System.Reflection.Emit;
 using EnterpriceLogic.Constants;
 using EnterpriceLogic.Utilities;
-using Scripts.Player.NewWeaponControllSystem;
 using UnityEngine;
 
 [RequireComponent(typeof(ShootControlSystem))]
