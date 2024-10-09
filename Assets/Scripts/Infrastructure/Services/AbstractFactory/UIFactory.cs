@@ -1,18 +1,11 @@
 using System.IO;
 using EnterpriceLogic.Constants;
-using EnterpriceLogic.Utilities;
 using Infrastructure.Services.AssertService.ExtendetAssertService;
 using UnityEngine;
 
 public class UIFactory : IUIFactory
 {
-    private readonly IAsserts _assert;
     private readonly IAssertByString<GameObject> _assertObj;
-
-    public UIFactory(IAsserts asserts)
-    {
-        _assert = asserts;
-    }
 
     public UIFactory(AssertBuilder builder)
     {
@@ -38,16 +31,9 @@ public class UIFactory : IUIFactory
 
         RectTransform rectTransform = parentTransform.GetComponent<RectTransform>();
         Vector3 position = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, rectTransform.localPosition.z);
-
-        GameObject ui = null;
-        if (!_assert.IsNull())
-        {
-            ui = _assert.Instantiate(path, position);
-        }
-        else
-        {
-            ui = _assertObj.Assert(path, position);
-        }
+        
+        GameObject ui  = _assertObj.Assert(path, position);
+        
 
         ui.transform.SetParent(parentTransform.transform, false); 
 

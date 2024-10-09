@@ -9,21 +9,8 @@ public class WeaponFactory : IWeaponFactory
     private WeaponStaticData[] _weaponStaticDatas;
     private WeaponComponentHandler _weaponComponentHandler;
     private WeaponEffectsConteiner _weaponEffectsConteiner;
-
     private Dictionary<WeaponType, WeaponStaticData> _weaponDictionary;
-
     private WeaponData _data;
-    
-    
-    
-    /*public WeaponFactory(IAsserts asserts)
-    {
-        _weaponEffectsConteiner = new WeaponEffectsConteiner(asserts);
-        _data = new WeaponData();
-        _weaponStaticDatas = Resources.LoadAll<WeaponStaticData>("StaticData/WeaponData");
-        _weaponDictionary = _weaponStaticDatas.ToDictionary(x => x.WType, y => y);
-        _weaponComponentHandler = new WeaponComponentHandler();
-    }*/
     
     public WeaponFactory(AssertBuilder asserts)
     {

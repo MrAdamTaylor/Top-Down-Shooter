@@ -3,24 +3,6 @@ using EnterpriceLogic.Utilities;
 using Infrastructure.Services.AssertService.ExtendetAssertService;
 using UnityEngine;
 
-public class AssertBuilder
-{
-    public IAssertByObj<T> BuildAssertServiceByObj<T>() where T : Object
-    {
-        return new AssertServiceObj<T>();
-    }
-
-    public IAssertByString<T> BuildAssertServiceByString<T>() where T : Object
-    {
-        return new AssertServiceString<T>();
-    }
-    
-    public AssertLoader<T> LoadService<T>() where T : Object
-    {
-        return new AssertLoader<T>();
-    }
-}
-
 public class BootstrapState : IState
 {
     private GameStateMachine _stateMachine;
@@ -60,24 +42,9 @@ public class BootstrapState : IState
 
     private void RegisterPlayerServices(PlayerConfigs levelConfigsPlayerConfigs)
     {
-        /*ServiceLocator.Instance.BindData(typeof(IAssertByString<LineRenderer>), 
-            new AssertServiceString<LineRenderer>());
-        ServiceLocator.Instance.BindData(typeof(IAssertByString<TrailRenderer>), 
-            new AssertServiceString<TrailRenderer>());
-        ServiceLocator.Instance.BindData(typeof(IAssertByString<GameObject>), 
-            new AssertServiceString<GameObject>());
-        
-        AssertServiceString<LineRenderer> lineRendererAssert = (AssertServiceString<LineRenderer>)ServiceLocator
-            .Instance.GetData(typeof(IAssertByString<LineRenderer>));
-        AssertServiceString<TrailRenderer> trailRendererAssert = (AssertServiceString<TrailRenderer>)ServiceLocator
-            .Instance.GetData(typeof(IAssertByString<TrailRenderer>));*/
-        _services.RegisterSingle<IAsserts>(new Asserts());
         _services.RegisterSingle<ISpecialEffectFactory>
             (new SpecialEffectFactory(_assertBuilder));
-        
         _services.RegisterSingle<IWeaponFactory>(new WeaponFactory(_assertBuilder));
-        //_services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_services.Single<IAsserts>(), 
-            //_services.Single<IWeaponFactory>()));
         _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_assertBuilder, 
             _services.Single<IWeaponFactory>()));
         _services.RegisterSingle<IUIFactory>(new UIFactory(_assertBuilder));

@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class SpecialEffectFactory : ISpecialEffectFactory
 {
-    private IAsserts _asserts;
-
     private IAssertByObj<LineRenderer> _lineAssertObj;
     private IAssertByString<TrailRenderer> _bulletAssert;
     private IAssertByString<LineRenderer> _lineAssert;
+    private IAssertByString<ParticleSystem> _particleAssert;
 
     public SpecialEffectFactory(AssertBuilder builder)
     {
+        _particleAssert = builder.BuildAssertServiceByString<ParticleSystem>();
         _bulletAssert = builder.BuildAssertServiceByString<TrailRenderer>();
         _lineAssert = builder.BuildAssertServiceByString<LineRenderer>();
         _lineAssertObj = builder.BuildAssertServiceByObj<LineRenderer>();
@@ -20,7 +20,6 @@ public class SpecialEffectFactory : ISpecialEffectFactory
 
     public void CreateLaser(MonoBehaviour behaviour, LineRenderer lineRenderer, Vector3 start, Vector3 end, float fadeDuration, Transform parent)
     {
-        //LineRenderer lr = _lineAssert.Assert(PrefabPath.LINE_RENDERER_PATH);
         LineRenderer lr = _lineAssertObj.Assert(lineRenderer);
         lr.transform.parent = parent.transform;
         lr.SetPositions(new Vector3[2] {start, end});
@@ -63,7 +62,7 @@ public class SpecialEffectFactory : ISpecialEffectFactory
         trail.transform.position = hitPoint;
         if (madeImpact)
         {
-            _asserts.InstantiateParticle(PrefabPath.IMPACT_PARTICLE_EFFECT, hitPoint, Quaternion.LookRotation(hitNormal));
+            _particleAssert.Assert(PrefabPath.IMPACT_PARTICLE_EFFECT, hitPoint, Quaternion.LookRotation(hitNormal));
         }
         Object.Destroy(trail.gameObject, trail.time);
     }
