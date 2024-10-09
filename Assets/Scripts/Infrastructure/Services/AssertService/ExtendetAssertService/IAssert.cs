@@ -1,4 +1,5 @@
 
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Infrastructure.Services.AssertService.ExtendetAssertService
@@ -45,7 +46,7 @@ namespace Infrastructure.Services.AssertService.ExtendetAssertService
     {
         public T Assert(T objPath)
         {
-            throw new System.NotImplementedException();
+            return Object.Instantiate(objPath);
         }
 
         public T Assert(T objPath, Vector3 pos)
@@ -66,6 +67,39 @@ namespace Infrastructure.Services.AssertService.ExtendetAssertService
         public T Assert(T objPath, Vector3 pos, Quaternion quaternion, Transform parent)
         {
             throw new System.NotImplementedException();
+        }
+    }
+
+    public class AssertLoader<T> : IAssertByString<T> where T : Object
+    {
+        public T Assert(string objPath)
+        {
+            T prefab = Resources.Load<T>(objPath);
+            return prefab;
+        }
+
+        public T Assert(string objPath, Vector3 pos)
+        {
+            T particleSystem = Resources.Load<T>(objPath);
+            return particleSystem;
+        }
+
+        public T Assert(string objPath, Vector3 pos, Quaternion quaternion)
+        {
+            T particleSystem = Resources.Load<T>(objPath);
+            return particleSystem;
+        }
+
+        public T Assert(string objPath, Vector3 pos, Transform parent)
+        {
+            T particleSystem = Resources.Load<T>(objPath);
+            return particleSystem;
+        }
+
+        public T Assert(string objPath, Vector3 pos, Quaternion quaternion, Transform parent)
+        {
+            T particleSystem = Resources.Load<T>(objPath);
+            return particleSystem;
         }
     }
 

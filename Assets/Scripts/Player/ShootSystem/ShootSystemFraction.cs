@@ -87,10 +87,13 @@ public class ShootSystemFraction : CoomoonShootSystem
 
     private void ShootFraction()
     {
+        if (_shootTrash.transform.childCount != 0)
+        {
             foreach (Transform child in _shootTrash.transform)
             {
                 Destroy(child.gameObject);
             }
+        }
 
             for (int i = 0; i < _fractionShotCharacteristics.AmountFraction; i++)
             {

@@ -13,5 +13,6 @@ namespace EnterpriceLogic.Constants
         public const string PLAYER_PATH_FIRST = "Prefabs/Player/PlayerEmptyFull";
         public const string HOT_TRAIL_PATH = "Prefabs/WeaponsPrefabs/HotTrail";
         public const string IMPACT_PARTICLE_EFFECT = "Prefabs/WeaponsPrefabs/SparksEffect";
+        
     }
 }

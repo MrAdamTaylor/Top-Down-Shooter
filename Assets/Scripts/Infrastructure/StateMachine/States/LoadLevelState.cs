@@ -44,7 +44,7 @@ public class LoadLevelState : IPayloadedState<string>
 
         #region Temp Assert Test
 
-        SpawnerTestAssert testAssert = (SpawnerTestAssert)ServiceLocator.Instance.GetData(typeof(SpawnerTestAssert));
+        /*SpawnerTestAssert testAssert = (SpawnerTestAssert)ServiceLocator.Instance.GetData(typeof(SpawnerTestAssert));
         
         AssertServiceString<ParticleSystem> particleAssert =(AssertServiceString<ParticleSystem>)ServiceLocator
             .Instance.GetData(typeof(IAssertByString<ParticleSystem>));
@@ -61,7 +61,7 @@ public class LoadLevelState : IPayloadedState<string>
         particleAssert.Assert(testAssert.PathToParticle);
         lineRendererAssert.Assert(testAssert.PathToLine);
         trailRendererAssert.Assert(testAssert.PathToTrail);
-        objAssert.Assert(testAssert.PathToObject);
+        objAssert.Assert(testAssert.PathToObject);*/
 
         #endregion
         

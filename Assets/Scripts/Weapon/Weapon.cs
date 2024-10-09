@@ -6,9 +6,7 @@ public class Weapon : MonoBehaviour
     public WeaponType TypeWeapon;
     
     [SerializeField] public Transform ShootPoint;
-
-    [SerializeField] private Vector3 _vectorShift;
-    [SerializeField] private Vector3 _gunDirection;
+    
     private ShootControlSystem _shootSystem;
 
     [SerializeField] private WeaponCharacteristics Characteristics;
@@ -24,15 +22,6 @@ public class Weapon : MonoBehaviour
     {
         _shootSystem.UpdateValues(Characteristics);
         _shootSystem.Shoot();
-    }
-    
-    public void OnDrawGizmos()
-    {
-        Vector3 position = transform.TransformPoint(_vectorShift);
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawRay(position, _gunDirection);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(position + _gunDirection, 0.05f);
     }
 
     public Vector3 GetShootPosition()

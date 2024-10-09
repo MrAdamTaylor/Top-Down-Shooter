@@ -14,7 +14,18 @@ public class WeaponFactory : IWeaponFactory
 
     private WeaponData _data;
     
-    public WeaponFactory(IAsserts asserts)
+    
+    
+    /*public WeaponFactory(IAsserts asserts)
+    {
+        _weaponEffectsConteiner = new WeaponEffectsConteiner(asserts);
+        _data = new WeaponData();
+        _weaponStaticDatas = Resources.LoadAll<WeaponStaticData>("StaticData/WeaponData");
+        _weaponDictionary = _weaponStaticDatas.ToDictionary(x => x.WType, y => y);
+        _weaponComponentHandler = new WeaponComponentHandler();
+    }*/
+    
+    public WeaponFactory(AssertBuilder asserts)
     {
         _weaponEffectsConteiner = new WeaponEffectsConteiner(asserts);
         _data = new WeaponData();

@@ -7,18 +7,21 @@ public class SpecialEffectFactory : ISpecialEffectFactory
 {
     private IAsserts _asserts;
 
+    private IAssertByObj<LineRenderer> _lineAssertObj;
     private IAssertByString<TrailRenderer> _bulletAssert;
     private IAssertByString<LineRenderer> _lineAssert;
 
-    public SpecialEffectFactory(IAssertByString<TrailRenderer> bullet, IAssertByString<LineRenderer> shootLine)
+    public SpecialEffectFactory(AssertBuilder builder)
     {
-        _bulletAssert = bullet;
-        _lineAssert = shootLine;
+        _bulletAssert = builder.BuildAssertServiceByString<TrailRenderer>();
+        _lineAssert = builder.BuildAssertServiceByString<LineRenderer>();
+        _lineAssertObj = builder.BuildAssertServiceByObj<LineRenderer>();
     }
 
     public void CreateLaser(MonoBehaviour behaviour, LineRenderer lineRenderer, Vector3 start, Vector3 end, float fadeDuration, Transform parent)
     {
-        LineRenderer lr = _lineAssert.Assert(PrefabPath.LINE_RENDERER_PATH);
+        //LineRenderer lr = _lineAssert.Assert(PrefabPath.LINE_RENDERER_PATH);
+        LineRenderer lr = _lineAssertObj.Assert(lineRenderer);
         lr.transform.parent = parent.transform;
         lr.SetPositions(new Vector3[2] {start, end});
         behaviour.StartCoroutine(FadeLaser(lr, lineRenderer, fadeDuration));

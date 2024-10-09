@@ -1,8 +1,25 @@
 using System.Collections.Generic;
-using System.Linq;
-using EnterpriceLogic.Constants;
+using EnterpriceLogic.Utilities;
 using Infrastructure.Services.AssertService.ExtendetAssertService;
 using UnityEngine;
+
+public class AssertBuilder
+{
+    public IAssertByObj<T> BuildAssertServiceByObj<T>() where T : Object
+    {
+        return new AssertServiceObj<T>();
+    }
+
+    public IAssertByString<T> BuildAssertServiceByString<T>() where T : Object
+    {
+        return new AssertServiceString<T>();
+    }
+    
+    public AssertLoader<T> LoadService<T>() where T : Object
+    {
+        return new AssertLoader<T>();
+    }
+}
 
 public class BootstrapState : IState
 {
@@ -10,16 +27,62 @@ public class BootstrapState : IState
     private readonly SceneLoader _sceneLoader;
     private readonly AllServices _services;
     private string _level;
+    private AssertBuilder _assertBuilder;
     
     public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, AllServices services, LevelConfigs levelConfigs)
     {
         _services = services;
         _stateMachine = stateMachine;
         _sceneLoader = sceneLoader;
-        RegisterServices(levelConfigs.SpawnerConfigsList);
+        _assertBuilder = new AssertBuilder();
         ServiceLocator.Instance.BindData(typeof(LevelConfigs), levelConfigs);
+
+        if (!levelConfigs.PlayerConfigs.IsNull())
+        {
+            Debug.Log($"<color=green>Player Configs Loaded");
+            RegisterPlayerServices(levelConfigs.PlayerConfigs);
+        }
+
+        if (levelConfigs.SpawnerConfigsList.Count != 0)
+        {
+            RegisterSpawnerServices(levelConfigs.SpawnerConfigsList);
+        }
+
         ServiceLocator.Instance.BindData(typeof(PlayerConfigs), levelConfigs.PlayerConfigs);
+        RegisterServices(levelConfigs.SpawnerConfigsList);
         _level = levelConfigs.LevelName;
+    }
+
+    private void RegisterSpawnerServices(List<SpawnerConfigs> levelConfigsSpawnerConfigsList)
+    {
+        Debug.Log("Spawners count is "+levelConfigsSpawnerConfigsList.Count);
+    }
+
+    private void RegisterPlayerServices(PlayerConfigs levelConfigsPlayerConfigs)
+    {
+        /*ServiceLocator.Instance.BindData(typeof(IAssertByString<LineRenderer>), 
+            new AssertServiceString<LineRenderer>());
+        ServiceLocator.Instance.BindData(typeof(IAssertByString<TrailRenderer>), 
+            new AssertServiceString<TrailRenderer>());
+        ServiceLocator.Instance.BindData(typeof(IAssertByString<GameObject>), 
+            new AssertServiceString<GameObject>());
+        
+        AssertServiceString<LineRenderer> lineRendererAssert = (AssertServiceString<LineRenderer>)ServiceLocator
+            .Instance.GetData(typeof(IAssertByString<LineRenderer>));
+        AssertServiceString<TrailRenderer> trailRendererAssert = (AssertServiceString<TrailRenderer>)ServiceLocator
+            .Instance.GetData(typeof(IAssertByString<TrailRenderer>));*/
+        _services.RegisterSingle<IAsserts>(new Asserts());
+        _services.RegisterSingle<ISpecialEffectFactory>
+            (new SpecialEffectFactory(_assertBuilder));
+        
+        _services.RegisterSingle<IWeaponFactory>(new WeaponFactory(_assertBuilder));
+        //_services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_services.Single<IAsserts>(), 
+            //_services.Single<IWeaponFactory>()));
+        _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_assertBuilder, 
+            _services.Single<IWeaponFactory>()));
+        _services.RegisterSingle<IUIFactory>(new UIFactory(_assertBuilder));
+        ServiceLocator.Instance.BindData(typeof(ISpecialEffectFactory),_services.Single<ISpecialEffectFactory>());
+        ServiceLocator.Instance.BindData(typeof(UIAnimationPlayer), new UIAnimationPlayer());
     }
 
     public void Enter()
@@ -34,30 +97,18 @@ public class BootstrapState : IState
     private void RegisterServices(List<SpawnerConfigs> spawnerConfigsEnumerable)
     {
         #region Register New AssertServices
-        ServiceLocator.Instance.BindData(typeof(IAssertByString<LineRenderer>), new AssertServiceString<LineRenderer>());
-        ServiceLocator.Instance.BindData(typeof(IAssertByString<TrailRenderer>), new AssertServiceString<TrailRenderer>());
+        
         ServiceLocator.Instance.BindData(typeof(IAssertByObj<GameObject>), new AssertServiceObj<GameObject>());
         
-        AssertServiceString<LineRenderer> lineRendererAssert = (AssertServiceString<LineRenderer>)ServiceLocator
-            .Instance.GetData(typeof(IAssertByString<LineRenderer>));
-        AssertServiceString<TrailRenderer> trailRendererAssert = (AssertServiceString<TrailRenderer>)ServiceLocator
-            .Instance.GetData(typeof(IAssertByString<TrailRenderer>));
+        
         AssertServiceObj<GameObject> gameObj = (AssertServiceObj<GameObject>)ServiceLocator
             .Instance.GetData(typeof(IAssertByObj<GameObject>));
         
         #endregion
         
-        _services.RegisterSingle<IAsserts>(new Asserts());
-        _services.RegisterSingle<ISpecialEffectFactory>
-            (new SpecialEffectFactory(trailRendererAssert,lineRendererAssert));
-        
-        _services.RegisterSingle<IWeaponFactory>(new WeaponFactory(_services.Single<IAsserts>()));
-        _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_services.Single<IAsserts>(), 
-            _services.Single<IWeaponFactory>()));
-        _services.RegisterSingle<IUIFactory>(new UIFactory(_services.Single<IAsserts>()));
+
         _services.RegisterSingle<IEnemyFactory>(new EnemyFactory(gameObj));
-        ServiceLocator.Instance.BindData(typeof(ISpecialEffectFactory),_services.Single<ISpecialEffectFactory>());
-        ServiceLocator.Instance.BindData(typeof(UIAnimationPlayer), new UIAnimationPlayer());
+
 
         #region Temp Assert Test
         SpawnerConfigs forAssert = spawnerConfigsEnumerable[0];

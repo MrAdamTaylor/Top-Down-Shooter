@@ -1,4 +1,5 @@
 using EnterpriceLogic.Constants;
+using Infrastructure.Services.AssertService.ExtendetAssertService;
 using Scripts.Player.NewWeaponControllSystem;
 using UnityEngine;
 
@@ -6,17 +7,26 @@ public class PlayerFactory : IPlayerFactory
 {
     private readonly IAsserts _asserts;
     private readonly IWeaponFactory _weaponFactory;
+    private readonly IAssertByString<GameObject> _objAssert;
     
     public PlayerFactory(IAsserts assets, IWeaponFactory weaponFactory)
     {
         _asserts = assets;
         _weaponFactory = weaponFactory;
     }
+    
+    public PlayerFactory(AssertBuilder builder, IWeaponFactory weaponFactory)
+    {
+        //_asserts = assets;
+        _objAssert = new AssertServiceString<GameObject>();
+        _weaponFactory = weaponFactory;
+    }
 
     public GameObject Create(Vector3 position, Camera camera)
     {
         PlayerConfigs playerConfigs = (PlayerConfigs)ServiceLocator.Instance.GetData(typeof(PlayerConfigs));
-        GameObject gameObject = _asserts.Instantiate(playerConfigs.PathToPlayer, position);
+        //GameObject gameObject = _asserts.Instantiate(playerConfigs.PathToPlayer, position);
+        GameObject gameObject = _objAssert.Assert(playerConfigs.PathToPlayer, position);
         Player player = gameObject.AddComponent<Player>();
         ServiceLocator.Instance.BindData(typeof(Transform), player.transform);
         gameObject.AddComponent<CameraFollower>().Construct(camera, player);
