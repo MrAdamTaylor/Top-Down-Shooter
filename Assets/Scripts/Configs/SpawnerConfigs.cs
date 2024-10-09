@@ -4,4 +4,3 @@ public class SpawnerConfigs : ScriptableObject
 {
     public float StartSpawnInterval;
 }
-

@@ -1,4 +1,5 @@
 using EnterpriceLogic.Constants;
+using Infrastructure.Services.AssertService.ExtendetAssertService;
 using UnityEngine;
 
 public class LoadLevelState : IPayloadedState<string>
@@ -40,6 +41,29 @@ public class LoadLevelState : IPayloadedState<string>
         GameObject canvas = GameObject.FindGameObjectWithTag("PlayerUI");
         GameObject ui = _uiFactory.CreateWithLoadConnect(PrefabPath.UI_PLAYER_PATH, canvas, player);
         ConstructUI(ui);
+
+        #region Temp Assert Test
+
+        SpawnerTestAssert testAssert = (SpawnerTestAssert)ServiceLocator.Instance.GetData(typeof(SpawnerTestAssert));
+        
+        AssertServiceString<ParticleSystem> particleAssert =(AssertServiceString<ParticleSystem>)ServiceLocator
+            .Instance.GetData(typeof(IAssertByString<ParticleSystem>));
+        
+        AssertServiceString<LineRenderer> lineRendererAssert = (AssertServiceString<LineRenderer>)ServiceLocator
+            .Instance.GetData(typeof(IAssertByString<LineRenderer>));
+        
+        AssertServiceString<TrailRenderer> trailRendererAssert = (AssertServiceString<TrailRenderer>)ServiceLocator
+            .Instance.GetData(typeof(IAssertByString<TrailRenderer>));
+        
+        AssertServiceString<GameObject> objAssert = (AssertServiceString<GameObject>)ServiceLocator
+            .Instance.GetData(typeof(IAssertByString<GameObject>));
+
+        particleAssert.Assert(testAssert.PathToParticle);
+        lineRendererAssert.Assert(testAssert.PathToLine);
+        trailRendererAssert.Assert(testAssert.PathToTrail);
+        objAssert.Assert(testAssert.PathToObject);
+
+        #endregion
         
         _stateMachine.Enter<GameLoopState>();
     }

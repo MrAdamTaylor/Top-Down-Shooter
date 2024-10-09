@@ -14,7 +14,7 @@ public class WeaponEffectsConteiner
     {
         _asserts = asserts;
         _particleSystem = _asserts.LoadParticle(PrefabPath.IMPACT_PARTICLE_EFFECT);
-        _trailRenderer = _asserts.LoadTrailRenderer(PrefabPath.HOT_TRAIL_PATH);
+        //_trailRenderer = _asserts.LoadTrailRenderer(PrefabPath.HOT_TRAIL_PATH);
         _lineRenderer = _asserts.LoadLineRenderer(PrefabPath.LINE_RENDERER_PATH);
     }
 
@@ -28,11 +28,6 @@ public class WeaponEffectsConteiner
             return _asserts.InstantiateParticle(path, position.position);
         else
             return _asserts.InstantiateParticleWithParent(path, position.position, parent);
-    }
-
-    public TrailRenderer GetTrailRenderer()
-    {
-        return _trailRenderer;
     }
 
     public LineRenderer GetLineRenderer()

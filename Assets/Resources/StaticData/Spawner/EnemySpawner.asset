@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f3dda42c7741a3ae3725499a498248, type: 3}
   m_Name: EnemySpawner
   m_EditorClassIdentifier: 
-  StartSpawnInterval: 0
+  StartSpawnInterval: 2
   SpawnList:
   - EnemyConfigs: {fileID: 11400000, guid: 049dd4946a831964dbb44fd71afcc82d, type: 2}
     PercantageSpawn: 40

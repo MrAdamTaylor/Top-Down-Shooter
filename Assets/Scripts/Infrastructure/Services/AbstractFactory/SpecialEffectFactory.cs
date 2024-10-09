@@ -1,19 +1,24 @@
 using System.Collections;
 using EnterpriceLogic.Constants;
+using Infrastructure.Services.AssertService.ExtendetAssertService;
 using UnityEngine;
 
 public class SpecialEffectFactory : ISpecialEffectFactory
 {
     private IAsserts _asserts;
 
-    public SpecialEffectFactory(IAsserts asserts)
+    private IAssertByString<TrailRenderer> _bulletAssert;
+    private IAssertByString<LineRenderer> _lineAssert;
+
+    public SpecialEffectFactory(IAssertByString<TrailRenderer> bullet, IAssertByString<LineRenderer> shootLine)
     {
-        _asserts = asserts;
+        _bulletAssert = bullet;
+        _lineAssert = shootLine;
     }
 
     public void CreateLaser(MonoBehaviour behaviour, LineRenderer lineRenderer, Vector3 start, Vector3 end, float fadeDuration, Transform parent)
     {
-        LineRenderer lr = _asserts.InstantiateLineRenderer(lineRenderer);
+        LineRenderer lr = _lineAssert.Assert(PrefabPath.LINE_RENDERER_PATH);
         lr.transform.parent = parent.transform;
         lr.SetPositions(new Vector3[2] {start, end});
         behaviour.StartCoroutine(FadeLaser(lr, lineRenderer, fadeDuration));
@@ -22,10 +27,9 @@ public class SpecialEffectFactory : ISpecialEffectFactory
     public void CreateBullet(MonoBehaviour behaviour, Vector3 bulletPointPosition, Vector3 startPoint, 
         Vector3 endPoint, float bulletSpeed, bool madeImpact)
     {
-        TrailRenderer trail = _asserts.InstantiateTrailRender(PrefabPath.HOT_TRAIL_PATH, bulletPointPosition);
+        TrailRenderer trail = _bulletAssert.Assert(PrefabPath.HOT_TRAIL_PATH, bulletPointPosition);
         behaviour.StartCoroutine(SpawnTrail(trail, startPoint, endPoint, bulletSpeed, madeImpact));
     }
-    
 
     IEnumerator FadeLaser(LineRenderer lr, LineRenderer laser, float fadeDuration)
     {
