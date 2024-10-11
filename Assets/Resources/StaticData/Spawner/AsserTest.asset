@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: AsserTest
   m_EditorClassIdentifier: 
   StartSpawnInterval: 0
-  PathToParticle: Resources/Prefabs/WeaponsPrefabs/MuzzleFlash
-  PathToTrail: Resources/Prefabs/WeaponsPrefabs/HotTrail
-  PathToLine: Resources/Prefabs/WeaponsPrefabs/LaserShootgun
-  PathToObject: Resources/Prefabs/WeaponsPrefabs/Rocket
+  PathToParticle: Prefabs/WeaponsPrefabs/MuzzleFlash
+  PathToTrail: Prefabs/WeaponsPrefabs/HotTrail
+  PathToLine: Prefabs/WeaponsPrefabs/LaserShootgun
+  PathToObject: Prefabs/WeaponsPrefabs/Rocket
   ObjValue: {fileID: 6296990476380128179, guid: b743c2f9856929d448b23d89f1b17e42, type: 3}
   ParticleValue: {fileID: 1655276807252061645, guid: e75828e19f7cd7e42abf96415b0c1389, type: 3}
   LineRenderer: {fileID: 4239772397246429963, guid: 11172d8af43ed7f40ab924843b3529f6, type: 3}

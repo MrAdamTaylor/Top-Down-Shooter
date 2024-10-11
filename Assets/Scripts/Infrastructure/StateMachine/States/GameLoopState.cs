@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class GameLoopState : IState
 {
@@ -14,6 +15,6 @@ public class GameLoopState : IState
 
     public void Enter()
     {
-        throw new NotImplementedException();
+        Debug.Log("Game Loop Scene load");
     }
 }

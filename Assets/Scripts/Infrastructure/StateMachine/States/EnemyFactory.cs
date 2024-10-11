@@ -1,17 +1,78 @@
+using System;
+using EnterpriceLogic.Constants;
 using Infrastructure.Services.AssertService.ExtendetAssertService;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 internal class EnemyFactory : IEnemyFactory 
 {
-    private AssertServiceObj<GameObject> _enemySkinsAssert;
+    private IAssertByObj<GameObject> _enemySkinsAssert;
     
-    public EnemyFactory(AssertServiceObj<GameObject> skinAsser)
+    public EnemyFactory(AssertBuilder builder)
     {
-        _enemySkinsAssert = skinAsser;
+        _enemySkinsAssert = builder.BuildAssertServiceByObj<GameObject>();
     }
 
-    public void Create()
+    public void Create(EnemyConfigs configs, GameObject parent)
     {
+        GameObject enemy;
+        if (configs.Skins.Count == 0)
+        {
+            return;
+        }
+        else if(configs.Skins.Count == 1)
+        {
+            Vector3 pos = new Vector3(
+                Random.Range(Constants.DEFAULT_VECTOR_FOR_TEST2.x-Constants.SPAWN_INTERVAL,
+                    Constants.DEFAULT_VECTOR_FOR_TEST2.x+Constants.SPAWN_INTERVAL), 
+                Constants.DEFAULT_VECTOR_FOR_TEST2.y, 
+                Random.Range(Constants.DEFAULT_VECTOR_FOR_TEST2.z-Constants.SPAWN_INTERVAL,
+                    Constants.DEFAULT_VECTOR_FOR_TEST2.z+Constants.SPAWN_INTERVAL));
+            enemy = _enemySkinsAssert.Assert(configs.Skins[0], pos);
+        }
+        else
+        {
+            Vector3 pos = new Vector3(
+                Random.Range(Constants.DEFAULT_VECTOR_FOR_TEST2.x-Constants.SPAWN_INTERVAL,
+                    Constants.DEFAULT_VECTOR_FOR_TEST2.x+Constants.SPAWN_INTERVAL), 
+                Constants.DEFAULT_VECTOR_FOR_TESTS.y, 
+                Random.Range(Constants.DEFAULT_VECTOR_FOR_TEST2.z-Constants.SPAWN_INTERVAL,
+                    Constants.DEFAULT_VECTOR_FOR_TEST2.z+Constants.SPAWN_INTERVAL));
+            enemy = _enemySkinsAssert.Assert(configs.Skins[Random.Range(0, configs.Skins.Count-1)], pos);
+        }
+        enemy.transform.parent = parent.transform;
+        switch (configs)
+        {
+            case EnemyKamikazeConfigs:
+                CreateKamikaze(enemy,(EnemyKamikazeConfigs)configs);
+                break;
+            case EnemyWalkingConfigs:
+                CreateWalking(enemy,(EnemyWalkingConfigs)configs);
+                break;
+            case EnemyTurretConfigs:
+                CreateTurret(enemy, (EnemyTurretConfigs)configs);
+                break;
+            case null:
+                throw new ArgumentException("Enemy configs in Factory is null");
+            default:
+                throw new Exception("Unknown Enemy configs for Factory");
+        }
+        
         Debug.Log("Created Enemy with Random Skin");
+    }
+
+    private void CreateTurret(GameObject enemy, EnemyTurretConfigs configs)
+    {
+        Debug.Log($"<color=green>  {configs.Name} is Created Registered</color>");
+    }
+
+    private void CreateWalking(GameObject enemy, EnemyWalkingConfigs configs)
+    {
+        Debug.Log($"<color=green>  {configs.Name} is Created Registered</color>");
+    }
+
+    private void CreateKamikaze(GameObject enemy, EnemyKamikazeConfigs configs)
+    {
+        Debug.Log($"<color=green> {configs.Name} is Created Registered</color>");
     }
 }

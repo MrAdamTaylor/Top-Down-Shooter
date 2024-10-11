@@ -11,7 +11,7 @@ namespace Infrastructure.Services.AssertService.ExtendetAssertService
 
         public T Assert(T objPath, Vector3 pos)
         {
-            throw new System.NotImplementedException();
+            return Object.Instantiate(objPath, pos, Quaternion.identity);
         }
 
         public T Assert(T objPath, Vector3 pos, Quaternion quaternion)

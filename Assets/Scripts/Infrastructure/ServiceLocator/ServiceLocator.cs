@@ -21,6 +21,18 @@ public class ServiceLocator
 
     private readonly Dictionary<Type, object> _servicesDataBase = new();
 
+    public bool IsGetData(Type type)
+    {
+        if (_servicesDataBase.ContainsKey(type))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public object GetData(Type type)
     {
         return _servicesDataBase[type];

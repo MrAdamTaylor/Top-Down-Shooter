@@ -28,8 +28,8 @@ namespace EnterpriceLogic.Constants
 
         public static Vector3 CAMERA_POSITION = new Vector3(0,12,-5);
 
-        #endregion
 
+        #endregion
 
 
         #region Baf Characteristics
@@ -72,19 +72,20 @@ namespace EnterpriceLogic.Constants
 
         #endregion
 
-
-        #region Prefab Path Constants
-
-        #endregion
+        
 
         #region UI Constants
 
-        public static float SCREEN_OVERLAY_WIDTH = 1920f;
-        public static float SCREEN_OVERLAY_HEIGHT = 1080f;
-        public static int UI_ELEMENT_VIBRATION = 10;
-        public static long STANDART_UI_VALUE = 10;
+        public const float SCREEN_OVERLAY_WIDTH = 1920f;
+        public const float SCREEN_OVERLAY_HEIGHT = 1080f;
+        public const int UI_ELEMENT_VIBRATION = 10;
+        public const long STANDART_UI_VALUE = 10;
         #endregion
-
-
+        
+        public static string SCENE_PARENT_NAME = "[GAME_OBJECTS]";
+        
+        public static Vector3 DEFAULT_VECTOR_FOR_TESTS = new Vector3(0, 1.5f,0);
+        public static Vector3 DEFAULT_VECTOR_FOR_TEST2 = new Vector3(-25f, -28f, 25f);
+        public const float SPAWN_INTERVAL = 5f;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using EnterpriceLogic.Utilities;
 using Infrastructure.Services.AssertService.ExtendetAssertService;
@@ -21,18 +22,56 @@ public class BootstrapState : IState
 
         if (!levelConfigs.PlayerConfigs.IsNull())
         {
-            Debug.Log($"<color=green>Player Configs Loaded");
+            Debug.Log($"<color=green>Player Configs Loaded</color>");
             RegisterPlayerServices(levelConfigs.PlayerConfigs);
         }
 
         if (levelConfigs.SpawnerConfigsList.Count != 0)
         {
-            RegisterSpawnerServices(levelConfigs.SpawnerConfigsList);
+            for (int i = 0; i < levelConfigs.SpawnerConfigsList.Count; i++)
+            {
+                BindServicesByType(levelConfigs.SpawnerConfigsList[i]);
+            }
         }
 
         ServiceLocator.Instance.BindData(typeof(PlayerConfigs), levelConfigs.PlayerConfigs);
-        RegisterServices(levelConfigs.SpawnerConfigsList);
+        RegisterServices();
         _level = levelConfigs.LevelName;
+    }
+
+    private void BindServicesByType(SpawnerConfigs levelConfigsSpawnerConfigs)
+    {
+        switch (levelConfigsSpawnerConfigs)
+        {
+            case BafSpawnerConfigs bafSpawner:
+                RegisterBafService(bafSpawner);
+                Debug.Log($"<color=green> Baf Spawner Services Registered</color>");
+                break;
+            case EnemySpawnerConfigs enemySpawner:
+                Debug.Log($"<color=green> Enemy Spawner Services Registered</color>");
+                RegisterEnemyesServices(enemySpawner);
+                break;
+            case DebafSpawnerConfigs debafSpawnerConfigs:
+                Debug.Log($"<color=green> Debaf Spawner Services Registered</color>");
+                break;
+            case null:
+                throw new ArgumentNullException();
+                break;
+            default:
+                Debug.Log($"<color=red>Unknown Spawner Configs</color>");
+                break;
+        }
+    }
+
+    private void RegisterBafService(BafSpawnerConfigs bafSpawner)
+    {
+        
+    }
+
+    private void RegisterEnemyesServices(EnemySpawnerConfigs levelConfigsSpawnerConfigs)
+    {
+        ServiceLocator.Instance.BindData(typeof(IEnemyFactory), new EnemyFactory(_assertBuilder));
+        ServiceLocator.Instance.BindData(typeof(EnemySpawnerConfigs), levelConfigsSpawnerConfigs);
     }
 
     private void RegisterSpawnerServices(List<SpawnerConfigs> levelConfigsSpawnerConfigsList)
@@ -61,31 +100,9 @@ public class BootstrapState : IState
     {
     }
 
-    private void RegisterServices(List<SpawnerConfigs> spawnerConfigsEnumerable)
+    private void RegisterServices()
     {
-        #region Register New AssertServices
         
-        ServiceLocator.Instance.BindData(typeof(IAssertByObj<GameObject>), new AssertServiceObj<GameObject>());
-        
-        
-        AssertServiceObj<GameObject> gameObj = (AssertServiceObj<GameObject>)ServiceLocator
-            .Instance.GetData(typeof(IAssertByObj<GameObject>));
-        
-        #endregion
-        
-
-        _services.RegisterSingle<IEnemyFactory>(new EnemyFactory(gameObj));
-
-
-        #region Temp Assert Test
-        SpawnerConfigs forAssert = spawnerConfigsEnumerable[0];
-        SpawnerTestAssert testAssert = (SpawnerTestAssert)forAssert;
-        ServiceLocator.Instance.BindData(typeof(SpawnerTestAssert), testAssert);
-        ServiceLocator.Instance.BindData(typeof(IAssertByString<ParticleSystem>), new AssertServiceString<ParticleSystem>());
-        ServiceLocator.Instance.BindData(typeof(IAssertByString<GameObject>), new AssertServiceString<GameObject>());
-        var particleAssert = ServiceLocator.Instance.GetData(typeof(IAssertByString<ParticleSystem>));
-        var gameObjectAssert = ServiceLocator.Instance.GetData(typeof(IAssertByString<GameObject>));
-        #endregion
     }
 
     private void EnterLoadLevel() => 

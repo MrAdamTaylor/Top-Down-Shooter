@@ -1,4 +1,6 @@
-internal interface IEnemyFactory : IService
+using UnityEngine;
+
+public interface IEnemyFactory : IService
 {
-    public void Create();
+    public void Create(EnemyConfigs configs, GameObject parent);
 }
