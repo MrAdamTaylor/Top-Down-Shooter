@@ -10,16 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c380d9f26194f81a8ece89874c2ce2a, type: 3}
-  m_Name: UsualEnemy
+  m_Name: Crawler
   m_EditorClassIdentifier: 
-  Name: UsualEnemy
-  Health: 10
+  Name: 
+  Health: 0
   MinDamage: 0
   MaxDamage: 0
-  Reward: 1
-  RadiusDetection: 1.5
-  Skins:
-  - {fileID: 8458607664213075487, guid: 02718a9c50f93394abdcf61a9dd9e182, type: 3}
-  - {fileID: 944804097235881886, guid: 8a72d1ee6cc339e49868052a0b45e3a3, type: 3}
-  - {fileID: 4763676179304624319, guid: 3f76b9ed814e3fa4fa211cc5132c7d3f, type: 3}
-  Speed: 3
+  Reward: 0
+  RadiusDetection: 0
+  Skins: []
+  Speed: 0

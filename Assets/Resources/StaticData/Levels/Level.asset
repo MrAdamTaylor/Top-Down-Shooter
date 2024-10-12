@@ -14,8 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelName: Level2
   SpawnerConfigsList:
-  - {fileID: 11400000, guid: 530e38fd52fc43c488f9561338d40b80, type: 2}
-  - {fileID: 11400000, guid: 68a0a19d92ab68149a14328ff8a17962, type: 2}
   - {fileID: 11400000, guid: 76ffe8238abb9544bbd467d095b18e68, type: 2}
   PlayerConfigs: {fileID: 11400000, guid: 8c3706afde652a542b7633a503709a62, type: 2}
   WalkToEnd: 0

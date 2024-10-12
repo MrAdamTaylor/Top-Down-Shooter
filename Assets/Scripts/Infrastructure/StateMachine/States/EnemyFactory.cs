@@ -16,29 +16,18 @@ internal class EnemyFactory : IEnemyFactory
     public void Create(EnemyConfigs configs, GameObject parent)
     {
         GameObject enemy;
+        Vector3 pos = CreateTestPosition();
         if (configs.Skins.Count == 0)
         {
             return;
         }
         else if(configs.Skins.Count == 1)
         {
-            Vector3 pos = new Vector3(
-                Random.Range(Constants.DEFAULT_VECTOR_FOR_TEST2.x-Constants.SPAWN_INTERVAL,
-                    Constants.DEFAULT_VECTOR_FOR_TEST2.x+Constants.SPAWN_INTERVAL), 
-                Constants.DEFAULT_VECTOR_FOR_TEST2.y, 
-                Random.Range(Constants.DEFAULT_VECTOR_FOR_TEST2.z-Constants.SPAWN_INTERVAL,
-                    Constants.DEFAULT_VECTOR_FOR_TEST2.z+Constants.SPAWN_INTERVAL));
             enemy = _enemySkinsAssert.Assert(configs.Skins[0], pos);
         }
         else
         {
-            Vector3 pos = new Vector3(
-                Random.Range(Constants.DEFAULT_VECTOR_FOR_TEST2.x-Constants.SPAWN_INTERVAL,
-                    Constants.DEFAULT_VECTOR_FOR_TEST2.x+Constants.SPAWN_INTERVAL), 
-                Constants.DEFAULT_VECTOR_FOR_TESTS.y, 
-                Random.Range(Constants.DEFAULT_VECTOR_FOR_TEST2.z-Constants.SPAWN_INTERVAL,
-                    Constants.DEFAULT_VECTOR_FOR_TEST2.z+Constants.SPAWN_INTERVAL));
-            enemy = _enemySkinsAssert.Assert(configs.Skins[Random.Range(0, configs.Skins.Count-1)], pos);
+             enemy = _enemySkinsAssert.Assert(configs.Skins[Random.Range(0, configs.Skins.Count)], pos);
         }
         enemy.transform.parent = parent.transform;
         switch (configs)
@@ -59,6 +48,17 @@ internal class EnemyFactory : IEnemyFactory
         }
         
         Debug.Log("Created Enemy with Random Skin");
+    }
+
+    private Vector3 CreateTestPosition()
+    {
+        Vector3 pos = new Vector3(
+            Random.Range(Constants.DEFAULT_VECTOR_FOR_TEST2.x-Constants.SPAWN_INTERVAL,
+                Constants.DEFAULT_VECTOR_FOR_TEST2.x+Constants.SPAWN_INTERVAL), 
+            Constants.DEFAULT_VECTOR_FOR_TEST2.y, 
+            Random.Range(Constants.DEFAULT_VECTOR_FOR_TEST2.z-Constants.SPAWN_INTERVAL,
+                Constants.DEFAULT_VECTOR_FOR_TEST2.z+Constants.SPAWN_INTERVAL));
+        return pos;
     }
 
     private void CreateTurret(GameObject enemy, EnemyTurretConfigs configs)

@@ -69,7 +69,7 @@ namespace Mechanics.Spawners.NewSpawner
 
         private EnemyConfigs GetRandomEnemy()
         {
-            return _enemyConfigs[0];
+            return _enemyConfigs[1];
         }
     }
     
