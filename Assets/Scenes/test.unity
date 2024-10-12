@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -952,19 +952,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1612791095942873565, guid: 41c73a23734dba849bf36317e39c8076, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.028940419
+      value: 0.017120775
       objectReference: {fileID: 0}
     - target: {fileID: 1612791095942873565, guid: 41c73a23734dba849bf36317e39c8076, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.91908485
+      value: -0.8549925
       objectReference: {fileID: 0}
     - target: {fileID: 1612791095942873565, guid: 41c73a23734dba849bf36317e39c8076, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.080975324
+      value: -0.08427067
       objectReference: {fileID: 0}
     - target: {fileID: 1612791095942873565, guid: 41c73a23734dba849bf36317e39c8076, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.38456276
+      value: -0.51146185
       objectReference: {fileID: 0}
     - target: {fileID: 1612791095942873565, guid: 41c73a23734dba849bf36317e39c8076, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -972,7 +972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1612791095942873565, guid: 41c73a23734dba849bf36317e39c8076, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -44.985992
+      value: -61.351013
       objectReference: {fileID: 0}
     - target: {fileID: 1612791095942873565, guid: 41c73a23734dba849bf36317e39c8076, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -984,7 +984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6456763442055261961, guid: 41c73a23734dba849bf36317e39c8076, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8447514169136720980, guid: 41c73a23734dba849bf36317e39c8076, type: 3}
       propertyPath: m_IsActive
@@ -4600,7 +4600,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5669538232615390433}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db945be0707f20c45a5ca0e85e407c75, type: 3}
   m_Name: 
@@ -4724,7 +4724,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5669538232615390433}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3c14896d7cc23548bf1f49012ef8a0c, type: 3}
   m_Name: 
