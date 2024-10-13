@@ -1530,8 +1530,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TypeWeapon: 1
   ShootPoint: {fileID: 7389742491070040272}
-  _vectorShift: {x: 0, y: 0, z: 0}
-  _gunDirection: {x: 0, y: 0, z: 0}
   Characteristics:
     Damage: 0
     FireSpeedRange: 0
@@ -2237,8 +2235,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TypeWeapon: 0
   ShootPoint: {fileID: 5467506619998495785}
-  _vectorShift: {x: 0, y: 0.025, z: -0.15}
-  _gunDirection: {x: 0, y: 0, z: 1}
   Characteristics:
     Damage: 0
     FireSpeedRange: 0
@@ -2355,8 +2351,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TypeWeapon: 2
   ShootPoint: {fileID: 5403915433549831072}
-  _vectorShift: {x: 0, y: 0, z: 1.45}
-  _gunDirection: {x: 0, y: 0, z: 1}
   Characteristics:
     Damage: 0
     FireSpeedRange: 0
@@ -3580,7 +3574,6 @@ GameObject:
   - component: {fileID: 326210238702165779}
   - component: {fileID: 8911096540248504335}
   - component: {fileID: 2896127791774148389}
-  - component: {fileID: 6875923489010150862}
   m_Layer: 0
   m_Name: '[VISUAL]'
   m_TagString: Untagged
@@ -3619,7 +3612,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: bf8d88ffb701e0f47ae0d2c1afecb0fe, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -3640,18 +3633,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothBlend: 0.1
---- !u!114 &6875923489010150862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6396247276229520958}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3c14896d7cc23548bf1f49012ef8a0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6415435850228809426
 GameObject:
   m_ObjectHideFlags: 0
@@ -4033,7 +4014,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7070202269891244998}
-  m_LocalRotation: {x: -1, y: 0.000000008474957, z: -0.000000037252896, w: -0.00000001230234}
+  m_LocalRotation: {x: -0.9915649, y: 0.0000003700887, z: -0.12961115, w: 0.00000038256428}
   m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4047,7 +4028,7 @@ Transform:
   - {fileID: 2509766797541184539}
   m_Father: {fileID: 1942202384168595496}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -180, y: -14.893982, z: 0}
 --- !u!114 &7764349122648519455
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2376,8 +2376,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TypeWeapon: 0
   ShootPoint: {fileID: 8471921105217740831}
-  _vectorShift: {x: 0, y: 0.025, z: -0.15}
-  _gunDirection: {x: 0, y: 0, z: 1}
   Characteristics:
     Damage: 0
     FireSpeedRange: 0
@@ -2463,8 +2461,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TypeWeapon: 2
   ShootPoint: {fileID: 8886777622279901441}
-  _vectorShift: {x: 0, y: 0, z: 1.45}
-  _gunDirection: {x: 0, y: 0, z: 1}
   Characteristics:
     Damage: 0
     FireSpeedRange: 0
@@ -3249,7 +3245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7490462223722639288
 Transform:
   m_ObjectHideFlags: 0
@@ -3281,8 +3277,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TypeWeapon: 1
   ShootPoint: {fileID: 4929030647142935557}
-  _vectorShift: {x: 0, y: 0, z: 0}
-  _gunDirection: {x: 0, y: 0, z: 0}
   Characteristics:
     Damage: 0
     FireSpeedRange: 0
@@ -3355,7 +3349,7 @@ Transform:
   - {fileID: 3245477359361883321}
   - {fileID: 6638011696558769764}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -173.369, y: -44.985992, z: -7.3220215}
 --- !u!114 &9150094249279073154
 MonoBehaviour:
