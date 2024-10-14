@@ -952,7 +952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6716940627032110245, guid: b743c2f9856929d448b23d89f1b17e42, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.11
+      value: -0.86
       objectReference: {fileID: 0}
     - target: {fileID: 6716940627032110245, guid: b743c2f9856929d448b23d89f1b17e42, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4790,6 +4790,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c14896d7cc23548bf1f49012ef8a0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  isWalkingHash: 0
+  isWalkingBackHash: 0
+  isWalkingLeftHash: 0
+  isWalkingRightHash: 0
 --- !u!23 &5683596585524482991
 MeshRenderer:
   m_ObjectHideFlags: 0
