@@ -257,7 +257,7 @@ Transform:
   - {fileID: 8541708893716523407}
   - {fileID: 5144282580225216519}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &954876798395475535
 GameObject:
@@ -1551,7 +1551,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 1c30ffad7fd437142b7582719a559a34, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 

@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level3.unity
     guid: 30f1b071425fec14496d8456f5e27d53
+  - enabled: 1
+    path: Assets/Scenes/Arena GraveYard.unity
+    guid: 5fad7118a516e7941ba1792a62a936ac
   m_configObjects: {}

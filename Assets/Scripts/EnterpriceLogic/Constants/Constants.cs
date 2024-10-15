@@ -86,6 +86,7 @@ namespace EnterpriceLogic.Constants
         
         public static Vector3 DEFAULT_VECTOR_FOR_TESTS = new Vector3(0, 1.5f,0);
         public static Vector3 DEFAULT_VECTOR_FOR_TEST2 = new Vector3(-25f, -28f, 25f);
+        public static float MOVEMENT_THRESHOLD = 2f;
         public const float SPAWN_INTERVAL = 5f;
     }
 }

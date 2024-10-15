@@ -1,6 +1,7 @@
 using System;
 using EnterpriceLogic.Constants;
 using Infrastructure.Services.AssertService.ExtendetAssertService;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -69,6 +70,13 @@ internal class EnemyFactory : IEnemyFactory
     private void CreateWalking(GameObject enemy, EnemyWalkingConfigs configs)
     {
         Debug.Log($"<color=green>  {configs.Name} is Created Registered</color>");
+        Transform visual = enemy.transform.Find("[VISUAL]");
+        EnemyAnimator enemyAnimator = visual.AddComponent<EnemyAnimator>();
+        enemyAnimator.Construct();
+        MoveToPlayer moveToPlayer = enemy.AddComponent<MoveToPlayer>();
+        moveToPlayer.Construct(enemy.transform, configs.Speed);
+        NewEnemyController enemyController = enemy.AddComponent<NewEnemyController>();
+        enemyController.Construct(moveToPlayer, enemyAnimator);
     }
 
     private void CreateKamikaze(GameObject enemy, EnemyKamikazeConfigs configs)
