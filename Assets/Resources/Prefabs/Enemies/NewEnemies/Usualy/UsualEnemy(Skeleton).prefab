@@ -4164,7 +4164,7 @@ Transform:
   - {fileID: 2939965643856875114}
   - {fileID: 3513000230977974641}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8553691543722324837
 GameObject:
@@ -4457,8 +4457,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8774572677844059589}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 0dcad412e4df7364880958fbda1ede6b, type: 3}
-  m_Controller: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 229967b5183789f46959a465826ec93a, type: 2}
+  m_Controller: {fileID: 9100000, guid: 1c30ffad7fd437142b7582719a559a34, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
