@@ -649,7 +649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd44e2a1146a4f149b9f0e501b1ca529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelConfigs: {fileID: 11400000, guid: ed1360657a5f4be43a9cb5a6043a04cb, type: 2}
+  _levelConfigs: {fileID: 11400000, guid: d8930dfbde0b3a946baa0ffdf9d94758, type: 2}
   _curtain: {fileID: 342909244}
 --- !u!1 &1174732497
 GameObject:

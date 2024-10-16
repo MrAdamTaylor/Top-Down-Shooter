@@ -1,26 +1,27 @@
-using System;
 using EnterpriceLogic.Constants;
 using EnterpriceLogic.Utilities;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 
 public class NewEnemyController : MonoBehaviour
 {
     private EnemyAnimator _enemyAnimator;
     private MoveToPlayer _moveToPlayer;
+    private EnemyRotateSystem _enemyRotateSystem;
 
     private bool _isMoving;
 
-    public void Construct(MoveToPlayer moveToPlayer, EnemyAnimator enemyAnimator)
+    public void Construct(MoveToPlayer moveToPlayer, EnemyAnimator enemyAnimator, EnemyRotateSystem rotateSystem)
     {
         _moveToPlayer = moveToPlayer;
         _enemyAnimator = enemyAnimator;
+        _enemyRotateSystem = rotateSystem;
 
         if (!moveToPlayer.IsNull())
         {
             Debug.Log($"Launch Coroutine for Moving: ");
             _isMoving = true;
             _moveToPlayer.Move();
+            _enemyRotateSystem.RotateStart();
             _enemyAnimator.Move(1f);
         }
     }
@@ -42,5 +43,10 @@ public class NewEnemyController : MonoBehaviour
                 _enemyAnimator.Move(1f);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        _enemyRotateSystem.RotateStop();
     }
 }

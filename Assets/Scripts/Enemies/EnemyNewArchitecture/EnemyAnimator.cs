@@ -91,12 +91,3 @@ public class EnemyAnimator : MonoBehaviour, IAnimationStateReader
         return state;
     }
 }
-
-public enum AnimatorState
-{
-    Unknown,
-    Idle,
-    Attack,
-    Walking,
-    Died
-}

@@ -70,13 +70,22 @@ internal class EnemyFactory : IEnemyFactory
     private void CreateWalking(GameObject enemy, EnemyWalkingConfigs configs)
     {
         Debug.Log($"<color=green>  {configs.Name} is Created Registered</color>");
-        Transform visual = enemy.transform.Find("[VISUAL]");
+        Transform visual = enemy.transform.Find(Constants.PREFAB_MESH_COMPONENT_NAME);
         EnemyAnimator enemyAnimator = visual.AddComponent<EnemyAnimator>();
         enemyAnimator.Construct();
+        Player player = (Player)ServiceLocator.Instance.GetData(typeof(Player));
         MoveToPlayer moveToPlayer = enemy.AddComponent<MoveToPlayer>();
         moveToPlayer.Construct(enemy.transform, configs.Speed);
+        EnemyRotateSystem enemyRotateSystem = enemy.AddComponent<EnemyRotateSystem>();
+        enemyRotateSystem.Construct(enemy.transform, player.transform, Constants.ROTATE_SPEED);
         NewEnemyController enemyController = enemy.AddComponent<NewEnemyController>();
-        enemyController.Construct(moveToPlayer, enemyAnimator);
+        enemyController.Construct(moveToPlayer, enemyAnimator, enemyRotateSystem);
+        ReactionTrigger reactionTrigger = enemy.AddComponent<ReactionTrigger>();
+        reactionTrigger.Construct(configs.RadiusDetection, player.transform);
+        EnemyAttack enemyAttack = visual.AddComponent<EnemyAttack>();
+        enemyAttack.Construct(enemyAnimator);
+        CheckAttack attackChecker = enemy.AddComponent<CheckAttack>();
+        attackChecker.Construct(enemyAttack, reactionTrigger);
     }
 
     private void CreateKamikaze(GameObject enemy, EnemyKamikazeConfigs configs)

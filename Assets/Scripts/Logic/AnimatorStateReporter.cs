@@ -1,4 +1,3 @@
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class AnimatorStateReporter : StateMachineBehaviour
@@ -28,12 +27,4 @@ public class AnimatorStateReporter : StateMachineBehaviour
         
         _stateReader = animator.gameObject.GetComponent<IAnimationStateReader>();
     }
-}
-
-public interface IAnimationStateReader
-{
-    void EnteredState(int stateInfoShortNameHash);
-    void ExitedState(int stateInfoShortNameHash);
-
-    AnimatorState State { get; }
 }

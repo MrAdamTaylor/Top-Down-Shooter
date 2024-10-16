@@ -49,7 +49,6 @@ public class MoveToPlayer : MonoBehaviour
         _tempPosition = _followedTransform.position;
         _direction = _goal.transform.position - _tempPosition;
         Vector3 velocity = _direction.normalized * _speed;
-        Debug.Log(velocity);
         _followedTransform.position += velocity * Time.deltaTime;
     }
 

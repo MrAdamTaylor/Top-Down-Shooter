@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Mechanics.Spawners.NewSpawner
 {
-    public class TestEnemySpawnController : MonoBehaviour
+    public class EnemySpawnController : MonoBehaviour
     {
         [SerializeField] private EnemyTypeValues[] _enemyTypeValues;
 

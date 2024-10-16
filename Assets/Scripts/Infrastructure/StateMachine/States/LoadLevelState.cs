@@ -1,5 +1,4 @@
 using EnterpriceLogic.Constants;
-using Infrastructure.Services.AssertService.ExtendetAssertService;
 using Mechanics.Spawners.NewSpawner;
 using UnityEngine;
 
@@ -61,7 +60,7 @@ public class LoadLevelState : IPayloadedState<string>
         {
             Debug.Log($"Enemy Spawner is Registered!");
             GameObject enemySpawner = new GameObject("EnemySpawner");
-            TestEnemySpawnController spawnController = enemySpawner.AddComponent<TestEnemySpawnController>();
+            EnemySpawnController spawnController = enemySpawner.AddComponent<EnemySpawnController>();
             enemySpawner.transform.parent =  _commonParent.transform;
             EnemySpawnerConfigs spawnerConfigs = (EnemySpawnerConfigs)ServiceLocator.Instance.
                 GetData(typeof(EnemySpawnerConfigs));
