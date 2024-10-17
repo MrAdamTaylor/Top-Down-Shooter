@@ -23,8 +23,11 @@ public class AnimationBlendTree : MonoBehaviour
 
     void Move(float x, float y)
     {
-        animator.SetFloat("InputX", x, smoothBlend, Time.deltaTime);
-        animator.SetFloat("InputY", y, smoothBlend, Time.deltaTime);
+        Vector3 direction = new Vector3(x, 0, y);
+        direction = transform.InverseTransformDirection(direction);
+
+        animator.SetFloat("InputX", direction.x, smoothBlend, Time.deltaTime);
+        animator.SetFloat("InputY", direction.z, smoothBlend, Time.deltaTime);
     }
 }
   /*  void Update()
