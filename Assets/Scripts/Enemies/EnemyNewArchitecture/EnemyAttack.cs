@@ -1,25 +1,35 @@
+using System;
 using System.Linq;
 using Enemies.AI___NewArchitecture.Extensions;
 using EnterpriceLogic.Constants;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public float AttackCooldown = 2f;
+    public Action AfterAttackAction;
+        
+    public float AttackCooldown = 1f;
     private float _attackCooldown;
     private float _effectDistance = 0.5f;
-    private float _cleavege = 0.5f;
+    private float _cleavege = 0.8f;
     private int _layerMask;
+    private float _minDamage;
+    private float _maxDamage;
 
     private EnemyAnimator _animator;
+
+
     private Collider[] _hits = new Collider[1];
     private bool _isAttacking;
     private bool _attackIsActive;
 
-    public void Construct(EnemyAnimator enemyAnimator)
+    public void Construct(EnemyAnimator enemyAnimator, float minDamage, float maxDamage)
     {
         _animator = enemyAnimator;
         _layerMask = 1 << LayerMask.NameToLayer("Player");
+        _maxDamage = maxDamage;
+        _minDamage = minDamage;
     }
 
     void Update()
@@ -35,11 +45,16 @@ public class EnemyAttack : MonoBehaviour
         if (Hit(out Collider hit))
         {
             PhysicsDebug.DrawDebugRaysFromPoint(HitPointPosition(), _cleavege, Constants.DEBUG_TIME_FRAMERATE);
+            PlayerComponentProvider provider = hit.transform.GetComponent<PlayerComponentProvider>();
+            PlayerHealth health = (PlayerHealth)provider.TakeComponent(typeof(PlayerHealth));
+            health.TakeDamage(Random.Range(_minDamage, _maxDamage));
+            //hit.transform.GetComponent<PlayerHealth>().TakeDamage(Random.Range(_minDamage, _maxDamage));
         }
     }
 
     void OnAttackEnded()
     {
+        AfterAttackAction?.Invoke();
         _attackCooldown = AttackCooldown;
         _isAttacking = false;
     }
@@ -58,7 +73,6 @@ public class EnemyAttack : MonoBehaviour
     {
         var transformPosition = HitPointPosition();
         int hitCount = Physics.OverlapSphereNonAlloc(transformPosition, _cleavege, _hits, _layerMask);
-
         hit = _hits.FirstOrDefault();
         return hitCount > 0;
     }

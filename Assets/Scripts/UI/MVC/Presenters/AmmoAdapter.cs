@@ -17,7 +17,7 @@ public class AmmoAdapter : IDisposable
     private long _lastCurrency;
     private Sequence _sequence;
     private WeaponType _currentWeaponType;
-    private UIAnimationPlayer _animationPlayer;
+    private readonly UIAnimationPlayer _animationPlayer;
 
     public AmmoAdapter(CurrencyViewWithImage view, UIWeaponStaticDataIcons staticDataIcons, Scripts.Player.NewWeaponControllSystem.WeaponController controller)
     {

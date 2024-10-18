@@ -14,4 +14,6 @@ public class EnemyConfigs : ScriptableObject
     public float RadiusDetection;
     
     public List<GameObject> Skins;
+    
+    
 }

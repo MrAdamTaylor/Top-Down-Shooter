@@ -1,4 +1,5 @@
 using System;
+using EnterpriceLogic.Constants;
 using UnityEngine;
 
 public class EnemyAnimator : MonoBehaviour, IAnimationStateReader
@@ -27,6 +28,7 @@ public class EnemyAnimator : MonoBehaviour, IAnimationStateReader
     public void Construct()
     {
         _animator = GetComponent<Animator>();
+        _animator.speed = Constants.ENEMY_ANIMATION_SPEED;
     }
 
     public void PlayDeath()

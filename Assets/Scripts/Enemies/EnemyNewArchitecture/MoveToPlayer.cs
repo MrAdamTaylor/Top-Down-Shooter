@@ -1,5 +1,6 @@
 using System.Collections;
 using EnterpriceLogic.Constants;
+using EnterpriceLogic.Utilities;
 using UnityEngine;
 
 public class MoveToPlayer : MonoBehaviour
@@ -20,17 +21,22 @@ public class MoveToPlayer : MonoBehaviour
         _goal = player.transform;
         _speed = speed * Constants.NPC_SPEED_MULTIPLYER;
         _followedTransform = followedTransform;
+        _needMove = true;
     }
 
     public void Move()
     {
-        _needMove = true;
+        /*if (_moveRoutine.IsNull())
+        {*/
         _moveRoutine = StartCoroutine(MakeStep());
+        //}
+        //_needMove = true;
     }
 
     public void StopMove()
     {
-        StopCoroutine(_moveRoutine);
+        if(!_moveRoutine.IsNull())
+            StopCoroutine(_moveRoutine);
     }
 
     private IEnumerator MakeStep()

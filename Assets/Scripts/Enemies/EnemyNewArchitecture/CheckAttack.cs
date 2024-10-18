@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
 public class CheckAttack : MonoBehaviour
 {
     private EnemyAttack _attack;
     private ReactionTrigger _reactionTrigger;
+    //public Action AfterAttackAction;
 
     public void Construct(EnemyAttack enemyAttack, ReactionTrigger reactionTrigger)
     {
@@ -17,7 +19,6 @@ public class CheckAttack : MonoBehaviour
     private void TriggerAttack()
     {
         _attack.EnableAttack();
-       
     }
 
     private void TriggerEndAttack()

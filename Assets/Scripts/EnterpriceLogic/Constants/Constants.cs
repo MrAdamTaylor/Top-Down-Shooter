@@ -86,7 +86,7 @@ namespace EnterpriceLogic.Constants
         
         public static Vector3 DEFAULT_VECTOR_FOR_TESTS = new Vector3(0, 1.5f,0);
         public static Vector3 DEFAULT_VECTOR_FOR_TEST2 = new Vector3(-25f, -28f, 25f);
-        public static float MOVEMENT_THRESHOLD = 1f;
+        public static float MOVEMENT_THRESHOLD = 0.8f;
         public static string PREFAB_MESH_COMPONENT_NAME = "[VISUAL]";
         public static int STANDART_CLOCKWISE_VALUE = 1;
         public static float POSIBLE_ROTATION_ANGLE_DEVIANT = 10f;
@@ -96,5 +96,9 @@ namespace EnterpriceLogic.Constants
         public static int MINIMAL_ATTACK_ANIMATION = 1;
         public static int MAXIMUM_ATTACK_ANIMATION = 3;
         public static float DEBUG_TIME_FRAMERATE = 1f;
+        public static float EPSILON_BETWEEN_RDETECTION_MINDISTANCE = 0.5f;
+        public static float ENEMY_ANIMATION_SPEED = 1.5f;
+        public static float PLAYER_HP = 100f;
+        public static string PREFAB_PHYSIC_COMPONENT_NAME = "[PHYSICS]";
     }
 }

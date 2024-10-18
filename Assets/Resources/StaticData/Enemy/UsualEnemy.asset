@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: UsualEnemy
   Health: 10
-  MinDamage: 0
-  MaxDamage: 0
+  MinDamage: 5
+  MaxDamage: 10
   Reward: 1
   RadiusDetection: 1.5
   Skins:
@@ -23,3 +23,4 @@ MonoBehaviour:
   - {fileID: 944804097235881886, guid: 8a72d1ee6cc339e49868052a0b45e3a3, type: 3}
   - {fileID: 4763676179304624319, guid: 3f76b9ed814e3fa4fa211cc5132c7d3f, type: 3}
   Speed: 3
+  MinimalToPlayerDistance: 1

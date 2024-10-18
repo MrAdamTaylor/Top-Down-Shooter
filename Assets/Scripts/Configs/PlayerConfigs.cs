@@ -8,4 +8,6 @@ public class PlayerConfigs : ScriptableObject
     public float Speed;
 
     public int Health;
+
+    public LayerMask ShootLayer;
 }

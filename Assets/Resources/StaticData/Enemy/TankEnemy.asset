@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: TankEnemy
   Health: 50
-  MinDamage: 0
-  MaxDamage: 0
+  MinDamage: 7
+  MaxDamage: 15
   Reward: 5
-  RadiusDetection: 2
+  RadiusDetection: 1.5
   Skins:
   - {fileID: 4763676179304624319, guid: 3f76b9ed814e3fa4fa211cc5132c7d3f, type: 3}
   Speed: 2
+  MinimalToPlayerDistance: 1

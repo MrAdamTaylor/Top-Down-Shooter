@@ -5,7 +5,7 @@ using UnityEngine;
 public class ReactionTrigger : MonoBehaviour
 {
     private Transform _goalTransform;
-    private float _radius = 1f;
+    [SerializeField] private float _radius;
     private bool _isTriggered;
 
     public Action TriggerAction;

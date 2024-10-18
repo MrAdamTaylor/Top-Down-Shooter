@@ -78,14 +78,14 @@ internal class EnemyFactory : IEnemyFactory
         moveToPlayer.Construct(enemy.transform, configs.Speed);
         EnemyRotateSystem enemyRotateSystem = enemy.AddComponent<EnemyRotateSystem>();
         enemyRotateSystem.Construct(enemy.transform, player.transform, Constants.ROTATE_SPEED);
-        NewEnemyController enemyController = enemy.AddComponent<NewEnemyController>();
-        enemyController.Construct(moveToPlayer, enemyAnimator, enemyRotateSystem);
         ReactionTrigger reactionTrigger = enemy.AddComponent<ReactionTrigger>();
         reactionTrigger.Construct(configs.RadiusDetection, player.transform);
         EnemyAttack enemyAttack = visual.AddComponent<EnemyAttack>();
-        enemyAttack.Construct(enemyAnimator);
+        enemyAttack.Construct(enemyAnimator, configs.MinDamage, configs.MaxDamage);
         CheckAttack attackChecker = enemy.AddComponent<CheckAttack>();
         attackChecker.Construct(enemyAttack, reactionTrigger);
+        NewEnemyController enemyController = enemy.AddComponent<NewEnemyController>();
+        enemyController.Construct(moveToPlayer, enemyAnimator, enemyRotateSystem, enemyAttack, configs.MinimalToPlayerDistance);
     }
 
     private void CreateKamikaze(GameObject enemy, EnemyKamikazeConfigs configs)
