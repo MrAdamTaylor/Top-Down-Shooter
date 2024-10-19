@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 1310483298304625879}
   - component: {fileID: 7636633652157171023}
   - component: {fileID: 2030086842}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SM_Bld_Gates_Cemetary_02_Door_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2077139512407635474
 Transform:
@@ -26,13 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1390325313877510082}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.65298146, z: -0, w: 0.75737387}
   m_LocalPosition: {x: -2.42, y: 1.302, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4149454315920510561}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -81.534, z: 0}
 --- !u!33 &1310483298304625879
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -52,6 +53,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -90,9 +92,17 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1390325313877510082}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 1.0889928, y: 3.418106, z: 0.133461}
   m_Center: {x: 0.5271915, y: 0.4233315, z: 0.084617615}
 --- !u!1 &3665369464575562971
@@ -106,14 +116,14 @@ GameObject:
   - component: {fileID: 4149454315920510561}
   - component: {fileID: 1025141908796096964}
   - component: {fileID: 3017128538520728846}
-  - component: {fileID: 2030086840}
-  - component: {fileID: 2030086839}
-  m_Layer: 0
+  - component: {fileID: 5442612571928735552}
+  - component: {fileID: 853152123799817936}
+  m_Layer: 3
   m_Name: SM_Bld_Gates_Cemetary_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4149454315920510561
 Transform:
@@ -125,11 +135,12 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1721416063813172212}
   - {fileID: 2077139512407635474}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1025141908796096964
 MeshFilter:
@@ -150,6 +161,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -180,34 +192,48 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2030086840
-MeshCollider:
+--- !u!65 &5442612571928735552
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3665369464575562971}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2727189806444613823, guid: 6c650a008b981fd49bff5cf0b321245c, type: 2}
---- !u!64 &2030086839
-MeshCollider:
+  serializedVersion: 3
+  m_Size: {x: 0.66, y: 3.1636877, z: 0.61}
+  m_Center: {x: 0.02, y: 1.5760889, z: 0.00020618741}
+--- !u!65 &853152123799817936
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3665369464575562971}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3756326815697606400, guid: 6c650a008b981fd49bff5cf0b321245c, type: 2}
+  serializedVersion: 3
+  m_Size: {x: 0.66, y: 3.1636877, z: 0.61}
+  m_Center: {x: -2.76, y: 1.5760889, z: 0.00020618741}
 --- !u!1 &6450673285803491272
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,12 +246,12 @@ GameObject:
   - component: {fileID: 1739954408834544715}
   - component: {fileID: 8678744538803857924}
   - component: {fileID: 2030086843}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SM_Bld_Gates_Cemetary_02_Door_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1721416063813172212
 Transform:
@@ -234,13 +260,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6450673285803491272}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.70518005, z: -0, w: 0.70902824}
   m_LocalPosition: {x: -0.29300016, y: 1.302, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4149454315920510561}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 89.688, z: 0}
 --- !u!33 &1739954408834544715
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -260,6 +287,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -298,8 +326,16 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6450673285803491272}
   m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_Size: {x: 1.0719681, y: 3.418098, z: 0.1690712}
   m_Center: {x: -0.53410673, y: 0.42781377, z: 0.07282066}
