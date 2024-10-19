@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour, IPlayerComponent
+public class PlayableHealth : MonoBehaviour, IHealth
 {
     [SerializeField] private float _current;
     [SerializeField] private float _maxValue;
@@ -21,7 +21,6 @@ public class PlayerHealth : MonoBehaviour, IPlayerComponent
             return;
 
         _current -= damage;
-        //HealthChange.Invoke(_current);
         _healthAdapter.UpdateValues(_current);
     }
 }

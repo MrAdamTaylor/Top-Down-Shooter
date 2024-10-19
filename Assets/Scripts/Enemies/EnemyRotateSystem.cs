@@ -32,8 +32,9 @@ public class EnemyRotateSystem : MonoBehaviour
 
     public void RotateStop()
     {
-        StopCoroutine(_coroutineRotate);
+        //StopCoroutine(_coroutineRotate);
         _isRotate = false;
+        _autoRotate = false;
     }
 
     private void AutoRotate()
@@ -42,6 +43,7 @@ public class EnemyRotateSystem : MonoBehaviour
         {
             _coroutineRotate = StartCoroutine(RotateDirection() );
             _isRotate = true;
+            
         }
     }
 

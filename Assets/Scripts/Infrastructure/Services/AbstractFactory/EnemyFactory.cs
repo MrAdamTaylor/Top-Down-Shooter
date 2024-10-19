@@ -71,6 +71,8 @@ internal class EnemyFactory : IEnemyFactory
     {
         Debug.Log($"<color=green>  {configs.Name} is Created Registered</color>");
         Transform visual = enemy.transform.Find(Constants.PREFAB_MESH_COMPONENT_NAME);
+        Transform physic = enemy.transform.Find(Constants.PREFAB_PHYSIC_COMPONENT_NAME);
+        PlayLoopComponentProvider provider = physic.GetComponent<PlayLoopComponentProvider>();
         EnemyAnimator enemyAnimator = visual.AddComponent<EnemyAnimator>();
         enemyAnimator.Construct();
         Player player = (Player)ServiceLocator.Instance.GetData(typeof(Player));
@@ -84,8 +86,14 @@ internal class EnemyFactory : IEnemyFactory
         enemyAttack.Construct(enemyAnimator, configs.MinDamage, configs.MaxDamage);
         CheckAttack attackChecker = enemy.AddComponent<CheckAttack>();
         attackChecker.Construct(enemyAttack, reactionTrigger);
-        NewEnemyController enemyController = enemy.AddComponent<NewEnemyController>();
-        enemyController.Construct(moveToPlayer, enemyAnimator, enemyRotateSystem, enemyAttack, configs.MinimalToPlayerDistance);
+        EnemyHealth enemyHealth = enemy.AddComponent<EnemyHealth>();
+        enemyHealth.Construct(configs.Health, enemyAnimator);
+        EnemyDeath enemyDeath = enemy.AddComponent<EnemyDeath>();
+        enemyDeath.Construct(enemyHealth, enemyAnimator);
+        provider.AddToProvideComponent(enemyHealth);
+        EnemyController enemyController = enemy.AddComponent<EnemyController>();
+        enemyController.Construct(moveToPlayer, enemyAnimator, enemyRotateSystem, enemyAttack, 
+            configs.MinimalToPlayerDistance, enemyDeath, physic.gameObject);
     }
 
     private void CreateKamikaze(GameObject enemy, EnemyKamikazeConfigs configs)

@@ -1,7 +1,6 @@
 using System.IO;
 using EnterpriceLogic.Constants;
 using Infrastructure.Services.AssertService.ExtendetAssertService;
-using UI.MVC;
 using UnityEngine;
 
 public class UIFactory : IUIFactory
@@ -64,35 +63,10 @@ public class UIFactory : IUIFactory
         #endregion
         #region BindPlayerHP
         ServiceLocator.Instance.BindData(typeof(HealthAdapter), 
-            new HealthAdapter(playerObject.GetComponent<PlayerHealth>(), currencyProvider.HpBar));
-        PlayerHealth playerHealth = playerObject.GetComponent<PlayerHealth>();
-        playerHealth.Construct(Constants.PLAYER_HP);
+            new HealthAdapter(playerObject.GetComponent<PlayableHealth>(), currencyProvider.HpBar));
+        PlayableHealth playableHealth = playerObject.GetComponent<PlayableHealth>();
+        playableHealth.Construct(Constants.PLAYER_HP);
         #endregion
         return ui;
-
-        
-
-        // ServiceLocator.Instance.BindData(typeof(HpStorage), new HpStorage());
-        
-        
-
-        
-    }
-}
-
-public class HealthAdapter
-{
-    private PlayerHealth _playerHealth;
-    private HpBar _hpBar;
-    
-    public HealthAdapter(PlayerHealth health, HpBar hpBar)
-    {
-        _playerHealth = health;
-        _hpBar = hpBar;
-    }
-
-    public void UpdateValues(float current)
-    {
-        _hpBar.SetValue(current, Constants.PLAYER_HP);
     }
 }

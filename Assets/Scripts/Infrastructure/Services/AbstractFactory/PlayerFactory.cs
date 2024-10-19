@@ -21,7 +21,7 @@ public class PlayerFactory : IPlayerFactory
         GameObject gameObject = _objAssert.Assert(playerConfigs.PathToPlayer, position);
         Player player = gameObject.AddComponent<Player>();
         Transform physic = player.transform.Find(Constants.PREFAB_PHYSIC_COMPONENT_NAME);
-        PlayerComponentProvider playerComponentProvider = physic.GetComponent<PlayerComponentProvider>();
+        PlayLoopComponentProvider playLoopComponentProvider = physic.GetComponent<PlayLoopComponentProvider>();
         
         ServiceLocator.Instance.BindData(typeof(Transform), player.transform);
         gameObject.AddComponent<CameraFollower>().Construct(camera, player);
@@ -40,8 +40,8 @@ public class PlayerFactory : IPlayerFactory
             CurrentWeaponConstructor currentWeaponConstructor = new CurrentWeaponConstructor(controller);
             switcher.Construct(provider, currentWeaponConstructor);
             controller.Construct(provider.ReturnWeapons(), switcher);
-            PlayerHealth playerHealth = gameObject.AddComponent<PlayerHealth>();
-            playerComponentProvider.AddToProvideComponent(playerHealth);
+            PlayableHealth playableHealth = gameObject.AddComponent<PlayableHealth>();
+            playLoopComponentProvider.AddToProvideComponent(playableHealth);
         return gameObject;
     }
 }

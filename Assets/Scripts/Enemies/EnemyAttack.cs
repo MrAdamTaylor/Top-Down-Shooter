@@ -16,10 +16,8 @@ public class EnemyAttack : MonoBehaviour
     private int _layerMask;
     private float _minDamage;
     private float _maxDamage;
-
     private EnemyAnimator _animator;
-
-
+    
     private Collider[] _hits = new Collider[1];
     private bool _isAttacking;
     private bool _attackIsActive;
@@ -45,10 +43,9 @@ public class EnemyAttack : MonoBehaviour
         if (Hit(out Collider hit))
         {
             PhysicsDebug.DrawDebugRaysFromPoint(HitPointPosition(), _cleavege, Constants.DEBUG_TIME_FRAMERATE);
-            PlayerComponentProvider provider = hit.transform.GetComponent<PlayerComponentProvider>();
-            PlayerHealth health = (PlayerHealth)provider.TakeComponent(typeof(PlayerHealth));
+            PlayLoopComponentProvider provider = hit.transform.GetComponent<PlayLoopComponentProvider>();
+            PlayableHealth health = (PlayableHealth)provider.TakeComponent(typeof(PlayableHealth));
             health.TakeDamage(Random.Range(_minDamage, _maxDamage));
-            //hit.transform.GetComponent<PlayerHealth>().TakeDamage(Random.Range(_minDamage, _maxDamage));
         }
     }
 

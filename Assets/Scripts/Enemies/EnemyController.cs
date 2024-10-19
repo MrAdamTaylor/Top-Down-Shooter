@@ -1,62 +1,75 @@
-using Enemies;
-using EnterpriceLogic.Constants;
-using Mechanics;
-using Mechanics.Spawners.NewArchitecture;
+using EnterpriceLogic.Utilities;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private Enemy _enemy;
-    [SerializeField] private RotateSystem _rotateSystem;
-    [SerializeField] private MoveTo _moveSystem;
-    [SerializeField] private EnemyDeath _death;
-    
-    private EnemySpawner _spawner;
+    [SerializeField] private float _minimalDistance;
+    private EnemyAnimator _enemyAnimator;
+    private MoveToPlayer _moveToPlayer;
+    private EnemyRotateSystem _enemyRotateSystem;
+    private EnemyAttack _enemyAttack;
+    private CheckAttack _checkAttack;
+    private EnemyDeath _enemyDeath;
 
-    //TODO - Dependency (Level - SelfConstruct) (class - EnemySpawner)
-    public void Construct(EnemySpawner spawner)
-    {
-        _spawner = spawner;
-    }
+    private GameObject _physic;
+    private bool _isMoving;
+    private bool _isDeath;
 
-    private void Start()
+    public void Construct(MoveToPlayer moveToPlayer, EnemyAnimator enemyAnimator, EnemyRotateSystem rotateSystem,
+        EnemyAttack enemyAttack,float minimalDistance, EnemyDeath death, GameObject physic)
     {
-        if (_rotateSystem != null)
+        _moveToPlayer = moveToPlayer;
+        _enemyAnimator = enemyAnimator;
+        _enemyRotateSystem = rotateSystem;
+        _minimalDistance = minimalDistance;
+        _enemyAttack = enemyAttack;
+        _enemyAttack.AfterAttackAction += UpdateState;
+        _enemyDeath = death;
+        _enemyDeath.DeathAction += StopAllComponents;
+        _physic = physic;
+
+        if (!moveToPlayer.IsNull())
         {
-            _rotateSystem.OnStart();
+            _isMoving = true;
+            _moveToPlayer.Move();
+            _enemyRotateSystem.RotateStart();
+            _enemyAnimator.Move(1f);
         }
+    }
 
-        if (_moveSystem != null)
+    void Update()
+    {
+        if (!_isDeath)
         {
-            _moveSystem.OnStart(_enemy.ReturnSpeed()*Constants.NPC_SPEED_MULTIPLYER);
-            _moveSystem.Move();
+            if (_moveToPlayer.CalculateDistacne() <= _minimalDistance)
+            {
+                _enemyAnimator.StopMoving();
+                _moveToPlayer.StopMove();
+            }
         }
     }
 
-    private void OnEnable()
+    private void StopAllComponents()
     {
-        _moveSystem.Move();
-        _rotateSystem.OnStart();
+        _physic.SetActive(false);
+        _moveToPlayer.StopMove();
+        _enemyRotateSystem.RotateStop();
+        _isDeath = true;
     }
 
-    private void OnDisable()
+    private void UpdateState()
     {
-        _moveSystem.StopMove();
-        _rotateSystem.Stop();
+        if (_moveToPlayer.CalculateDistacne() > _minimalDistance)
+        {
+            _enemyAnimator.Move(1f);
+            _moveToPlayer.Move();
+        }
     }
 
     private void OnDestroy()
     {
-        _death.OnDeath -= ReturnPool;
-    }
-
-    public void SubscribeDeath()
-    {
-        _death.OnDeath += ReturnPool;
-    }
-
-    private void ReturnPool()
-    {
-        _spawner.ReturnPool(this.gameObject);
+        _enemyAttack.AfterAttackAction -= UpdateState;
+        _enemyRotateSystem.RotateStop();
+        _enemyDeath.DeathAction -= StopAllComponents;
     }
 }

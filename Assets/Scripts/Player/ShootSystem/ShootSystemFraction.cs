@@ -102,10 +102,10 @@ public class ShootSystemFraction : CoomoonShootSystem
                 {
                     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                     {
-                        EnemyComponentProvider enemyComponentProvider = hit.collider.gameObject.GetComponent<EnemyComponentProvider>();
-                        Enemy enemy = enemyComponentProvider.Enemy;
-                        Health component = enemy.gameObject.GetComponent<Health>();
-                        component.DealDamage(_damage);
+                        PlayLoopComponentProvider enemyComponentProvider =
+                            hit.collider.gameObject.GetComponent<PlayLoopComponentProvider>();
+                        EnemyHealth enemyHealth = (EnemyHealth)enemyComponentProvider.TakeComponent(typeof(EnemyHealth));
+                        enemyHealth.TakeDamage(_damage);
                     }
                     Debug.DrawRay(_bulletPoint.position, _directions[i] * _distance,Color.red, 5f);
                     Vector3 endPosition = hit.point;

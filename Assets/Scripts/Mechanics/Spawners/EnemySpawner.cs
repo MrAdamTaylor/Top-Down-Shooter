@@ -18,9 +18,9 @@ namespace Mechanics.Spawners.NewArchitecture
             List<Transform> childs = transform.Cast<Transform>().ToList();
             for (int i = 0; i < childs.Count; i++)
             {
-                EnemyController controller = childs[i].GetComponent<EnemyController>();
-                controller.Construct(this);
-                controller.SubscribeDeath();
+                //EnemyController controller = childs[i].GetComponent<EnemyController>();
+                //controller.Construct(this);
+                //controller.SubscribeDeath();
             }
         }
 
