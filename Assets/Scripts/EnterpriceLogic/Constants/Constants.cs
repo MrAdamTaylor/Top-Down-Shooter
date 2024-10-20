@@ -12,7 +12,7 @@ namespace EnterpriceLogic.Constants
         #endregion
 
         #region Player Characteristics
-        public static Vector3 CAMERA_POSITION = new Vector3(0,12,-5);
+        public static Vector3 CAMERA_POSITION = new Vector3(0,13,-3);
         #endregion
 
         #region Weapon Constants
