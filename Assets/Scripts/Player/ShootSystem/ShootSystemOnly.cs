@@ -34,7 +34,7 @@ public class ShootSystemOnly : CoomoonShootSystem
         Vector3 direction = GetDirection();
         if (Physics.Raycast(_bulletPoint.position, direction, out RaycastHit hit, _distance, _layerMask))
         {
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer(Constants.ENEMY_LAYER))
             {
                 
                 PlayLoopComponentProvider enemyComponentProvider =

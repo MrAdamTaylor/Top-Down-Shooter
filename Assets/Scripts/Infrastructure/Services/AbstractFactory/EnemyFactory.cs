@@ -18,17 +18,19 @@ internal class EnemyFactory : IEnemyFactory
     {
         GameObject enemy;
         Vector3 pos = CreateTestPosition();
-        if (configs.Skins.Count == 0)
+        switch (configs.Skins.Count)
         {
-            return;
-        }
-        else if(configs.Skins.Count == 1)
-        {
-            enemy = _enemySkinsAssert.Assert(configs.Skins[0], pos);
-        }
-        else
-        {
-             enemy = _enemySkinsAssert.Assert(configs.Skins[Random.Range(0, configs.Skins.Count)], pos);
+            case 0:
+                return;
+            break;
+            case 1:
+                enemy = _enemySkinsAssert.Assert(configs.Skins[0], pos);
+                break;
+            case > 1:
+                enemy = _enemySkinsAssert.Assert(configs.Skins[Random.Range(0, configs.Skins.Count)], pos);
+                break;
+            default:
+                throw new Exception("Cannot add skin in EnemyFactory");
         }
         enemy.transform.parent = parent.transform;
         switch (configs)
@@ -54,11 +56,11 @@ internal class EnemyFactory : IEnemyFactory
     private Vector3 CreateTestPosition()
     {
         Vector3 pos = new Vector3(
-            Random.Range(Constants.DEFAULT_VECTOR_FOR_TEST2.x-Constants.SPAWN_INTERVAL,
-                Constants.DEFAULT_VECTOR_FOR_TEST2.x+Constants.SPAWN_INTERVAL), 
+            Random.Range(Constants.DEFAULT_VECTOR_FOR_TEST2.x-Constants.SPAWN_POINT_DEVIATION,
+                Constants.DEFAULT_VECTOR_FOR_TEST2.x+Constants.SPAWN_POINT_DEVIATION), 
             Constants.DEFAULT_VECTOR_FOR_TEST2.y, 
-            Random.Range(Constants.DEFAULT_VECTOR_FOR_TEST2.z-Constants.SPAWN_INTERVAL,
-                Constants.DEFAULT_VECTOR_FOR_TEST2.z+Constants.SPAWN_INTERVAL));
+            Random.Range(Constants.DEFAULT_VECTOR_FOR_TEST2.z-Constants.SPAWN_POINT_DEVIATION,
+                Constants.DEFAULT_VECTOR_FOR_TEST2.z+Constants.SPAWN_POINT_DEVIATION));
         return pos;
     }
 
@@ -69,19 +71,20 @@ internal class EnemyFactory : IEnemyFactory
 
     private void CreateWalking(GameObject enemy, EnemyWalkingConfigs configs)
     {
-        Debug.Log($"<color=green>  {configs.Name} is Created Registered</color>");
         Transform visual = enemy.transform.Find(Constants.PREFAB_MESH_COMPONENT_NAME);
         Transform physic = enemy.transform.Find(Constants.PREFAB_PHYSIC_COMPONENT_NAME);
         PlayLoopComponentProvider provider = physic.GetComponent<PlayLoopComponentProvider>();
+        Player player = (Player)ServiceLocator.Instance.GetData(typeof(Player));
+
         EnemyAnimator enemyAnimator = visual.AddComponent<EnemyAnimator>();
         enemyAnimator.Construct();
-        Player player = (Player)ServiceLocator.Instance.GetData(typeof(Player));
         MoveToPlayer moveToPlayer = enemy.AddComponent<MoveToPlayer>();
         moveToPlayer.Construct(enemy.transform, configs.Speed);
         EnemyRotateSystem enemyRotateSystem = enemy.AddComponent<EnemyRotateSystem>();
         enemyRotateSystem.Construct(enemy.transform, player.transform, Constants.ROTATE_SPEED);
         ReactionTrigger reactionTrigger = enemy.AddComponent<ReactionTrigger>();
         reactionTrigger.Construct(configs.RadiusDetection, player.transform);
+        
         EnemyAttack enemyAttack = visual.AddComponent<EnemyAttack>();
         enemyAttack.Construct(enemyAnimator, configs.MinDamage, configs.MaxDamage);
         CheckAttack attackChecker = enemy.AddComponent<CheckAttack>();
@@ -91,6 +94,7 @@ internal class EnemyFactory : IEnemyFactory
         EnemyDeath enemyDeath = enemy.AddComponent<EnemyDeath>();
         enemyDeath.Construct(enemyHealth, enemyAnimator);
         provider.AddToProvideComponent(enemyHealth);
+        
         EnemyController enemyController = enemy.AddComponent<EnemyController>();
         enemyController.Construct(moveToPlayer, enemyAnimator, enemyRotateSystem, enemyAttack, 
             configs.MinimalToPlayerDistance, enemyDeath, physic.gameObject);

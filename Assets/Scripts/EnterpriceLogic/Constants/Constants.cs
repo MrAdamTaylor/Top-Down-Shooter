@@ -4,101 +4,70 @@ namespace EnterpriceLogic.Constants
 {
     public static class Constants
     {
-        #region Level list
-
-        public const string SECOND_LEVEL = "Level2";
-        public const string LEVEL_THREE = "Level3";
-        public const string STARTER_SCENE = "StartScene";
-        public const string FIRST_LEVEL = "GameScene";
-
-        #endregion
-
-
         #region Enemy Characteristics
-
         public const float NPC_SPEED_MULTIPLYER = 3f;
-        public const float DELTA_VALUE_FOR_NPC_ROTATE_SYSTEM = 10;
         public const int MAXIMUM_KAMIKAZE_EXPLOSION_LEVEL = 3;
-
         public const float MAX_DOT_PRODUCT_VALUE = 1f;
+        public static string ENEMY_LAYER = "Enemy";
         #endregion
-
 
         #region Player Characteristics
-
         public static Vector3 CAMERA_POSITION = new Vector3(0,12,-5);
-
-
-        #endregion
-
-
-        #region Baf Characteristics
-
-        public const float STANDART_VALUE_FOR_SPEED = 0f;
-
         #endregion
 
         #region Weapon Constants
-
-        public const float DEFAULT_MAXIMUM_FIRING_RANGE = 40f;
-        public const float ROCKET_SPEED = 30f;
-        public static float DEFAULT_BULLET_SPEED = 100f;
-        public static float DEFAULT_BULLET_DISTANCE = 40f;
-        public static string INITIAL_POSITION = "InitialPoint";
+        public const float DEFAULT_BULLET_SPEED = 100f;
+        public const float DEFAULT_BULLET_DISTANCE = 40f;
         public static LayerMask WEAPON_LAYER_MASK = LayerMask.GetMask("Enemy","Obstacle");
-        public const long STANDART_WASTE_WALUE = 1L;
-        public const bool SWITCH_WEAPON_MODE = true;
-        public const bool ONE_WEAPON_MODE = false;
-        public static bool MADE_IMPACT = true;
-        public static bool NON_MADE_IMPACT = false;
-
-        #endregion
-
-    
-
-
-        #region MapBorder
-
-        public const float XBORDER_MAX = 20f;
-        public const float ZBORDER_MAX = 15f;
-        public const float STANDART_Y_POSITION = 1f;
-
-        #endregion
-
-        #region DebafState
-
-        public const float MAX_DEBUF_STAGE_LEVEL = 100;
-        public const float MIN_DEBUF_STAGE_LEVEL = 0f;
-
-        #endregion
-
         
+        public const long STANDART_WASTE_WALUE = 1L;
+        public const bool MADE_IMPACT = true;
+        public const bool NON_MADE_IMPACT = false;
+        public const float RAY_SHOOT_DURATION = 5f;
+        public const int HALF = 2;
+        public const int QUARTER = 4;
+        public const int THIRD_FRACTION = 3;
+        public const int FIVE_FRACTION = 5;
 
-        #region UI Constants
+        #endregion
 
-        public const float SCREEN_OVERLAY_WIDTH = 1920f;
-        public const float SCREEN_OVERLAY_HEIGHT = 1080f;
+        #region UI Animation Constants
         public const int UI_ELEMENT_VIBRATION = 10;
         public const long STANDART_UI_VALUE = 10;
         #endregion
-        
-        public static string SCENE_PARENT_NAME = "[GAME_OBJECTS]";
-        
-        public static Vector3 DEFAULT_VECTOR_FOR_TESTS = new Vector3(0, 1.5f,0);
-        public static Vector3 DEFAULT_VECTOR_FOR_TEST2 = new Vector3(-25f, -28f, 25f);
-        public static float MOVEMENT_THRESHOLD = 0.8f;
-        public static string PREFAB_MESH_COMPONENT_NAME = "[VISUAL]";
-        public static int STANDART_CLOCKWISE_VALUE = 1;
-        public static float POSIBLE_ROTATION_ANGLE_DEVIANT = 10f;
-        public static float ROTATE_SPEED = 10f;
-        public const float SPAWN_INTERVAL = 5f;
 
-        public static int MINIMAL_ATTACK_ANIMATION = 1;
-        public static int MAXIMUM_ATTACK_ANIMATION = 3;
-        public static float DEBUG_TIME_FRAMERATE = 1f;
+        #region TempValue
+        public static Vector3 DEFAULT_VECTOR_FOR_TEST2 = new Vector3(-25f, -28f, 25f);
+        #endregion
+
+
+        #region RotateSystem
+        public const int STANDART_CLOCKWISE_VALUE = 1;
+        public const float POSIBLE_ROTATION_ANGLE_DEVIANT = 10f;
+        public const float ROTATE_SPEED = 10f;
+        #endregion
+
+
+        public const float SPAWN_POINT_DEVIATION = 5f;
+        public static float DEBUG_RILLRATE_TIME = 1f;
         public static float EPSILON_BETWEEN_RDETECTION_MINDISTANCE = 0.5f;
-        public static float ENEMY_ANIMATION_SPEED = 1.5f;
-        public static float PLAYER_HP = 100f;
-        public static string PREFAB_PHYSIC_COMPONENT_NAME = "[PHYSICS]";
+
+
+        #region GameObjNames
+        public const string PREFABS_SCENE_GAMEOBJECT_PARENT_NAME = "[GAME_OBJECTS]";
+        public const string PREFAB_MESH_COMPONENT_NAME = "[VISUAL]";
+        public const string PREFAB_PHYSIC_COMPONENT_NAME = "[PHYSICS]";
+        public const string PREFAB_SCENE_DEBUG_COMPONENT = "[DEBUG]";
+        public const string INITIAL_POSITION = "InitialPoint";
+        public const string FRACTION_TRASH = "FractionTrash";
+        public const string CANVAS_TAG = "PlayerUI";
+        #endregion
+        
+
+        #region Animation
+        public const int MINIMAL_ATTACK_ANIMATION = 1;
+        public const int MAXIMUM_ATTACK_ANIMATION = 3;
+        public const float ENEMY_ANIMATION_SPEED = 1.5f;
+        #endregion
     }
 }

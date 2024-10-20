@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Enemies;
 using EnterpriceLogic.Constants;
 using EnterpriceLogic.Utilities;
 using UnityEngine;
@@ -29,13 +28,8 @@ public class ShootSystemFraction : CoomoonShootSystem
         _fractionShotCharacteristics.Angle = staticShootgun.AmountOfRaction;
         _fractionShotCharacteristics.Distance = staticShootgun.Distance;
         _fadeDuration = staticShootgun.FadeDuration;
-        _shootTrash = new GameObject("FractionTrash")
-        {
-            transform =
-            {
-                parent = transform
-            }
-        };
+        _shootTrash = new GameObject(Constants.FRACTION_TRASH);
+        _shootTrash.transform.SetParent(transform);
         _damage = staticData.Damage;
         _bulletPoint = staticData.BulletPoint;
         _specialEffectFactory = (ISpecialEffectFactory)ServiceLocator.Instance.GetData(typeof(ISpecialEffectFactory));
@@ -52,36 +46,41 @@ public class ShootSystemFraction : CoomoonShootSystem
             _distance = _fractionShotCharacteristics.Distance;
         switch (_fractionShotCharacteristics.AmountFraction)
         {
-            case 3:
-                TwoAngleShoot();
+            case Constants.THIRD_FRACTION:
+                ThirdFractionShoot();
                 break;
-            case 5:
-                FourAngleShoot();
+            case Constants.FIVE_FRACTION:
+                FiveFractionShoot();
                 break;
         }
     }
 
-    private void FourAngleShoot()
+    private void FiveFractionShoot()
     {
         _directions = new List<Vector3>();
         Vector3 direction = _bulletPoint.forward;
         _directions.Add(direction);
+        
         Vector3 axisRight = _bulletPoint.up;
-        Quaternion axisRotationRight = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / 2, axisRight);
+        Quaternion axisRotationRight = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.HALF, axisRight);
         Vector3 rotatedDirectionRight = axisRotationRight * direction;
         _directions.Add(rotatedDirectionRight);
+        
         Vector3 axisLeft = -_bulletPoint.up;
-        Quaternion axisRotationLeft = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / 2, axisLeft);
+        Quaternion axisRotationLeft = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.HALF, axisLeft);
         Vector3 rotatedDirectionLeft = axisRotationLeft * direction;
         _directions.Add(rotatedDirectionLeft);
+        
         Vector3 axisRight2 = _bulletPoint.up;
-        Quaternion axisRotationRight2 = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / 4, axisRight2);
+        Quaternion axisRotationRight2 = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.QUARTER, axisRight2);
         Vector3 rotatedDirectionRight2 = axisRotationRight2 * direction;
         _directions.Add(rotatedDirectionRight2);
+        
         Vector3 axisLeft2 = -_bulletPoint.up;
-        Quaternion axisRotationLeft2 = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / 4, axisLeft2);
+        Quaternion axisRotationLeft2 = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.QUARTER, axisLeft2);
         Vector3 rotatedDirectionLeft2 = axisRotationLeft2 * direction;
         _directions.Add(rotatedDirectionLeft2);
+        
         ShootFraction();
     }
 
@@ -95,48 +94,51 @@ public class ShootSystemFraction : CoomoonShootSystem
             }
         }
 
-            for (int i = 0; i < _fractionShotCharacteristics.AmountFraction; i++)
-            {
-                if (Physics.Raycast(_bulletPoint.position, _directions[i], out RaycastHit hit,
+        for (int i = 0; i < _fractionShotCharacteristics.AmountFraction; i++)
+        {
+            if (Physics.Raycast(_bulletPoint.position, _directions[i], out RaycastHit hit,
                         _distance, _layerMask))
+            {
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer(Constants.ENEMY_LAYER))
                 {
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-                    {
                         PlayLoopComponentProvider enemyComponentProvider =
                             hit.collider.gameObject.GetComponent<PlayLoopComponentProvider>();
                         EnemyHealth enemyHealth = (EnemyHealth)enemyComponentProvider.TakeComponent(typeof(EnemyHealth));
                         enemyHealth.TakeDamage(_damage);
-                    }
-                    Debug.DrawRay(_bulletPoint.position, _directions[i] * _distance,Color.red, 5f);
-                    Vector3 endPosition = hit.point;
-                    _specialEffectFactory.CreateLaser(this, _laser,  
+                }
+                Debug.DrawRay(_bulletPoint.position, _directions[i] * _distance,Color.red, Constants.RAY_SHOOT_DURATION);
+                Vector3 endPosition = hit.point;
+                _specialEffectFactory.CreateLaser(this, _laser,  
                         _bulletPoint.position, 
                         endPosition,
                         _fadeDuration, _shootTrash.transform);
-                }
-                else
-                {
-                    Debug.DrawRay(_bulletPoint.position, _directions[i] * _distance, Color.blue, 5f);
+            }
+            else
+            {
+                    Debug.DrawRay(_bulletPoint.position, _directions[i] * _distance, Color.blue,  Constants.RAY_SHOOT_DURATION);
                     Vector3 endPosition = hit.point;
                      _specialEffectFactory.CreateLaser(this, _laser, _bulletPoint.position, 
                          _bulletPoint.position + _directions[i] * _distance, _fadeDuration, _shootTrash.transform);
-                }
             }
+        }
     }
 
-    private void TwoAngleShoot()
+    private void ThirdFractionShoot()
     {
         _directions = new List<Vector3>();
         Vector3 direction = _bulletPoint.forward;
         _directions.Add(direction);
+        
         Vector3 axisRight = _bulletPoint.up;
-        Quaternion axisRotationRight = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / 2, axisRight);
+        Quaternion axisRotationRight = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.HALF, axisRight);
         Vector3 rotatedDirectionRight = axisRotationRight * direction;
         _directions.Add(rotatedDirectionRight);
+        
         Vector3 axisLeft = -_bulletPoint.up;
-        Quaternion axisRotationLeft = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / 2, axisLeft);
+        Quaternion axisRotationLeft = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.HALF, axisLeft);
         Vector3 rotatedDirectionLeft = axisRotationLeft * direction;
         _directions.Add(rotatedDirectionLeft);
+        
         ShootFraction();
     }
 }

@@ -17,25 +17,4 @@ public class WeaponProvider : MonoBehaviour
 
         return weapons;
     }
-
-    public Weapon GetActiveWeapon()
-    {
-        Weapon weapon = null;
-        for (int i = 0; i < _weapons.Length; i++)
-        {
-            if (_weapons[i].gameObject.activeSelf)
-            {
-                weapon = _weapons[i];
-            }
-        }
-        
-        if (weapon == null)
-        {
-            throw new Exception("No active weapon");
-        }
-        else
-        {
-            return weapon;
-        }
-    }
 }

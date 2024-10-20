@@ -20,7 +20,7 @@ public class EnemyRotateSystem : MonoBehaviour
         _rotateSpeed = rotateSpeed;
     }
 
-    void Update()
+    private void Update()
     {
         AutoRotate();
     }
@@ -30,6 +30,7 @@ public class EnemyRotateSystem : MonoBehaviour
         _autoRotate = true;
     }
 
+    //TODO - Change on UniTask
     public void RotateStop()
     {
         //StopCoroutine(_coroutineRotate);
@@ -43,7 +44,6 @@ public class EnemyRotateSystem : MonoBehaviour
         {
             _coroutineRotate = StartCoroutine(RotateDirection() );
             _isRotate = true;
-            
         }
     }
 

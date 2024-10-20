@@ -3,7 +3,6 @@ using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using EnterpriceLogic.Constants;
-using EnterpriceLogic.Utilities;
 using UnityEngine;
 
 public class UIAnimationPlayer
@@ -17,7 +16,7 @@ public class UIAnimationPlayer
         Vector3 imagePosition = image.position;
         Vector3 textPosition = text.position;
         
-        if (tweenerCore.IsNull())
+        if (tweenerCore == null)
         {
             _sequence.Append(ReturnStarterSequence(animationConfigs.ImageConfigs.StartConfigs,
                     animationConfigs.TextConfigs.StartConfigs, text, image,

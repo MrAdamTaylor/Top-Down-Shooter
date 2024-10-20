@@ -63,9 +63,7 @@ public class UIFactory : IUIFactory
         #endregion
         #region BindPlayerHP
         ServiceLocator.Instance.BindData(typeof(HealthAdapter), 
-            new HealthAdapter(playerObject.GetComponent<PlayableHealth>(), currencyProvider.HpBar));
-        PlayableHealth playableHealth = playerObject.GetComponent<PlayableHealth>();
-        playableHealth.Construct(Constants.PLAYER_HP);
+            new HealthAdapter(playerObject.GetComponent<PlayerHealth>(), currencyProvider.HpBar));
         #endregion
         return ui;
     }

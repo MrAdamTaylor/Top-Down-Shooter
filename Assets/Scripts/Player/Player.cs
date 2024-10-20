@@ -1,17 +1,10 @@
-using Mechanics.BafMechaniks;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float _speed = 5f;
+    [SerializeField] private float _speed;
     
     private float _innerSpeed;
-
-    void Awake()
-    {
-        _innerSpeed = _speed;
-        ServiceLocator.Instance.BindData(typeof(Player),this);
-    }
 
     public void Move(Vector3 offset)
     {
@@ -23,13 +16,10 @@ public class Player : MonoBehaviour
         return transform.position;
     }
 
-    public void SwitchSpeed(float speedChange)
+    public void Construct(float speed)
     {
-        _innerSpeed = _speed - (_speed * speedChange);
-    }
-
-    public void AddBonus<T>() where T : MonoBehaviour, IPlayerBonusComponent
-    {
-        gameObject.AddComponent<T>();
+        _speed = speed;
+        _innerSpeed = _speed;
+        ServiceLocator.Instance.BindData(typeof(Player),this);
     }
 }

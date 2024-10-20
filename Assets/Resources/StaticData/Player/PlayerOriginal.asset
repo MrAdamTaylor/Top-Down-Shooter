@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: PlayerOriginal
   m_EditorClassIdentifier: 
   PathToPlayer: Prefabs/Player/Player
-  Speed: 0
-  Health: 0
+  Speed: 5
+  Health: 100
+  ShootLayer:
+    serializedVersion: 2
+    m_Bits: 136

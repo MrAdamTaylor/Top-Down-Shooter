@@ -15,7 +15,7 @@ public class EnemyDeath : MonoBehaviour
         _animator = animator;
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         _enemyHealth.NoHealthAction -= Death;
     }

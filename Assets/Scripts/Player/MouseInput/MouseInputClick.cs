@@ -4,8 +4,8 @@ using UnityEngine;
 public class MouseInputClick : MonoBehaviour, IMouseInput
 {
     public event Action OnFire;
-    
-    void Update()
+
+    private void Update()
     {
         HandleMouse();
     }

@@ -375,7 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533f894b04e1463baa74254f03ad34ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Curtain: {fileID: 342909245}
+  _curtain: {fileID: 342909245}
 --- !u!225 &342909245
 CanvasGroup:
   m_ObjectHideFlags: 0

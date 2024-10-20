@@ -7,18 +7,20 @@ using Random = UnityEngine.Random;
 
 public class EnemyAttack : MonoBehaviour
 {
+    public const float ATTACK_COOLDOWN = 1f;
+    public const float SHIFTED_DISTANCE = 0.5f;
+    public const float CLEAVE_RADIUS = 0.8f;
+    public const float HIT_BOX_HIGH_SHIFTED = 0.6f;
+    
     public Action AfterAttackAction;
-        
-    public float AttackCooldown = 1f;
-    private float _attackCooldown;
-    private float _effectDistance = 0.5f;
-    private float _cleavege = 0.8f;
+    
     private int _layerMask;
     private float _minDamage;
     private float _maxDamage;
     private EnemyAnimator _animator;
-    
+
     private Collider[] _hits = new Collider[1];
+    private float _attackCooldown;
     private bool _isAttacking;
     private bool _attackIsActive;
 
@@ -30,7 +32,7 @@ public class EnemyAttack : MonoBehaviour
         _minDamage = minDamage;
     }
 
-    void Update()
+    private void Update()
     {
         UpdateCooldown();
 
@@ -38,21 +40,21 @@ public class EnemyAttack : MonoBehaviour
             StartAttack();
     }
 
-    void OnAttack()
+    private void OnAttack()
     {
         if (Hit(out Collider hit))
         {
-            PhysicsDebug.DrawDebugRaysFromPoint(HitPointPosition(), _cleavege, Constants.DEBUG_TIME_FRAMERATE);
+            PhysicsDebug.DrawDebugRaysFromPoint(HitPointPosition(), CLEAVE_RADIUS, Constants.DEBUG_RILLRATE_TIME);
             PlayLoopComponentProvider provider = hit.transform.GetComponent<PlayLoopComponentProvider>();
-            PlayableHealth health = (PlayableHealth)provider.TakeComponent(typeof(PlayableHealth));
+            PlayerHealth health = (PlayerHealth)provider.TakeComponent(typeof(PlayerHealth));
             health.TakeDamage(Random.Range(_minDamage, _maxDamage));
         }
     }
 
-    void OnAttackEnded()
+    private void OnAttackEnded()
     {
         AfterAttackAction?.Invoke();
-        _attackCooldown = AttackCooldown;
+        _attackCooldown = ATTACK_COOLDOWN;
         _isAttacking = false;
     }
 
@@ -69,14 +71,14 @@ public class EnemyAttack : MonoBehaviour
     private bool Hit(out Collider hit)
     {
         var transformPosition = HitPointPosition();
-        int hitCount = Physics.OverlapSphereNonAlloc(transformPosition, _cleavege, _hits, _layerMask);
+        int hitCount = Physics.OverlapSphereNonAlloc(transformPosition, CLEAVE_RADIUS, _hits, _layerMask);
         hit = _hits.FirstOrDefault();
         return hitCount > 0;
     }
 
     private Vector3 HitPointPosition()
     {
-        return new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z) + transform.forward*_effectDistance;
+        return new Vector3(transform.position.x, transform.position.y + HIT_BOX_HIGH_SHIFTED, transform.position.z) + transform.forward*SHIFTED_DISTANCE;
     }
 
     private void UpdateCooldown()

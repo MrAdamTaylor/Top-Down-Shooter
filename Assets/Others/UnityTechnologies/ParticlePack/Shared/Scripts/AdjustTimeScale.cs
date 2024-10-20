@@ -5,14 +5,14 @@ using TMPro;
 
 public class AdjustTimeScale : MonoBehaviour
 {
-    TextMeshProUGUI textMesh;
+    private TextMeshProUGUI textMesh;
 
     private void Start()
     {
         textMesh = GetComponent<TextMeshProUGUI>();
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
@@ -45,7 +45,7 @@ public class AdjustTimeScale : MonoBehaviour
         }
     }
 
-    void OnApplicationQuit()
+    private void OnApplicationQuit()
     {
         Time.timeScale = 1.0F;
         Time.fixedDeltaTime = 0.02F;

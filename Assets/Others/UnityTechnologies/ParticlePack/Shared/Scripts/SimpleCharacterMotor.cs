@@ -21,13 +21,13 @@ public class SimpleCharacterMotor : MonoBehaviour
     [Header("Smoothing")]
     public float movementAcceleration = 1;
 
-    CharacterController controller;
-    Vector3 movement, finalMovement;
-    float speed;
-    Quaternion targetRotation, targetPivotRotation;
+    private CharacterController controller;
+    private Vector3 movement, finalMovement;
+    private float speed;
+    private Quaternion targetRotation, targetPivotRotation;
 
 
-    void Awake()
+    private void Awake()
     {
         controller = GetComponent<CharacterController>();
         Cursor.lockState = cursorLockMode;
@@ -35,13 +35,13 @@ public class SimpleCharacterMotor : MonoBehaviour
         targetRotation = targetPivotRotation = Quaternion.identity;
     }
 
-    void Update()
+    private void Update()
     {
         UpdateTranslation();
         UpdateLookRotation();
     }
 
-    void UpdateLookRotation()
+    private void UpdateLookRotation()
     {
         var x = Input.GetAxis("Mouse Y");
         var y = Input.GetAxis("Mouse X");
@@ -54,7 +54,7 @@ public class SimpleCharacterMotor : MonoBehaviour
         cameraPivot.localRotation = targetPivotRotation;
     }
 
-    void UpdateTranslation()
+    private void UpdateTranslation()
     {
         if (controller.isGrounded)
         {

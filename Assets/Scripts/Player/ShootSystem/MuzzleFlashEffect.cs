@@ -17,7 +17,7 @@ public class MuzzleFlashEffect : MonoBehaviour
         _effect = conteiner.GetParticleEffect(PrefabPath.MUZZLE_FLASH_WEAPON_PATH, _position, gameObject.transform);
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         if (!_effect.IsNullBoolWarning("MuzzleEffectIsNull"))
             _effect.Stop();
@@ -27,7 +27,7 @@ public class MuzzleFlashEffect : MonoBehaviour
         }
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         _shootControlSystem.ShootAction -= MuzzleEffect;
     }

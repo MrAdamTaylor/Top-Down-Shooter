@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -31,16 +29,6 @@ public class UIHelperEditor : Editor
         {
             helper.SpendScores();
         }
-
-        /*if (GUILayout.Button("Add Ammo"))
-        {
-            helper.AddAmmo();
-        }
-
-        if (GUILayout.Button("Spend Ammo"))
-        {
-            helper.SpendAmmo();
-        }*/
     }
     
 }

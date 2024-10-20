@@ -44,12 +44,12 @@ public class LoadLevelState : IPayloadedState<string>
 
     private void LoadPlayer()
     {
-        _commonParent = GameObject.Find(Constants.SCENE_PARENT_NAME);
+        _commonParent = GameObject.Find(Constants.PREFABS_SCENE_GAMEOBJECT_PARENT_NAME);
         Camera camera = Object.FindObjectOfType<Camera>();
         GameObject startPosition = GameObject.FindGameObjectWithTag(Constants.INITIAL_POSITION);
         GameObject player = _playerFactory.Create(startPosition.transform.position, camera);
         player.transform.parent =  _commonParent.transform;
-        GameObject canvas = GameObject.FindGameObjectWithTag("PlayerUI");
+        GameObject canvas = GameObject.FindGameObjectWithTag(Constants.CANVAS_TAG);
         GameObject ui = _uiFactory.CreateWithLoadConnect(PrefabPath.UI_PLAYER_PATH, canvas, player);
         ConstructUI(ui);
     }
@@ -58,7 +58,6 @@ public class LoadLevelState : IPayloadedState<string>
     {
         if(ServiceLocator.Instance.IsGetData(typeof(EnemySpawnerConfigs)))
         {
-            Debug.Log($"Enemy Spawner is Registered!");
             GameObject enemySpawner = new GameObject("EnemySpawner");
             EnemySpawnController spawnController = enemySpawner.AddComponent<EnemySpawnController>();
             enemySpawner.transform.parent =  _commonParent.transform;

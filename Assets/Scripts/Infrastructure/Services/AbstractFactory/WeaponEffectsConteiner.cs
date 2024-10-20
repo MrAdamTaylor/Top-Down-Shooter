@@ -23,7 +23,7 @@ public class WeaponEffectsConteiner
 
     public ParticleSystem GetParticleEffect(string path = "", Transform position = null, Transform parent = null)
     {
-        if (path.IsEmpty())
+        if (string.IsNullOrEmpty(path))
             return _particleSystem;
         if (position.IsNullBoolWarning(""))
             return _particleAssert.Assert(path);

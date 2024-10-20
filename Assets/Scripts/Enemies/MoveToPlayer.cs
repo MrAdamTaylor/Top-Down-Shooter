@@ -1,6 +1,5 @@
 using System.Collections;
 using EnterpriceLogic.Constants;
-using EnterpriceLogic.Utilities;
 using UnityEngine;
 
 public class MoveToPlayer : MonoBehaviour
@@ -24,18 +23,15 @@ public class MoveToPlayer : MonoBehaviour
         _needMove = true;
     }
 
+    //TODO - Change on UniTask
     public void Move()
     {
-        /*if (_moveRoutine.IsNull())
-        {*/
         _moveRoutine = StartCoroutine(MakeStep());
-        //}
-        //_needMove = true;
     }
 
     public void StopMove()
     {
-        if(!_moveRoutine.IsNull())
+        if(_moveRoutine != null)
             StopCoroutine(_moveRoutine);
     }
 

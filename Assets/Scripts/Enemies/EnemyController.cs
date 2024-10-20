@@ -1,4 +1,3 @@
-using EnterpriceLogic.Utilities;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -28,7 +27,7 @@ public class EnemyController : MonoBehaviour
         _enemyDeath.DeathAction += StopAllComponents;
         _physic = physic;
 
-        if (!moveToPlayer.IsNull())
+        if (moveToPlayer != null)
         {
             _isMoving = true;
             _moveToPlayer.Move();
@@ -37,7 +36,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void Update()
+    private void Update()
     {
         if (!_isDeath)
         {
@@ -47,6 +46,13 @@ public class EnemyController : MonoBehaviour
                 _moveToPlayer.StopMove();
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        _enemyAttack.AfterAttackAction -= UpdateState;
+        _enemyRotateSystem.RotateStop();
+        _enemyDeath.DeathAction -= StopAllComponents;
     }
 
     private void StopAllComponents()
@@ -64,12 +70,5 @@ public class EnemyController : MonoBehaviour
             _enemyAnimator.Move(1f);
             _moveToPlayer.Move();
         }
-    }
-
-    private void OnDestroy()
-    {
-        _enemyAttack.AfterAttackAction -= UpdateState;
-        _enemyRotateSystem.RotateStop();
-        _enemyDeath.DeathAction -= StopAllComponents;
     }
 }
