@@ -15,7 +15,7 @@ public class CoomoonShootSystem : MonoBehaviour, IShootSystem
         
      }
 
-    public Vector3 GetDirection()
+     protected Vector3 GetDirection()
     {
         Vector3 direction = _directionObject.transform.forward;
         return direction;

@@ -10,7 +10,7 @@ internal class AxisInputSystem : MonoBehaviour, IInputSystem
 
     private Vector2 _moveDirection;
 
-    void Update()
+    private void Update()
     {
         GetInputValues();
         _moveDirection =  Vector2.up * _verticalInput + Vector2.right * _horizontalInput;

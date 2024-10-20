@@ -10,8 +10,8 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private List<AIComponent> _aiParts;
 
    [SerializeField] private AIExecuter _aiExecuter;
-    
-    void Awake()
+
+   private void Awake()
     {
         _aiExecuter.Construct(_aiParts);
 

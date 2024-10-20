@@ -1,5 +1,4 @@
 using System;
-using EnterpriceLogic.Utilities;
 using UnityEngine;
 
 namespace Scripts.Player.NewWeaponControllSystem
@@ -20,7 +19,7 @@ namespace Scripts.Player.NewWeaponControllSystem
             ConstructActiveWeapon();
         }
 
-        void OnDestroy()
+        private void OnDestroy()
         {
             _mouseInput.OnFire -= OnShoot;
         }
@@ -38,7 +37,7 @@ namespace Scripts.Player.NewWeaponControllSystem
             Type inputSystem = weapon.gameObject.GetComponent<IMouseInput>().GetType();
             _mouseInput = _weaponInputHandler.FindEqual(inputSystem);
             _mouseInput.OnFire += OnShoot;
-            if (!_ammoAdapter.IsNull())
+            if (_ammoAdapter != null)
             {
                 _ammoAdapter.UpdateUI(_weapon.TypeWeapon);
                 _ammoAdapter.UpdatePicture(_weapon.TypeWeapon);
@@ -63,7 +62,7 @@ namespace Scripts.Player.NewWeaponControllSystem
 
         private void OnShoot()
         {
-            if (_ammoController.IsNull())
+            if (_ammoController == null)
             {
                 _weapon.Fire();
             }
@@ -72,7 +71,7 @@ namespace Scripts.Player.NewWeaponControllSystem
                 if (_ammoController.CanShoot())
                 {
                     _weapon.Fire();
-                    if(!_ammoAdapter.IsNull())
+                    if(_ammoAdapter != null)
                         _ammoAdapter.UpdateUI(_weapon.TypeWeapon);
                 }
 

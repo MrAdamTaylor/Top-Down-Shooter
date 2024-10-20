@@ -11,6 +11,7 @@ namespace EnterpriceLogic.Constants
         public static object UI_PLAYER_PATH = "Prefabs/UI/PlayerHudContent";
         public const string HOT_TRAIL_PATH = "Prefabs/WeaponsPrefabs/HotTrail";
         public const string IMPACT_PARTICLE_EFFECT = "Prefabs/WeaponsPrefabs/SparksEffect";
+        public const string WEAPON_DATA_PATH = "StaticData/WeaponData";
         
     }
 }

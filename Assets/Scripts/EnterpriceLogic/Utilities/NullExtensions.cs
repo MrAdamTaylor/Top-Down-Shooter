@@ -3,20 +3,8 @@ using UnityEngine;
 
 namespace EnterpriceLogic.Utilities
 {
-    public static class NullHandler
+    public static class NullExtensions
     {
-        public static bool IsNull<T>(this T obj)
-        {
-            if (obj == null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         public static void IsNullWithException<T>(this T obj, string warningLabel)
         {
             if (obj == null)

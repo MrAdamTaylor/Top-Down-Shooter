@@ -2,8 +2,8 @@ public class Game
 {
     public GameStateMachine StateMachine;
     
-    public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain, LevelConfigs levelConfigs)
+    public Game(LoadingCurtain curtain, LevelConfigs levelConfigs)
     {
-        StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner), curtain, AllServices.Container,levelConfigs);
+        StateMachine = new GameStateMachine(new SceneLoader(), curtain, AllServices.Container,levelConfigs);
     }
 }

@@ -1,10 +1,12 @@
 using System.Collections;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class LoadingCurtain : MonoBehaviour
 {
-    [SerializeField] private CanvasGroup Curtain;
+    private const float FADE_DURATION = 0.03f;
+    [SerializeField] private CanvasGroup _curtain;
 
     private void Awake()
     {
@@ -14,17 +16,17 @@ public class LoadingCurtain : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
-        Curtain.alpha = 1;
+        _curtain.alpha = 1;
     }
 
-    public void Hide() => FadeInCurtainAsycn().Forget();
+    public void Hide() => FadeInCurtainAsync().Forget();
 
-    private async UniTaskVoid FadeInCurtainAsycn()
+    private async UniTaskVoid FadeInCurtainAsync()
     {
-        while (Curtain.alpha > 0)
+        while (_curtain.alpha > 0)
         {
-            Curtain.alpha -= 0.03f;
-            await UniTask.WaitForSeconds(0.03f);
+            _curtain.alpha -= FADE_DURATION;
+            await UniTask.WaitForSeconds(FADE_DURATION);
         }
         gameObject.SetActive(false);
     }

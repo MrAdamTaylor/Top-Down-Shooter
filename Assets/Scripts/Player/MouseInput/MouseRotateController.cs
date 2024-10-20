@@ -18,7 +18,7 @@ public class MouseRotateController : MonoBehaviour, IMouseRotateController
         _player = player;
     }
 
-    void Update()
+    private void Update()
     {
         MouseRotate();
     }

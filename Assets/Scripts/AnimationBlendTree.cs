@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class AnimationBlendTree : MonoBehaviour
 {
-
-    Animator animator;
-    Vector2 input;
+    private Animator animator;
+    private Vector2 input;
     public float smoothBlend = 0.1f;
-    void Start()
+
+    private void Start()
     {
         animator = GetComponent<Animator>();
     }
-    
 
-    void Update()
+
+    private void Update()
     {
         Move(input.x = Input.GetAxis("Horizontal"), input.y = Input.GetAxis("Vertical"));
     }
 
-    void Move(float x, float y)
+    private void Move(float x, float y)
     {
         Vector3 direction = new Vector3(x, 0, y);
         direction = transform.InverseTransformDirection(direction);

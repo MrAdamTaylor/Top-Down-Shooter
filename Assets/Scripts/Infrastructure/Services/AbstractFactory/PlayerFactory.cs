@@ -35,6 +35,7 @@ public class PlayerFactory : IPlayerFactory
         WeaponProvider provider = gameObject.transform.GetComponentInChildren<WeaponProvider>();
         _weaponFactory.CreateAll(provider.ReturnWeapons());
         ServiceLocator.Instance.CleanData(typeof(Transform));
+        
         WeaponController controller = gameObject.GetComponent<WeaponController>();
         CurrentWeaponConstructor currentWeaponConstructor = new CurrentWeaponConstructor(controller);
         switcher.Construct(provider, currentWeaponConstructor);

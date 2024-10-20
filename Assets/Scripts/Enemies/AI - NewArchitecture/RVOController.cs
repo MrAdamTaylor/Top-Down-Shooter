@@ -12,7 +12,7 @@ public class RVOController : MonoBehaviour
 
     private RVO_Handler _rvoHandler;
 
-    void Awake()
+    private void Awake()
     {
         if (_instance == null) { 
             _instance = this; 
@@ -21,7 +21,7 @@ public class RVOController : MonoBehaviour
         }
     }
 
-    void Start()
+    private void Start()
     {
         Debug.Log("Agents");
         for (int i = 0; i < _dynamicAvoids.Count; i++)

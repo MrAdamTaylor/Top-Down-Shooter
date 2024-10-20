@@ -41,7 +41,7 @@ namespace Mechanics.Spawners.NewSpawner
             _parent = parent;
         }
 
-        void Update()
+        private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {

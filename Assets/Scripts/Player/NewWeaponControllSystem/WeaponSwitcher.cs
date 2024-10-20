@@ -18,8 +18,8 @@ namespace Scripts.Player.NewWeaponControllSystem
             _conteiner.IsNullWithException("Error on load WeaponConteiner");
             _isConstructed = true;
         }
-        
-        void Update()
+
+        private void Update()
         {
             if (_isConstructed)
             {

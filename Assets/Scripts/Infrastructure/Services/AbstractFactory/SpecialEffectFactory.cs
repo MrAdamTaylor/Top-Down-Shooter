@@ -33,7 +33,7 @@ public class SpecialEffectFactory : ISpecialEffectFactory
         behaviour.StartCoroutine(SpawnTrail(trail, startPoint, endPoint, bulletSpeed, madeImpact));
     }
 
-    IEnumerator FadeLaser(LineRenderer lr, LineRenderer laser, float fadeDuration)
+    private IEnumerator FadeLaser(LineRenderer lr, LineRenderer laser, float fadeDuration)
     {
         float alpha = 1;
         while (alpha > 0)
@@ -44,8 +44,8 @@ public class SpecialEffectFactory : ISpecialEffectFactory
             yield return null;
         }
     }
-    
-    IEnumerator SpawnTrail(TrailRenderer trail, Vector3 hitPoint, Vector3 hitNormal, float bulletSpeed, bool madeImpact)
+
+    private IEnumerator SpawnTrail(TrailRenderer trail, Vector3 hitPoint, Vector3 hitNormal, float bulletSpeed, bool madeImpact)
     {
         Vector3 startPosition = trail.transform.position;
         float distance = Vector3.Distance(trail.transform.position, hitPoint);

@@ -16,7 +16,7 @@ public class WeaponFactory : IWeaponFactory
     {
         _weaponEffectsConteiner = new WeaponEffectsConteiner(asserts);
         _data = new WeaponData();
-        _weaponStaticDatas = Resources.LoadAll<WeaponStaticData>(Constants.WEAPON_DATA_PATH);
+        _weaponStaticDatas = Resources.LoadAll<WeaponStaticData>(PrefabPath.WEAPON_DATA_PATH);
         _weaponDictionary = _weaponStaticDatas.ToDictionary(x => x.WType, y => y);
         _weaponComponentHandler = new WeaponComponentHandler();
     }

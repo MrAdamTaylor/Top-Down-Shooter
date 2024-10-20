@@ -15,7 +15,7 @@ public class CheckAttack : MonoBehaviour
         _attack.DisableAttack();
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         _reactionTrigger.TriggerAction -= TriggerAttack;
         _reactionTrigger.TriggerAction -= TriggerEndAttack;

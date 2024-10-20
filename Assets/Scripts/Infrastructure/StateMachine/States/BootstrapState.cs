@@ -1,16 +1,14 @@
 using System;
 using System.Collections.Generic;
-using EnterpriceLogic.Utilities;
-using Infrastructure.Services.AssertService.ExtendetAssertService;
 using UnityEngine;
 
 public class BootstrapState : IState
 {
-    private GameStateMachine _stateMachine;
+    private readonly GameStateMachine _stateMachine;
     private readonly SceneLoader _sceneLoader;
     private readonly AllServices _services;
-    private string _level;
-    private AssertBuilder _assertBuilder;
+    private readonly string _level;
+    private readonly AssertBuilder _assertBuilder;
     
     public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, AllServices services, LevelConfigs levelConfigs)
     {
@@ -20,11 +18,11 @@ public class BootstrapState : IState
         _assertBuilder = new AssertBuilder();
         ServiceLocator.Instance.BindData(typeof(LevelConfigs), levelConfigs);
 
-        if (!levelConfigs.PlayerConfigs.IsNull())
-        {
-            Debug.Log($"<color=green>Player Configs Loaded</color>");
+        if (levelConfigs.IsTime)
+            RegisteredTimer(levelConfigs.PerSeconds);
+        
+        if (levelConfigs.PlayerConfigs != null)
             RegisterPlayerServices(levelConfigs.PlayerConfigs);
-        }
 
         if (levelConfigs.SpawnerConfigsList.Count != 0)
         {
@@ -37,6 +35,11 @@ public class BootstrapState : IState
         ServiceLocator.Instance.BindData(typeof(PlayerConfigs), levelConfigs.PlayerConfigs);
         RegisterServices();
         _level = levelConfigs.LevelName;
+    }
+
+    private void RegisteredTimer(int levelConfigsPerSeconds)
+    {
+        Debug.Log("Timer Service Registered, Per seconds: "+levelConfigsPerSeconds);
     }
 
     private void BindServicesByType(SpawnerConfigs levelConfigsSpawnerConfigs)

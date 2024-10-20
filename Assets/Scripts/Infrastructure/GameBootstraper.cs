@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GameBootstraper : MonoBehaviour, ICoroutineRunner
+public class GameBootstraper : MonoBehaviour
 {
     [SerializeField] private LevelConfigs _levelConfigs;
     [SerializeField] private LoadingCurtain _curtain;
@@ -14,7 +14,7 @@ public class GameBootstraper : MonoBehaviour, ICoroutineRunner
 
     public void StartGame()
     {
-        _game = new Game(this,_curtain, _levelConfigs);
+        _game = new Game(_curtain, _levelConfigs);
         _game.StateMachine.Enter<BootstrapState>();
         DontDestroyOnLoad(this);
     }

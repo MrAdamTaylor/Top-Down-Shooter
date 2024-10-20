@@ -44,7 +44,7 @@ public class LoadLevelState : IPayloadedState<string>
 
     private void LoadPlayer()
     {
-        _commonParent = GameObject.Find(Constants.SCENE_PARENT_NAME);
+        _commonParent = GameObject.Find(Constants.PREFABS_SCENE_GAMEOBJECT_PARENT_NAME);
         Camera camera = Object.FindObjectOfType<Camera>();
         GameObject startPosition = GameObject.FindGameObjectWithTag(Constants.INITIAL_POSITION);
         GameObject player = _playerFactory.Create(startPosition.transform.position, camera);
