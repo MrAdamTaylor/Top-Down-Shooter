@@ -16,7 +16,7 @@ public class WeaponFactory : IWeaponFactory
     {
         _weaponEffectsConteiner = new WeaponEffectsConteiner(asserts);
         _data = new WeaponData();
-        _weaponStaticDatas = Resources.LoadAll<WeaponStaticData>("StaticData/WeaponData");
+        _weaponStaticDatas = Resources.LoadAll<WeaponStaticData>(Constants.WEAPON_DATA_PATH);
         _weaponDictionary = _weaponStaticDatas.ToDictionary(x => x.WType, y => y);
         _weaponComponentHandler = new WeaponComponentHandler();
     }
@@ -30,17 +30,21 @@ public class WeaponFactory : IWeaponFactory
             WeaponStaticData data = _weaponDictionary[weapon[i].TypeWeapon];
             data.BulletPoint = weapon[i].transform.Find(PrefabPath.WEAPON_POINTSHOOT_NAME);
             data.ShootPosition = weapon[i].GetShootPosition();
+            
             ShootControlSystem shootControlSystem = weapon[i].AddComponent<ShootControlSystem>();
             weapon[i].Construct(shootControlSystem, data);
             _weaponComponentHandler.GetShootSystem(weapon[i].transform, data.WType);
+            
             CoomoonShootSystem shootSystem = weapon[i].gameObject.GetComponent<CoomoonShootSystem>();
             shootControlSystem.Construct(data, _weaponEffectsConteiner, shootSystem);
             _weaponComponentHandler.GetInputSytem(weapon[i].transform, data.InpType);
+            
             if (data.IsMuzzle)
             {
                 MuzzleFlashEffect muzzleFlashEffect = weapon[i].AddComponent<MuzzleFlashEffect>();
                 muzzleFlashEffect.Construct(shootControlSystem, _weaponEffectsConteiner, data.BulletPoint);
             }
+            
             if (data.IsAmmo)
             {
                 AmmoController controller = weapon[i].AddComponent<AmmoController>();

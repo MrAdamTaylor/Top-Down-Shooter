@@ -30,9 +30,10 @@ public class EnemyRotateSystem : MonoBehaviour
         _autoRotate = true;
     }
 
+    //TODO - Change on UniTask
     public void RotateStop()
     {
-        //StopCoroutine(_coroutineRotate);
+        StopCoroutine(_coroutineRotate);
         _isRotate = false;
         _autoRotate = false;
     }

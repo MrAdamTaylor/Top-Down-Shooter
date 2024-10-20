@@ -25,6 +25,7 @@ public class EnemyHealth : MonoBehaviour, IHealth
             return;
         }
         _current -= damage;
+        TakeDamageAction?.Invoke();
         Debug.Log($"<color=green>Enemy current is {_current} </color>");
     }
 }

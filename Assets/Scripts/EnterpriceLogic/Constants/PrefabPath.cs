@@ -9,8 +9,6 @@ namespace EnterpriceLogic.Constants
         public static string WEAPON_POINTSHOOT_NAME = "Point";
 
         public static object UI_PLAYER_PATH = "Prefabs/UI/PlayerHudContent";
-        public static string PLAYER_PATH_SECOND = "Prefabs/Player/Player2";
-        public const string PLAYER_PATH_FIRST = "Prefabs/Player/PlayerEmptyFull";
         public const string HOT_TRAIL_PATH = "Prefabs/WeaponsPrefabs/HotTrail";
         public const string IMPACT_PARTICLE_EFFECT = "Prefabs/WeaponsPrefabs/SparksEffect";
         

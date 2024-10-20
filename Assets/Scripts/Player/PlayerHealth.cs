@@ -1,7 +1,8 @@
 using System;
+using EnterpriceLogic.Utilities;
 using UnityEngine;
 
-public class PlayableHealth : MonoBehaviour, IHealth
+public class PlayerHealth : MonoBehaviour, IHealth
 {
     [SerializeField] private float _current;
     [SerializeField] private float _maxValue;
@@ -9,18 +10,21 @@ public class PlayableHealth : MonoBehaviour, IHealth
     public Action<float> HealthChange;
     private HealthAdapter _healthAdapter;
     
-    public void Construct(float current)
+    public void Construct(float value)
     {
-        _current = current;
-        _healthAdapter = (HealthAdapter)ServiceLocator.Instance.GetData(typeof(HealthAdapter));
+        _maxValue = value;
+        _current = _maxValue;
     }
 
     public void TakeDamage(float damage)
     {
+        if(_healthAdapter.IsNull())
+            _healthAdapter = (HealthAdapter)ServiceLocator.Instance.GetData(typeof(HealthAdapter));
+
         if(_current <= 0)
             return;
 
         _current -= damage;
-        _healthAdapter.UpdateValues(_current);
+        _healthAdapter.UpdateValues(_current, _maxValue);
     }
 }

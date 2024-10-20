@@ -30,7 +30,6 @@ public class WeaponData
             {
                 if (_weaponAmmo.Keys.Contains(i))
                 {
-                    Debug.Log("Ammo Dictionary added Weapon Ammo: "+ _weaponAmmo[i] + " added Weapon Type"+_weaponTypes);
                     _ammoDictionary.Add(k, (_weaponTypes[i], _weaponAmmo[i]));
                     k++;
                 }

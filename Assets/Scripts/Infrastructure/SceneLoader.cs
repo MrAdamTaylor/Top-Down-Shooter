@@ -11,6 +11,7 @@ public class SceneLoader
         _coroutineRunner = coroutineRunner;
     }
 
+    //TODO - Change on UniTask
     public void Load(string name, Action onLoaded = null) => 
         _coroutineRunner.StartCoroutine(LoadScene(name, onLoaded));
 

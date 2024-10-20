@@ -3,17 +3,17 @@ using UI.MVC;
 
 public class HealthAdapter
 {
-    private PlayableHealth _playableHealth;
+    private PlayerHealth _playerHealth;
     private HpBar _hpBar;
     
-    public HealthAdapter(PlayableHealth health, HpBar hpBar)
+    public HealthAdapter(PlayerHealth health, HpBar hpBar)
     {
-        _playableHealth = health;
+        _playerHealth = health;
         _hpBar = hpBar;
     }
 
-    public void UpdateValues(float current)
+    public void UpdateValues(float current, float maxHp)
     {
-        _hpBar.SetValue(current, Constants.PLAYER_HP);
+        _hpBar.SetValue(current, maxHp);
     }
 }

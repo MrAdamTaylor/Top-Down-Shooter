@@ -49,6 +49,13 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    void OnDestroy()
+    {
+        _enemyAttack.AfterAttackAction -= UpdateState;
+        _enemyRotateSystem.RotateStop();
+        _enemyDeath.DeathAction -= StopAllComponents;
+    }
+
     private void StopAllComponents()
     {
         _physic.SetActive(false);
@@ -64,12 +71,5 @@ public class EnemyController : MonoBehaviour
             _enemyAnimator.Move(1f);
             _moveToPlayer.Move();
         }
-    }
-
-    private void OnDestroy()
-    {
-        _enemyAttack.AfterAttackAction -= UpdateState;
-        _enemyRotateSystem.RotateStop();
-        _enemyDeath.DeathAction -= StopAllComponents;
     }
 }

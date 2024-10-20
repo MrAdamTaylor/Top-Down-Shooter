@@ -11,10 +11,5 @@ namespace EnterpriceLogic.Utilities
             else
                 return false;
         }
-        
-        public static string Exclude(this string row, string[] excludesRows)
-        {
-            throw new Exception("Method is not Release");
-        }
     }
 }

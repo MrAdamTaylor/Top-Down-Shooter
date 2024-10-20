@@ -5,7 +5,6 @@ public class CheckAttack : MonoBehaviour
 {
     private EnemyAttack _attack;
     private ReactionTrigger _reactionTrigger;
-    //public Action AfterAttackAction;
 
     public void Construct(EnemyAttack enemyAttack, ReactionTrigger reactionTrigger)
     {
@@ -14,6 +13,12 @@ public class CheckAttack : MonoBehaviour
         _reactionTrigger.TriggerAction += TriggerAttack;
         _reactionTrigger.TriggerEndAction += TriggerEndAttack;
         _attack.DisableAttack();
+    }
+
+    void OnDestroy()
+    {
+        _reactionTrigger.TriggerAction -= TriggerAttack;
+        _reactionTrigger.TriggerAction -= TriggerEndAttack;
     }
 
     private void TriggerAttack()
@@ -25,12 +30,4 @@ public class CheckAttack : MonoBehaviour
     {
         _attack.DisableAttack();
     }
-
-    private void OnDestroy()
-    {
-        _reactionTrigger.TriggerAction -= TriggerAttack;
-        _reactionTrigger.TriggerAction -= TriggerEndAttack;
-    }
-
-
 }

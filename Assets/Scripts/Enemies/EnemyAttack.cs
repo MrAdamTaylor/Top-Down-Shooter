@@ -9,16 +9,16 @@ public class EnemyAttack : MonoBehaviour
 {
     public Action AfterAttackAction;
         
-    public float AttackCooldown = 1f;
-    private float _attackCooldown;
-    private float _effectDistance = 0.5f;
-    private float _cleavege = 0.8f;
+    public float AttackCooldown = Constants.ATTACK_COOLDOWN;
+    private float _shiftedDistance = Constants.SHIFTED_DISTANCE;
+    private float _cleavege = Constants.CLEAVE_RADIUS;
     private int _layerMask;
     private float _minDamage;
     private float _maxDamage;
     private EnemyAnimator _animator;
-    
+
     private Collider[] _hits = new Collider[1];
+    private float _attackCooldown;
     private bool _isAttacking;
     private bool _attackIsActive;
 
@@ -42,9 +42,9 @@ public class EnemyAttack : MonoBehaviour
     {
         if (Hit(out Collider hit))
         {
-            PhysicsDebug.DrawDebugRaysFromPoint(HitPointPosition(), _cleavege, Constants.DEBUG_TIME_FRAMERATE);
+            PhysicsDebug.DrawDebugRaysFromPoint(HitPointPosition(), _cleavege, Constants.DEBUG_RILLRATE_TIME);
             PlayLoopComponentProvider provider = hit.transform.GetComponent<PlayLoopComponentProvider>();
-            PlayableHealth health = (PlayableHealth)provider.TakeComponent(typeof(PlayableHealth));
+            PlayerHealth health = (PlayerHealth)provider.TakeComponent(typeof(PlayerHealth));
             health.TakeDamage(Random.Range(_minDamage, _maxDamage));
         }
     }
@@ -76,7 +76,7 @@ public class EnemyAttack : MonoBehaviour
 
     private Vector3 HitPointPosition()
     {
-        return new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z) + transform.forward*_effectDistance;
+        return new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z) + transform.forward*_shiftedDistance;
     }
 
     private void UpdateCooldown()
