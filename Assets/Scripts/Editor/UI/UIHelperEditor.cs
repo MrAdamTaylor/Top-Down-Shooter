@@ -1,34 +1,36 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(UIHelper))]
-public class UIHelperEditor : Editor
+namespace Editor.UI
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(UIHelper))]
+    public class UIHelperEditor : UnityEditor.Editor
     {
-        base.OnInspectorGUI();
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
             
-        var helper = (UIHelper)target;
+            var helper = (UIHelper)target;
 
-        if (GUILayout.Button("Add Money"))
-        {
-            helper.AddMoney();
-        }
+            if (GUILayout.Button("Add Money"))
+            {
+                helper.AddMoney();
+            }
             
-        if (GUILayout.Button("Spend Money"))
-        {
-            helper.SpendMoney();
-        }
+            if (GUILayout.Button("Spend Money"))
+            {
+                helper.SpendMoney();
+            }
             
-        if (GUILayout.Button("Add Scores"))
-        {
-            helper.AddScores();
-        }
+            if (GUILayout.Button("Add Scores"))
+            {
+                helper.AddScores();
+            }
             
-        if (GUILayout.Button("Spend Scores"))
-        {
-            helper.SpendScores();
+            if (GUILayout.Button("Spend Scores"))
+            {
+                helper.SpendScores();
+            }
         }
     }
-    
 }

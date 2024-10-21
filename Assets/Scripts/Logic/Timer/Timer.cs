@@ -8,23 +8,21 @@ namespace Logic
         public event Action<float> OnTimerValueChangedEvent;
         public event Action OnTimerFinishEvent;
 
-        public TimerType ValueType { get; }
+        private TimerType ValueType { get; }
 
-        public float RemainingSeconds { get; private set; }
+        private float RemainingSeconds { get; set; }
         public bool isPaused { get; private set; }
 
-        public Timer(TimerType type)
-        {
-            ValueType = type;
-        }
+        private TimeInvoker _invoker;
         
         public Timer(TimerType type, float seconds)
         {
             ValueType = type;
             SetTime(seconds);
+            _invoker = ConstructTimeInvoker();
         }
 
-        public void SetTime(float seconds)
+        private void SetTime(float seconds)
         {
             RemainingSeconds = seconds;
             OnTimerValueChangedEvent?.Invoke(RemainingSeconds);
@@ -41,12 +39,6 @@ namespace Logic
             isPaused = false;
             Subscribe();
             OnTimerValueChangedEvent?.Invoke(RemainingSeconds);
-        }
-
-        public void Start(float seconds)
-        {
-            SetTime(seconds);
-            Start();
         }
 
         public void Pause()
@@ -74,19 +66,20 @@ namespace Logic
 
         private void Subscribe()
         {
+            
             switch (ValueType)
             {
                 case TimerType.UpdateTick:
-                    TimeInvoker.Instance.OnUpdateTimeTickedEvent += OnUpdateTick;    
+                    _invoker.OnUpdateTimeTickedEvent += OnUpdateTick;    
                     break;
                 case TimerType.UpdateTickUnscaled:
-                    TimeInvoker.Instance.OnUpdateTimeUnscaledTickedEvent += OnUpdateTick;
+                    _invoker.OnUpdateTimeUnscaledTickedEvent += OnUpdateTick;
                     break;
                 case TimerType.OneSecTick:
-                    TimeInvoker.Instance.OnOneSecondTickedEvent += OnOneSecondTick;
+                    _invoker.OnOneSecondTickedEvent += OnOneSecondTick;
                     break;
                 case TimerType.OneSecTickUnscaled:
-                    TimeInvoker.Instance.OnOneSecondUnscaledTickedEvent += OnOneSecondTick;
+                    _invoker.OnOneSecondUnscaledTickedEvent += OnOneSecondTick;
                     break;
                 default:
                     throw new Exception("Unknown Timer type");
@@ -98,20 +91,30 @@ namespace Logic
             switch (ValueType)
             {
                 case TimerType.UpdateTick:
-                    TimeInvoker.Instance.OnUpdateTimeTickedEvent -= OnUpdateTick;    
+                    _invoker.OnUpdateTimeTickedEvent -= OnUpdateTick;    
                     break;
                 case TimerType.UpdateTickUnscaled:
-                    TimeInvoker.Instance.OnUpdateTimeUnscaledTickedEvent -= OnUpdateTick;
+                    _invoker.OnUpdateTimeUnscaledTickedEvent -= OnUpdateTick;
                     break;
                 case TimerType.OneSecTick:
-                    TimeInvoker.Instance.OnOneSecondTickedEvent -= OnOneSecondTick;
+                    _invoker.OnOneSecondTickedEvent -= OnOneSecondTick;
                     break;
                 case TimerType.OneSecTickUnscaled:
-                    TimeInvoker.Instance.OnOneSecondUnscaledTickedEvent -= OnOneSecondTick;
+                    _invoker.OnOneSecondUnscaledTickedEvent -= OnOneSecondTick;
                     break;
                 default:
                     throw new Exception("Unknown Timer type");
             }
+        }
+
+        private static TimeInvoker ConstructTimeInvoker()
+        {
+            TimeInvoker invoker = (TimeInvoker)ServiceLocator.Instance.GetData(typeof(TimeInvoker));
+            if (invoker == null)
+            {
+                throw new Exception("Not load TimeInvoker for Timer in Subscribe method");
+            }
+            return invoker;
         }
 
         private void OnOneSecondTick()

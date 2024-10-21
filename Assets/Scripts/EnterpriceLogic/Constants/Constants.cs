@@ -51,6 +51,7 @@ namespace EnterpriceLogic.Constants
         public const float SPAWN_POINT_DEVIATION = 5f;
         public static float DEBUG_RILLRATE_TIME = 1f;
         public static float EPSILON_BETWEEN_RDETECTION_MINDISTANCE = 0.5f;
+        public static string TIMER_NAME = "[TIME INVOKER]";
 
 
         #region GameObjNames

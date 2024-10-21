@@ -18,12 +18,7 @@ public class PlayerHealth : MonoBehaviour, IHealth
 
     public void TakeDamage(float damage)
     {
-        if(_healthAdapter != null)
-            _healthAdapter = (HealthAdapter)ServiceLocator.Instance.GetData(typeof(HealthAdapter));
-        else
-        {
-            return;
-        }
+        _healthAdapter ??= (HealthAdapter)ServiceLocator.Instance.GetData(typeof(HealthAdapter));
 
         if(_current <= 0)
             return;

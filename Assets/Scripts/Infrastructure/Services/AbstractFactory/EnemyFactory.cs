@@ -14,10 +14,10 @@ internal class EnemyFactory : IEnemyFactory
         _enemySkinsAssert = builder.BuildAssertServiceByObj<GameObject>();
     }
 
-    public void Create(EnemyConfigs configs, GameObject parent)
+    public void Create(EnemyConfigs configs, Vector3 pos, GameObject parent)
     {
         GameObject enemy;
-        Vector3 pos = CreateTestPosition();
+        //Vector3 pos = CreateTestPosition();
         switch (configs.Skins.Count)
         {
             case 0:

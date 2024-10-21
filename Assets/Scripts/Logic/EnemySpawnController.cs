@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Mechanics.Spawners.NewSpawner
 {
@@ -13,8 +14,9 @@ namespace Mechanics.Spawners.NewSpawner
 
         private List<EnemyConfigs> _enemyConfigs = new();
         private List<float> _percantage = new();
+        private List<Transform> _pointsPositions = new();
         
-        public void Construct(IEnemyFactory factory, List<EnemySpawnList> configsList, GameObject parent)
+        public void Construct(IEnemyFactory factory, List<EnemySpawnList> configsList, GameObject parent, EnemySpawnPoint[] points)
         {
             _factory = factory;
             _enemyTypeValues = new EnemyTypeValues[configsList.Count];
@@ -38,6 +40,11 @@ namespace Mechanics.Spawners.NewSpawner
                 Debug.Log($"{_enemyConfigs[i].name}");
             }
 
+            for (int i = 0; i < points.Length; i++)
+            {
+                _pointsPositions.Add(points[i].transform);
+            }
+
             _parent = parent;
         }
 
@@ -45,7 +52,9 @@ namespace Mechanics.Spawners.NewSpawner
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _factory.Create(GetRandomEnemy(), _parent);
+                int index = Random.Range(0, _pointsPositions.Count);
+                Transform randomTransform = _pointsPositions[index].transform;
+                _factory.Create(GetRandomEnemy(),randomTransform.position, _parent);
             }
         }
 

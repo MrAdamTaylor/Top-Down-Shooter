@@ -1,19 +1,22 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(RefactoringMessage))]
-public class RefactoringCodeEditor : Editor
+namespace Editor.Message
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(RefactoringMessage))]
+    public class RefactoringCodeEditor : UnityEditor.Editor
     {
-        base.OnInspectorGUI();
-        DrawDefaultInspector();
-
-        if (GUILayout.Button("Why this not trash! (Click Me)"))
+        public override void OnInspectorGUI()
         {
-            (serializedObject.targetObject as RefactoringMessage).DoExplain();
-        }
+            base.OnInspectorGUI();
+            DrawDefaultInspector();
 
-        serializedObject.ApplyModifiedProperties();
+            if (GUILayout.Button("Why this not trash! (Click Me)"))
+            {
+                (serializedObject.targetObject as RefactoringMessage).DoExplain();
+            }
+
+            serializedObject.ApplyModifiedProperties();
+        }
     }
 }

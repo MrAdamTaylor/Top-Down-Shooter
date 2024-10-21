@@ -7,12 +7,14 @@ using Random = UnityEngine.Random;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public const float ATTACK_COOLDOWN = 1f;
-    public const float SHIFTED_DISTANCE = 0.5f;
-    public const float CLEAVE_RADIUS = 0.8f;
-    public const float HIT_BOX_HIGH_SHIFTED = 0.6f;
+    private const float ATTACK_COOLDOWN = 1f;
+    private const float SHIFTED_DISTANCE = 0.5f;
+    private const float CLEAVE_RADIUS = 0.8f;
+    private const float HIT_BOX_HIGH_SHIFTED = 0.6f;
     
-    public Action AfterAttackAction;
+    //public Action AfterAttackAction;
+
+    public Action<bool> ReadyForAction;
     
     private int _layerMask;
     private float _minDamage;
@@ -53,7 +55,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnAttackEnded()
     {
-        AfterAttackAction?.Invoke();
+        ReadyForAction.Invoke(true);
         _attackCooldown = ATTACK_COOLDOWN;
         _isAttacking = false;
     }
@@ -99,6 +101,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void StartAttack()
     {
+        ReadyForAction?.Invoke(false);
         _animator.PlayeAttack(Random.Range(Constants.MINIMAL_ATTACK_ANIMATION,Constants.MAXIMUM_ATTACK_ANIMATION));
         _isAttacking = true;
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using EnterpriceLogic.Constants;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class MoveToPlayer : MonoBehaviour
     private Vector3 _tempPosition;
     private Vector3 _direction;
     private float _speed;
+    
 
     public void Construct(Transform followedTransform, float speed)
     {
@@ -23,7 +25,6 @@ public class MoveToPlayer : MonoBehaviour
         _needMove = true;
     }
 
-    //TODO - Change on UniTask
     public void Move()
     {
         _moveRoutine = StartCoroutine(MakeStep());
@@ -31,8 +32,17 @@ public class MoveToPlayer : MonoBehaviour
 
     public void StopMove()
     {
-        if(_moveRoutine != null)
-            StopCoroutine(_moveRoutine);
+        StopCoroutine(_moveRoutine);
+    }
+
+    public Vector3 GoalPos()
+    {
+        return _goal.transform.position;
+    }
+
+    public Vector3 AgentPos()
+    {
+        return _followedTransform.position;
     }
 
     private IEnumerator MakeStep()
@@ -54,12 +64,6 @@ public class MoveToPlayer : MonoBehaviour
         _followedTransform.position += velocity * Time.deltaTime;
     }
 
-    public float CalculateDistacne()
-    {
-        float distance =
-            Mathf.Sqrt(Mathf.Pow(_goal.transform.position.x - transform.position.x,2) + 
-                       Mathf.Pow(_goal.transform.position.y - transform.position.y,2));
-        return distance;
-    }
+    public bool IsTarget() => _goal != null;
 }
 

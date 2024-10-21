@@ -1,28 +1,31 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(CircleDrawer))]
-public class CircleDrawerEditor : Editor
+namespace Editor
 {
-    private void OnSceneGUI()
+    [CustomEditor(typeof(CircleDrawer))]
+    public class CircleDrawerEditor : UnityEditor.Editor
     {
-        CircleDrawer drawer = (CircleDrawer)target;
+        private void OnSceneGUI()
+        {
+            CircleDrawer drawer = (CircleDrawer)target;
         
-        Color c = drawer.ColorValue;
+            Color c = drawer.ColorValue;
 
-        Handles.color = new Color(c.r, c.g, c.b, 0.3f);
-        Handles.DrawSolidDisc(
-            drawer.transform.position,
-            drawer.transform.up,
-            drawer.Radius);
+            Handles.color = new Color(c.r, c.g, c.b, 0.3f);
+            Handles.DrawSolidDisc(
+                drawer.transform.position,
+                drawer.transform.up,
+                drawer.Radius);
 
-        Handles.color = c;
-        drawer.Radius = Handles.ScaleValueHandle(
-            drawer.Radius,
-        drawer.transform.position + drawer.transform.forward * drawer.Radius,
-            drawer.transform.rotation,
-            3,
-            Handles.SphereHandleCap,
-        1);
+            Handles.color = c;
+            drawer.Radius = Handles.ScaleValueHandle(
+                drawer.Radius,
+                drawer.transform.position + drawer.transform.forward * drawer.Radius,
+                drawer.transform.rotation,
+                3,
+                Handles.SphereHandleCap,
+                1);
+        }
     }
 }

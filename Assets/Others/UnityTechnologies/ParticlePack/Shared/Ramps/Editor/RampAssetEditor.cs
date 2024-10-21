@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 
     [CustomEditor(typeof(RampAsset))]
-    public class RampAssetEditor : Editor
+    public class RampAssetEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {

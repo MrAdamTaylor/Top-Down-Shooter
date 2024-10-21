@@ -39,6 +39,7 @@ public class BootstrapState : IState
 
     private void RegisteredTimer(int levelConfigsPerSeconds)
     {
+        ServiceLocator.Instance.BindData(typeof(TimeData), new TimeData(levelConfigsPerSeconds));
         Debug.Log("Timer Service Registered, Per seconds: "+levelConfigsPerSeconds);
     }
 
@@ -110,4 +111,17 @@ public class BootstrapState : IState
 
     private void EnterLoadLevel() => 
         _stateMachine.Enter<LoadLevelState, string>(_level);
+}
+
+
+public class TimeData
+{
+    public float Time { get; private set; }
+
+    public TimeData(int levelConfigsPerSeconds)
+    {
+        Time = levelConfigsPerSeconds;
+    }
+    
+    
 }
