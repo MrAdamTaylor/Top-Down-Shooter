@@ -11,7 +11,7 @@ namespace Logic
         private TimerType ValueType { get; }
 
         private float RemainingSeconds { get; set; }
-        public bool isPaused { get; private set; }
+        public bool IsPaused { get; private set; }
 
         private TimeInvoker _invoker;
         
@@ -36,21 +36,21 @@ namespace Logic
                 OnTimerFinishEvent?.Invoke();
             }
 
-            isPaused = false;
+            IsPaused = false;
             Subscribe();
             OnTimerValueChangedEvent?.Invoke(RemainingSeconds);
         }
 
         public void Pause()
         {
-            isPaused = true;
+            IsPaused = true;
             Unsubscribe();
             OnTimerValueChangedEvent?.Invoke(RemainingSeconds);
         }
 
         public void UnPause()
         {
-            isPaused = false;
+            IsPaused = false;
             Subscribe();
             OnTimerValueChangedEvent?.Invoke(RemainingSeconds);
         }
@@ -119,7 +119,7 @@ namespace Logic
 
         private void OnOneSecondTick()
         {
-            if (isPaused)
+            if (IsPaused)
                 return;
 
             RemainingSeconds -= 1f;
@@ -128,7 +128,7 @@ namespace Logic
 
         private void OnUpdateTick(float deltaTime)
         {
-            if(isPaused)
+            if(IsPaused)
                 return;
 
             RemainingSeconds -= deltaTime;

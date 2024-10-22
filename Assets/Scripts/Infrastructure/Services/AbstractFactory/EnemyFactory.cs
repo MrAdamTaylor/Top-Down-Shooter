@@ -14,20 +14,25 @@ internal class EnemyFactory : IEnemyFactory
         _enemySkinsAssert = builder.BuildAssertServiceByObj<GameObject>();
     }
 
-    public void Create(EnemyConfigs configs, Vector3 pos, GameObject parent)
+    public GameObject Create(EnemyConfigs configs, EnemySpawnPoint[] positions, GameObject parent)
     {
         GameObject enemy;
-        //Vector3 pos = CreateTestPosition();
+
+        int index = Random.Range(0, positions.Length);
+        Transform randomTransform = positions[index].transform;
+        
+        Vector3 position = randomTransform.position;
+        
         switch (configs.Skins.Count)
         {
             case 0:
-                return;
+               throw new Exception("Enemy Count is null");
             break;
             case 1:
-                enemy = _enemySkinsAssert.Assert(configs.Skins[0], pos);
+                enemy = _enemySkinsAssert.Assert(configs.Skins[0], position);
                 break;
             case > 1:
-                enemy = _enemySkinsAssert.Assert(configs.Skins[Random.Range(0, configs.Skins.Count)], pos);
+                enemy = _enemySkinsAssert.Assert(configs.Skins[Random.Range(0, configs.Skins.Count)], position);
                 break;
             default:
                 throw new Exception("Cannot add skin in EnemyFactory");
@@ -35,15 +40,22 @@ internal class EnemyFactory : IEnemyFactory
         enemy.transform.parent = parent.transform;
         switch (configs)
         {
-            case EnemyKamikazeConfigs:
-                CreateKamikaze(enemy,(EnemyKamikazeConfigs)configs);
+            case EnemyKamikazeConfigs kamikazeConfigs:
+            {
+                CreateKamikaze(enemy,kamikazeConfigs);
                 break;
-            case EnemyWalkingConfigs:
-                CreateWalking(enemy,(EnemyWalkingConfigs)configs);
+            }
+            case EnemyWalkingConfigs walkingConfigs:
+            {
+                CreateWalking(enemy,walkingConfigs);
                 break;
-            case EnemyTurretConfigs:
-                CreateTurret(enemy, (EnemyTurretConfigs)configs);
+            }
+            case EnemyTurretConfigs turretConfigs:
+            {
+
+                CreateTurret(enemy, turretConfigs);
                 break;
+            }
             case null:
                 throw new ArgumentException("Enemy configs in Factory is null");
             default:
@@ -51,6 +63,7 @@ internal class EnemyFactory : IEnemyFactory
         }
         
         Debug.Log("Created Enemy with Random Skin");
+        return enemy;
     }
 
     private Vector3 CreateTestPosition()

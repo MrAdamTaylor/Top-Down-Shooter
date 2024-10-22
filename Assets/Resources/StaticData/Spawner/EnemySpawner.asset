@@ -20,7 +20,3 @@ MonoBehaviour:
     PercantageSpawn: 15
   - EnemyConfigs: {fileID: 11400000, guid: c6b4fbee5873af04497c78448e8689a5, type: 2}
     PercantageSpawn: 15
-  - EnemyConfigs: {fileID: 11400000, guid: 447a90b6f731a9649a431e21b3ba46de, type: 2}
-    PercantageSpawn: 35
-  - EnemyConfigs: {fileID: 11400000, guid: 682a563ef124f1a409ce0ac9db552174, type: 2}
-    PercantageSpawn: 35

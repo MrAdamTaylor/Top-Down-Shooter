@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using EnterpriceLogic.Constants;
 using Mechanics.Spawners.NewSpawner;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class LoadLevelState : IPayloadedState<string>
 {
@@ -78,20 +80,31 @@ public class LoadLevelState : IPayloadedState<string>
 
     private void LoadEnemySpawner()
     {
-        if(ServiceLocator.Instance.IsGetData(typeof(EnemySpawnerConfigs)))
-        {
-            EnemySpawnPoint[] spawnPoints = Object.FindObjectsByType<EnemySpawnPoint>(FindObjectsSortMode.None);
+        if (!ServiceLocator.Instance.IsGetData(typeof(EnemySpawnerConfigs))) 
+            return;
+        EnemySpawnPoint[] spawnPoints = Object.FindObjectsByType<EnemySpawnPoint>(FindObjectsSortMode.None);
+            
+        GameObject enemySpawner = new GameObject("EnemySpawner");
+        EnemySpawnController spawnController = enemySpawner.AddComponent<EnemySpawnController>();
+        enemySpawner.transform.parent =  _commonParent.transform;
+        EnemySpawnerConfigs spawnerConfigs = (EnemySpawnerConfigs)ServiceLocator.Instance.
+            GetData(typeof(EnemySpawnerConfigs));
+        IEnemyFactory factory = (IEnemyFactory)ServiceLocator.Instance.GetData(typeof(IEnemyFactory));
 
+        List<EnemySpawnerPool> enemyPools = new();
+        for (int i = 0; i < spawnerConfigs.SpawnList.Count; i++)
+        {
+            string name = spawnerConfigs.SpawnList[i].EnemyConfigs.Name;
+            GameObject enemyPool = new GameObject(name +" Pool");
+            EnemySpawnerPool pool = enemyPool.AddComponent<EnemySpawnerPool>();
+            var i1 = i;
             
-            
-            GameObject enemySpawner = new GameObject("EnemySpawner");
-            EnemySpawnController spawnController = enemySpawner.AddComponent<EnemySpawnController>();
-            enemySpawner.transform.parent =  _commonParent.transform;
-            EnemySpawnerConfigs spawnerConfigs = (EnemySpawnerConfigs)ServiceLocator.Instance.
-                GetData(typeof(EnemySpawnerConfigs));
-            IEnemyFactory factory = (IEnemyFactory)ServiceLocator.Instance.GetData(typeof(IEnemyFactory));
-            spawnController.Construct(factory, spawnerConfigs.SpawnList,_commonParent, spawnPoints);
+            pool.Construct(10,()=>factory.Create(spawnerConfigs.SpawnList[i1].EnemyConfigs, spawnPoints, enemyPool));
+            enemyPool.transform.SetParent(spawnController.transform);
+            enemyPools.Add(pool);
         }
+        
+        spawnController.Construct(enemyPools);
     }
 
     private void ConstructUI(GameObject ui)

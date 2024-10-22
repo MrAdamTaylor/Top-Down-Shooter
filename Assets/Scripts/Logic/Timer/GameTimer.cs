@@ -21,7 +21,7 @@ public class GameTimer : MonoBehaviour
 
     public void PauseResume()
     {
-        if(_timer.isPaused)
+        if(_timer.IsPaused)
             _timer.UnPause();
         else
         {
