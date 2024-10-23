@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: RifleConfig
   m_EditorClassIdentifier: 
   WType: 1
-  Damage: 1
+  Damage: 10
   SpeedFireRange: 0.1
   InpType: 1
   IsMuzzle: 1
   IsAmmo: 1
   AmmoValues:
     IsInfinity: 0
-    StarterAmmo: 50
+    StarterAmmo: 150
     WastedAmmo: 1
   BulletPoint: {fileID: 0}
+  ShootPosition: {x: 8.158671, y: 1.2141013, z: -9.976075}

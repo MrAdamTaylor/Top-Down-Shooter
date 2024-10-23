@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UsualEnemy
   m_EditorClassIdentifier: 
   Name: UsualEnemy
-  Health: 10
+  Health: 100
   MinDamage: 5
   MaxDamage: 10
   Reward: 1

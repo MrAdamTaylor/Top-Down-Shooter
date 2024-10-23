@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: FastEnemy
   m_EditorClassIdentifier: 
   Name: FastEnemy
-  Health: 10
+  Health: 50
   MinDamage: 0
   MaxDamage: 0
   Reward: 2
   RadiusDetection: 1.5
   Skins:
   - {fileID: 1226099902062958282, guid: d33f2662ad59bda429a7f2b99236f679, type: 3}
-  Speed: 5
+  Speed: 8
+  MinimalToPlayerDistance: 1

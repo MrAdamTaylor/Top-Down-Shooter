@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3584606587377632169
 Transform:
@@ -28,12 +28,12 @@ Transform:
   m_GameObject: {fileID: 4248235983366723859}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.3029, y: 1.3029, z: 1.3029}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6299150162640548224}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &437076933388553228
 MeshFilter:
@@ -144,12 +144,44 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1522345048467659622, guid: 12d19848e1548d64d94685f900921d13, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1522345048467659622, guid: 12d19848e1548d64d94685f900921d13, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1522345048467659622, guid: 12d19848e1548d64d94685f900921d13, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 0.14202738
+      objectReference: {fileID: 0}
+    - target: {fileID: 1522345048467659622, guid: 12d19848e1548d64d94685f900921d13, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1522345048467659622, guid: 12d19848e1548d64d94685f900921d13, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1522345048467659622, guid: 12d19848e1548d64d94685f900921d13, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.b
+      value: 0.072668225
+      objectReference: {fileID: 0}
+    - target: {fileID: 1522345048467659622, guid: 12d19848e1548d64d94685f900921d13, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.g
+      value: 0.6698113
+      objectReference: {fileID: 0}
+    - target: {fileID: 1522345048467659622, guid: 12d19848e1548d64d94685f900921d13, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.r
+      value: 0.21705753
       objectReference: {fileID: 0}
     - target: {fileID: 1722020378972503864, guid: 12d19848e1548d64d94685f900921d13, type: 3}
       propertyPath: m_Name
       value: FX_Candle_Flame_Vert_01 (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1722020378972503864, guid: 12d19848e1548d64d94685f900921d13, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 1724516218796569226, guid: 12d19848e1548d64d94685f900921d13, type: 3}
       propertyPath: m_RootOrder

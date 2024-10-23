@@ -20,6 +20,10 @@ MonoBehaviour:
   KillAllMobs: 0
   MobsCount: 0
   IsTime: 1
+<<<<<<< Updated upstream
   PerSeconds: 30
+=======
+  PerSeconds: 120
+>>>>>>> Stashed changes
   DestroyTower: 0
   TowerHealth: 0

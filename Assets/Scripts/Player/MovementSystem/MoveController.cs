@@ -12,10 +12,21 @@ public class MoveController : MonoBehaviour
         _inputSystem = inputSystem;
         _inputSystem.OnMove += this.OnMove;
     }
-    
+
+    [SerializeField] private float moveSpeed = 5f;
+    private Rigidbody _rb;
+
+    private void Awake()
+    {
+        _rb = GetComponent<Rigidbody>();
+    }
+
     private void OnMove(Vector2 direction)
     {
-        var offset = new Vector3(direction.x, 0, direction.y) * Time.deltaTime;
-        _player.Move(offset);
+        Vector3 offset = new Vector3(direction.x, 0, direction.y) * moveSpeed * Time.deltaTime;
+        Vector3 newPosition = _rb.position + offset;
+
+        _rb.MovePosition(newPosition);
     }
+
 }

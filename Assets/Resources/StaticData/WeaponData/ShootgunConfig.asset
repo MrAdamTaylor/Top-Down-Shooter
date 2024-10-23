@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ShootgunConfig
   m_EditorClassIdentifier: 
   WType: 2
-  Damage: 2
+  Damage: 50
   SpeedFireRange: 1.25
   InpType: 0
   IsMuzzle: 1
@@ -21,9 +21,10 @@ MonoBehaviour:
   AmmoValues:
     IsInfinity: 0
     StarterAmmo: 12
-    WastedAmmo: 3
+    WastedAmmo: 1
   BulletPoint: {fileID: 0}
+  ShootPosition: {x: 9.354944, y: 1.1401031, z: -10.983404}
   AmountOfRaction: 3
   FovAngle: 10
   Distance: 7
-  FadeDuration: 0.3
+  FadeDuration: 0.1
