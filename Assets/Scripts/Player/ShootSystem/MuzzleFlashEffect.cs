@@ -8,9 +8,11 @@ public class MuzzleFlashEffect : MonoBehaviour
     private Transform _position;
     private ParticleSystem _effect;
     private ShootControlSystem _shootControlSystem;
+    
 
     public void Construct(ShootControlSystem shootControlSystem, WeaponEffectsConteiner conteiner, Transform data)
     {
+
         _shootControlSystem = shootControlSystem;
         _shootControlSystem.ShootAction += MuzzleEffect;
         _position = data;
@@ -45,3 +47,5 @@ public class MuzzleFlashEffect : MonoBehaviour
             }
     }
 }
+
+

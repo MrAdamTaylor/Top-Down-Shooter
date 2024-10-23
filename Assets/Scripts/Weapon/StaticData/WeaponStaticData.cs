@@ -7,6 +7,7 @@ public class WeaponStaticData : ScriptableObject
     public int Damage;
     public float SpeedFireRange;
     public WeaponInputType InpType;
+    public AudioClip ShootSound;
 
     [Header("Add Flash Effect")]
     public bool IsMuzzle;

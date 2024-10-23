@@ -20,15 +20,15 @@ public class Sound : MonoBehaviour
     [HideInInspector]
     public AudioSource[] audioSources;
 
-    public static Sound instance;
+    public static Sound Instance;
 
     private Coroutine currentTrackCoroutine;
 
     void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -68,12 +68,12 @@ public class Sound : MonoBehaviour
        
         if (sceneIndex == 0 )
         {
-            //  треки для меню
+            //  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
             currentTrackCoroutine = StartCoroutine(PlayTracksSequentially(menuTracks));
         }
         else
         {
-            //  треки для игры
+            //  пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
             currentTrackCoroutine = StartCoroutine(PlayTracksSequentially(gameTracks));
         }
     }

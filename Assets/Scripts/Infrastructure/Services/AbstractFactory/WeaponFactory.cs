@@ -38,6 +38,10 @@ public class WeaponFactory : IWeaponFactory
             CoomoonShootSystem shootSystem = weapon[i].gameObject.GetComponent<CoomoonShootSystem>();
             shootControlSystem.Construct(data, _weaponEffectsConteiner, shootSystem);
             _weaponComponentHandler.GetInputSytem(weapon[i].transform, data.InpType);
+
+
+            AudioPlayerComponent playerComponent = weapon[i].gameObject.AddComponent<AudioPlayerComponent>();
+            playerComponent.Construct(shootControlSystem, data);
             
             if (data.IsMuzzle)
             {
