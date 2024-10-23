@@ -22,7 +22,7 @@ namespace Logic
             _invoker = ConstructTimeInvoker();
         }
 
-        private void SetTime(float seconds)
+        public void SetTime(float seconds)
         {
             RemainingSeconds = seconds;
             OnTimerValueChangedEvent?.Invoke(RemainingSeconds);

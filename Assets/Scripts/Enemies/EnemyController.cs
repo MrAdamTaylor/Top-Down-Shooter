@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -12,8 +13,9 @@ public class EnemyController : MonoBehaviour
     private EnemyAttack _enemyAttack;
     private CheckAttack _checkAttack;
     private EnemyDeath _enemyDeath;
-    
 
+
+    private bool _isConstructed;
     private GameObject _physic;
     private bool _isBusy;
     private float _moveCooldown;
@@ -31,6 +33,7 @@ public class EnemyController : MonoBehaviour
         _enemyDeath = death;
         _enemyDeath.DeathAction += StopAllComponents;
         _physic = physic;
+        _isConstructed = true;
 
         if (moveToPlayer != null)
         {
@@ -39,6 +42,29 @@ public class EnemyController : MonoBehaviour
             _enemyRotateSystem.RotateStart();
             _enemyAnimator.Move(1f);
         }
+    }
+
+    private void OnEnable()
+    {
+        if (_isConstructed)
+        {
+            _moveToPlayer.Move();
+            _enemyRotateSystem.RotateStart();
+            _enemyAnimator.Move(1f);
+        }
+    }
+
+    private void OnDisable()
+    {
+        _moveToPlayer.StopMove();
+        _enemyRotateSystem.RotateStop();
+        _enemyAnimator.StopMoving();
+    }
+
+    private void OnDestroy()
+    {
+        _enemyRotateSystem.RotateStop();
+        _enemyDeath.DeathAction -= StopAllComponents;
     }
 
     private void ChangeActionState(bool canMove)
@@ -104,11 +130,6 @@ public class EnemyController : MonoBehaviour
         return _moveCooldown <= 0;
     }
 
-    private void OnDestroy()
-    {
-        _enemyRotateSystem.RotateStop();
-        _enemyDeath.DeathAction -= StopAllComponents;
-    }
 
     private void StopAllComponents()
     {

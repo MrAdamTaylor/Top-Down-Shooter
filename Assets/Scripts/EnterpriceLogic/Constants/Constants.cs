@@ -52,6 +52,9 @@ namespace EnterpriceLogic.Constants
         public static float DEBUG_RILLRATE_TIME = 1f;
         public static float EPSILON_BETWEEN_RDETECTION_MINDISTANCE = 0.5f;
         public static string TIMER_NAME = "[TIME INVOKER]";
+        public static string BLOOD_IMPACT = "";
+        public const int ZERO = 0;
+        public const int ONE = 1;
 
 
         #region GameObjNames
@@ -69,6 +72,10 @@ namespace EnterpriceLogic.Constants
         public const int MINIMAL_ATTACK_ANIMATION = 1;
         public const int MAXIMUM_ATTACK_ANIMATION = 3;
         public const float ENEMY_ANIMATION_SPEED = 1.5f;
+        public const string WARNING_CANVAS_MESSAGE = "Warning";
+        public const float TIMER_TEST = 10f;
+        
+
         #endregion
     }
 }

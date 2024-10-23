@@ -22,9 +22,14 @@ namespace Editor
                 helper.PauseResume();
             }
             
-            if (GUILayout.Button("Stop"))
+            if (GUILayout.Button("Stop Timer"))
             {
-                helper.Stop();
+                helper.StopTimer();
+            }
+            
+            if (GUILayout.Button("Reload Timer"))
+            {
+                helper.ReloadTimer(0f);
             }
         }
     }

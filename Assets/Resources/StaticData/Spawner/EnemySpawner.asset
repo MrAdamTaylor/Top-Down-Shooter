@@ -16,7 +16,32 @@ MonoBehaviour:
   SpawnList:
   - EnemyConfigs: {fileID: 11400000, guid: 049dd4946a831964dbb44fd71afcc82d, type: 2}
     PercantageSpawn: 40
+    FirstAppearanceWave: 2
   - EnemyConfigs: {fileID: 11400000, guid: 4fc057d046fd4ae4b8f4909a5c1ec48a, type: 2}
     PercantageSpawn: 15
+    FirstAppearanceWave: 0
   - EnemyConfigs: {fileID: 11400000, guid: c6b4fbee5873af04497c78448e8689a5, type: 2}
     PercantageSpawn: 15
+    FirstAppearanceWave: 4
+  Waves:
+  - TimeBetweenSpawnIntantiate: 0
+    CountSpawnByTick: 3
+    WaveTimePerSeconds: 15
+    MaxEnemyCountOnScreen: 10
+    EnemySpawnIntervalPerSeconds: 0
+  - TimeBetweenSpawnIntantiate: 0
+    CountSpawnByTick: 0
+    WaveTimePerSeconds: 5
+    MaxEnemyCountOnScreen: 0
+    EnemySpawnIntervalPerSeconds: 0
+  - TimeBetweenSpawnIntantiate: 0
+    CountSpawnByTick: 0
+    WaveTimePerSeconds: 5
+    MaxEnemyCountOnScreen: 0
+    EnemySpawnIntervalPerSeconds: 0
+  - TimeBetweenSpawnIntantiate: 0
+    CountSpawnByTick: 0
+    WaveTimePerSeconds: 5
+    MaxEnemyCountOnScreen: 0
+    EnemySpawnIntervalPerSeconds: 0
+  RepeatLastWave: 1

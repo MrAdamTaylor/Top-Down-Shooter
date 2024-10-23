@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Enemies.AI___NewArchitecture.Extensions;
 using EnterpriceLogic.Constants;
 using UnityEngine;
 using Random = UnityEngine.Random;

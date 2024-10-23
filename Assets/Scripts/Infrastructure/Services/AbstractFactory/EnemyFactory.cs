@@ -66,17 +66,6 @@ internal class EnemyFactory : IEnemyFactory
         return enemy;
     }
 
-    private Vector3 CreateTestPosition()
-    {
-        Vector3 pos = new Vector3(
-            Random.Range(Constants.DEFAULT_VECTOR_FOR_TEST2.x-Constants.SPAWN_POINT_DEVIATION,
-                Constants.DEFAULT_VECTOR_FOR_TEST2.x+Constants.SPAWN_POINT_DEVIATION), 
-            Constants.DEFAULT_VECTOR_FOR_TEST2.y, 
-            Random.Range(Constants.DEFAULT_VECTOR_FOR_TEST2.z-Constants.SPAWN_POINT_DEVIATION,
-                Constants.DEFAULT_VECTOR_FOR_TEST2.z+Constants.SPAWN_POINT_DEVIATION));
-        return pos;
-    }
-
     private void CreateTurret(GameObject enemy, EnemyTurretConfigs configs)
     {
         Debug.Log($"<color=green>  {configs.Name} is Created Registered</color>");

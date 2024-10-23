@@ -14,6 +14,7 @@ public class LoadLevelState : IPayloadedState<string>
 
     private GameObject _timer;
     private GameObject _commonParent;
+    private TimerManager _timerManager;
     
     public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingCurtain loadingCurtain,
     IPlayerFactory playerFactory, IUIFactory uiFactory)
@@ -57,9 +58,11 @@ public class LoadLevelState : IPayloadedState<string>
         player.transform.parent =  _commonParent.transform;
 
         TimeData data = (TimeData)ServiceLocator.Instance.GetData(typeof(TimeData));
-        if (data != null) 
+        if (data != null)
+        {
+            _timerManager = new TimerManager();
             _timer = CreateTimer(data);
-
+        }
         
         GameObject canvas = GameObject.FindGameObjectWithTag(Constants.CANVAS_TAG);
         GameObject ui = _uiFactory.CreateWithLoadConnect(PrefabPath.UI_PLAYER_PATH, canvas, player);
@@ -74,7 +77,8 @@ public class LoadLevelState : IPayloadedState<string>
         TimeInvoker invoker = mainTimer.AddComponent<TimeInvoker>();
         ServiceLocator.Instance.BindData(typeof(TimeInvoker),invoker);
         GameTimer gameTimer = mainTimer.AddComponent<GameTimer>();
-        gameTimer.Construct(data.Time, TimerType.OneSecTick);
+        gameTimer.Construct(data.Time, TimerType.OneSecTick, _timerManager);
+        ServiceLocator.Instance.BindData(typeof(GameTimer), gameTimer);
         return mainTimer;
     }
 
@@ -91,7 +95,26 @@ public class LoadLevelState : IPayloadedState<string>
             GetData(typeof(EnemySpawnerConfigs));
         IEnemyFactory factory = (IEnemyFactory)ServiceLocator.Instance.GetData(typeof(IEnemyFactory));
 
-        List<EnemySpawnerPool> enemyPools = new();
+        List<EnemySpawnerPool> enemyPools = CreatePools(spawnerConfigs, factory, spawnPoints, spawnController);
+
+        WaveSystem waveSystem = null;
+        if (spawnerConfigs.Waves.Count != null)
+        {
+            waveSystem = new WaveSystem(spawnerConfigs.Waves, spawnerConfigs.SpawnList);
+        }
+
+        if(waveSystem != null)
+            spawnController.Construct(enemyPools, waveSystem, _timerManager);
+        else
+        {
+            spawnController.Construct(enemyPools);
+        }
+    }
+
+    private List<EnemySpawnerPool> CreatePools(EnemySpawnerConfigs spawnerConfigs, IEnemyFactory factory, EnemySpawnPoint[] spawnPoints,
+        EnemySpawnController spawnController)
+    {
+        List<EnemySpawnerPool> spawnerPools = new();
         for (int i = 0; i < spawnerConfigs.SpawnList.Count; i++)
         {
             string name = spawnerConfigs.SpawnList[i].EnemyConfigs.Name;
@@ -99,17 +122,17 @@ public class LoadLevelState : IPayloadedState<string>
             EnemySpawnerPool pool = enemyPool.AddComponent<EnemySpawnerPool>();
             var i1 = i;
             
-            pool.Construct(10,()=>factory.Create(spawnerConfigs.SpawnList[i1].EnemyConfigs, spawnPoints, enemyPool));
+            pool.Construct(3,()=>factory.Create(spawnerConfigs.SpawnList[i1].EnemyConfigs, spawnPoints, enemyPool));
             enemyPool.transform.SetParent(spawnController.transform);
-            enemyPools.Add(pool);
+            spawnerPools.Add(pool);
         }
-        
-        spawnController.Construct(enemyPools);
+
+        return spawnerPools;
     }
 
     private void ConstructUI(GameObject ui)
     {
-        GameObject warning = GameObject.FindGameObjectWithTag("Warning");
+        GameObject warning = GameObject.FindGameObjectWithTag(Constants.WARNING_CANVAS_MESSAGE);
         warning.SetActive(false);
         UIHelper helper = ui.AddComponent<UIHelper>();
         helper.Construct();

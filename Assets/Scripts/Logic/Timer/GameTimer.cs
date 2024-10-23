@@ -1,21 +1,44 @@
+using System;
 using Logic;
 using UnityEngine;
 
-public class GameTimer : MonoBehaviour
+public class GameTimer : MonoBehaviour, ITimer
 {
+    //[SerializeField] private float _secondsByAuthor = Constants.TIMER_TEST;
+
+    public Action GameTimerFinish;
+
+    private float _staticTime;
     private float _remainingSeconds;
     private Timer _timer;
+    private TimerManager _timerManager;
     
-    public void Construct(float remainingTime, TimerType timerType)
+    
+    
+    public void Construct(float remainingTime, TimerType timerType, TimerManager manager)
     {
         _remainingSeconds = remainingTime;
+        _staticTime = remainingTime;
         _timer = new Timer(timerType, _remainingSeconds);
         _timer.OnTimerValueChangedEvent += OnTimerValueChanged;
         _timer.OnTimerFinishEvent += OnTimerFinished;
+        _timerManager = manager;
+        _timerManager.SubscribeGameTimer(this);
     }
 
     public void StartTimer()
     {
+        _timer.Start();
+    }
+
+    public void ReloadTimer()
+    {
+        ReloadTimer(_staticTime);
+    }
+
+    public void ReloadTimer(float time)
+    {
+        _timer.SetTime(time);
         _timer.Start();
     }
 
@@ -28,13 +51,14 @@ public class GameTimer : MonoBehaviour
             _timer.Pause();
         }
     }
-
+    
     private void OnTimerFinished()
     {
+        GameTimerFinish?.Invoke();
         Debug.Log($"Game Timer FINISHED");
     }
 
-    public void Stop()
+    public void StopTimer()
     {
         _timer.Stop();
     }

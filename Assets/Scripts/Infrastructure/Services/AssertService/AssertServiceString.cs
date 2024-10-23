@@ -12,26 +12,26 @@ namespace Infrastructure.Services.AssertService.ExtendetAssertService
 
         public T Assert(string objPath, Vector3 pos)
         {
-            T particleSystem = Resources.Load<T>(objPath);
-            return Object.Instantiate(particleSystem, pos, Quaternion.identity);
+            T obj = Resources.Load<T>(objPath);
+            return Object.Instantiate(obj, pos, Quaternion.identity);
         }
 
         public T Assert(string objPath, Vector3 pos, Quaternion quaternion)
         {
-            T particleSystem = Resources.Load<T>(objPath);
-            return Object.Instantiate(particleSystem, pos, quaternion);
+            T obj = Resources.Load<T>(objPath);
+            return Object.Instantiate(obj, pos, quaternion);
         }
 
         public T Assert(string objPath, Vector3 pos, Transform parent)
         {
-            T particleSystem = Resources.Load<T>(objPath);
-            return Object.Instantiate(particleSystem, pos, Quaternion.identity, parent);
+            T obj = Resources.Load<T>(objPath);
+            return Object.Instantiate(obj, pos, Quaternion.identity, parent);
         }
 
         public T Assert(string objPath, Vector3 pos, Quaternion quaternion, Transform parent)
         {
-            T particleSystem = Resources.Load<T>(objPath);
-            return Object.Instantiate(particleSystem, pos, quaternion, parent);
+            T obj = Resources.Load<T>(objPath);
+            return Object.Instantiate(obj, pos, quaternion, parent);
         }
     }
 }
