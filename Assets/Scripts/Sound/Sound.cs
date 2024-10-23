@@ -17,6 +17,7 @@ public class Sound : MonoBehaviour
 
     public bool loopSequence;
 
+
     [HideInInspector]
     public AudioSource[] audioSources;
 
@@ -107,5 +108,17 @@ public class Sound : MonoBehaviour
     {
         audioSources[1].clip = UICloseSound;
         audioSources[1].Play();
+    }
+    public void PlaySound(AudioClip clip)
+    {
+        if (clip != null && audioSources != null)
+        {
+            audioSources[1].clip = clip;
+            audioSources[1].Play();
+        }
+        else
+        {
+            Debug.LogWarning("Аудиоклип нет или нет AudioSource");
+        }
     }
 }

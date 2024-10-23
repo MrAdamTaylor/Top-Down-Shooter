@@ -14,6 +14,6 @@ public class AudioPlayerComponent : MonoBehaviour
 
     private void PlayShootSound()
     {
-        Debug.Log("Play Shoot Sound");
+        Sound.Instance.PlaySound(_shootSound);
     }
 }
