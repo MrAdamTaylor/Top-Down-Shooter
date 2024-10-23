@@ -9,6 +9,7 @@ public class Sound : MonoBehaviour
     // AudioSource 1 for sfx
 
     public AudioClip UIBubbleSound;
+    public AudioClip UICloseSound;
 
     public AudioClip[] menuTracks;
 
@@ -100,6 +101,11 @@ public class Sound : MonoBehaviour
     public void PlayBubbleSound()
     {
         audioSources[1].clip = UIBubbleSound;
+        audioSources[1].Play();
+    }
+    public void PlayCloseSound()
+    {
+        audioSources[1].clip = UICloseSound;
         audioSources[1].Play();
     }
 }
