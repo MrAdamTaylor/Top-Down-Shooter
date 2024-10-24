@@ -8,7 +8,6 @@ public class EnemyRotateSystem : MonoBehaviour
     private Transform _lookedObject;
     private float _rotateSpeed;
     
-    private bool _isRotate;
     private Coroutine _coroutineRotate;
 
     private bool _autoRotate;
@@ -18,31 +17,22 @@ public class EnemyRotateSystem : MonoBehaviour
         _lookedObject = lookedObject;
         _currentBody = currentBody;
         _rotateSpeed = rotateSpeed;
+        _autoRotate = true;
     }
 
-    private void Update()
-    {
-        AutoRotate();
-    }
 
     public void RotateStart()
     {
-        _autoRotate = true;
+        _coroutineRotate ??= StartCoroutine(RotateDirection());
     }
 
     public void RotateStop()
     {
-        _isRotate = false;
-        _autoRotate = false;
-    }
+        if (_coroutineRotate == null) 
+            return;
+        StopCoroutine(_coroutineRotate);
+        _coroutineRotate = null;
 
-    private void AutoRotate()
-    {
-        if (_isRotate == false)
-        {
-            _coroutineRotate = StartCoroutine(RotateDirection() );
-            _isRotate = true;
-        }
     }
 
     private IEnumerator RotateDirection()

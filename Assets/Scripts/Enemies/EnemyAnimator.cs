@@ -10,6 +10,7 @@ public class EnemyAnimator : MonoBehaviour, IAnimationStateReader
     private static readonly int Speed = Animator.StringToHash("Speed");
     private static readonly int IsMoving = Animator.StringToHash("IsMoving");
     private static readonly int Die = Animator.StringToHash("Die");
+    private static readonly int Idle = Animator.StringToHash("ZombieIdle");
 
     private readonly int _idleStateHash = Animator.StringToHash("ZombieIdle");
     private readonly int _attackOneStateHash = Animator.StringToHash("ZombieAttack1");
@@ -29,6 +30,11 @@ public class EnemyAnimator : MonoBehaviour, IAnimationStateReader
     {
         _animator = GetComponent<Animator>();
         _animator.speed = Constants.ENEMY_ANIMATION_SPEED;
+    }
+
+    public void PlayIdle()
+    {
+        _animator.SetTrigger(Idle);
     }
 
     public void PlayDeath()

@@ -99,7 +99,7 @@ internal class EnemyFactory : IEnemyFactory
         
         EnemyController enemyController = enemy.AddComponent<EnemyController>();
         enemyController.Construct(moveToPlayer, enemyAnimator, enemyRotateSystem, enemyAttack, 
-            configs.MinimalToPlayerDistance, enemyDeath, physic.gameObject);
+            configs.MinimalToPlayerDistance, enemyDeath, physic.gameObject, enemyHealth);
     }
 
     private void CreateKamikaze(GameObject enemy, EnemyKamikazeConfigs configs)

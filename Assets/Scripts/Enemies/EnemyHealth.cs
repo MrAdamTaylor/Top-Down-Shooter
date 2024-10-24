@@ -28,4 +28,9 @@ public class EnemyHealth : MonoBehaviour, IHealth
         TakeDamageAction?.Invoke();
         Debug.Log($"<color=green>Enemy current is {_current} </color>");
     }
+
+    public void ReloadHealth()
+    {
+        _current = _max;
+    }
 }

@@ -27,12 +27,15 @@ public class MoveToPlayer : MonoBehaviour
 
     public void Move()
     {
-        _moveRoutine = StartCoroutine(MakeStep());
+        _moveRoutine ??= StartCoroutine(MakeStep());
     }
 
     public void StopMove()
     {
+        if (_moveRoutine == null) 
+            return;
         StopCoroutine(_moveRoutine);
+        _moveRoutine = null;
     }
 
     public Vector3 GoalPos()

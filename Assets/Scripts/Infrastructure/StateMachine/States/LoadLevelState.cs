@@ -122,8 +122,10 @@ public class LoadLevelState : IPayloadedState<string>
             EnemySpawnerPool pool = enemyPool.AddComponent<EnemySpawnerPool>();
             var i1 = i;
             
-            pool.Construct(3,()=>factory.Create(spawnerConfigs.SpawnList[i1].EnemyConfigs, spawnPoints, enemyPool));
+            pool.Construct(1,()=>factory.Create(spawnerConfigs.SpawnList[i1].EnemyConfigs, spawnPoints, enemyPool), spawnPoints);
             enemyPool.transform.SetParent(spawnController.transform);
+            EnemyDeath[] enemyDeaths = enemyPool.GetComponentsInChildren<EnemyDeath>(true);
+            pool.SubscribeDeathAction(enemyDeaths);
             spawnerPools.Add(pool);
         }
 

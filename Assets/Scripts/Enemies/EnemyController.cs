@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour
     private EnemyAttack _enemyAttack;
     private CheckAttack _checkAttack;
     private EnemyDeath _enemyDeath;
+    private EnemyHealth _enemyHealth;
 
 
     private bool _isConstructed;
@@ -20,9 +21,11 @@ public class EnemyController : MonoBehaviour
     private bool _isBusy;
     private float _moveCooldown;
     private bool _isMoving;
+    private bool _isDeath;
+    private bool _isSetCoolDown;
 
     public void Construct(MoveToPlayer moveToPlayer, EnemyAnimator enemyAnimator, EnemyRotateSystem rotateSystem,
-        EnemyAttack enemyAttack,float minimalDistance, EnemyDeath death, GameObject physic)
+        EnemyAttack enemyAttack,float minimalDistance, EnemyDeath death, GameObject physic, EnemyHealth enemyHealth)
     {
         _moveToPlayer = moveToPlayer;
         _enemyAnimator = enemyAnimator;
@@ -34,18 +37,20 @@ public class EnemyController : MonoBehaviour
         _enemyDeath.DeathAction += StopAllComponents;
         _physic = physic;
         _isConstructed = true;
-
-        if (moveToPlayer != null)
-        {
-            _isBusy = true;
-            _moveToPlayer.Move();
-            _enemyRotateSystem.RotateStart();
-            _enemyAnimator.Move(1f);
-        }
+        _enemyHealth = enemyHealth;
     }
 
     private void OnEnable()
     {
+        if (_isDeath)
+        {
+            _enemyHealth.ReloadHealth();
+            _enemyAnimator.PlayIdle();
+            _physic.SetActive(true);
+            _isDeath = false;
+            _isBusy = false;
+        }
+
         if (_isConstructed)
         {
             _moveToPlayer.Move();
@@ -54,15 +59,10 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        _moveToPlayer.StopMove();
-        _enemyRotateSystem.RotateStop();
-        _enemyAnimator.StopMoving();
-    }
 
     private void OnDestroy()
     {
+        _isDeath = true;
         _enemyRotateSystem.RotateStop();
         _enemyDeath.DeathAction -= StopAllComponents;
     }
@@ -71,14 +71,12 @@ public class EnemyController : MonoBehaviour
     {
         if (canMove)
         {
-            Debug.Log("Enemy Can Move");
-            _isBusy = false;
             _moveCooldown = MOVE_PAUSE_COOLDOWN;
+            _isBusy = false;
         }
         else
         {
             _isBusy = true;
-            Debug.Log("Enemy Can't Move");
         }
     }
 
@@ -88,10 +86,10 @@ public class EnemyController : MonoBehaviour
 
         if (CanMove())
         {
-            _isBusy = true;
             _moveToPlayer.Move();
             _enemyAnimator.Move(1f);
         }
+
 
         if(!SubjectNotReached())
         {
@@ -127,6 +125,7 @@ public class EnemyController : MonoBehaviour
 
     private bool CooldownIsUp()
     {
+        _isSetCoolDown = false;
         return _moveCooldown <= 0;
     }
 
@@ -137,6 +136,7 @@ public class EnemyController : MonoBehaviour
         _moveToPlayer.StopMove();
         _enemyRotateSystem.RotateStop();
         _isBusy = true;
+        _isDeath = true;
     }
     
 }
