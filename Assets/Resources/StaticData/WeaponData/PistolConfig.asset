@@ -16,7 +16,9 @@ MonoBehaviour:
   Damage: 20
   SpeedFireRange: 0.1
   InpType: 0
-  ShootSound: {fileID: 8300000, guid: 144f38215b1a92843888b7d3532270ac, type: 3}
+  ShootSound:
+  - {fileID: 8300000, guid: 2b67d68015cf21141a34b1ba47f7b1e7, type: 3}
+  - {fileID: 8300000, guid: 6fc647b668c6e034ea3e44b8051df376, type: 3}
   IsMuzzle: 1
   IsAmmo: 0
   AmmoValues:
