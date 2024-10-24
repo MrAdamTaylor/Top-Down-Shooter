@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -29,7 +28,14 @@ public class EnemySpawnerPool : MonoBehaviour
 
     public void Spawn()
     {
-        GameObject obj = _pool.Get();
+        if (_pool.PoolCount > 0)
+        {
+            GameObject obj = _pool.Get();
+        }
+        else
+        {
+            Debug.Log("<color=yellow>Pool is Empty</color>");
+        }
     }
 
     private void ReturnPool(GameObject obj)

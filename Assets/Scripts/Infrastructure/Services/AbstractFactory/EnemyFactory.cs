@@ -80,6 +80,8 @@ internal class EnemyFactory : IEnemyFactory
 
         EnemyAnimator enemyAnimator = visual.AddComponent<EnemyAnimator>();
         enemyAnimator.Construct();
+        //EnemyAnimationEvent enemyAnimationEvent = visual.AddComponent<EnemyAnimationEvent>();
+        
         MoveToPlayer moveToPlayer = enemy.AddComponent<MoveToPlayer>();
         moveToPlayer.Construct(enemy.transform, configs.Speed);
         EnemyRotateSystem enemyRotateSystem = enemy.AddComponent<EnemyRotateSystem>();

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -44,6 +43,7 @@ public class EnemyController : MonoBehaviour
     {
         if (_isDeath)
         {
+            _enemyAttack.DisableAttack();
             _enemyHealth.ReloadHealth();
             _enemyAnimator.PlayIdle();
             _physic.SetActive(true);
@@ -56,27 +56,6 @@ public class EnemyController : MonoBehaviour
             _moveToPlayer.Move();
             _enemyRotateSystem.RotateStart();
             _enemyAnimator.Move(1f);
-        }
-    }
-
-
-    private void OnDestroy()
-    {
-        _isDeath = true;
-        _enemyRotateSystem.RotateStop();
-        _enemyDeath.DeathAction -= StopAllComponents;
-    }
-
-    private void ChangeActionState(bool canMove)
-    {
-        if (canMove)
-        {
-            _moveCooldown = MOVE_PAUSE_COOLDOWN;
-            _isBusy = false;
-        }
-        else
-        {
-            _isBusy = true;
         }
     }
 
@@ -95,6 +74,26 @@ public class EnemyController : MonoBehaviour
         {
             _enemyAnimator.StopMoving();
             _moveToPlayer.StopMove();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        _isDeath = true;
+        _enemyRotateSystem.RotateStop();
+        _enemyDeath.DeathAction -= StopAllComponents;
+    }
+
+    private void ChangeActionState(bool canMove)
+    {
+        if (canMove)
+        {
+            _moveCooldown = MOVE_PAUSE_COOLDOWN;
+            _isBusy = false;
+        }
+        else
+        {
+            _isBusy = true;
         }
     }
 

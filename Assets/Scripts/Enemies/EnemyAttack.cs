@@ -6,13 +6,14 @@ using Random = UnityEngine.Random;
 
 public class EnemyAttack : MonoBehaviour
 {
+    private const string ANIMATION_ATACK_START = "Attack_Start";
+    private const string ANIMATION_ATACK_END = "Attack_End";
+    
     private const float ATTACK_COOLDOWN = 1f;
     private const float SHIFTED_DISTANCE = 0.5f;
     private const float CLEAVE_RADIUS = 0.8f;
     private const float HIT_BOX_HIGH_SHIFTED = 0.6f;
     
-    //public Action AfterAttackAction;
-
     public Action<bool> ReadyForAction;
     
     private int _layerMask;
@@ -24,6 +25,7 @@ public class EnemyAttack : MonoBehaviour
     private float _attackCooldown;
     private bool _isAttacking;
     private bool _attackIsActive;
+    private EnemyAnimationEvent _animationEvent;
 
     public void Construct(EnemyAnimator enemyAnimator, float minDamage, float maxDamage)
     {
@@ -31,6 +33,24 @@ public class EnemyAttack : MonoBehaviour
         _layerMask = 1 << LayerMask.NameToLayer("Player");
         _maxDamage = maxDamage;
         _minDamage = minDamage;
+        _animationEvent = transform.GetComponent<EnemyAnimationEvent>();
+        _animationEvent.EnemyAnimEvent.AddListener(OnAnimationEvent);
+    }
+
+    private void OnAnimationEvent(string eventName)
+    {
+        Debug.Log($"<color=yellow>Animation Event: {eventName}</color>");
+        switch (eventName)
+        {
+            case ANIMATION_ATACK_START:
+                Attack();
+                break;
+            case ANIMATION_ATACK_END:
+                AttackEnd();
+                break;
+            default:
+                throw new Exception("Unknown Animation Type");
+        }
     }
 
     private void Update()
@@ -41,7 +61,7 @@ public class EnemyAttack : MonoBehaviour
             StartAttack();
     }
 
-    private void OnAttack()
+    private void Attack()
     {
         if (Hit(out Collider hit))
         {
@@ -52,7 +72,7 @@ public class EnemyAttack : MonoBehaviour
         }
     }
 
-    private void OnAttackEnded()
+    private void AttackEnd()
     {
         ReadyForAction.Invoke(true);
         _attackCooldown = ATTACK_COOLDOWN;
@@ -103,5 +123,10 @@ public class EnemyAttack : MonoBehaviour
         ReadyForAction?.Invoke(false);
         _animator.PlayeAttack(Random.Range(Constants.MINIMAL_ATTACK_ANIMATION,Constants.MAXIMUM_ATTACK_ANIMATION));
         _isAttacking = true;
+    }
+
+    private void OnDestroy()
+    {
+        _animationEvent.EnemyAnimEvent.RemoveListener(OnAnimationEvent);
     }
 }

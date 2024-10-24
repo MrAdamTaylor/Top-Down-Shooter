@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PoolBase<T>
 {
+    public int PoolCount { get; private set; }
+    
     private readonly Func<T> _preloadFunc;
     private readonly Action<T> _getAction;
     private readonly Action<T> _returnAction;
@@ -17,6 +19,7 @@ public class PoolBase<T>
         _preloadFunc = preloadFunc;
         _getAction = getAction;
         _returnAction = returnAction;
+        PoolCount = 0;
         if (preloadFunc == null)
         {
             Debug.LogError("Preload function is null");
@@ -29,9 +32,10 @@ public class PoolBase<T>
 
     public T Get()
     {
-        T item = _pool.Count > 0 ? _pool.Dequeue() : throw new Exception("В пуле нет объектов");
+        T item = _pool.Count > 0 ? _pool.Dequeue() : throw new Exception("Pool Not Have Objects");
         _getAction(item);
         _active.Add(item);
+        PoolCount--;
 
         return item;
     }
@@ -41,6 +45,7 @@ public class PoolBase<T>
         _returnAction(item);
         _pool.Enqueue(item);
         _active.Remove(item);
+        PoolCount++;
     }
 
     public void ReturnAll()
