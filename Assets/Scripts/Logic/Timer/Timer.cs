@@ -1,7 +1,8 @@
 using System;
+using Infrastructure.ServiceLocator;
 using UnityEngine;
 
-namespace Logic
+namespace Logic.Timer
 {
     public class Timer
     {

@@ -1,6 +1,9 @@
  using UnityEngine;
 
-public class EnemySpawnPoint : MonoBehaviour
-{
+ namespace Logic.Spawners
+ {
+  public class EnemySpawnPoint : MonoBehaviour
+  {
     
-}
+  }
+ }

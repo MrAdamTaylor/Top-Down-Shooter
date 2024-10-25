@@ -1,4 +1,4 @@
-namespace Scripts.Player.NewWeaponControllSystem
+namespace Player.NewWeaponControllSystem
 {
     public class CurrentWeaponConstructor
     {
@@ -9,7 +9,7 @@ namespace Scripts.Player.NewWeaponControllSystem
             _weaponController = weaponController;
         }
 
-        public void SwitchInput(Weapon weapon)
+        public void SwitchInput(Weapon.Weapon weapon)
         {
             _weaponController.CleanInputSystem();
             _weaponController.ConnectInputToWeapon(weapon);

@@ -1,7 +1,7 @@
 using EnterpriceLogic.Utilities;
 using UnityEngine;
 
-namespace Scripts.Player.NewWeaponControllSystem
+namespace Player.NewWeaponControllSystem
 {
     public class WeaponSwitcher : MonoBehaviour
     {
@@ -53,7 +53,7 @@ namespace Scripts.Player.NewWeaponControllSystem
             }
         }
 
-        public Weapon GetActiveWeapon()
+        public Weapon.Weapon GetActiveWeapon()
         {
             return _conteiner.GetActiveWeapon();
         }
@@ -64,13 +64,13 @@ namespace Scripts.Player.NewWeaponControllSystem
             {
                 if (i == _selectedWeapon)
                 {
-                    Weapon weapon = _conteiner.GetByIndex(i);
+                    Weapon.Weapon weapon = _conteiner.GetByIndex(i);
                     weapon.gameObject.SetActive(true);
                     _currentWeaponConstructor.SwitchInput(weapon);
                 }
                 else
                 {
-                    Weapon weapon = _conteiner.GetByIndex(i);
+                    Weapon.Weapon weapon = _conteiner.GetByIndex(i);
                     weapon.gameObject.SetActive(false);
                 }
             }

@@ -1,4 +1,7 @@
-public interface IService
+namespace Infrastructure.Services
 {
+    public interface IService
+    {
     
+    }
 }

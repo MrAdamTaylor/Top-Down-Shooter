@@ -1,9 +1,9 @@
 using System.Collections.Generic;
-using Logic;
+using Logic.Timer;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Mechanics.Spawners.NewSpawner
+namespace Logic
 {
     public class EnemySpawnController : MonoBehaviour
     {
@@ -12,7 +12,7 @@ namespace Mechanics.Spawners.NewSpawner
         private WaveSystem _waveSystem;
 
         private bool _isWaweSystemWorking;
-        private Timer _spawnTimer;
+        private Timer.Timer _spawnTimer;
         private TimerManager _timerManager;
         private SpawnManager _spawnManager;
 

@@ -1,7 +1,12 @@
-public interface IAnimationStateReader
-{
-    void EnteredState(int stateInfoShortNameHash);
-    void ExitedState(int stateInfoShortNameHash);
+using Enemies;
 
-    AnimatorState State { get; }
+namespace Logic.Animation
+{
+    public interface IAnimationStateReader
+    {
+        void EnteredState(int stateInfoShortNameHash);
+        void ExitedState(int stateInfoShortNameHash);
+
+        AnimatorState State { get; }
+    }
 }

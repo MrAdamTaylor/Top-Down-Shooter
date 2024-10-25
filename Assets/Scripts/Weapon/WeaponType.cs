@@ -1,7 +1,10 @@
-public enum WeaponType
+namespace Weapon
 {
-    Pistol,
-    Rifle,
-    ShootGun,
-    Undefinded
+    public enum WeaponType
+    {
+        Pistol,
+        Rifle,
+        ShootGun,
+        Undefinded
+    }
 }

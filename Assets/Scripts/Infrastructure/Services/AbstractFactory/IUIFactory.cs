@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public interface IUIFactory : IGameFactory
+namespace Infrastructure.Services.AbstractFactory
 {
-    public GameObject CreateWithLoadConnect(object popupPath, object provider, object player);
+    public interface IUIFactory : IGameFactory
+    {
+        public GameObject CreateWithLoadConnect(object popupPath, object provider, object player);
+    }
 }

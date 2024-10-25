@@ -1,6 +1,11 @@
+using Configs;
+using Logic.Spawners;
 using UnityEngine;
 
-public interface IEnemyFactory : IService
+namespace Infrastructure.Services.AbstractFactory
 {
-    public GameObject Create(EnemyConfigs configs, EnemySpawnPoint[] positions, GameObject parent);
+    public interface IEnemyFactory : IService
+    {
+        public GameObject Create(EnemyConfigs configs, EnemySpawnPoint[] positions, GameObject parent);
+    }
 }

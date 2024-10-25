@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Player.MouseInput;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Scripts.Player.NewWeaponControllSystem
+namespace Player.NewWeaponControllSystem
 {
     public class WeaponInputHandler
     {
@@ -12,13 +13,13 @@ namespace Scripts.Player.NewWeaponControllSystem
 
         private GameObject _gameObject;
 
-        public WeaponInputHandler(WeaponController controller, Weapon[] weapon)
+        public WeaponInputHandler(WeaponController controller, Weapon.Weapon[] weapon)
         {
             _gameObject = controller.gameObject;
             GetWeapons(weapon);
         }
 
-        private void GetWeapons(Weapon[] getWeaponsComponent)
+        private void GetWeapons(Weapon.Weapon[] getWeaponsComponent)
         {
             for (int i = 0; i < getWeaponsComponent.Length; i++)
             {

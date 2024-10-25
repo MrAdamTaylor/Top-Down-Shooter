@@ -1,25 +1,28 @@
 using System;
 using UnityEngine;
 
-public class MouseInputTouch : MonoBehaviour, IMouseInput
+namespace Player.MouseInput
 {
-    public event Action OnFire;
-
-    private void Update()
+    public class MouseInputTouch : MonoBehaviour, IMouseInput
     {
-        this.HandleMouse();
-    }
+        public event Action OnFire;
 
-    private void HandleMouse()
-    {
-        if (Input.GetKey(KeyCode.Mouse0))
+        private void Update()
         {
-            this.Fire();
+            this.HandleMouse();
         }
-    }
 
-    private void Fire()
-    {
-        this.OnFire?.Invoke();
+        private void HandleMouse()
+        {
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                this.Fire();
+            }
+        }
+
+        private void Fire()
+        {
+            this.OnFire?.Invoke();
+        }
     }
 }

@@ -1,32 +1,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnManager
+namespace Logic
 {
-    private List<string> _accessPools;
-    private float _spawnCooldown;
-    private int _count;
-    
-    public bool CanSpawn(string name)
+    public class SpawnManager
     {
-        bool canSpawn = false;
-        for (int i = 0; i < _accessPools.Count; i++)
+        private List<string> _accessPools;
+        private float _spawnCooldown;
+        private int _count;
+    
+        public bool CanSpawn(string name)
         {
-            if (name == _accessPools[i])
+            bool canSpawn = false;
+            for (int i = 0; i < _accessPools.Count; i++)
             {
-                canSpawn = true;
+                if (name == _accessPools[i])
+                {
+                    canSpawn = true;
+                }
             }
+            if (canSpawn == false)
+            {
+                Debug.Log($"<color=red>Not Access for this Enemie </color> {name}");
+            }
+            return canSpawn;
         }
-        if (canSpawn == false)
-        {
-            Debug.Log($"<color=red>Not Access for this Enemie </color> {name}");
-        }
-        return canSpawn;
-    }
     
-    public void Configure(float cooldown, List<string> accessPools)
-    {
-        _spawnCooldown = cooldown;
-        _accessPools = accessPools;
+        public void Configure(float cooldown, List<string> accessPools)
+        {
+            _spawnCooldown = cooldown;
+            _accessPools = accessPools;
+        }
     }
 }

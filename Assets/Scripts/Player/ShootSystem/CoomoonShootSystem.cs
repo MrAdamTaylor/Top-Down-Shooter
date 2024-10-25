@@ -1,28 +1,33 @@
+using Infrastructure.Services.AbstractFactory;
 using UnityEngine;
+using Weapon;
+using Weapon.StaticData;
 
-
-public class CoomoonShootSystem : MonoBehaviour, IShootSystem
+namespace Player.ShootSystem
 {
-    protected Transform _directionObject;
-    protected LayerMask _layerMask;
-
-     public virtual void Construct(WeaponStaticData staticData, WeaponEffectsConteiner conteiner)
-     {
-     }
-
-     public virtual void Shoot()
-     {
-        
-     }
-
-     protected Vector3 GetDirection()
+    public class CoomoonShootSystem : MonoBehaviour, IShootSystem
     {
-        Vector3 direction = _directionObject.transform.forward;
-        return direction;
-    }
+        protected Transform _directionObject;
+        protected LayerMask _layerMask;
 
-    public virtual void UpdateValues(WeaponCharacteristics characteristics)
-    {
+        public virtual void Construct(WeaponStaticData staticData, WeaponEffectsConteiner conteiner)
+        {
+        }
+
+        public virtual void Shoot()
+        {
         
+        }
+
+        protected Vector3 GetDirection()
+        {
+            Vector3 direction = _directionObject.transform.forward;
+            return direction;
+        }
+
+        public virtual void UpdateValues(WeaponCharacteristics characteristics)
+        {
+        
+        }
     }
 }

@@ -1,63 +1,66 @@
 using System;
 using System.Collections.Generic;
+using EnterpriceLogic.Utilities;
 using JetBrains.Annotations;
 
-
-public class ServiceLocator 
+namespace Infrastructure.ServiceLocator
 {
-    [CanBeNull] private static ServiceLocator _instance;
-
-    public static ServiceLocator Instance
+    public class ServiceLocator 
     {
-        get
+        [CanBeNull] private static ServiceLocator _instance;
+
+        public static ServiceLocator Instance
         {
-            if (_instance == null)
+            get
             {
-                _instance = new ServiceLocator();
+                if (_instance == null)
+                {
+                    _instance = new ServiceLocator();
+                }
+                return _instance;
             }
-            return _instance;
         }
-    }
 
-    private readonly Dictionary<Type, object> _servicesDataBase = new();
+        private readonly Dictionary<Type, object> _servicesDataBase = new();
 
-    public bool IsGetData(Type type)
-    {
-        if (_servicesDataBase.ContainsKey(type))
+        public bool IsGetData(Type type)
         {
-            return true;
+            if (_servicesDataBase.ContainsKey(type))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        else
+
+        public object GetData(Type type)
         {
-            return false;
+            return _servicesDataBase[type];
         }
-    }
 
-    public object GetData(Type type)
-    {
-        return _servicesDataBase[type];
-    }
-
-    public object GetCloneData(Type type)
-    {
-       var obj = _servicesDataBase[type];
-           return obj.PrototypeDeepClone();
-    }
-
-    public void BindData(Type type, object data)
-    {
-        if (_servicesDataBase.ContainsKey(type))
+        public object GetCloneData(Type type)
         {
-            _servicesDataBase[type] = data;
+            var obj = _servicesDataBase[type];
+            return obj.PrototypeDeepClone();
         }
-        else
-        {
-            _servicesDataBase.Add(type, data);
-        }
-    }
 
-    public void CleanData(Type type)
-    {
-        _servicesDataBase.Remove(type);
+        public void BindData(Type type, object data)
+        {
+            if (_servicesDataBase.ContainsKey(type))
+            {
+                _servicesDataBase[type] = data;
+            }
+            else
+            {
+                _servicesDataBase.Add(type, data);
+            }
+        }
+
+        public void CleanData(Type type)
+        {
+            _servicesDataBase.Remove(type);
+        }
     }
 }

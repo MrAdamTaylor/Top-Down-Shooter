@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Math
+namespace EnterpriceLogic.Math
 {
     public static class SortArrayExtension
     {

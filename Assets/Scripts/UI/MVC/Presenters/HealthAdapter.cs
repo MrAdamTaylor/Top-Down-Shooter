@@ -1,19 +1,21 @@
-using EnterpriceLogic.Constants;
-using UI.MVC;
+using Player;
 
-public class HealthAdapter
+namespace UI.MVC.Presenters
 {
-    private PlayerHealth _playerHealth;
-    private HpBar _hpBar;
+    public class HealthAdapter
+    {
+        private PlayerHealth _playerHealth;
+        private HpBar _hpBar;
     
-    public HealthAdapter(PlayerHealth health, HpBar hpBar)
-    {
-        _playerHealth = health;
-        _hpBar = hpBar;
-    }
+        public HealthAdapter(PlayerHealth health, HpBar hpBar)
+        {
+            _playerHealth = health;
+            _hpBar = hpBar;
+        }
 
-    public void UpdateValues(float current, float maxHp)
-    {
-        _hpBar.SetValue(current, maxHp);
+        public void UpdateValues(float current, float maxHp)
+        {
+            _hpBar.SetValue(current, maxHp);
+        }
     }
 }

@@ -1,25 +1,28 @@
 using System;
 
-public class ScoresStorage
+namespace UI.MVC.Model
 {
-    public event Action<long> OnScoresChanged;
+    public class ScoresStorage
+    {
+        public event Action<long> OnScoresChanged;
         
-    public long Scores { get; private set; }
+        public long Scores { get; private set; }
     
-    public ScoresStorage(long ammo)
-    {
-        Scores = ammo;
-    }
+        public ScoresStorage(long ammo)
+        {
+            Scores = ammo;
+        }
     
-    public void AddScores(long current)
-    {
-        Scores += current;
-        OnScoresChanged?.Invoke(Scores);
-    }
+        public void AddScores(long current)
+        {
+            Scores += current;
+            OnScoresChanged?.Invoke(Scores);
+        }
 
-    public void SpendScores(long current)
-    {
-        Scores -= current;
-        OnScoresChanged?.Invoke(Scores);
+        public void SpendScores(long current)
+        {
+            Scores -= current;
+            OnScoresChanged?.Invoke(Scores);
+        }
     }
 }

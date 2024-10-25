@@ -1,27 +1,31 @@
 using System;
+using UI.MVC.Model;
 
-public class MoneyAdapter : IDisposable
+namespace UI.MVC.Presenters
 {
-    private readonly CurrencyView _currencyView;
-    private readonly MoneyStorage _moneyStorage;
-    public MoneyAdapter(CurrencyView view, MoneyStorage ammoStorage)
+    public class MoneyAdapter : IDisposable
     {
-        _currencyView = view;
-        _moneyStorage = ammoStorage;
-    }
+        private readonly CurrencyView _currencyView;
+        private readonly MoneyStorage _moneyStorage;
+        public MoneyAdapter(CurrencyView view, MoneyStorage ammoStorage)
+        {
+            _currencyView = view;
+            _moneyStorage = ammoStorage;
+        }
 
-    public void Initialize()
-    {
-        _moneyStorage.OnMoneyChanged += UpdateAmmo;
-    }
+        public void Initialize()
+        {
+            _moneyStorage.OnMoneyChanged += UpdateAmmo;
+        }
 
-    public void Dispose()
-    {
-        _moneyStorage.OnMoneyChanged -= UpdateAmmo;
-    }
+        public void Dispose()
+        {
+            _moneyStorage.OnMoneyChanged -= UpdateAmmo;
+        }
 
-    private void UpdateAmmo(long value)
-    {
-        _currencyView.UpdateCurrency(value);
+        private void UpdateAmmo(long value)
+        {
+            _currencyView.UpdateCurrency(value);
+        }
     }
 }

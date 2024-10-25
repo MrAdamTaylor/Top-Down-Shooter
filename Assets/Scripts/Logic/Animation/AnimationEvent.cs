@@ -1,6 +1,9 @@
 using UnityEngine.Events;
 
-public class AnimationEvent : UnityEvent<string>
+namespace Logic.Animation
 {
+    public class AnimationEvent : UnityEvent<string>
+    {
     
+    }
 }

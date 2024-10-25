@@ -1,20 +1,22 @@
-using System;
 using UnityEngine;
 
-public class WeaponProvider : MonoBehaviour
+namespace Player.NewWeaponControllSystem
 {
-    [SerializeField] private Weapon[] _weapons;
-
-    public Weapon[] ReturnWeapons()
+    public class WeaponProvider : MonoBehaviour
     {
-        Weapon[] weapons = new Weapon[_weapons.Length];
+        [SerializeField] private Weapon.Weapon[] _weapons;
 
-        for (int i = 0; i < _weapons.Length; i++)
+        public Weapon.Weapon[] ReturnWeapons()
         {
-            Weapon weapon = _weapons[i].gameObject.GetComponent<Weapon>();
-            weapons[i] = weapon;
-        }
+            Weapon.Weapon[] weapons = new Weapon.Weapon[_weapons.Length];
 
-        return weapons;
+            for (int i = 0; i < _weapons.Length; i++)
+            {
+                Weapon.Weapon weapon = _weapons[i].gameObject.GetComponent<Weapon.Weapon>();
+                weapons[i] = weapon;
+            }
+
+            return weapons;
+        }
     }
 }

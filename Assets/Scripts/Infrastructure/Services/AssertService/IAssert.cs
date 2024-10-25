@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace Infrastructure.Services.AssertService.ExtendetAssertService
+namespace Infrastructure.Services.AssertService
 {
     public interface IAssert<out T,TU> : IService
     {

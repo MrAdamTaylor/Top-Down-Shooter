@@ -1,35 +1,41 @@
 using System;
+using Infrastructure.Services.AbstractFactory;
 using UnityEngine;
+using Weapon;
+using Weapon.StaticData;
 
-public class ShootControlSystem : MonoBehaviour
+namespace Player.ShootSystem
 {
-    private CoomoonShootSystem _shootSystem;
-    
-    public Action ShootAction;
-    
-    private float _weaponDelay;
-    private float _lastShootTime;
-
-    public void Construct(WeaponStaticData data, WeaponEffectsConteiner weaponEffectsConteiner, CoomoonShootSystem shootSystem)
+    public class ShootControlSystem : MonoBehaviour
     {
-        _weaponDelay = data.SpeedFireRange;
-        _shootSystem = shootSystem;
-        _shootSystem.Construct(data, weaponEffectsConteiner);
-    }
+        private CoomoonShootSystem _shootSystem;
+    
+        public Action ShootAction;
+    
+        private float _weaponDelay;
+        private float _lastShootTime;
 
-    public void Shoot()
-    {
-        if (_lastShootTime + _weaponDelay < Time.time)
+        public void Construct(WeaponStaticData data, WeaponEffectsConteiner weaponEffectsConteiner, CoomoonShootSystem shootSystem)
         {
-            _shootSystem.Shoot();
-            ShootAction?.Invoke();
-            _lastShootTime = Time.time;
+            _weaponDelay = data.SpeedFireRange;
+            _shootSystem = shootSystem;
+            _shootSystem.Construct(data, weaponEffectsConteiner);
         }
-    }
 
-    public void UpdateValues(WeaponCharacteristics characteristics)
-    {
-        _weaponDelay = characteristics.FireSpeedRange;
-        _shootSystem.UpdateValues(characteristics);
+        public void Shoot()
+        {
+            if (_lastShootTime + _weaponDelay < Time.time)
+            {
+                _shootSystem.Shoot();
+                ShootAction?.Invoke();
+                _lastShootTime = Time.time;
+            }
+        }
+
+        public void UpdateValues(WeaponCharacteristics characteristics)
+        {
+            _weaponDelay = characteristics.FireSpeedRange;
+            _shootSystem.UpdateValues(characteristics);
+        }
     }
 }

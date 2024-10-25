@@ -1,18 +1,21 @@
 using System;
+using Player.MouseInput;
+using Player.ShootSystem;
+using UI.MVC.Presenters;
 using UnityEngine;
 
-namespace Scripts.Player.NewWeaponControllSystem
+namespace Player.NewWeaponControllSystem
 {
     public class WeaponController : MonoBehaviour
     {
         private WeaponSwitcher _weaponSwitcher;
         private WeaponInputHandler _weaponInputHandler;
-        private Weapon _weapon;
+        private Weapon.Weapon _weapon;
         private IMouseInput _mouseInput;
         private AmmoController _ammoController;
         private AmmoAdapter _ammoAdapter;
 
-        public void Construct(Weapon[] getActiveWeapon, WeaponSwitcher weaponSwitcher)
+        public void Construct(Weapon.Weapon[] getActiveWeapon, WeaponSwitcher weaponSwitcher)
         {
             _weaponInputHandler = new WeaponInputHandler(this, getActiveWeapon);
             _weaponSwitcher = weaponSwitcher;
@@ -30,7 +33,7 @@ namespace Scripts.Player.NewWeaponControllSystem
             _mouseInput = null;
         }
 
-        public void ConnectInputToWeapon(Weapon weapon)
+        public void ConnectInputToWeapon(Weapon.Weapon weapon)
         {
             _weapon = weapon;
             _ammoController = _weapon.GetComponent<AmmoController>();

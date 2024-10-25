@@ -1,36 +1,39 @@
 using System;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour, IHealth
+namespace Enemies
 {
-    private float _max;
-    private float _current;
-    private EnemyAnimator _animator;
-
-    public Action NoHealthAction;
-    public Action TakeDamageAction;
-
-    public void Construct(float healt, EnemyAnimator animator)
+    public class EnemyHealth : MonoBehaviour, IHealth
     {
-        _animator = animator;
-        _max = healt;
-        _current = _max;
-    }
+        private float _max;
+        private float _current;
+        private EnemyAnimator _animator;
 
-    public void TakeDamage(float damage)
-    {
-        if (_current <= 0)
+        public Action NoHealthAction;
+        public Action TakeDamageAction;
+
+        public void Construct(float healt, EnemyAnimator animator)
         {
-            NoHealthAction?.Invoke();
-            return;
+            _animator = animator;
+            _max = healt;
+            _current = _max;
         }
-        _current -= damage;
-        TakeDamageAction?.Invoke();
-        Debug.Log($"<color=green>Enemy current is {_current} </color>");
-    }
 
-    public void ReloadHealth()
-    {
-        _current = _max;
+        public void TakeDamage(float damage)
+        {
+            if (_current <= 0)
+            {
+                NoHealthAction?.Invoke();
+                return;
+            }
+            _current -= damage;
+            TakeDamageAction?.Invoke();
+            Debug.Log($"<color=green>Enemy current is {_current} </color>");
+        }
+
+        public void ReloadHealth()
+        {
+            _current = _max;
+        }
     }
 }

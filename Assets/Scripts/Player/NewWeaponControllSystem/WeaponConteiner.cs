@@ -1,21 +1,22 @@
 using System;
+using Weapon;
 
-namespace Scripts.Player.NewWeaponControllSystem
+namespace Player.NewWeaponControllSystem
 {
     public class WeaponConteiner
     {
-        private Weapon[] _weapons;
+        private Weapon.Weapon[] _weapons;
         public int Count { get; private set; }
 
-        public WeaponConteiner(Weapon[] returnWeapons)
+        public WeaponConteiner(Weapon.Weapon[] returnWeapons)
         {
             _weapons = returnWeapons;
             Count = returnWeapons.Length;
         }
         
-        public Weapon GetActiveWeapon()
+        public Weapon.Weapon GetActiveWeapon()
         {
-            Weapon weapon = null;
+            Weapon.Weapon weapon = null;
             for (int i = 0; i < _weapons.Length; i++)
             {
                 if (_weapons[i].gameObject.activeSelf)
@@ -35,7 +36,7 @@ namespace Scripts.Player.NewWeaponControllSystem
         }
         
 
-        public Weapon GetByIndex(int i)
+        public Weapon.Weapon GetByIndex(int i)
         {
             return _weapons[i];
         }

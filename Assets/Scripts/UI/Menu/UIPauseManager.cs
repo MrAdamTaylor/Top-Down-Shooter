@@ -1,70 +1,71 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class UIPauseManager : MonoBehaviour
+namespace UI.Menu
 {
-    public GameObject panelSound;
-    public GameObject panelPause;
-    // Start is called before the first frame update
-    void Start()
+    public class UIPauseManager : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        public GameObject panelSound;
+        public GameObject panelPause;
+        // Start is called before the first frame update
+        void Start()
         {
-            // Переключаем активность панели
+        
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Tab))
+            {
+                // РџРµСЂРµРєР»СЋС‡Р°РµРј Р°РєС‚РёРІРЅРѕСЃС‚СЊ РїР°РЅРµР»Рё
+                panelPause.SetActive(!panelPause.activeSelf);
+            }
+        }
+
+        public void OpenPanelSound()
+        {
+            panelSound.SetActive(true);
+        }
+
+        // Р—Р°РєСЂС‹С‚СЊ РїР°РЅРµР»СЊ
+        public void ClosePanelSound()
+        {
+            panelSound.SetActive(false);
+        }
+        public void LoadSceneMenu()
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        public void LoadSceneAgain()
+        {
+            SceneManager.LoadScene(4);
+        }
+
+        // Р—Р°РєСЂС‹С‚СЊ РїР°РЅРµР»СЊ
+        public void ClosePanelPause()
+        {
             panelPause.SetActive(!panelPause.activeSelf);
         }
-    }
 
-    public void OpenPanelSound()
-    {
-        panelSound.SetActive(true);
-    }
-
-    // Закрыть панель
-    public void ClosePanelSound()
-    {
-        panelSound.SetActive(false);
-    }
-    public void LoadSceneMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
-
-    public void LoadSceneAgain()
-    {
-        SceneManager.LoadScene(4);
-    }
-
-    // Закрыть панель
-    public void ClosePanelPause()
-    {
-        panelPause.SetActive(!panelPause.activeSelf);
-    }
-
-    public void ChangeMusicLevel(Slider slider)
-    {
-        if (slider == null)
+        public void ChangeMusicLevel(Slider slider)
         {
-            return;
+            if (slider == null)
+            {
+                return;
+            }
+            GameObject.Find("SoundManager").GetComponents<AudioSource>()[0].volume = slider.value;
         }
-        GameObject.Find("SoundManager").GetComponents<AudioSource>()[0].volume = slider.value;
-    }
 
-    public void ChangeEffectsLevel(Slider slider)
-    {
-        if (slider == null)
+        public void ChangeEffectsLevel(Slider slider)
         {
-            return;
+            if (slider == null)
+            {
+                return;
+            }
+            GameObject.Find("SoundManager").GetComponents<AudioSource>()[1].volume = slider.value;
         }
-        GameObject.Find("SoundManager").GetComponents<AudioSource>()[1].volume = slider.value;
     }
 }

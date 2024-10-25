@@ -1,30 +1,33 @@
 using UnityEngine;
 
-public class AnimatorStateReporter : StateMachineBehaviour
+namespace Logic.Animation
 {
-    private IAnimationStateReader _stateReader;
-
-    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class AnimatorStateReporter : StateMachineBehaviour
     {
-        base.OnStateEnter(animator, stateInfo, layerIndex);
-        FindReader(animator);
+        private IAnimationStateReader _stateReader;
 
-        _stateReader.EnteredState(stateInfo.shortNameHash);
-    }
+        public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            base.OnStateEnter(animator, stateInfo, layerIndex);
+            FindReader(animator);
 
-    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        base.OnStateExit(animator, stateInfo, layerIndex);
-        FindReader(animator);
+            _stateReader.EnteredState(stateInfo.shortNameHash);
+        }
 
-        _stateReader.ExitedState(stateInfo.shortNameHash);
-    }
+        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            base.OnStateExit(animator, stateInfo, layerIndex);
+            FindReader(animator);
 
-    private void FindReader(Animator animator)
-    {
-        if (_stateReader != null)
-            return;
+            _stateReader.ExitedState(stateInfo.shortNameHash);
+        }
+
+        private void FindReader(Animator animator)
+        {
+            if (_stateReader != null)
+                return;
         
-        _stateReader = animator.gameObject.GetComponent<IAnimationStateReader>();
+            _stateReader = animator.gameObject.GetComponent<IAnimationStateReader>();
+        }
     }
 }

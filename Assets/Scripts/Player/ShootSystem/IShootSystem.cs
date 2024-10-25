@@ -1,6 +1,9 @@
 
-public interface IShootSystem
+namespace Player.ShootSystem
 {
-    public void Shoot();
+    public interface IShootSystem
+    {
+        public void Shoot();
+    }
 }
 

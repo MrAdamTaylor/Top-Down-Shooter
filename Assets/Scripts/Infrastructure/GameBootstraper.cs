@@ -1,22 +1,27 @@
+using Configs;
+using Infrastructure.StateMachine.States;
 using UnityEngine;
 
-public class GameBootstraper : MonoBehaviour
+namespace Infrastructure
 {
-    [SerializeField] private LevelConfigs _levelConfigs;
-    [SerializeField] private LoadingCurtain _curtain;
-    private Game _game;
-
-    public void Awake()
+    public class GameBootstraper : MonoBehaviour
     {
-        var canvas = _curtain.GetComponent<Canvas>();
-        canvas.enabled = false;
-    }
+        [SerializeField] private LevelConfigs _levelConfigs;
+        [SerializeField] private LoadingCurtain _curtain;
+        private Game _game;
 
-    public void StartGame()
-    {
-        _game = new Game(_curtain, _levelConfigs);
-        _game.StateMachine.Enter<BootstrapState>();
-        DontDestroyOnLoad(this);
+        public void Awake()
+        {
+            var canvas = _curtain.GetComponent<Canvas>();
+            canvas.enabled = false;
+        }
+
+        public void StartGame()
+        {
+            _game = new Game(_curtain, _levelConfigs);
+            _game.StateMachine.Enter<BootstrapState>();
+            DontDestroyOnLoad(this);
+        }
     }
 }
 

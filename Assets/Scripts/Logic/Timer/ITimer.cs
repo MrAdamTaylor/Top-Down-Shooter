@@ -1,7 +1,10 @@
-public interface ITimer
+namespace Logic.Timer
 {
-    public void StartTimer();
-    public void ReloadTimer(float Time);
-    public void PauseResume();
-    public void StopTimer();
+    public interface ITimer
+    {
+        public void StartTimer();
+        public void ReloadTimer(float Time);
+        public void PauseResume();
+        public void StopTimer();
+    }
 }

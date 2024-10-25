@@ -1,33 +1,36 @@
-using System;
+using EnterpriceLogic;
 using UnityEngine;
 
-public class CheckAttack : MonoBehaviour
+namespace Enemies
 {
-    private EnemyAttack _attack;
-    private ReactionTrigger _reactionTrigger;
-
-    public void Construct(EnemyAttack enemyAttack, ReactionTrigger reactionTrigger)
+    public class CheckAttack : MonoBehaviour
     {
-        _attack = enemyAttack;
-        _reactionTrigger = reactionTrigger;
-        _reactionTrigger.TriggerAction += TriggerAttack;
-        _reactionTrigger.TriggerEndAction += TriggerEndAttack;
-        _attack.DisableAttack();
-    }
+        private EnemyAttack _attack;
+        private ReactionTrigger _reactionTrigger;
 
-    private void OnDestroy()
-    {
-        _reactionTrigger.TriggerAction -= TriggerAttack;
-        _reactionTrigger.TriggerAction -= TriggerEndAttack;
-    }
+        public void Construct(EnemyAttack enemyAttack, ReactionTrigger reactionTrigger)
+        {
+            _attack = enemyAttack;
+            _reactionTrigger = reactionTrigger;
+            _reactionTrigger.TriggerAction += TriggerAttack;
+            _reactionTrigger.TriggerEndAction += TriggerEndAttack;
+            _attack.DisableAttack();
+        }
 
-    private void TriggerAttack()
-    {
-        _attack.EnableAttack();
-    }
+        private void OnDestroy()
+        {
+            _reactionTrigger.TriggerAction -= TriggerAttack;
+            _reactionTrigger.TriggerAction -= TriggerEndAttack;
+        }
 
-    private void TriggerEndAttack()
-    {
-        _attack.DisableAttack();
+        private void TriggerAttack()
+        {
+            _attack.EnableAttack();
+        }
+
+        private void TriggerEndAttack()
+        {
+            _attack.DisableAttack();
+        }
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Infrastructure.Services.AssertService.ExtendetAssertService
+namespace Infrastructure.Services.AssertService
 {
     public class AssertLoader<T> : IAssertByString<T> where T : Object
     {

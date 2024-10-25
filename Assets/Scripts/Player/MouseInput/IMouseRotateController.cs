@@ -1,4 +1,7 @@
-public interface IMouseRotateController
+namespace Player.MouseInput
 {
+    public interface IMouseRotateController
+    {
     
+    }
 }

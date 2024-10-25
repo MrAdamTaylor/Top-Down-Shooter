@@ -1,9 +1,16 @@
-public class Game
+using Configs;
+using Infrastructure.Services;
+using Infrastructure.StateMachine;
+
+namespace Infrastructure
 {
-    public GameStateMachine StateMachine;
-    
-    public Game(LoadingCurtain curtain, LevelConfigs levelConfigs)
+    public class Game
     {
-        StateMachine = new GameStateMachine(new SceneLoader(), curtain, AllServices.Container,levelConfigs);
+        public GameStateMachine StateMachine;
+    
+        public Game(LoadingCurtain curtain, LevelConfigs levelConfigs)
+        {
+            StateMachine = new GameStateMachine(new SceneLoader(), curtain, AllServices.Container,levelConfigs);
+        }
     }
 }

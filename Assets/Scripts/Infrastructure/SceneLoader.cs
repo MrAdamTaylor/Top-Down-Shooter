@@ -2,24 +2,27 @@ using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader
+namespace Infrastructure
 {
-    public void Load(string name, Action onLoaded = null)
+    public class SceneLoader
     {
-        _ = LoadScene(name, onLoaded);
-    }
-
-    private async UniTaskVoid LoadScene(string nextScene, Action onLoaded = null)
-    {
-        if (SceneManager.GetActiveScene().name == nextScene)
+        public void Load(string name, Action onLoaded = null)
         {
-            onLoaded?.Invoke();
-            return;
+            _ = LoadScene(name, onLoaded);
         }
 
-        await SceneManager.LoadSceneAsync(nextScene);
+        private async UniTaskVoid LoadScene(string nextScene, Action onLoaded = null)
+        {
+            if (SceneManager.GetActiveScene().name == nextScene)
+            {
+                onLoaded?.Invoke();
+                return;
+            }
+
+            await SceneManager.LoadSceneAsync(nextScene);
       
-        onLoaded?.Invoke();
-    }
+            onLoaded?.Invoke();
+        }
     
+    }
 }

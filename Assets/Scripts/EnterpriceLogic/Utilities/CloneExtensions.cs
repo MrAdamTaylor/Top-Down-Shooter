@@ -1,10 +1,12 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-public static class CloneExtensions
+namespace EnterpriceLogic.Utilities
 {
-    public static T PrototypeDeepClone<T>(this T clone)
+    public static class CloneExtensions
     {
+        public static T PrototypeDeepClone<T>(this T clone)
+        {
             var formatter = new BinaryFormatter();
             using (var stream = new MemoryStream())
             {
@@ -12,5 +14,6 @@ public static class CloneExtensions
                 stream.Seek(0, SeekOrigin.Begin);
                 return (T)formatter.Deserialize(stream);
             }
+        }
     }
 }

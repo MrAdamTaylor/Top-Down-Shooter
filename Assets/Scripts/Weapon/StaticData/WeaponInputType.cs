@@ -1,6 +1,9 @@
-public enum WeaponInputType
+namespace Weapon.StaticData
 {
-    OnClickInput,
-    OnTouchInput,
-    Undefinded
+    public enum WeaponInputType
+    {
+        OnClickInput,
+        OnTouchInput,
+        Undefinded
+    }
 }

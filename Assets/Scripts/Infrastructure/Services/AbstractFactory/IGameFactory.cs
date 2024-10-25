@@ -1,4 +1,7 @@
-public interface IGameFactory : IService
+namespace Infrastructure.Services.AbstractFactory
 {
+    public interface IGameFactory : IService
+    {
     
+    }
 }

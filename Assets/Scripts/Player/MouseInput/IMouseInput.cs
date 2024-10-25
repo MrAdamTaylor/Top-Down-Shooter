@@ -1,6 +1,9 @@
 using System;
 
-public interface IMouseInput
+namespace Player.MouseInput
 {
-    public event Action OnFire;
+    public interface IMouseInput
+    {
+        public event Action OnFire;
+    }
 }

@@ -1,5 +1,8 @@
 
-public interface IWeaponFactory : IGameFactory
+namespace Infrastructure.Services.AbstractFactory
 {
-    public void CreateAll(Weapon[] weapon);
+    public interface IWeaponFactory : IGameFactory
+    {
+        public void CreateAll(Weapon.Weapon[] weapon);
+    }
 }

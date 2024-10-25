@@ -1,4 +1,9 @@
-public interface IHealth : IPlayableComponent
+using Logic;
+
+namespace Enemies
 {
-    public void TakeDamage(float damage);
+    public interface IHealth : IPlayableComponent
+    {
+        public void TakeDamage(float damage);
+    }
 }

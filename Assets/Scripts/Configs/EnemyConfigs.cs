@@ -1,19 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyConfigs : ScriptableObject
+namespace Configs
 {
-    public string Name;
-    public int Health;
+    public class EnemyConfigs : ScriptableObject
+    {
+        public string Name;
+        public int Health;
     
-    public int MinDamage;
-    public int MaxDamage;
+        public int MinDamage;
+        public int MaxDamage;
 
-    public int Reward;
+        public int Reward;
 
-    public float RadiusDetection;
+        public float RadiusDetection;
     
-    public List<GameObject> Skins;
+        public List<GameObject> Skins;
     
     
+    }
 }

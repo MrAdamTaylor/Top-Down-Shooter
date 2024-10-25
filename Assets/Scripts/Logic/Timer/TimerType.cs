@@ -1,7 +1,10 @@
-public enum TimerType 
+namespace Logic.Timer
 {
-    UpdateTick,
-    UpdateTickUnscaled,
-    OneSecTick,
-    OneSecTickUnscaled
+    public enum TimerType 
+    {
+        UpdateTick,
+        UpdateTickUnscaled,
+        OneSecTick,
+        OneSecTickUnscaled
+    }
 }

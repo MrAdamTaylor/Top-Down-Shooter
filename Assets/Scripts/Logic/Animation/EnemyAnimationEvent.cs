@@ -1,10 +1,13 @@
 using UnityEngine;
 
-public class EnemyAnimationEvent : MonoBehaviour
+namespace Logic.Animation
 {
-    public AnimationEvent EnemyAnimEvent = new AnimationEvent();
-    public void OnAnimationEvent(string eventName)
+    public class EnemyAnimationEvent : MonoBehaviour
     {
-        EnemyAnimEvent.Invoke(eventName);
+        public AnimationEvent EnemyAnimEvent = new AnimationEvent();
+        public void OnAnimationEvent(string eventName)
+        {
+            EnemyAnimEvent.Invoke(eventName);
+        }
     }
 }

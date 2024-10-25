@@ -1,13 +1,16 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Player", menuName = "Player")]
-public class PlayerConfigs : ScriptableObject
+namespace Configs
 {
-    public string PathToPlayer;
+    [CreateAssetMenu(fileName = "Player", menuName = "Player")]
+    public class PlayerConfigs : ScriptableObject
+    {
+        public string PathToPlayer;
 
-    public float Speed;
+        public float Speed;
 
-    public int Health;
+        public int Health;
 
-    public LayerMask ShootLayer;
+        public LayerMask ShootLayer;
+    }
 }

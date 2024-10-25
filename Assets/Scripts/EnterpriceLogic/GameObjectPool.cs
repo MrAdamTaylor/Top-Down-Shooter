@@ -1,20 +1,23 @@
 using System;
 using UnityEngine;
 
-public class GameObjectPool : PoolBase<GameObject>
+namespace EnterpriceLogic
 {
-    
-    public GameObjectPool(Func<GameObject> func, int preloadCount)
-        :base(()=> NonCreatePreload(func),GetAction, ReturnAction, preloadCount) {}
-
-    private static GameObject NonCreatePreload(Func<GameObject> func)
+    public class GameObjectPool : PoolBase<GameObject>
     {
-        GameObject prefab = func.Invoke();
-        return prefab;
-    }
+    
+        public GameObjectPool(Func<GameObject> func, int preloadCount)
+            :base(()=> NonCreatePreload(func),GetAction, ReturnAction, preloadCount) {}
+
+        private static GameObject NonCreatePreload(Func<GameObject> func)
+        {
+            GameObject prefab = func.Invoke();
+            return prefab;
+        }
     
 
-    private static void GetAction(GameObject gObject) => gObject.SetActive(true);
+        private static void GetAction(GameObject gObject) => gObject.SetActive(true);
     
-    private static void ReturnAction(GameObject gObject) => gObject.SetActive(false);
+        private static void ReturnAction(GameObject gObject) => gObject.SetActive(false);
+    }
 }

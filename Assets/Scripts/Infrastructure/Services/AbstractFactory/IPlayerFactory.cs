@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public interface IPlayerFactory : IGameFactory
+namespace Infrastructure.Services.AbstractFactory
 {
-    GameObject Create(Vector3 position, Camera camera);
+    public interface IPlayerFactory : IGameFactory
+    {
+        GameObject Create(Vector3 position, Camera camera);
+    }
 }

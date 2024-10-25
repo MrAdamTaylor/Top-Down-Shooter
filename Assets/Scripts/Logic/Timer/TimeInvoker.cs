@@ -1,36 +1,39 @@
 using System;
 using UnityEngine;
 
-public class TimeInvoker : MonoBehaviour
+namespace Logic.Timer
 {
-    public event Action<float> OnUpdateTimeTickedEvent;
-    public event Action<float> OnUpdateTimeUnscaledTickedEvent;
-    public event Action OnOneSecondTickedEvent;
-    public event Action OnOneSecondUnscaledTickedEvent;
-    
-    private float _oneSecTimer;
-    private float _oneSecUnscaledTimer;
-
-    private void Update()
+    public class TimeInvoker : MonoBehaviour
     {
-        var deltaTime = Time.deltaTime;
-        OnUpdateTimeTickedEvent?.Invoke(deltaTime);
+        public event Action<float> OnUpdateTimeTickedEvent;
+        public event Action<float> OnUpdateTimeUnscaledTickedEvent;
+        public event Action OnOneSecondTickedEvent;
+        public event Action OnOneSecondUnscaledTickedEvent;
+    
+        private float _oneSecTimer;
+        private float _oneSecUnscaledTimer;
 
-        _oneSecTimer += deltaTime;
-        if (_oneSecTimer >= 1f)
+        private void Update()
         {
-            _oneSecTimer -= 1;
-            OnOneSecondTickedEvent?.Invoke();
-        }
+            var deltaTime = Time.deltaTime;
+            OnUpdateTimeTickedEvent?.Invoke(deltaTime);
+
+            _oneSecTimer += deltaTime;
+            if (_oneSecTimer >= 1f)
+            {
+                _oneSecTimer -= 1;
+                OnOneSecondTickedEvent?.Invoke();
+            }
         
-        float unscaledDeltaTimer = Time.unscaledDeltaTime;
-        OnUpdateTimeUnscaledTickedEvent?.Invoke(unscaledDeltaTimer);
+            float unscaledDeltaTimer = Time.unscaledDeltaTime;
+            OnUpdateTimeUnscaledTickedEvent?.Invoke(unscaledDeltaTimer);
 
-        _oneSecUnscaledTimer += unscaledDeltaTimer;
-        if (_oneSecUnscaledTimer >= 1f)
-        {
-            _oneSecUnscaledTimer -= 1f;
-            OnOneSecondUnscaledTickedEvent?.Invoke();
+            _oneSecUnscaledTimer += unscaledDeltaTimer;
+            if (_oneSecUnscaledTimer >= 1f)
+            {
+                _oneSecUnscaledTimer -= 1f;
+                OnOneSecondUnscaledTickedEvent?.Invoke();
+            }
         }
     }
 }
