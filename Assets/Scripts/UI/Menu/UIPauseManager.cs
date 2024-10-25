@@ -36,6 +36,7 @@ namespace UI.Menu
         }
         public void LoadSceneMenu()
         {
+            //NOTE - Destroy FadeObject and GameObject
             SceneManager.LoadScene(0);
         }
 

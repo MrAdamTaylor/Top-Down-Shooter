@@ -15,6 +15,7 @@ namespace Configs
     [Serializable]
     public struct WeaponUIConfig
     {
+        public Sprite AmmoPicture;
         public Sprite WeaponPicture;
         public WeaponType WeaponType;
         public AnimationConfigs AnimationConfigs;

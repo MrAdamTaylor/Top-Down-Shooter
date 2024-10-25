@@ -31,7 +31,7 @@ namespace UI.MVC.Presenters
         public AmmoAdapter(CurrencyViewWithImage view, UIWeaponStaticDataIcons staticDataIcons, WeaponController controller)
         {
             _currencyView = view;
-            _icoImage = staticDataIcons.IcoConfigs.ToDictionary(x => x.WeaponType, y => y.WeaponPicture);
+            _icoImage = staticDataIcons.IcoConfigs.ToDictionary(x => x.WeaponType, y => y.AmmoPicture);
             _animationConfigs = staticDataIcons.IcoConfigs.ToDictionary(x => x.WeaponType, y => y.AnimationConfigs);
             WeaponData data = (WeaponData)ServiceLocator.Instance.GetData(typeof(WeaponData));
             Dictionary<int, (WeaponType, AmmoController)> dictionary = data.GetAmmoData();

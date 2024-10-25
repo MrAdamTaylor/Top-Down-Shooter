@@ -1,0 +1,343 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: StandartPreset
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 322a4048756db9041b00d56242544df5, type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].WeaponPicture
+    value: 
+    objectReference: {fileID: 21300000, guid: d6a98cda48c99614dad8d009eb7afe0d, type: 3}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].WeaponType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.AnimationSequenceType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.MiddleDuration
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.ImageConfigs.AnimationType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.ImageConfigs.StartConfigs.Scale.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.ImageConfigs.StartConfigs.Scale.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.ImageConfigs.StartConfigs.Scale.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.ImageConfigs.StartConfigs.RillRate
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.ImageConfigs.StartConfigs.EaseType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.ImageConfigs.EndConfigs.Scale.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.ImageConfigs.EndConfigs.Scale.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.ImageConfigs.EndConfigs.Scale.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.ImageConfigs.EndConfigs.RillRate
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.ImageConfigs.EndConfigs.EaseType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.TextConfigs.AnimationType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.TextConfigs.StartConfigs.Scale.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.TextConfigs.StartConfigs.Scale.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.TextConfigs.StartConfigs.Scale.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.TextConfigs.StartConfigs.RillRate
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.TextConfigs.StartConfigs.EaseType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.TextConfigs.EndConfigs.Scale.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.TextConfigs.EndConfigs.Scale.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.TextConfigs.EndConfigs.Scale.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.TextConfigs.EndConfigs.RillRate
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[0].AnimationConfigs.TextConfigs.EndConfigs.EaseType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].WeaponPicture
+    value: 
+    objectReference: {fileID: 21300000, guid: 360594132a5160243a2697948fa11cf2, type: 3}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].WeaponType
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.AnimationSequenceType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.MiddleDuration
+    value: 0.2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.ImageConfigs.AnimationType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.ImageConfigs.StartConfigs.Scale.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.ImageConfigs.StartConfigs.Scale.y
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.ImageConfigs.StartConfigs.Scale.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.ImageConfigs.StartConfigs.RillRate
+    value: 0.2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.ImageConfigs.StartConfigs.EaseType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.ImageConfigs.EndConfigs.Scale.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.ImageConfigs.EndConfigs.Scale.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.ImageConfigs.EndConfigs.Scale.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.ImageConfigs.EndConfigs.RillRate
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.ImageConfigs.EndConfigs.EaseType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.TextConfigs.AnimationType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.TextConfigs.StartConfigs.Scale.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.TextConfigs.StartConfigs.Scale.y
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.TextConfigs.StartConfigs.Scale.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.TextConfigs.StartConfigs.RillRate
+    value: 0.2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.TextConfigs.StartConfigs.EaseType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.TextConfigs.EndConfigs.Scale.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.TextConfigs.EndConfigs.Scale.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.TextConfigs.EndConfigs.Scale.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.TextConfigs.EndConfigs.RillRate
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[1].AnimationConfigs.TextConfigs.EndConfigs.EaseType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].WeaponPicture
+    value: 
+    objectReference: {fileID: 21300000, guid: 1f53c5e6b9cc17844a7d65f085be233a, type: 3}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].WeaponType
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.AnimationSequenceType
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.MiddleDuration
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.ImageConfigs.AnimationType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.ImageConfigs.StartConfigs.Scale.x
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.ImageConfigs.StartConfigs.Scale.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.ImageConfigs.StartConfigs.Scale.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.ImageConfigs.StartConfigs.RillRate
+    value: 0.05
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.ImageConfigs.StartConfigs.EaseType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.ImageConfigs.EndConfigs.Scale.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.ImageConfigs.EndConfigs.Scale.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.ImageConfigs.EndConfigs.Scale.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.ImageConfigs.EndConfigs.RillRate
+    value: 0.05
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.ImageConfigs.EndConfigs.EaseType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.TextConfigs.AnimationType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.TextConfigs.StartConfigs.Scale.x
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.TextConfigs.StartConfigs.Scale.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.TextConfigs.StartConfigs.Scale.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.TextConfigs.StartConfigs.RillRate
+    value: 0.05
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.TextConfigs.StartConfigs.EaseType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.TextConfigs.EndConfigs.Scale.x
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.TextConfigs.EndConfigs.Scale.y
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.TextConfigs.EndConfigs.Scale.z
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.TextConfigs.EndConfigs.RillRate
+    value: 0.05
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: IcoConfigs.Array.data[2].AnimationConfigs.TextConfigs.EndConfigs.EaseType
+    value: 0
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []

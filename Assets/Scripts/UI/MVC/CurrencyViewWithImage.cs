@@ -2,6 +2,7 @@ using System;
 using DG.Tweening;
 using EnterpriceLogic.Constants;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace UI.MVC
@@ -9,11 +10,12 @@ namespace UI.MVC
     [Serializable]
     public class CurrencyViewWithImage : CurrencyView
     {
-        [SerializeField] private Image _image;
+        [SerializeField] private Image _ammoImage;
+        [SerializeField] private Image _weaponImage;
         [SerializeField] private StartScroolTween _startScroolTween;
         [SerializeField] private EndScroolTween _endScroolTween;
         private Sprite _currentSprite;
-        public Transform ImageTransform => _image.transform;
+        public Transform ImageTransform => _ammoImage.transform;
 
         public override void UpdateCurrency(long value)
         {
@@ -23,7 +25,7 @@ namespace UI.MVC
         public void UpdateImage(Sprite sprite)
         {
             _currentSprite = sprite;
-            _image.sprite = sprite;
+            _ammoImage.sprite = sprite;
         }
 
         public void SetDefaultCurrency()
@@ -36,7 +38,7 @@ namespace UI.MVC
             return DOTween
                 .Sequence()
                 .Append(_text.transform.DOScale(_startScroolTween.Scale, _startScroolTween.Duration)).SetEase(_startScroolTween.AnimationLine)
-                .Insert(0,_image.transform.DOScale(_startScroolTween.Scale, _startScroolTween.Duration)).SetEase(_startScroolTween.AnimationLine);
+                .Insert(0,_ammoImage.transform.DOScale(_startScroolTween.Scale, _startScroolTween.Duration)).SetEase(_startScroolTween.AnimationLine);
         }
 
         public Sequence AnimateTextImageEnd()
@@ -44,7 +46,7 @@ namespace UI.MVC
             return DOTween
                 .Sequence()
                 .Append(_text.transform.DOScale(_endScroolTween.Scale, _endScroolTween.Duration)).SetEase(_endScroolTween.AnimationLine)
-                .Insert(0,_image.transform.DOScale(_endScroolTween.Scale, _endScroolTween.Duration)).SetEase(_endScroolTween.AnimationLine);
+                .Insert(0,_ammoImage.transform.DOScale(_endScroolTween.Scale, _endScroolTween.Duration)).SetEase(_endScroolTween.AnimationLine);
         }
     }
 

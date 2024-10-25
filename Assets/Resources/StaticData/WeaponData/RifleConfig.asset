@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4a99d67d237c7a749a371c7909808a2b, type: 3}
   - {fileID: 8300000, guid: 80836c74b34404c4d9548ad3d32674a4, type: 3}
   IsMuzzle: 1
-  IsAmmo: 0
+  IsAmmo: 1
   AmmoValues:
     IsInfinity: 0
     StarterAmmo: 150

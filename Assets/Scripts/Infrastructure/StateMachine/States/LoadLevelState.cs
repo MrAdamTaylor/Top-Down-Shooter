@@ -126,17 +126,22 @@ namespace Infrastructure.StateMachine.States
         private void ValidateSpawnerData(EnemySpawnerConfigs spawnerConfigs)
         {
             List<int> sums = new List<int>();
+            for (int i = 0; i < spawnerConfigs.Waves.Count; i++)
+            {
+                int zeroSum = Constants.ZERO;
+                sums.Add(zeroSum);
+            }
+
             for (int i = 0; i < spawnerConfigs.SpawnList.Count; i++)
             {
-                int sum = 0;
                 for (int j = 0; j < spawnerConfigs.SpawnList[i].PercantageForEachWaves.Count; j++)
                 {
-                    sum = spawnerConfigs.SpawnList[i].PercantageForEachWaves[j];
+                    Debug.Log($"Sum element in <color=red> I{i} J{j} - {spawnerConfigs.SpawnList[i].PercantageForEachWaves[j]}</color>");
+                    sums[j] += spawnerConfigs.SpawnList[i].PercantageForEachWaves[j];
                 }
-                sums.Add(sum);
             }
         
-            sums.OutputCollection("Sum of Percentage");
+            sums.OutputCollection("Sums of Percentage");
         }
 
         private List<EnemySpawnerPool> CreatePools(EnemySpawnerConfigs spawnerConfigs, IEnemyFactory factory, EnemySpawnPoint[] spawnPoints,
