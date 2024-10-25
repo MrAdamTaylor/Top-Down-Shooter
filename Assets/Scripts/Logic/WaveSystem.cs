@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class WaveSystem
 {
-    public const int FIRST_WAVE_ENEMY_INDEX = 1;
-    
     public WaveTimer WaveTimer { get; private set; }
 
     private Queue<WaveStruct> _waves = new();

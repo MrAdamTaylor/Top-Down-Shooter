@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using EnterpriceLogic;
 using EnterpriceLogic.Constants;
 using Mechanics.Spawners.NewSpawner;
 using UnityEngine;
@@ -95,6 +96,8 @@ public class LoadLevelState : IPayloadedState<string>
             GetData(typeof(EnemySpawnerConfigs));
         IEnemyFactory factory = (IEnemyFactory)ServiceLocator.Instance.GetData(typeof(IEnemyFactory));
 
+        ValidateSpawnerData(spawnerConfigs);
+
         List<EnemySpawnerPool> enemyPools = CreatePools(spawnerConfigs, factory, spawnPoints, spawnController);
 
         WaveSystem waveSystem = null;
@@ -109,6 +112,22 @@ public class LoadLevelState : IPayloadedState<string>
         {
             spawnController.Construct(enemyPools);
         }
+    }
+
+    private void ValidateSpawnerData(EnemySpawnerConfigs spawnerConfigs)
+    {
+        List<int> sums = new List<int>();
+        for (int i = 0; i < spawnerConfigs.SpawnList.Count; i++)
+        {
+            int sum = 0;
+            for (int j = 0; j < spawnerConfigs.SpawnList[i].PercantageForEachWaves.Count; j++)
+            {
+                sum = spawnerConfigs.SpawnList[i].PercantageForEachWaves[j];
+            }
+            sums.Add(sum);
+        }
+        
+        sums.OutputCollection("Sum of Percentage");
     }
 
     private List<EnemySpawnerPool> CreatePools(EnemySpawnerConfigs spawnerConfigs, IEnemyFactory factory, EnemySpawnPoint[] spawnPoints,
