@@ -2,7 +2,7 @@ using Logic.Timer;
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor
+namespace Utilities.Editor
 {
     [CustomEditor(typeof(GameTimer))]
     public class GameTimerEditor : UnityEditor.Editor

@@ -2,7 +2,7 @@ using Logic.Spawners;
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor
+namespace Utilities.Editor
 {
     [CustomEditor(typeof(EnemySpawnPoint))]
     public class EnemySpawnPointEditor : UnityEditor.Editor

@@ -2,7 +2,7 @@ using UI.MVC.Helper;
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor.UI
+namespace Utilities.Editor.UI
 {
     [CustomEditor(typeof(UIHelper))]
     public class UIHelperEditor : UnityEditor.Editor

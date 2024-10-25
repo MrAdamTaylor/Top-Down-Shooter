@@ -2,7 +2,7 @@ using EnterpriceLogic.Utilities.Drawers;
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor
+namespace Utilities.Editor
 {
     [CustomEditor(typeof(CircleDrawer))]
     public class CircleDrawerEditor : UnityEditor.Editor

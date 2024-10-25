@@ -2,7 +2,7 @@ using EnterpriceLogic.Utilities.Drawers;
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor
+namespace Utilities.Editor
 {
     [CustomEditor(typeof(FieldOfViewDrawer))]
     public class FieldOfViewDrawerEditor : UnityEditor.Editor
