@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WType: 1
   Damage: 10
-  SpeedFireRange: 0.2
+  SpeedFireRange: 0.15
   InpType: 1
   ShootSound:
   - {fileID: 8300000, guid: 4a99d67d237c7a749a371c7909808a2b, type: 3}

@@ -70,12 +70,10 @@ namespace Sound
        
             if (sceneIndex == 0 )
             {
-                //  ����� ��� ����
                 currentTrackCoroutine = StartCoroutine(PlayTracksSequentially(menuTracks));
             }
             else
             {
-                //  ����� ��� ����
                 currentTrackCoroutine = StartCoroutine(PlayTracksSequentially(gameTracks));
             }
         }
