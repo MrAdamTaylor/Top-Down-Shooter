@@ -1,12 +1,10 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using Object = UnityEngine.Object;
 
 public class GameObjectPool : PoolBase<GameObject>
 {
     
-    public GameObjectPool(Func<GameObject> func, int preloadCount, Transform[] spawnPoints=null)
+    public GameObjectPool(Func<GameObject> func, int preloadCount)
         :base(()=> NonCreatePreload(func),GetAction, ReturnAction, preloadCount) {}
 
     private static GameObject NonCreatePreload(Func<GameObject> func)

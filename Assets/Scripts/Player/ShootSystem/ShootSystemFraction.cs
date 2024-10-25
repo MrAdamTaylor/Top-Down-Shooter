@@ -24,8 +24,8 @@ public class ShootSystemFraction : CoomoonShootSystem
         _directionObject = (Transform)ServiceLocator.Instance.GetData(typeof(Transform));
         _directionObject.IsNullWithException("Transform not constructed in ShootSystemOnly");
         _laser = conteiner.GetLineRenderer();
-        _fractionShotCharacteristics.AmountFraction = staticShootgun.AmountOfRaction;
-        _fractionShotCharacteristics.Angle = staticShootgun.AmountOfRaction;
+        _fractionShotCharacteristics.AmountFraction = staticShootgun.AmountOfFraction;
+        _fractionShotCharacteristics.Angle = staticShootgun.AmountOfFraction;
         _fractionShotCharacteristics.Distance = staticShootgun.Distance;
         _fadeDuration = staticShootgun.FadeDuration;
         _shootTrash = new GameObject(Constants.FRACTION_TRASH);

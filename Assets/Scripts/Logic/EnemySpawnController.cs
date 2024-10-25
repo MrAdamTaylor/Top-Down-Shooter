@@ -14,6 +14,7 @@ namespace Mechanics.Spawners.NewSpawner
         private bool _isWaweSystemWorking;
         private Timer _spawnTimer;
         private TimerManager _timerManager;
+        private SpawnManager _spawnManager;
 
         public void Construct(List<EnemySpawnerPool> pools)
         {
@@ -24,27 +25,21 @@ namespace Mechanics.Spawners.NewSpawner
         {
             _pools = pools;
             _waveSystem = waveSystem;
+            _spawnManager = new SpawnManager();
+            _waveSystem.Construct(_spawnManager);
             _timerManager = timerManager;
             _timerManager.SubscribeWaveTimer(waveSystem);
         }
 
         private void Update()
         {
-            
-
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                /*if (!_isWaweSystemWorking && _waveSystem != null)
-                {
-                    _waveSystem.StartWaves();
-                    _isWaweSystemWorking = true;
-                }*/
-                
                 int index = Random.Range(0, _pools.Count);
                 _pools[index].Spawn();
+                _spawnManager.CanSpawn(_pools[index].name);
             }
         }
-        
     }
     
     [System.Serializable]

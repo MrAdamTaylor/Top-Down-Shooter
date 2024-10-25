@@ -118,7 +118,7 @@ public class LoadLevelState : IPayloadedState<string>
         for (int i = 0; i < spawnerConfigs.SpawnList.Count; i++)
         {
             string name = spawnerConfigs.SpawnList[i].EnemyConfigs.Name;
-            GameObject enemyPool = new GameObject(name +" Pool");
+            GameObject enemyPool = new GameObject(name +Constants.POOL_PREFIX);
             EnemySpawnerPool pool = enemyPool.AddComponent<EnemySpawnerPool>();
             var i1 = i;
             

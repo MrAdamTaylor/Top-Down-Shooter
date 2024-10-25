@@ -74,7 +74,7 @@ namespace EnterpriceLogic.Constants
         public const float ENEMY_ANIMATION_SPEED = 1.5f;
         public const string WARNING_CANVAS_MESSAGE = "Warning";
         public const float TIMER_TEST = 10f;
-        
+        public const string POOL_PREFIX = " Pool";
 
         #endregion
     }

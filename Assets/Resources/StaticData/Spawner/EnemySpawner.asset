@@ -15,31 +15,35 @@ MonoBehaviour:
   StartSpawnInterval: 2
   SpawnList:
   - EnemyConfigs: {fileID: 11400000, guid: 049dd4946a831964dbb44fd71afcc82d, type: 2}
-    PercantageSpawn: 40
-    FirstAppearanceWave: 2
+    FirstAppearanceWave: 1
+    PercantageForEachWaves: 00000000140000001e00000000000000
   - EnemyConfigs: {fileID: 11400000, guid: 4fc057d046fd4ae4b8f4909a5c1ec48a, type: 2}
-    PercantageSpawn: 15
     FirstAppearanceWave: 0
+    PercantageForEachWaves: 64000000500000000000000000000000
   - EnemyConfigs: {fileID: 11400000, guid: c6b4fbee5873af04497c78448e8689a5, type: 2}
-    PercantageSpawn: 15
-    FirstAppearanceWave: 4
+    FirstAppearanceWave: 3
+    PercantageForEachWaves: 00000000000000000000000014000000
   Waves:
-  - TimeBetweenSpawnIntantiate: 0
+  - WaveName: Wave 1
+    TimeBetweenSpawnIntantiate: 0
     CountSpawnByTick: 3
     WaveTimePerSeconds: 15
     MaxEnemyCountOnScreen: 10
     EnemySpawnIntervalPerSeconds: 0
-  - TimeBetweenSpawnIntantiate: 0
+  - WaveName: Wave 2
+    TimeBetweenSpawnIntantiate: 0
     CountSpawnByTick: 0
     WaveTimePerSeconds: 5
     MaxEnemyCountOnScreen: 0
     EnemySpawnIntervalPerSeconds: 0
-  - TimeBetweenSpawnIntantiate: 0
+  - WaveName: Wave 3
+    TimeBetweenSpawnIntantiate: 0
     CountSpawnByTick: 0
     WaveTimePerSeconds: 5
     MaxEnemyCountOnScreen: 0
     EnemySpawnIntervalPerSeconds: 0
-  - TimeBetweenSpawnIntantiate: 0
+  - WaveName: Wave 4
+    TimeBetweenSpawnIntantiate: 0
     CountSpawnByTick: 0
     WaveTimePerSeconds: 5
     MaxEnemyCountOnScreen: 0
