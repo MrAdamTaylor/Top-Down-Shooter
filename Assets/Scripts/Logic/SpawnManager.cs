@@ -8,7 +8,7 @@ namespace Logic
         private EnemySpawnController _controller;
         
         private List<string> _accessPools;
-        private float _spawnCooldown;
+        //private float _spawnCooldown;
         private int _count;
 
         public SpawnManager(EnemySpawnController controller)
@@ -33,9 +33,9 @@ namespace Logic
             return canSpawn;
         }
     
-        public void Configure(float cooldown, List<string> accessPools, SpawnCharacteristics waveData)
+        public void Configure( List<string> accessPools, SpawnCharacteristics waveData)
         {
-            _spawnCooldown = cooldown;
+            //_spawnCooldown = cooldown;
             _accessPools = accessPools;
             _controller.UpdateParams(waveData, accessPools);
         }

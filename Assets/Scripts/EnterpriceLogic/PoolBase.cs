@@ -7,14 +7,15 @@ namespace EnterpriceLogic
     public class PoolBase<T>
     {
         public int PoolCount { get; private set; }
-    
+
+        private int _poolMaximum;
         private readonly Func<T> _preloadFunc;
         private readonly Action<T> _getAction;
         private readonly Action<T> _returnAction;
         private Queue<T> _pool = new();
         private List<T> _active = new();
 
-        private Transform _parent;
+        
 
         protected PoolBase(Func<T> preloadFunc, Action<T> getAction, Action<T> returnAction, int preloadCount)
         {
@@ -22,6 +23,7 @@ namespace EnterpriceLogic
             _getAction = getAction;
             _returnAction = returnAction;
             PoolCount = 0;
+            _poolMaximum = preloadCount;
             if (preloadFunc == null)
             {
                 Debug.LogError("Preload function is null");
@@ -30,6 +32,11 @@ namespace EnterpriceLogic
         
             for(int i = 0; i < preloadCount; i++)
                 Return(preloadFunc());
+        }
+
+        public int GetUnpooledCount()
+        {
+            return _poolMaximum - PoolCount;
         }
 
         public T Get()

@@ -184,11 +184,10 @@ namespace Infrastructure.StateMachine.States
                 int spawnByTick = spawnerConfigs.Waves[i].CountSpawnByTick;
                 int maxEnemiesOnWave = spawnerConfigs.Waves[i].MaxEnemyCountOnScreen;
                 int spawnInterval = spawnerConfigs.Waves[i].EnemySpawnIntervalPerSeconds;
-                float spawnTickDelay = spawnerConfigs.Waves[i].TimeBetweenSpawnIntantiate;
                 List<int> percentsValueOfOneWave = percentValue.GetArrayByIndex(i);
                 List<int> percent = percentsValueOfOneWave.Where(i1 => i1 != 0).ToList();
                 percent.OutputCollection("Only full percent");
-                spawnCharacteristics[i].Construct(spawnByTick, maxEnemiesOnWave, spawnInterval, spawnTickDelay, percent);
+                spawnCharacteristics[i].Construct(spawnByTick, maxEnemiesOnWave, spawnInterval,  percent);
                 spawnCharacteristics[i].Output(i);
             }
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(List<SpawnCharacteristics>),spawnCharacteristics);
@@ -197,9 +196,22 @@ namespace Infrastructure.StateMachine.States
             {
                 calculatedResults[i].OutputCollection("Max Value in Each Wave");
                 List<int> values = calculatedResults[i];
-                int max = values.DefaultIfEmpty().Max() + Constants.ONE;
+                int max = values.DefaultIfEmpty().Max();
                 maxValue.Add(max);
                 Debug.Log("Maximum Enemies: "+max);
+            }
+
+            List<int> wavesCoefficient = new();
+            for (int i = 0; i < spawnerConfigs.Waves.Count; i++)
+            {
+                wavesCoefficient.Add(spawnerConfigs.Waves[i].CountSpawnByTick);
+            }
+
+            int multiplier = wavesCoefficient.DefaultIfEmpty().Max();
+
+            for (int i = 0; i < maxValue.Count; i++)
+            {
+                maxValue[i] *= multiplier;
             }
 
             return maxValue;
@@ -242,17 +254,16 @@ public class SpawnCharacteristics
     public int MaxEnemyOnWave { get; private set; }
     public int SpawnInterval { get; private set; }
     public int EnemiesForCalculateCount { get; private set; }
-    public float SpawnTickDelay { get; private set; }
+
     public List<int> PercentForCalculates;
 
 
-    public void Construct(int spawnByTick, int maxEnemiesOnWave, int spawnInterval, float spawnTickDelay, List<int> percent)
+    public void Construct(int spawnByTick, int maxEnemiesOnWave, int spawnInterval, List<int> percent)
     {
         SpawnCountByTick = spawnByTick;
         MaxEnemyOnWave = maxEnemiesOnWave;
         SpawnInterval = spawnInterval;
         EnemiesForCalculateCount = percent.Count;
-        SpawnTickDelay = spawnTickDelay;
         PercentForCalculates = percent;
     }
 
@@ -260,7 +271,7 @@ public class SpawnCharacteristics
     {
         Debug.Log($"Wave is {index+1}: <color=yellow>Count in OneSpawn: {SpawnCountByTick} </color> " +
                   $"<color=red>MaxEnemyOnWave: {MaxEnemyOnWave}</color>, <color=cyan>SpawnInterval: {SpawnInterval}</color>," +
-                  $"<color=green>SpawnTickDelay: {SpawnTickDelay}</color>, <color=pink> EnemiesCount {EnemiesForCalculateCount}</color>");
+                  $"<color=pink> EnemiesCount {EnemiesForCalculateCount}</color>");
 
         for (int i = 0; i < PercentForCalculates.Count; i++)
         {

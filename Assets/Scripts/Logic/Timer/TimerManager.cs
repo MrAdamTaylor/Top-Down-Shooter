@@ -7,7 +7,13 @@ namespace Logic.Timer
         private GameTimer _gameTimer;
         //private WaveTimer _waveTimer;
         private WaveSystem _waveSystem;
-    
+        private EnemySpawnController _enemySpawnController;
+
+        public void Constructed(EnemySpawnController enemySpawnController)
+        {
+            _enemySpawnController = enemySpawnController;
+        }
+
         public void SubscribeGameTimer(GameTimer gameTimerFinish)
         {
             _gameTimer = gameTimerFinish;
@@ -25,6 +31,7 @@ namespace Logic.Timer
         private void LaunchWaweTimer()
         {
             Debug.Log("<color=green>GameTimer EndWork, Start Wave Timer</color>");
+            _enemySpawnController.IsWaveEnd = false;
             _waveSystem.StartNextWave();
             //_waveTimer.StartTimer();
         }
@@ -32,6 +39,7 @@ namespace Logic.Timer
         private void ReloadGameTimer()
         {
             Debug.Log("<color=green>Wawe Timer End Work, Restart GameTimer Timer</color>");
+            _enemySpawnController.IsWaveEnd = true;
             _gameTimer.ReloadTimer();
         }
     }

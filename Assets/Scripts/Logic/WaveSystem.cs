@@ -52,7 +52,7 @@ namespace Logic
                 SpawnCharacteristics waveData = _spawnCharacteristics[_waweIndex];
                 _waweIndex++;
                 List<string> accessPool = AccessEnemiesPool(enemySpawnLists);
-                _spawnManager.Configure(waveStruct.TimeBetweenSpawnIntantiate, accessPool, waveData);
+                _spawnManager.Configure(accessPool, waveData);
             }
             else if (Constants.ONE == _waves.Count)
             {
@@ -64,7 +64,7 @@ namespace Logic
                 SpawnCharacteristics waveData = _spawnCharacteristics[_waweIndex];
                 _waweIndex++;
                 List<string> accessPool = AccessEnemiesPool(enemySpawnLists);
-                _spawnManager.Configure(wave.TimeBetweenSpawnIntantiate, accessPool, waveData);
+                _spawnManager.Configure(accessPool, waveData);
                 WaveTimer.ReloadTimer(wave.WaveTimePerSeconds);
             }
             else if(Constants.ZERO == _waves.Count)
@@ -80,7 +80,7 @@ namespace Logic
                 SpawnCharacteristics waveData = _spawnCharacteristics[_waweIndex];
                 _waweIndex++;
                 List<string> accessPool = AccessEnemiesPool(enemySpawnLists);
-                _spawnManager.Configure(wave.TimeBetweenSpawnIntantiate, accessPool,waveData);
+                _spawnManager.Configure( accessPool,waveData);
                 WaveTimer.ReloadTimer(wave.WaveTimePerSeconds);
             }
         }

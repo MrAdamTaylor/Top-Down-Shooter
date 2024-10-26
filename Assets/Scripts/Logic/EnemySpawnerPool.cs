@@ -55,5 +55,9 @@ namespace Logic
             _pool.Return(obj);
         }
 
+        public int GetUnpooledCount()
+        {
+           return _pool.GetUnpooledCount();
+        }
     }
 }

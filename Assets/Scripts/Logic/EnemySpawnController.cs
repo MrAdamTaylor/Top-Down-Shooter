@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
-using EnterpriceLogic;
 using EnterpriceLogic.Constants;
 using Logic.Timer;
 using UnityEngine;
@@ -10,6 +8,8 @@ namespace Logic
 {
     public class EnemySpawnController : MonoBehaviour
     {
+        public const float SPAWN_COOLDOWN = 0.5f;
+        
         [Header("Percent of enemy spawn chanse: ")]
         [SerializeField] private List<int> _percent;
 
@@ -24,17 +24,21 @@ namespace Logic
         
         [Header("Delay Duration In TickSpawn")] [SerializeField]
         private float _duration;
-        
-        //[SerializeField] private EnemyTypeValues[] _enemyTypeValues;
+
+        public bool IsWaveEnd { get; set; }
+
         private List<EnemySpawnerPool> _maximumPools = new();
         private List<EnemySpawnerPool> _wavePools;
-        
+
         private WaveSystem _waveSystem;
 
         private bool _isWaweSystemWorking;
         private Timer.Timer _spawnTimer;
         private TimerManager _timerManager;
         private SpawnManager _spawnManager;
+        private bool _isActiveSpawn;
+        private float _spawnCooldown;
+        private int _tempCounter;
 
         public void Construct(List<EnemySpawnerPool> pools)
         {
@@ -48,40 +52,103 @@ namespace Logic
             _spawnManager = new SpawnManager(this);
             _waveSystem.Construct(_spawnManager);
             _timerManager = timerManager;
+            _timerManager.Constructed(this);
+            _spawnTimer = new Timer.Timer(TimerType.OneSecTick, _spawnInterval);
+            _spawnTimer.OnTimerFinishEvent += SpawnStart;
             _timerManager.SubscribeWaveTimer(waveSystem);
+            _spawnCooldown = SPAWN_COOLDOWN;
+        }
+
+        private void SpawnStart()
+        {
+            if (!IsWaveEnd)
+            {
+                _isActiveSpawn = true;
+                _spawnTimer.SetTime(_spawnInterval);
+                _spawnTimer.Start();
+                _tempCounter = 0;
+            }
         }
 
         private void Update()
         {
-            /*if (Input.GetKeyDown(KeyCode.Space))
+            UpdateCooldown();
+            
+            if (CanSpawn())
+                EnemySpawn();
+
+            if (IsWaveEnd)
             {
-                int index = Random.Range(0, _maximumPools.Count);
-                if (_spawnManager.CanSpawn(_maximumPools[index].name))
-                {
-                    _maximumPools[index].Spawn();
-                }
-                else
-                {
-                    Debug.Log("<color=yellow>Can't spawn </color>");
-                }
-            }*/
+                _isActiveSpawn = false;
+                _spawnTimer.Stop();
+            }
         }
 
         public void UpdateParams(SpawnCharacteristics waveData, List<string> whiteBoardPool)
         {
             _percent = waveData.PercentForCalculates;
             _spawnCountsInMoment = waveData.SpawnCountByTick;
-            _duration = waveData.SpawnTickDelay;
             _spawnInterval = waveData.SpawnInterval;
             _maximumEnemiesInWave = waveData.MaxEnemyOnWave;
             _wavePools = BlackHandleListPool(whiteBoardPool);
-            if (_wavePools.Count > Constants.ONE)
+            _spawnTimer.SetTime(_spawnInterval);
+            _spawnTimer.Start();
+        }
+        
+        private void UpdateCooldown()
+        {
+            if (!CooldownIsUp())
+                _spawnCooldown -= Time.deltaTime;
+        }
+        
+        private void EnemySpawn()
+        {
+            Debug.Log("<color=yellow>Enemy Spawned!</color>");
+            if (_wavePools.Count == Constants.ONE)
             {
-                TestSpawn();
+                _wavePools[Constants.ZERO].Spawn();
             }
             else
             {
-                _wavePools[Constants.ZERO].Spawn();
+                _wavePools[GetRandomIndex()].Spawn();
+            }
+            _tempCounter++;
+            _spawnCooldown = SPAWN_COOLDOWN;
+        }
+
+        private bool CanSpawn()
+        {
+            if (_isActiveSpawn && NoFullWave() && CooldownIsUp() && _lessThenMoment())
+                return true;
+            else
+                return false;
+        }
+
+        private bool _lessThenMoment()
+        {
+            return _tempCounter <= _spawnCountsInMoment;
+        }
+
+        private bool CooldownIsUp()
+        {
+            return _spawnCooldown <= 0;
+        }
+        
+        private bool NoFullWave()
+        {
+            int sum = 0;
+            for (int i = 0; i < _wavePools.Count; i++)
+            {
+                sum += _wavePools[i].GetUnpooledCount();
+            }
+
+            if (sum < _maximumEnemiesInWave)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -113,11 +180,6 @@ namespace Logic
             return 0;
         }
 
-        /*private void Spawn()
-        {
-            
-        }*/
-
         private List<EnemySpawnerPool> BlackHandleListPool(List<string> whiteBoardPool)
         {
             List<EnemySpawnerPool> enemySpawnerPools = new List<EnemySpawnerPool>();
@@ -137,7 +199,7 @@ namespace Logic
         
     }
     
-    [System.Serializable]
+    /*[System.Serializable]
     public struct EnemyTypeValues
     {
         public EnemyTypeValues(int percantage, string enemyName, List<GameObject> enemySkins)
@@ -150,5 +212,5 @@ namespace Logic
         [SerializeField] private int _percantage;
         [SerializeField] private string _enemyName;
         [SerializeField] private List<GameObject> _enemySkins;
-    }
+    }*/
 }

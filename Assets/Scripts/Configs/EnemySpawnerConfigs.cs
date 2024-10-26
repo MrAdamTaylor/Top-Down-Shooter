@@ -49,16 +49,16 @@ namespace Configs
         private const int MAX_ENEMY_SPAWN = 10;
         private const int MAX_ENEMY_SPAWN_ON_SCREEN = 25;
     
-        private const float MIN_TIME_INTERVAL_SPAWN = 0.2f;
-        private const float MAX_TIME_INTERVAL_SPAWN = 0.8f;
+        /*private const float MIN_TIME_INTERVAL_SPAWN = 0.2f;
+        private const float MAX_TIME_INTERVAL_SPAWN = 0.8f;*/
 
         private const int MIN_SECONDS_SPAWN_INTERVAL = 3;
         private const int MAX_SECONDS_SPAWN_INTERVAL = 10;
 
         public string WaveName;
     
-        [Range(MIN_TIME_INTERVAL_SPAWN, MAX_TIME_INTERVAL_SPAWN)]
-        public float TimeBetweenSpawnIntantiate;
+        /*[Range(MIN_TIME_INTERVAL_SPAWN, MAX_TIME_INTERVAL_SPAWN)]
+        public float TimeBetweenSpawnIntantiate;*/
     
         [Range(MIN_ENEMY_SPAWN,MAX_ENEMY_SPAWN)]
         public int CountSpawnByTick;
