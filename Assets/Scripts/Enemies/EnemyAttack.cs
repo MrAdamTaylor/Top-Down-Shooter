@@ -43,6 +43,36 @@ namespace Enemies
             _animationEvent.EnemyAnimEvent.AddListener(OnAnimationEvent);
         }
 
+        private void Update()
+        {
+            UpdateCooldown();
+
+            if(CanAttack())
+                StartAttack();
+        }
+
+        public void Reset()
+        {
+            _attackIsActive = false;
+            _isAttacking = false;
+            _attackCooldown = ATTACK_COOLDOWN;
+        }
+
+        private void OnDestroy()
+        {
+            _animationEvent.EnemyAnimEvent.RemoveListener(OnAnimationEvent);
+        }
+
+        public void EnableAttack()
+        {
+            _attackIsActive = true;
+        }
+
+        public void DisableAttack()
+        {
+            _attackIsActive = false;
+        }
+
         private void OnAnimationEvent(string eventName)
         {
             Debug.Log($"<color=yellow>Animation Event: {eventName}</color>");
@@ -57,14 +87,6 @@ namespace Enemies
                 default:
                     throw new Exception("Unknown Animation Type");
             }
-        }
-
-        private void Update()
-        {
-            UpdateCooldown();
-
-            if(CanAttack())
-                StartAttack();
         }
 
         private void Attack()
@@ -83,16 +105,6 @@ namespace Enemies
             ReadyForAction.Invoke(true);
             _attackCooldown = ATTACK_COOLDOWN;
             _isAttacking = false;
-        }
-
-        public void EnableAttack()
-        {
-            _attackIsActive = true;
-        }
-
-        public void DisableAttack()
-        {
-            _attackIsActive = false;
         }
 
         private bool Hit(out Collider hit)
@@ -129,11 +141,6 @@ namespace Enemies
             ReadyForAction?.Invoke(false);
             _animator.PlayeAttack(Random.Range(Constants.MINIMAL_ATTACK_ANIMATION,Constants.MAXIMUM_ATTACK_ANIMATION));
             _isAttacking = true;
-        }
-
-        private void OnDestroy()
-        {
-            _animationEvent.EnemyAnimEvent.RemoveListener(OnAnimationEvent);
         }
     }
 }

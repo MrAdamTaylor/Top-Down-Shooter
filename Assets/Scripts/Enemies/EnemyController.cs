@@ -45,7 +45,8 @@ namespace Enemies
         {
             if (_isDeath)
             {
-                _enemyAttack.DisableAttack();
+                _enemyAttack.Reset();
+                //_enemyAttack.DisableAttack();
                 _enemyHealth.ReloadHealth();
                 _enemyAnimator.PlayIdle();
                 _physic.SetActive(true);

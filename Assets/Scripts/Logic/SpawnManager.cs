@@ -5,10 +5,17 @@ namespace Logic
 {
     public class SpawnManager
     {
+        private EnemySpawnController _controller;
+        
         private List<string> _accessPools;
         private float _spawnCooldown;
         private int _count;
-    
+
+        public SpawnManager(EnemySpawnController controller)
+        {
+            _controller = controller;
+        }
+
         public bool CanSpawn(string name)
         {
             bool canSpawn = false;
@@ -26,10 +33,11 @@ namespace Logic
             return canSpawn;
         }
     
-        public void Configure(float cooldown, List<string> accessPools)
+        public void Configure(float cooldown, List<string> accessPools, SpawnCharacteristics waveData)
         {
             _spawnCooldown = cooldown;
             _accessPools = accessPools;
+            _controller.UpdateParams(waveData, accessPools);
         }
     }
 }

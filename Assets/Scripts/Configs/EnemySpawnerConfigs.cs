@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using EnterpriceLogic.Constants;
 using UnityEngine;
 
 namespace Configs
@@ -21,6 +22,11 @@ namespace Configs
                 {
                     SpawnList[i].PercantageForEachWaves.RemoveAt(Waves.Count);
                 }
+
+                if (SpawnList[i].PercantageForEachWaves.Count < Waves.Count)
+                {
+                    SpawnList[i].PercantageForEachWaves.Add(Constants.ZERO);
+                }
             }
 
             for (int i = 0; i < SpawnList.Count; i++)
@@ -41,10 +47,10 @@ namespace Configs
     {
         private const int MIN_ENEMY_SPAWN = 1;
         private const int MAX_ENEMY_SPAWN = 10;
-        private const int MAX_ENEMY_SPAWN_ON_SCREEN = 20;
+        private const int MAX_ENEMY_SPAWN_ON_SCREEN = 25;
     
         private const float MIN_TIME_INTERVAL_SPAWN = 0.2f;
-        private const float MAX_TIME_INTERVAL_SPAWN = 1f;
+        private const float MAX_TIME_INTERVAL_SPAWN = 0.8f;
 
         private const int MIN_SECONDS_SPAWN_INTERVAL = 3;
         private const int MAX_SECONDS_SPAWN_INTERVAL = 10;

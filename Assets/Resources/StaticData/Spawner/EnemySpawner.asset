@@ -26,26 +26,26 @@ MonoBehaviour:
   Waves:
   - WaveName: Wave 1
     TimeBetweenSpawnIntantiate: 0
-    CountSpawnByTick: 3
+    CountSpawnByTick: 2
     WaveTimePerSeconds: 15
-    MaxEnemyCountOnScreen: 10
-    EnemySpawnIntervalPerSeconds: 0
+    MaxEnemyCountOnScreen: 12
+    EnemySpawnIntervalPerSeconds: 8
   - WaveName: Wave 2
     TimeBetweenSpawnIntantiate: 0
-    CountSpawnByTick: 0
+    CountSpawnByTick: 3
     WaveTimePerSeconds: 5
-    MaxEnemyCountOnScreen: 0
-    EnemySpawnIntervalPerSeconds: 0
+    MaxEnemyCountOnScreen: 15
+    EnemySpawnIntervalPerSeconds: 6
   - WaveName: Wave 3
     TimeBetweenSpawnIntantiate: 0
-    CountSpawnByTick: 0
+    CountSpawnByTick: 4
     WaveTimePerSeconds: 5
-    MaxEnemyCountOnScreen: 0
-    EnemySpawnIntervalPerSeconds: 0
+    MaxEnemyCountOnScreen: 18
+    EnemySpawnIntervalPerSeconds: 5
   - WaveName: Wave 4
     TimeBetweenSpawnIntantiate: 0
-    CountSpawnByTick: 0
+    CountSpawnByTick: 5
     WaveTimePerSeconds: 5
-    MaxEnemyCountOnScreen: 0
-    EnemySpawnIntervalPerSeconds: 0
+    MaxEnemyCountOnScreen: 20
+    EnemySpawnIntervalPerSeconds: 4
   RepeatLastWave: 1

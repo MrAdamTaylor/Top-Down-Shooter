@@ -1,8 +1,10 @@
 using System.Collections.Generic;
+using System.Linq;
 using Configs;
 using Enemies;
 using EnterpriceLogic;
 using EnterpriceLogic.Constants;
+using EnterpriceLogic.Math;
 using Infrastructure.Services.AbstractFactory;
 using Infrastructure.StateMachine.Interfaces;
 using Logic;
@@ -62,7 +64,6 @@ namespace Infrastructure.StateMachine.States
             _commonParent = GameObject.Find(Constants.PREFABS_SCENE_GAMEOBJECT_PARENT_NAME);
             Camera camera = Object.FindObjectOfType<Camera>();
             GameObject startPosition = GameObject.FindGameObjectWithTag(Constants.INITIAL_POSITION);
-
         
             GameObject player = _playerFactory.Create(startPosition.transform.position, camera);
             player.transform.parent =  _commonParent.transform;
@@ -105,9 +106,9 @@ namespace Infrastructure.StateMachine.States
                 GetData(typeof(EnemySpawnerConfigs));
             IEnemyFactory factory = (IEnemyFactory)ServiceLocator.ServiceLocator.Instance.GetData(typeof(IEnemyFactory));
 
-            ValidateSpawnerData(spawnerConfigs);
+            List<int> maximumEnemies = CalculateWaveCharacteristics(spawnerConfigs);
 
-            List<EnemySpawnerPool> enemyPools = CreatePools(spawnerConfigs, factory, spawnPoints, spawnController);
+            List<EnemySpawnerPool> enemyPools = CreatePools(spawnerConfigs, factory, spawnPoints, spawnController, maximumEnemies);
 
             WaveSystem waveSystem = null;
             if (spawnerConfigs.Waves.Count != null)
@@ -123,29 +124,89 @@ namespace Infrastructure.StateMachine.States
             }
         }
 
-        private void ValidateSpawnerData(EnemySpawnerConfigs spawnerConfigs)
+        private List<int> CalculateWaveCharacteristics(EnemySpawnerConfigs spawnerConfigs)
         {
+            List<SpawnCharacteristics> spawnCharacteristics = new List<SpawnCharacteristics>(); 
             List<int> sums = new List<int>();
+            List<List<int>> percentValue = new List<List<int>>();
+            List<int> maxCounts = new List<int>();
+            List<int> maxValue = new List<int>();
+            List<List<int>> calculatedResults = new List<List<int>>();
+            
             for (int i = 0; i < spawnerConfigs.Waves.Count; i++)
             {
+                SpawnCharacteristics spawnCharacteristic = new SpawnCharacteristics();
+                spawnCharacteristics.Add(spawnCharacteristic);
+                
+                
+                List<int> resultsRow = new List<int>();
+                
+                maxCounts.Add(spawnerConfigs.Waves[i].MaxEnemyCountOnScreen);
+                calculatedResults.Add(resultsRow);
+                
                 int zeroSum = Constants.ZERO;
                 sums.Add(zeroSum);
             }
 
             for (int i = 0; i < spawnerConfigs.SpawnList.Count; i++)
             {
+                List<int> percentsForOneEnemy = new List<int>();
+                percentValue.Add(percentsForOneEnemy);
+
                 for (int j = 0; j < spawnerConfigs.SpawnList[i].PercantageForEachWaves.Count; j++)
                 {
                     Debug.Log($"Sum element in <color=red> I{i} J{j} - {spawnerConfigs.SpawnList[i].PercantageForEachWaves[j]}</color>");
+                    percentValue[i].Add(spawnerConfigs.SpawnList[i].PercantageForEachWaves[j]);
                     sums[j] += spawnerConfigs.SpawnList[i].PercantageForEachWaves[j];
                 }
             }
-        
-            sums.OutputCollection("Sums of Percentage");
+            
+            sums.OutputCollection("Sums of percent");
+            PercentageCalculater.PercentageСhecker(sums,"percent sums");
+
+            //List<int> PercentsValueOfOneWave 
+            
+            for (int i = 0; i < percentValue.Count; i++)
+            {
+                
+                //List<int> percent = percentValue[i].Where(i1 => i1 != 0).ToList();
+                //percent.OutputCollection("Only full percent");
+                //spawnCharacteristics[i].Construct();
+                for (int j = 0; j < percentValue[i].Count; j++)
+                {
+                    int result = PercentageCalculater.CalculateValueInPercantage(percentValue[i][j],maxCounts[i]);
+                    calculatedResults[i].Add(result);
+                }
+            }
+
+            for (int i = 0; i < spawnerConfigs.Waves.Count; i++)
+            {
+                int spawnByTick = spawnerConfigs.Waves[i].CountSpawnByTick;
+                int maxEnemiesOnWave = spawnerConfigs.Waves[i].MaxEnemyCountOnScreen;
+                int spawnInterval = spawnerConfigs.Waves[i].EnemySpawnIntervalPerSeconds;
+                float spawnTickDelay = spawnerConfigs.Waves[i].TimeBetweenSpawnIntantiate;
+                List<int> percentsValueOfOneWave = percentValue.GetArrayByIndex(i);
+                List<int> percent = percentsValueOfOneWave.Where(i1 => i1 != 0).ToList();
+                percent.OutputCollection("Only full percent");
+                spawnCharacteristics[i].Construct(spawnByTick, maxEnemiesOnWave, spawnInterval, spawnTickDelay, percent);
+                spawnCharacteristics[i].Output(i);
+            }
+            ServiceLocator.ServiceLocator.Instance.BindData(typeof(List<SpawnCharacteristics>),spawnCharacteristics);
+
+            for (int i = 0; i < calculatedResults.Count; i++)
+            {
+                calculatedResults[i].OutputCollection("Max Value in Each Wave");
+                List<int> values = calculatedResults[i];
+                int max = values.DefaultIfEmpty().Max() + Constants.ONE;
+                maxValue.Add(max);
+                Debug.Log("Maximum Enemies: "+max);
+            }
+
+            return maxValue;
         }
 
         private List<EnemySpawnerPool> CreatePools(EnemySpawnerConfigs spawnerConfigs, IEnemyFactory factory, EnemySpawnPoint[] spawnPoints,
-            EnemySpawnController spawnController)
+            EnemySpawnController spawnController, List<int> maximumsEnemies)
         {
             List<EnemySpawnerPool> spawnerPools = new();
             for (int i = 0; i < spawnerConfigs.SpawnList.Count; i++)
@@ -155,7 +216,7 @@ namespace Infrastructure.StateMachine.States
                 EnemySpawnerPool pool = enemyPool.AddComponent<EnemySpawnerPool>();
                 var i1 = i;
             
-                pool.Construct(1,()=>factory.Create(spawnerConfigs.SpawnList[i1].EnemyConfigs, spawnPoints, enemyPool), spawnPoints);
+                pool.Construct(maximumsEnemies[i],()=>factory.Create(spawnerConfigs.SpawnList[i1].EnemyConfigs, spawnPoints, enemyPool), spawnPoints);
                 enemyPool.transform.SetParent(spawnController.transform);
                 EnemyDeath[] enemyDeaths = enemyPool.GetComponentsInChildren<EnemyDeath>(true);
                 pool.SubscribeDeathAction(enemyDeaths);
@@ -171,6 +232,39 @@ namespace Infrastructure.StateMachine.States
             warning.SetActive(false);
             UIHelper helper = ui.AddComponent<UIHelper>();
             helper.Construct();
+        }
+    }
+}
+
+public class SpawnCharacteristics
+{
+    public int SpawnCountByTick { get; private set; }
+    public int MaxEnemyOnWave { get; private set; }
+    public int SpawnInterval { get; private set; }
+    public int EnemiesForCalculateCount { get; private set; }
+    public float SpawnTickDelay { get; private set; }
+    public List<int> PercentForCalculates;
+
+
+    public void Construct(int spawnByTick, int maxEnemiesOnWave, int spawnInterval, float spawnTickDelay, List<int> percent)
+    {
+        SpawnCountByTick = spawnByTick;
+        MaxEnemyOnWave = maxEnemiesOnWave;
+        SpawnInterval = spawnInterval;
+        EnemiesForCalculateCount = percent.Count;
+        SpawnTickDelay = spawnTickDelay;
+        PercentForCalculates = percent;
+    }
+
+    public void Output(int index)
+    {
+        Debug.Log($"Wave is {index+1}: <color=yellow>Count in OneSpawn: {SpawnCountByTick} </color> " +
+                  $"<color=red>MaxEnemyOnWave: {MaxEnemyOnWave}</color>, <color=cyan>SpawnInterval: {SpawnInterval}</color>," +
+                  $"<color=green>SpawnTickDelay: {SpawnTickDelay}</color>, <color=pink> EnemiesCount {EnemiesForCalculateCount}</color>");
+
+        for (int i = 0; i < PercentForCalculates.Count; i++)
+        {
+            Debug.Log($"<color=cyan>Percent: [{PercentForCalculates[i]}]</color>");
         }
     }
 }
