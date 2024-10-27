@@ -29,7 +29,6 @@ namespace UI.Menu
             panelSound.SetActive(true);
         }
 
-        // Закрыть панель
         public void ClosePanelSound()
         {
             panelSound.SetActive(false);
@@ -42,10 +41,10 @@ namespace UI.Menu
 
         public void LoadSceneAgain()
         {
-            SceneManager.LoadScene(4);
+            Scene currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.buildIndex);
         }
 
-        // Закрыть панель
         public void ClosePanelPause()
         {
             panelPause.SetActive(!panelPause.activeSelf);
