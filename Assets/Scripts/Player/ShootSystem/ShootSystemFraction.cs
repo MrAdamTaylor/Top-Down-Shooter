@@ -17,9 +17,10 @@ namespace Player.ShootSystem
         private LineRenderer _laser;
         private float _fadeDuration = 0.3f;
         private GameObject _shootTrash;
+        private Camera _camera;
 
         [SerializeField] private FractionShotCharacteristics _fractionShotCharacteristics;
-    
+
         private List<Vector3> _directions;
         private Transform _bulletPoint;
         private int _damage;
@@ -42,53 +43,102 @@ namespace Player.ShootSystem
             _bulletPoint = staticData.BulletPoint;
             _specialEffectFactory = (ISpecialEffectFactory)ServiceLocator.Instance.GetData(typeof(ISpecialEffectFactory));
         }
-    
+
         public override void UpdateValues(WeaponCharacteristics characteristics)
         {
             _damage = characteristics.Damage;
         }
 
+
+
         public override void Shoot()
         {
             if (_fractionShotCharacteristics.Distance != 0)
                 _distance = _fractionShotCharacteristics.Distance;
+
+            // Определяем базовое направление к курсору
+            Vector3 baseDirection = GetMouseDirection();
+            if (baseDirection == Vector3.zero)
+            {
+                Debug.LogWarning("Direction to cursor not calculated correctly.");
+                return;
+            }
+
+            // Стреляем в зависимости от количества дробинок
             switch (_fractionShotCharacteristics.AmountFraction)
             {
                 case Constants.THIRD_FRACTION:
-                    ThirdFractionShoot();
+                    ThirdFractionShoot(baseDirection);
                     break;
                 case Constants.FIVE_FRACTION:
-                    FiveFractionShoot();
+                    FiveFractionShoot(baseDirection);
                     break;
             }
         }
 
-        private void FiveFractionShoot()
+        private Vector3 GetMouseDirection()
         {
-            _directions = new List<Vector3>();
-            Vector3 direction = _bulletPoint.forward;
-            _directions.Add(direction);
-        
-            Vector3 axisRight = _bulletPoint.up;
-            Quaternion axisRotationRight = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.HALF, axisRight);
-            Vector3 rotatedDirectionRight = axisRotationRight * direction;
-            _directions.Add(rotatedDirectionRight);
-        
-            Vector3 axisLeft = -_bulletPoint.up;
-            Quaternion axisRotationLeft = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.HALF, axisLeft);
-            Vector3 rotatedDirectionLeft = axisRotationLeft * direction;
-            _directions.Add(rotatedDirectionLeft);
-        
-            Vector3 axisRight2 = _bulletPoint.up;
-            Quaternion axisRotationRight2 = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.QUARTER, axisRight2);
-            Vector3 rotatedDirectionRight2 = axisRotationRight2 * direction;
-            _directions.Add(rotatedDirectionRight2);
-        
-            Vector3 axisLeft2 = -_bulletPoint.up;
-            Quaternion axisRotationLeft2 = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.QUARTER, axisLeft2);
-            Vector3 rotatedDirectionLeft2 = axisRotationLeft2 * direction;
-            _directions.Add(rotatedDirectionLeft2);
-        
+            if (_camera == null)
+            {
+                _camera = Camera.main;
+                if (_camera == null)
+                {
+                    Debug.LogError("Camera not found in ShootSystemFraction.");
+                    return Vector3.forward;
+                }
+            }
+
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+            Plane plane = new Plane(Vector3.up, _bulletPoint.position);
+
+            if (plane.Raycast(ray, out float enter))
+            {
+                Vector3 hitPoint = ray.GetPoint(enter);
+                Vector3 direction = (hitPoint - _bulletPoint.position).normalized;
+
+                // Проверка, если курсор на игроке, пуля летит прямо
+                if (Vector3.Distance(hitPoint, _bulletPoint.position) < 2f)
+                {
+                    return _bulletPoint.forward;
+                }
+
+                return direction;
+            }
+
+            // Если направление не удалось получить, возвращаем направление вперед
+            return _bulletPoint.forward;
+        }
+
+
+        private void FiveFractionShoot(Vector3 baseDirection)
+        {
+            _directions = new List<Vector3> { baseDirection };
+
+            // Отклонение дробинок
+            float angleOffset = _fractionShotCharacteristics.Angle / 2; // Половина угла для равномерного распределения
+
+            // Добавляем 4 дробинки с отклонением
+            for (int i = 1; i <= 2; i++)
+            {
+                float angle = angleOffset * i;
+                _directions.Add(Quaternion.AngleAxis(angle, Vector3.up) * baseDirection);  // Вправо
+                _directions.Add(Quaternion.AngleAxis(-angle, Vector3.up) * baseDirection); // Влево
+            }
+
+            ShootFraction();
+        }
+
+        private void ThirdFractionShoot(Vector3 baseDirection)
+        {
+            _directions = new List<Vector3> { baseDirection };
+
+            // Отклонение дробинок
+            float angleOffset = _fractionShotCharacteristics.Angle / 2;
+
+            // Добавляем 2 дробинки с отклонением
+            _directions.Add(Quaternion.AngleAxis(angleOffset, Vector3.up) * baseDirection);
+            _directions.Add(Quaternion.AngleAxis(-angleOffset, Vector3.up) * baseDirection);
+
             ShootFraction();
         }
 
@@ -102,11 +152,11 @@ namespace Player.ShootSystem
                 }
             }
 
-            for (int i = 0; i < _fractionShotCharacteristics.AmountFraction; i++)
+            for (int i = 0; i < _directions.Count; i++)
             {
-                if (Physics.Raycast(_bulletPoint.position, _directions[i], out RaycastHit hit,
-                        _distance, _layerMask))
+                if (Physics.Raycast(_bulletPoint.position, _directions[i], out RaycastHit hit, _distance, _layerMask))
                 {
+                    // Обработка попадания по врагу
                     if (hit.collider.gameObject.layer == LayerMask.NameToLayer(Constants.ENEMY_LAYER))
                     {
                         PlayLoopComponentProvider enemyComponentProvider =
@@ -114,42 +164,80 @@ namespace Player.ShootSystem
                         EnemyHealth enemyHealth = (EnemyHealth)enemyComponentProvider.TakeComponent(typeof(EnemyHealth));
                         enemyHealth.TakeDamage(_damage);
                     }
-                    Debug.DrawRay(_bulletPoint.position, _directions[i] * _distance,Color.red, Constants.RAY_SHOOT_DURATION);
-                    Vector3 endPosition = hit.point;
-                    _specialEffectFactory.CreateLaser(this, _laser,  
-                        _bulletPoint.position, 
-                        endPosition,
-                        _fadeDuration, _shootTrash.transform);
+                    // Визуализация попадания
+                    _specialEffectFactory.CreateLaser(this, _laser, _bulletPoint.position, hit.point, _fadeDuration, _shootTrash.transform);
                 }
                 else
                 {
-                    Debug.DrawRay(_bulletPoint.position, _directions[i] * _distance, Color.blue,  Constants.RAY_SHOOT_DURATION);
-                    Vector3 endPosition = hit.point;
-                    _specialEffectFactory.CreateLaser(this, _laser, _bulletPoint.position, 
-                        _bulletPoint.position + _directions[i] * _distance, _fadeDuration, _shootTrash.transform);
+                    // Визуализация промаха
+                    _specialEffectFactory.CreateLaser(this, _laser, _bulletPoint.position, _bulletPoint.position + _directions[i] * _distance, _fadeDuration, _shootTrash.transform);
                 }
             }
         }
 
-        private void ThirdFractionShoot()
-        {
-            _directions = new List<Vector3>();
-            Vector3 direction = _bulletPoint.forward;
-            _directions.Add(direction);
-        
-            Vector3 axisRight = _bulletPoint.up;
-            Quaternion axisRotationRight = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.HALF, axisRight);
-            Vector3 rotatedDirectionRight = axisRotationRight * direction;
-            _directions.Add(rotatedDirectionRight);
-        
-            Vector3 axisLeft = -_bulletPoint.up;
-            Quaternion axisRotationLeft = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.HALF, axisLeft);
-            Vector3 rotatedDirectionLeft = axisRotationLeft * direction;
-            _directions.Add(rotatedDirectionLeft);
-        
-            ShootFraction();
-        }
     }
+    /* public override void Shoot()
+      {
+          if (_fractionShotCharacteristics.Distance != 0)
+              _distance = _fractionShotCharacteristics.Distance;
+          switch (_fractionShotCharacteristics.AmountFraction)
+          {
+              case Constants.THIRD_FRACTION:
+                  ThirdFractionShoot();
+                  break;
+              case Constants.FIVE_FRACTION:
+                  FiveFractionShoot();
+                  break;
+          }
+      }
+
+      private void FiveFractionShoot()
+      {
+          _directions = new List<Vector3>();
+          Vector3 direction = _bulletPoint.forward;
+          _directions.Add(direction);
+
+          Vector3 axisRight = _bulletPoint.up;
+          Quaternion axisRotationRight = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.HALF, axisRight);
+          Vector3 rotatedDirectionRight = axisRotationRight * direction;
+          _directions.Add(rotatedDirectionRight);
+
+          Vector3 axisLeft = -_bulletPoint.up;
+          Quaternion axisRotationLeft = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.HALF, axisLeft);
+          Vector3 rotatedDirectionLeft = axisRotationLeft * direction;
+          _directions.Add(rotatedDirectionLeft);
+
+          Vector3 axisRight2 = _bulletPoint.up;
+          Quaternion axisRotationRight2 = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.QUARTER, axisRight2);
+          Vector3 rotatedDirectionRight2 = axisRotationRight2 * direction;
+          _directions.Add(rotatedDirectionRight2);
+
+          Vector3 axisLeft2 = -_bulletPoint.up;
+          Quaternion axisRotationLeft2 = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.QUARTER, axisLeft2);
+          Vector3 rotatedDirectionLeft2 = axisRotationLeft2 * direction;
+          _directions.Add(rotatedDirectionLeft2);
+
+          ShootFraction();
+      }
+      private void ThirdFractionShoot()
+      {
+          _directions = new List<Vector3>();
+          Vector3 direction = _bulletPoint.forward;
+          _directions.Add(direction);
+
+          Vector3 axisRight = _bulletPoint.up;
+          Quaternion axisRotationRight = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.HALF, axisRight);
+          Vector3 rotatedDirectionRight = axisRotationRight * direction;
+          _directions.Add(rotatedDirectionRight);
+
+          Vector3 axisLeft = -_bulletPoint.up;
+          Quaternion axisRotationLeft = Quaternion.AngleAxis(_fractionShotCharacteristics.Angle / Constants.HALF, axisLeft);
+          Vector3 rotatedDirectionLeft = axisRotationLeft * direction;
+          _directions.Add(rotatedDirectionLeft);
+
+          ShootFraction();
+      }
+  }*/
 
     [System.Serializable]
     public struct FractionShotCharacteristics

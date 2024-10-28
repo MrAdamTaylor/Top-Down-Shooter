@@ -14,6 +14,7 @@ namespace Enemies
         private static readonly int IsMoving = Animator.StringToHash("IsMoving");
         private static readonly int Die = Animator.StringToHash("Die");
         private static readonly int Idle = Animator.StringToHash("ZombieIdle");
+        private static readonly int Hit = Animator.StringToHash("HitAnim");
 
         private readonly int _idleStateHash = Animator.StringToHash("ZombieIdle");
         private readonly int _attackOneStateHash = Animator.StringToHash("ZombieAttack1");
@@ -43,6 +44,12 @@ namespace Enemies
         public void PlayDeath()
         {
             _animator.SetTrigger(Die);
+        }
+
+        public void TriggerHitAnimation()
+        {
+           _animator.SetLayerWeight(1, 1);
+            _animator.SetTrigger(Hit);
         }
 
         public void Move(float speed)
