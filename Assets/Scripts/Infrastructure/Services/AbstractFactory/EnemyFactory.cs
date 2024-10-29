@@ -89,7 +89,8 @@ namespace Infrastructure.Services.AbstractFactory
             enemyAnimator.Construct();
             //EnemyAnimationEvent enemyAnimationEvent = visual.AddComponent<EnemyAnimationEvent>();
         
-            MoveToPlayer moveToPlayer = enemy.AddComponent<MoveToPlayer>();
+            //MoveToPlayer moveToPlayer = enemy.AddComponent<MoveToPlayer>();
+            IEnemyMoveSystem moveToPlayer = enemy.AddComponent<AgentMoveToPlayer>();
             moveToPlayer.Construct(enemy.transform, configs.Speed);
             EnemyRotateSystem enemyRotateSystem = enemy.AddComponent<EnemyRotateSystem>();
             enemyRotateSystem.Construct(enemy.transform, player.transform, Constants.ROTATE_SPEED);

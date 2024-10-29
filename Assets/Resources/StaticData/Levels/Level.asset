@@ -20,6 +20,6 @@ MonoBehaviour:
   KillAllMobs: 0
   MobsCount: 0
   IsTime: 1
-  PerSeconds: 30
+  PerSeconds: 15
   DestroyTower: 0
   TowerHealth: 0

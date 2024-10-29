@@ -11,7 +11,10 @@ namespace Configs
         public List<SpawnerConfigs> SpawnerConfigsList;
 
         public PlayerConfigs PlayerConfigs;
-    
+
+        
+        public int TimeBeforeStartGame;
+        
         [Space]
         [Header("Level Tasks")] 
         [Space] 

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: FastEnemy
   Health: 50
-  MinDamage: 0
-  MaxDamage: 0
+  MinDamage: 6
+  MaxDamage: 12
   Reward: 2
   RadiusDetection: 1.5
   Skins:

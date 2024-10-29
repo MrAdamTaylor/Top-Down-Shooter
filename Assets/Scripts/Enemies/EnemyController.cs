@@ -9,7 +9,9 @@ namespace Enemies
     
         [SerializeField] private float _minimalDistance;
         private EnemyAnimator _enemyAnimator;
-        private MoveToPlayer _moveToPlayer;
+
+        private IEnemyMoveSystem _enemyMoveSystem;
+        //private MoveToPlayer _moveToPlayer;
         private EnemyRotateSystem _enemyRotateSystem;
         private EnemyAttack _enemyAttack;
         private CheckAttack _checkAttack;
@@ -25,10 +27,11 @@ namespace Enemies
         private bool _isDeath;
         private bool _isSetCoolDown;
 
-        public void Construct(MoveToPlayer moveToPlayer, EnemyAnimator enemyAnimator, EnemyRotateSystem rotateSystem,
+        public void Construct(IEnemyMoveSystem moveSystem, EnemyAnimator enemyAnimator, EnemyRotateSystem rotateSystem,
             EnemyAttack enemyAttack,float minimalDistance, EnemyDeath death, GameObject physic, EnemyHealth enemyHealth)
         {
-            _moveToPlayer = moveToPlayer;
+            //_moveToPlayer = moveToPlayer;
+            _enemyMoveSystem = moveSystem;
             _enemyAnimator = enemyAnimator;
             _enemyRotateSystem = rotateSystem;
             _minimalDistance = minimalDistance;
@@ -56,7 +59,8 @@ namespace Enemies
 
             if (_isConstructed)
             {
-                _moveToPlayer.Move();
+                _enemyMoveSystem.Move();
+                //_moveToPlayer.Move();
                 _enemyRotateSystem.RotateStart();
                 _enemyAnimator.Move(1f);
             }
@@ -68,15 +72,17 @@ namespace Enemies
 
             if (CanMove())
             {
-                _moveToPlayer.Move();
+                _enemyMoveSystem.Move();
+                //_moveToPlayer.Move();
                 _enemyAnimator.Move(1f);
             }
 
 
             if(!SubjectNotReached())
             {
+                _enemyMoveSystem.StopMove();
                 _enemyAnimator.StopMoving();
-                _moveToPlayer.StopMove();
+                //_moveToPlayer.StopMove();
             }
         }
 
@@ -102,13 +108,15 @@ namespace Enemies
 
         private bool CheckSubjectOnNull()
         {
-            return _moveToPlayer.IsTarget();
+            return _enemyMoveSystem.IsTarget();
+            //return _moveToPlayer.IsTarget();
         }
 
 
         private bool SubjectNotReached()
         {
-            float distance = Vector3.Distance(_moveToPlayer.AgentPos(), _moveToPlayer.GoalPos());
+            //float distance = Vector3.Distance(_moveToPlayer.AgentPos(), _moveToPlayer.GoalPos());
+            float distance = Vector3.Distance(_enemyMoveSystem.AgentPos(), _enemyMoveSystem.GoalPos());
             if (distance - _minimalDistance >= TOLERANCE)
                 return true;
             else
@@ -135,11 +143,27 @@ namespace Enemies
         private void StopAllComponents()
         {
             _physic.SetActive(false);
-            _moveToPlayer.StopMove();
+            _enemyMoveSystem.StopMove();
+            //_moveToPlayer.StopMove();
             _enemyRotateSystem.RotateStop();
             _isBusy = true;
             _isDeath = true;
         }
     
+    }
+
+    public interface IEnemyMoveSystem
+    {
+        public void Construct(Transform followedTransform, float speed);
+        
+        public Vector3 AgentPos();
+
+        public Vector3 GoalPos();
+
+        public void Move();
+
+        public void StopMove();
+
+        public bool IsTarget();
     }
 }
