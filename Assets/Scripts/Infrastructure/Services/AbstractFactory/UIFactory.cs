@@ -75,5 +75,20 @@ namespace Infrastructure.Services.AbstractFactory
             #endregion
             return ui;
         }
+
+        public GameObject CreateResetButton(object provider)
+        {
+            if (provider is not GameObject parentTransform)
+            {
+                throw new InvalidDataException("Expected CurrencyProvider type for providers");
+            }
+            
+            RectTransform rectTransform = parentTransform.GetComponent<RectTransform>();
+            Vector3 position = new Vector3(rectTransform.localPosition.x, rectTransform.localPosition.y, rectTransform.localPosition.z);
+        
+            GameObject ui  = _assertObj.Assert(PrefabPath.RESET_MENU_UI, position);
+            ui.transform.SetParent(parentTransform.transform, false);
+            return ui;
+        }
     }
 }

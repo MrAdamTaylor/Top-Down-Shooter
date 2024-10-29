@@ -33,11 +33,22 @@ namespace Logic
             WaveTimer = new WaveTimer(firstWave.WaveTimePerSeconds, TimerType.OneSecTick);
             _spawnCharacteristics = 
                 (List<SpawnCharacteristics>)ServiceLocator.Instance.GetData(typeof(List<SpawnCharacteristics>));
+            ServiceLocator.Instance.BindData(typeof(WaveSystem), this);
         }
 
         public void Construct(SpawnManager spawnManager)
         {
             _spawnManager = spawnManager;
+        }
+
+        public void PauseWaveTimer()
+        {
+            WaveTimer.PauseResume();
+        }
+
+        public void ResumeWaveTimer()
+        {
+            WaveTimer.PauseResume();
         }
 
         public void StartNextWave()

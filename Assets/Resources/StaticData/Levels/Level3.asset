@@ -16,10 +16,11 @@ MonoBehaviour:
   SpawnerConfigsList:
   - {fileID: 11400000, guid: 76ffe8238abb9544bbd467d095b18e68, type: 2}
   PlayerConfigs: {fileID: 11400000, guid: 8c3706afde652a542b7633a503709a62, type: 2}
+  TimeBeforeStartGame: 0
   WalkToEnd: 0
   KillAllMobs: 0
   MobsCount: 0
   IsTime: 1
-  PerSeconds: 5
+  PerSeconds: 2
   DestroyTower: 0
   TowerHealth: 0

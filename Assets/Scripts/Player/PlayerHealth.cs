@@ -11,6 +11,7 @@ namespace Player
         [SerializeField] private float _current;
         [SerializeField] private float _maxValue;
 
+        public Action DeathAction;
         public Action<float> HealthChange;
         private HealthAdapter _healthAdapter;
     
@@ -24,8 +25,10 @@ namespace Player
         {
             _healthAdapter ??= (HealthAdapter)ServiceLocator.Instance.GetData(typeof(HealthAdapter));
 
-            if(_current <= 0)
-                return;
+            if (_current <= 0)
+            {
+                DeathAction?.Invoke();
+            }
 
             _current -= damage;
             _healthAdapter.UpdateValues(_current, _maxValue);

@@ -38,6 +38,7 @@ namespace Enemies
 
         public void PlayIdle()
         {
+            State = AnimatorState.Idle;
             _animator.SetTrigger(Idle);
         }
 
@@ -63,7 +64,7 @@ namespace Enemies
             _animator.SetBool(IsMoving, false);
         }
 
-        public void PlayeAttack(int value)
+        public void PlayAttack(int value)
         {
             switch (value)
             {

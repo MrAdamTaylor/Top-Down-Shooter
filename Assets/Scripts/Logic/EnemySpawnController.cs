@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using EnterpriceLogic.Constants;
+using Infrastructure.ServiceLocator;
 using Logic.Timer;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,7 +9,7 @@ namespace Logic
 {
     public class EnemySpawnController : MonoBehaviour
     {
-        public const float SPAWN_COOLDOWN = 0.5f;
+        private const float SPAWN_COOLDOWN = 0.5f;
         
         [Header("Percent of enemy spawn chanse: ")]
         [SerializeField] private List<int> _percent;
@@ -39,6 +40,7 @@ namespace Logic
         private bool _isActiveSpawn;
         private float _spawnCooldown;
         private int _tempCounter;
+        private bool _playerIsAlive;
 
         public void Construct(List<EnemySpawnerPool> pools)
         {
@@ -57,17 +59,8 @@ namespace Logic
             _spawnTimer.OnTimerFinishEvent += SpawnStart;
             _timerManager.SubscribeWaveTimer(waveSystem);
             _spawnCooldown = SPAWN_COOLDOWN;
-        }
-
-        private void SpawnStart()
-        {
-            if (!IsWaveEnd)
-            {
-                _isActiveSpawn = true;
-                _spawnTimer.SetTime(_spawnInterval);
-                _spawnTimer.Start();
-                _tempCounter = 0;
-            }
+            _playerIsAlive = true;
+            ServiceLocator.Instance.BindData(typeof(EnemySpawnController), this);
         }
 
         private void Update()
@@ -82,6 +75,22 @@ namespace Logic
                 _isActiveSpawn = false;
                 _spawnTimer.Stop();
             }
+        }
+
+        private void SpawnStart()
+        {
+            if (!IsWaveEnd)
+            {
+                _isActiveSpawn = true;
+                _spawnTimer.SetTime(_spawnInterval);
+                _spawnTimer.Start();
+                _tempCounter = 0;
+            }
+        }
+
+        public void PlayerDefeated()
+        {
+            _playerIsAlive = false;
         }
 
         public void UpdateParams(SpawnCharacteristics waveData, List<string> whiteBoardPool)
@@ -118,7 +127,7 @@ namespace Logic
 
         private bool CanSpawn()
         {
-            if (_isActiveSpawn && NoFullWave() && CooldownIsUp() && _lessThenMoment())
+            if (_isActiveSpawn && NoFullWave() && CooldownIsUp() && _lessThenMoment() && _playerIsAlive)
                 return true;
             else
                 return false;
@@ -150,11 +159,6 @@ namespace Logic
             {
                 return false;
             }
-        }
-
-        private void TestSpawn()
-        {
-            _maximumPools[GetRandomIndex()].Spawn();
         }
 
         private int GetRandomIndex()
@@ -198,19 +202,4 @@ namespace Logic
         }
         
     }
-    
-    /*[System.Serializable]
-    public struct EnemyTypeValues
-    {
-        public EnemyTypeValues(int percantage, string enemyName, List<GameObject> enemySkins)
-        {
-            _percantage = percantage;
-            _enemyName = enemyName;
-            _enemySkins = enemySkins;
-        }
-
-        [SerializeField] private int _percantage;
-        [SerializeField] private string _enemyName;
-        [SerializeField] private List<GameObject> _enemySkins;
-    }*/
 }

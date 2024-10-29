@@ -26,6 +26,7 @@ namespace Enemies
         private bool _isMoving;
         private bool _isDeath;
         private bool _isSetCoolDown;
+        private bool _isAlive;
 
         public void Construct(IEnemyMoveSystem moveSystem, EnemyAnimator enemyAnimator, EnemyRotateSystem rotateSystem,
             EnemyAttack enemyAttack,float minimalDistance, EnemyDeath death, GameObject physic, EnemyHealth enemyHealth)
@@ -42,6 +43,7 @@ namespace Enemies
             _physic = physic;
             _isConstructed = true;
             _enemyHealth = enemyHealth;
+            _isAlive = true;
         }
 
         private void OnEnable()
@@ -108,7 +110,7 @@ namespace Enemies
 
         private bool CheckSubjectOnNull()
         {
-            return _enemyMoveSystem.IsTarget();
+            return _enemyMoveSystem.IsTarget() && _isAlive;
             //return _moveToPlayer.IsTarget();
         }
 
@@ -149,7 +151,13 @@ namespace Enemies
             _isBusy = true;
             _isDeath = true;
         }
-    
+
+        public void GoalIsDefeated()
+        {
+            _isAlive = false;
+            _enemyAnimator.PlayIdle();
+            _enemyAttack.ActualAttacking(false);
+        }
     }
 
     public interface IEnemyMoveSystem

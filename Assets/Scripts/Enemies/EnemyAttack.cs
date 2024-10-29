@@ -32,6 +32,7 @@ namespace Enemies
         private bool _isAttacking;
         private bool _attackIsActive;
         private EnemyAnimationEvent _animationEvent;
+        private bool _isActual;
 
         public void Construct(EnemyAnimator enemyAnimator, float minDamage, float maxDamage)
         {
@@ -41,6 +42,7 @@ namespace Enemies
             _minDamage = minDamage;
             _animationEvent = transform.GetComponent<EnemyAnimationEvent>();
             _animationEvent.EnemyAnimEvent.AddListener(OnAnimationEvent);
+            _isActual = true;
         }
 
         private void Update()
@@ -71,6 +73,11 @@ namespace Enemies
         public void DisableAttack()
         {
             _attackIsActive = false;
+        }
+
+        public void ActualAttacking(bool actual)
+        {
+            _isActual = actual;
         }
 
         private void OnAnimationEvent(string eventName)
@@ -128,7 +135,7 @@ namespace Enemies
 
         private bool CanAttack()
         {
-            return _attackIsActive && !_isAttacking && CooldownIsUp();
+            return _attackIsActive && !_isAttacking && CooldownIsUp() && _isActual;
         }
 
         private bool CooldownIsUp()
@@ -139,7 +146,7 @@ namespace Enemies
         private void StartAttack()
         {
             ReadyForAction?.Invoke(false);
-            _animator.PlayeAttack(Random.Range(Constants.MINIMAL_ATTACK_ANIMATION,Constants.MAXIMUM_ATTACK_ANIMATION));
+            _animator.PlayAttack(Random.Range(Constants.MINIMAL_ATTACK_ANIMATION,Constants.MAXIMUM_ATTACK_ANIMATION));
             _isAttacking = true;
         }
     }

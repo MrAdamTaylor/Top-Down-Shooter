@@ -27,6 +27,7 @@ namespace Infrastructure.StateMachine.States
         private GameObject _timer;
         private GameObject _commonParent;
         private TimerManager _timerManager;
+        private GameObject _canvas;
     
         public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingCurtain loadingCurtain,
             IPlayerFactory playerFactory, IUIFactory uiFactory)
@@ -56,6 +57,14 @@ namespace Infrastructure.StateMachine.States
             LoadPlayer();
             LoadEnemySpawner();
 
+            GameObject gameSystem = new GameObject(Constants.GAME_SYSTEM_NAME);
+            GameSystem system = gameSystem.AddComponent<GameSystem>();
+
+            GameObject resetButtonUI = _uiFactory.CreateResetButton(_canvas);
+            //Debug.Log(resetButtonUI);
+            system.Construct(resetButtonUI);
+            ServiceLocator.ServiceLocator.Instance.BindData(typeof(GameSystem), system);
+            
             _stateMachine.Enter<GameLoopState>();
         }
 
@@ -75,9 +84,11 @@ namespace Infrastructure.StateMachine.States
                 _timer = CreateTimer(data);
             }
         
-            GameObject canvas = GameObject.FindGameObjectWithTag(Constants.CANVAS_TAG);
-            GameObject ui = _uiFactory.CreateWithLoadConnect(PrefabPath.UI_PLAYER_PATH, canvas, player);
+            _canvas = GameObject.FindGameObjectWithTag(Constants.CANVAS_TAG);
+            GameObject ui = _uiFactory.CreateWithLoadConnect(PrefabPath.UI_PLAYER_PATH, _canvas, player);
             ConstructUI(ui);
+            
+           
         }
 
         private GameObject CreateTimer(TimeData data)
@@ -108,6 +119,9 @@ namespace Infrastructure.StateMachine.States
 
             List<int> maximumEnemies = CalculateWaveCharacteristics(spawnerConfigs);
 
+            List<EnemyController> enemyList = new List<EnemyController>();
+            ServiceLocator.ServiceLocator.Instance.BindData(typeof(List<EnemyController>), enemyList);
+            
             List<EnemySpawnerPool> enemyPools = CreatePools(spawnerConfigs, factory, spawnPoints, spawnController, maximumEnemies);
 
             WaveSystem waveSystem = null;
@@ -188,7 +202,7 @@ namespace Infrastructure.StateMachine.States
                 List<int> percent = percentsValueOfOneWave.Where(i1 => i1 != 0).ToList();
                 percent.OutputCollection("Only full percent");
                 spawnCharacteristics[i].Construct(spawnByTick, maxEnemiesOnWave, spawnInterval,  percent);
-                spawnCharacteristics[i].Output(i);
+                //spawnCharacteristics[i].Output(i);
             }
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(List<SpawnCharacteristics>),spawnCharacteristics);
 
@@ -227,7 +241,8 @@ namespace Infrastructure.StateMachine.States
                 GameObject enemyPool = new GameObject(name +Constants.POOL_PREFIX);
                 EnemySpawnerPool pool = enemyPool.AddComponent<EnemySpawnerPool>();
                 var i1 = i;
-            
+
+                
                 pool.Construct(maximumsEnemies[i],()=>factory.Create(spawnerConfigs.SpawnList[i1].EnemyConfigs, spawnPoints, enemyPool), spawnPoints);
                 enemyPool.transform.SetParent(spawnController.transform);
                 EnemyDeath[] enemyDeaths = enemyPool.GetComponentsInChildren<EnemyDeath>(true);
@@ -246,36 +261,21 @@ namespace Infrastructure.StateMachine.States
             helper.Construct();
         }
     }
-}
 
-public class SpawnCharacteristics
-{
-    public int SpawnCountByTick { get; private set; }
-    public int MaxEnemyOnWave { get; private set; }
-    public int SpawnInterval { get; private set; }
-    public int EnemiesForCalculateCount { get; private set; }
-
-    public List<int> PercentForCalculates;
-
-
-    public void Construct(int spawnByTick, int maxEnemiesOnWave, int spawnInterval, List<int> percent)
+    public class GameSystem : MonoBehaviour
     {
-        SpawnCountByTick = spawnByTick;
-        MaxEnemyOnWave = maxEnemiesOnWave;
-        SpawnInterval = spawnInterval;
-        EnemiesForCalculateCount = percent.Count;
-        PercentForCalculates = percent;
-    }
 
-    public void Output(int index)
-    {
-        Debug.Log($"Wave is {index+1}: <color=yellow>Count in OneSpawn: {SpawnCountByTick} </color> " +
-                  $"<color=red>MaxEnemyOnWave: {MaxEnemyOnWave}</color>, <color=cyan>SpawnInterval: {SpawnInterval}</color>," +
-                  $"<color=pink> EnemiesCount {EnemiesForCalculateCount}</color>");
-
-        for (int i = 0; i < PercentForCalculates.Count; i++)
+        private GameObject _resetMenu;
+        
+        public void Construct(GameObject resetMenu)
         {
-            Debug.Log($"<color=cyan>Percent: [{PercentForCalculates[i]}]</color>");
+            _resetMenu = resetMenu;
+            _resetMenu.SetActive(false);
+        }
+
+        public void ShowResetMenu()
+        {
+            _resetMenu.SetActive(true);
         }
     }
 }

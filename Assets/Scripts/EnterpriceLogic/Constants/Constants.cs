@@ -75,6 +75,7 @@ namespace EnterpriceLogic.Constants
         public const string WARNING_CANVAS_MESSAGE = "Warning";
         public const float TIMER_TEST = 10f;
         public const string POOL_PREFIX = " Pool";
+        public const string GAME_SYSTEM_NAME = "[GAME_SYSTEM]";
 
         #endregion
     }

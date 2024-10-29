@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Configs;
 using Enemies;
 using EnterpriceLogic;
@@ -69,7 +70,6 @@ namespace Infrastructure.Services.AbstractFactory
                     throw new Exception("Unknown Enemy configs for Factory");
             }
         
-            Debug.Log("Created Enemy with Random Skin");
             return enemy;
         }
 
@@ -110,6 +110,10 @@ namespace Infrastructure.Services.AbstractFactory
             EnemyController enemyController = enemy.AddComponent<EnemyController>();
             enemyController.Construct(moveToPlayer, enemyAnimator, enemyRotateSystem, enemyAttack, 
                 configs.MinimalToPlayerDistance, enemyDeath, physic.gameObject, enemyHealth);
+
+            List<EnemyController> enemies =
+                (List<EnemyController>)ServiceLocator.ServiceLocator.Instance.GetData(typeof(List<EnemyController>));
+            enemies.Add(enemyController);
         }
 
         private void CreateKamikaze(GameObject enemy, EnemyKamikazeConfigs configs)
