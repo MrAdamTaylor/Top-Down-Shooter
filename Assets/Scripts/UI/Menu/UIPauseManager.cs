@@ -51,23 +51,7 @@ namespace UI.Menu
             panelPause.SetActive(!panelPause.activeSelf);
         }
 
-        public void ChangeMusicLevel(Slider slider)
-        {
-            if (slider == null)
-            {
-                return;
-            }
-            GameObject.Find("SoundManager").GetComponents<AudioSource>()[0].volume = slider.value;
-        }
-
-        public void ChangeEffectsLevel(Slider slider)
-        {
-            if (slider == null)
-            {
-                return;
-            }
-            GameObject.Find("SoundManager").GetComponents<AudioSource>()[1].volume = slider.value;
-        }
+        
         // Подписываемся на событие открытия рекламы в OnEnable
         private void OnEnable()
         {
