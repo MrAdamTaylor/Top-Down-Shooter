@@ -25,25 +25,21 @@ MonoBehaviour:
     PercantageForEachWaves: 00000000000000000000000014000000
   Waves:
   - WaveName: Wave 1
-    TimeBetweenSpawnIntantiate: 0
     CountSpawnByTick: 2
     WaveTimePerSeconds: 30
     MaxEnemyCountOnScreen: 12
     EnemySpawnIntervalPerSeconds: 8
   - WaveName: Wave 2
-    TimeBetweenSpawnIntantiate: 0
     CountSpawnByTick: 3
     WaveTimePerSeconds: 20
     MaxEnemyCountOnScreen: 15
     EnemySpawnIntervalPerSeconds: 6
   - WaveName: Wave 3
-    TimeBetweenSpawnIntantiate: 0
     CountSpawnByTick: 4
     WaveTimePerSeconds: 20
     MaxEnemyCountOnScreen: 18
     EnemySpawnIntervalPerSeconds: 5
   - WaveName: Wave 4
-    TimeBetweenSpawnIntantiate: 0
     CountSpawnByTick: 5
     WaveTimePerSeconds: 20
     MaxEnemyCountOnScreen: 20

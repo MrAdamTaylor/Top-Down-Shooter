@@ -25,7 +25,7 @@ namespace Configs
 
                 if (SpawnList[i].PercantageForEachWaves.Count < Waves.Count)
                 {
-                    SpawnList[i].PercantageForEachWaves.Add(Constants.ZERO);
+                    SpawnList[i].PercantageForEachWaves.Add(0);
                 }
             }
 

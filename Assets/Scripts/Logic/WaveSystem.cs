@@ -19,7 +19,7 @@ namespace Logic
 
         
         private int _maxWaveCount;
-        private int _waweIndex = Constants.ZERO;
+        private int _waweIndex = 0;
 
         public WaveSystem(List<WaveStruct> spawnerConfigsWaves, List<EnemySpawnList> enemiesSpawnCharacteristics)
         {
@@ -56,44 +56,40 @@ namespace Logic
             if (_maxWaveCount == _waves.Count)
             {
                 WaveTimer.StartTimer();
-                WaveStruct waveStruct = _waves.Dequeue();
-                List<EnemySpawnList> enemySpawnLists =
-                    _enemySpawnLists.Where(p => p.FirstAppearanceWave < _waweIndex+Constants.ONE).ToList();
-                Debug.Log($"Wave Name: <color=yellow>{waveStruct.WaveName} </color>  Accesses Enemies: {enemySpawnLists.Count}");
-                SpawnCharacteristics waveData = _spawnCharacteristics[_waweIndex];
-                _waweIndex++;
-                List<string> accessPool = AccessEnemiesPool(enemySpawnLists);
-                _spawnManager.Configure(accessPool, waveData);
+                GetNextWave();
             }
-            else if (Constants.ONE == _waves.Count)
+            else if (1 == _waves.Count)
             {
-                Debug.Log("<color=red>Last Wave! </color>");
-                WaveStruct wave = _waves.Dequeue();
-                List<EnemySpawnList> enemySpawnLists =
-                    _enemySpawnLists.Where(p => p.FirstAppearanceWave < _waweIndex+Constants.ONE).ToList();
-                Debug.Log($"Wave Name: <color=yellow>{wave.WaveName} </color>  Accesses Enemies: {enemySpawnLists.Count}");
-                SpawnCharacteristics waveData = _spawnCharacteristics[_waweIndex];
-                _waweIndex++;
-                List<string> accessPool = AccessEnemiesPool(enemySpawnLists);
-                _spawnManager.Configure(accessPool, waveData);
+                WaveStruct wave = GetNextWave();
                 WaveTimer.ReloadTimer(wave.WaveTimePerSeconds);
             }
-            else if(Constants.ZERO == _waves.Count)
+            else if(0 == _waves.Count)
             {
                 Debug.Log("<color=red>Wawes Finish </color>");
             }
             else
             {
-                WaveStruct wave = _waves.Dequeue();
-                List<EnemySpawnList> enemySpawnLists =
-                    _enemySpawnLists.Where(p => p.FirstAppearanceWave < _waweIndex+Constants.ONE).ToList();
-                Debug.Log($"Wave Name: <color=yellow>{wave.WaveName} </color>  Accesses Enemies: {enemySpawnLists.Count}");
-                SpawnCharacteristics waveData = _spawnCharacteristics[_waweIndex];
-                _waweIndex++;
-                List<string> accessPool = AccessEnemiesPool(enemySpawnLists);
-                _spawnManager.Configure( accessPool,waveData);
+                WaveStruct wave = GetNextWave();
                 WaveTimer.ReloadTimer(wave.WaveTimePerSeconds);
             }
+        }
+
+        private WaveStruct GetNextWave()
+        {
+            WaveStruct wave = _waves.Dequeue();
+            List<string> accessPool = GetEnemiesList(_enemySpawnLists);
+            SpawnCharacteristics waveData = _spawnCharacteristics[_waweIndex];
+            _waweIndex++;
+            _spawnManager.Configure( accessPool,waveData);
+            return wave;
+        }
+
+        private List<string> GetEnemiesList(List<EnemySpawnList> enemySpawnLists)
+        {
+            List<EnemySpawnList> newEnemySpawnLists =
+                enemySpawnLists.Where(p => p.FirstAppearanceWave < _waweIndex+1).ToList();
+            List<string> accessPool = AccessEnemiesPool(newEnemySpawnLists);
+            return accessPool;
         }
 
         private List<string> AccessEnemiesPool(List<EnemySpawnList> enemySpawnLists)

@@ -53,9 +53,6 @@ namespace EnterpriceLogic.Constants
         public static float EPSILON_BETWEEN_RDETECTION_MINDISTANCE = 0.5f;
         public static string TIMER_NAME = "[TIME INVOKER]";
         public static string BLOOD_IMPACT = "";
-        public const int ZERO = 0;
-        public const int ONE = 1;
-
 
         #region GameObjNames
         public const string PREFABS_SCENE_GAMEOBJECT_PARENT_NAME = "[GAME_OBJECTS]";
@@ -66,7 +63,6 @@ namespace EnterpriceLogic.Constants
         public const string FRACTION_TRASH = "FractionTrash";
         public const string CANVAS_TAG = "PlayerUI";
         #endregion
-        
 
         #region Animation
         public const int MINIMAL_ATTACK_ANIMATION = 1;

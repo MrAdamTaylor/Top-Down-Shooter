@@ -113,9 +113,9 @@ namespace Logic
         private void EnemySpawn()
         {
             Debug.Log("<color=yellow>Enemy Spawned!</color>");
-            if (_wavePools.Count == Constants.ONE)
+            if (_wavePools.Count == 1)
             {
-                _wavePools[Constants.ZERO].Spawn();
+                _wavePools[0].Spawn();
             }
             else
             {

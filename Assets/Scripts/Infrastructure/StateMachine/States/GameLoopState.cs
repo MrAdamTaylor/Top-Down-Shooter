@@ -9,11 +9,15 @@ using UnityEngine;
 
 namespace Infrastructure.StateMachine.States
 {
-    public class GameLoopState : IState
+    public class GameLoopState : IState, IDisposable
     {
         private readonly GameStateMachine _stateMachine;
 
         private GameTimer _gameTimer;
+        private PlayerDeath _playerDeath;
+        private WaveSystem _waveSystem;
+        private GameSystem _gameSystem;
+        private EnemySpawnController _spawnController;
 
         public GameLoopState(GameStateMachine gameStateMachine)
         {
@@ -30,23 +34,30 @@ namespace Infrastructure.StateMachine.States
             _gameTimer = (GameTimer)ServiceLocator.ServiceLocator.Instance.GetData(typeof(GameTimer));
             _gameTimer.StartTimer();
 
-            PlayerDeath playerDeath = (PlayerDeath)ServiceLocator.ServiceLocator.Instance.GetData(typeof(PlayerDeath));
-            WaveSystem waveSystem = (WaveSystem)ServiceLocator.ServiceLocator.Instance.GetData(typeof(WaveSystem));
-            EnemySpawnController spawnController =
+            _playerDeath = (PlayerDeath)ServiceLocator.ServiceLocator.Instance.GetData(typeof(PlayerDeath));
+            _waveSystem = (WaveSystem)ServiceLocator.ServiceLocator.Instance.GetData(typeof(WaveSystem));
+            _spawnController =
                 (EnemySpawnController)ServiceLocator.ServiceLocator.Instance.GetData(typeof(EnemySpawnController));
-            GameSystem gameSystem = (GameSystem)ServiceLocator.ServiceLocator.Instance.GetData(typeof(GameSystem));
+            _gameSystem = (GameSystem)ServiceLocator.ServiceLocator.Instance.GetData(typeof(GameSystem));
 
-            playerDeath.PlayerDefeat += waveSystem.PauseWaveTimer;
-            playerDeath.PlayerDefeat += spawnController.PlayerDefeated;
-            playerDeath.PlayerDefeat += gameSystem.ShowResetMenu;
+            _playerDeath.PlayerDefeat += _waveSystem.PauseWaveTimer;
+            _playerDeath.PlayerDefeat += _spawnController.PlayerDefeated;
+            _playerDeath.PlayerDefeat += _gameSystem.ShowResetMenu;
             
             List<EnemyController> enemyList =
                 (List<EnemyController>)ServiceLocator.ServiceLocator.Instance.GetData(typeof(List<EnemyController>));
             for (int i = 0; i < enemyList.Count; i++)
             {
-                playerDeath.PlayerDefeat += enemyList[i].GoalIsDefeated;
+                _playerDeath.PlayerDefeat += enemyList[i].GoalIsDefeated;
                 Debug.Log($"<color=red>Enemy is {enemyList[i].name} aded</color>");
             }
+        }
+
+        public void Dispose()
+        {
+            _playerDeath.PlayerDefeat -= _waveSystem.PauseWaveTimer;
+            _playerDeath.PlayerDefeat -= _spawnController.PlayerDefeated;
+            _playerDeath.PlayerDefeat -= _gameSystem.ShowResetMenu;
         }
     }
 }

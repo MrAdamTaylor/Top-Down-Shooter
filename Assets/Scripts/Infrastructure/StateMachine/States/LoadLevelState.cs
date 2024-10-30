@@ -158,7 +158,7 @@ namespace Infrastructure.StateMachine.States
                 maxCounts.Add(spawnerConfigs.Waves[i].MaxEnemyCountOnScreen);
                 calculatedResults.Add(resultsRow);
                 
-                int zeroSum = Constants.ZERO;
+                int zeroSum = 0;
                 sums.Add(zeroSum);
             }
 
@@ -259,23 +259,6 @@ namespace Infrastructure.StateMachine.States
             warning.SetActive(false);
             UIHelper helper = ui.AddComponent<UIHelper>();
             helper.Construct();
-        }
-    }
-
-    public class GameSystem : MonoBehaviour
-    {
-
-        private GameObject _resetMenu;
-        
-        public void Construct(GameObject resetMenu)
-        {
-            _resetMenu = resetMenu;
-            _resetMenu.SetActive(false);
-        }
-
-        public void ShowResetMenu()
-        {
-            _resetMenu.SetActive(true);
         }
     }
 }
