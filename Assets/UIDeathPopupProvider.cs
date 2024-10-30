@@ -2,6 +2,8 @@ using System;
 using Infrastructure.StateMachine.States;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
+using UnityEngine.SceneManagement;
 
 public class UIDeathPopupProvider : MonoBehaviour
 {
@@ -9,6 +11,10 @@ public class UIDeathPopupProvider : MonoBehaviour
     [SerializeField] private Button _mainMenuButton;
 
     private GameSystem _gameSystem;
+    public void Start()
+    {
+        _restartButton.onClick.AddListener(delegate { ExampleOpenRewardAd(1); });
+    }
 
     public void Construct(GameSystem gameSystem)
     {
@@ -32,6 +38,40 @@ public class UIDeathPopupProvider : MonoBehaviour
     {
         _mainMenuButton.onClick.AddListener(_gameSystem.MainMenu);
     }
-    
-    
+
+    // Подписываемся на событие открытия рекламы в OnEnable
+    private void OnEnable()
+    {
+        YandexGame.RewardVideoEvent += Rewarded;
+    }
+
+    // Отписываемся от события открытия рекламы в OnDisable
+    private void OnDisable()
+    {
+        YandexGame.RewardVideoEvent -= Rewarded;
+    }
+
+    // Подписанный метод получения награды
+    void Rewarded(int id)
+    {
+        if (id == 1)
+            LoadSceneAgain();
+
+    }
+
+    // Метод для вызова видео рекламы
+    public void ExampleOpenRewardAd(int id)
+    {
+        // Вызываем метод открытия видео рекламы
+        YandexGame.RewVideoShow(id);
+    }
+    public void LoadSceneAgain()
+    {
+        //Вот это убрать, и прописать потом закрытие окна и добавление хп
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.buildIndex);
+    }
 }
+    
+    
+

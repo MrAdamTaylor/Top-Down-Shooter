@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using YG;
 
 namespace UI.Menu
 {
@@ -66,6 +67,33 @@ namespace UI.Menu
                 return;
             }
             GameObject.Find("SoundManager").GetComponents<AudioSource>()[1].volume = slider.value;
+        }
+        // Подписываемся на событие открытия рекламы в OnEnable
+        private void OnEnable()
+        {
+            YandexGame.RewardVideoEvent += Rewarded;
+        }
+
+        // Отписываемся от события открытия рекламы в OnDisable
+        private void OnDisable()
+        {
+            YandexGame.RewardVideoEvent -= Rewarded;
+        }
+
+        // Подписанный метод получения награды
+        void Rewarded(int id)
+        {
+            if (id == 1)
+                LoadSceneAgain();
+            Debug.Log($"<color=green>YGYGYG Reload Game</color>");
+
+        }
+
+        // Метод для вызова видео рекламы
+        public void ExampleOpenRewardAd(int id)
+        {
+            // Вызываем метод открытия видео рекламы
+            YandexGame.RewVideoShow(id);
         }
     }
 }
