@@ -19,7 +19,8 @@ namespace UI.MVC.Presenters
     {
         private CurrencyViewWithImage _currencyView;
         private AmmoStorage _ammoStorage;
-        private Dictionary<WeaponType, Sprite> _icoImage = new();
+        private Dictionary<WeaponType, Sprite> _icoAmmoImage = new();
+        private Dictionary<WeaponType, Sprite> _icoWeaponImage = new();
         private Dictionary<WeaponType,AnimationConfigs> _animationConfigs;
         private Dictionary<WeaponType,AmmoStorage> _dataDictionary = new();
 
@@ -31,7 +32,8 @@ namespace UI.MVC.Presenters
         public AmmoAdapter(CurrencyViewWithImage view, UIWeaponStaticDataIcons staticDataIcons, WeaponController controller)
         {
             _currencyView = view;
-            _icoImage = staticDataIcons.IcoConfigs.ToDictionary(x => x.WeaponType, y => y.AmmoPicture);
+            _icoAmmoImage = staticDataIcons.IcoConfigs.ToDictionary(x => x.WeaponType, y => y.AmmoPicture);
+            _icoWeaponImage = staticDataIcons.IcoConfigs.ToDictionary(x => x.WeaponType, y => y.WeaponPicture);
             _animationConfigs = staticDataIcons.IcoConfigs.ToDictionary(x => x.WeaponType, y => y.AnimationConfigs);
             WeaponData data = (WeaponData)ServiceLocator.Instance.GetData(typeof(WeaponData));
             Dictionary<int, (WeaponType, AmmoController)> dictionary = data.GetAmmoData();
@@ -48,8 +50,10 @@ namespace UI.MVC.Presenters
         public void UpdatePicture(WeaponType weaponType)
         {
             _currentWeaponType = weaponType;
-            Sprite sprite = _icoImage[weaponType];
-            _currencyView.UpdateImage(sprite);
+            Sprite ammoSprite = _icoAmmoImage[weaponType];
+            Sprite weaponSprite = _icoWeaponImage[weaponType];
+            _currencyView.UpdateAmmoImage(ammoSprite);
+            _currencyView.UpdateWeaponImage(weaponSprite);
             _sequence?.Kill();
             _sequence = DOTween.Sequence();
             _sequence.Append(_currencyView.AnimateTextImageStart());
@@ -75,8 +79,16 @@ namespace UI.MVC.Presenters
             if (_animationConfigs[_currentWeaponType].MiddleDuration.Equals(0) ||
                 _animationConfigs[_currentWeaponType].AnimationSequenceType == AnimationSequenceType.Start_End)
             {
-                Setter(value);
-                _animationPlayer.Play(_animationConfigs[_currentWeaponType],_currencyView.ImageTransform, _currencyView.TextTransform);
+                if (_animationConfigs[_currentWeaponType].IsAnimatedText == false)
+                {
+                    Setter(value);
+                    _animationPlayer.Play(_animationConfigs[_currentWeaponType],_currencyView.ImageTransform);
+                }
+                else
+                {
+                    Setter(value);
+                    _animationPlayer.Play(_animationConfigs[_currentWeaponType],_currencyView.ImageTransform, _currencyView.TextTransform);
+                }
             }
             else
             {

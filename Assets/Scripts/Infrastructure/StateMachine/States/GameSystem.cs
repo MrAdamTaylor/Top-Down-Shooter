@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Infrastructure.StateMachine.States
 {
@@ -6,9 +7,14 @@ namespace Infrastructure.StateMachine.States
     {
 
         private GameObject _resetMenu;
+
+        private GameObject _bootstraper;
+        private GameObject _loadCurtain;
         
-        public void Construct(GameObject resetMenu)
+        public void Construct(GameObject resetMenu, GameObject bootstraper, GameObject loadCurtain)
         {
+            _bootstraper = bootstraper;
+            _loadCurtain = loadCurtain;
             _resetMenu = resetMenu;
             UIDeathPopupProvider resetPopup = resetMenu.GetComponent<UIDeathPopupProvider>();
             resetPopup.Construct(this);
@@ -27,7 +33,10 @@ namespace Infrastructure.StateMachine.States
 
         public void MainMenu()
         {
+            Destroy(_bootstraper);
+            Destroy(_loadCurtain);
             Debug.Log($"<color=green>Main Menu</color>");
+            SceneManager.LoadScene(0);
         }
     }
 }

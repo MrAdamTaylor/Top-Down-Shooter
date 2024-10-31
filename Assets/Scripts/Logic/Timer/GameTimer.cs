@@ -10,17 +10,17 @@ namespace Logic.Timer
         public Action GameTimerFinish;
 
         private float _staticTime;
-        private float _remainingSeconds;
+        //private float _remainingSeconds;
         private Timer _timer;
         private TimerManager _timerManager;
     
     
     
-        public void Construct(float remainingTime, TimerType timerType, TimerManager manager)
+        public void Construct(float startedTime, float remainingTime, TimerType timerType, TimerManager manager)
         {
-            _remainingSeconds = remainingTime;
+            //_remainingSeconds = remainingTime;
             _staticTime = remainingTime;
-            _timer = new Timer(timerType, _remainingSeconds);
+            _timer = new Timer(timerType, startedTime);
             _timer.OnTimerValueChangedEvent += OnTimerValueChanged;
             _timer.OnTimerFinishEvent += OnTimerFinished;
             _timerManager = manager;

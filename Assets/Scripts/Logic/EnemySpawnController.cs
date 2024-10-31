@@ -112,7 +112,7 @@ namespace Logic
         
         private void EnemySpawn()
         {
-            Debug.Log("<color=yellow>Enemy Spawned!</color>");
+            //Debug.Log("<color=yellow>Enemy Spawned!</color>");
             if (_wavePools.Count == 1)
             {
                 _wavePools[0].Spawn();

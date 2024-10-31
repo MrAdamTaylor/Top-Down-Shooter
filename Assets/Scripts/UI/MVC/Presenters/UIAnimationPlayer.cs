@@ -12,29 +12,54 @@ namespace UI.MVC.Presenters
     {
         private Sequence _sequence;
     
-        public void Play(AnimationConfigs animationConfigs, Transform image, Transform text, TweenerCore<long,long, NoOptions> tweenerCore = null)
+        public void Play(AnimationConfigs animationConfigs, Transform image, Transform text = null, TweenerCore<long,long, NoOptions> tweenerCore = null)
         {
             _sequence?.Kill(true);
             _sequence = DOTween.Sequence();
             Vector3 imagePosition = image.position;
-            Vector3 textPosition = text.position;
+            Vector3 textPosition = new Vector3();
+            if (text != null)
+            {
+                textPosition  = text.position;
+            }
+
+           
         
             if (tweenerCore == null)
             {
-                _sequence.Append(ReturnStarterSequence(animationConfigs.ImageConfigs.StartConfigs,
-                        animationConfigs.TextConfigs.StartConfigs, text, image,
-                        animationConfigs.ImageConfigs.AnimationType))
-                    .Append(ReturnEndedSequence(animationConfigs.ImageConfigs.EndConfigs, 
-                        animationConfigs.TextConfigs.EndConfigs, text, image, textPosition, imagePosition));
+                if (text != null)
+                {
+                    _sequence.Append(ReturnStarterSequence(animationConfigs.ImageConfigs.StartConfigs,
+                            animationConfigs.TextConfigs.StartConfigs, text, image,
+                            animationConfigs.ImageConfigs.AnimationType))
+                        .Append(ReturnEndedSequence(animationConfigs.ImageConfigs.EndConfigs, 
+                            animationConfigs.TextConfigs.EndConfigs, text, image, textPosition, imagePosition));
+                }
+                else
+                {
+                    _sequence.Append(ReturnStarterSequence(animationConfigs.ImageConfigs.StartConfigs,image,
+                            animationConfigs.ImageConfigs.AnimationType))
+                        .Append(ReturnEndedSequence(animationConfigs.ImageConfigs.EndConfigs, image, imagePosition));
+                }
             }
             else
             {
-                _sequence.Append(ReturnStarterSequence(animationConfigs.ImageConfigs.StartConfigs,
-                        animationConfigs.TextConfigs.StartConfigs, text, image, 
-                        animationConfigs.ImageConfigs.AnimationType))
-                    .Append(tweenerCore)
-                    .Append(ReturnEndedSequence(animationConfigs.ImageConfigs.EndConfigs, 
-                        animationConfigs.TextConfigs.EndConfigs, text, image, textPosition, imagePosition));
+                if (text != null)
+                {
+                    _sequence.Append(ReturnStarterSequence(animationConfigs.ImageConfigs.StartConfigs,
+                            animationConfigs.TextConfigs.StartConfigs, text, image, 
+                            animationConfigs.ImageConfigs.AnimationType))
+                        .Append(tweenerCore)
+                        .Append(ReturnEndedSequence(animationConfigs.ImageConfigs.EndConfigs, 
+                            animationConfigs.TextConfigs.EndConfigs, text, image, textPosition, imagePosition));
+                }
+                else
+                {
+                    _sequence.Append(ReturnStarterSequence(animationConfigs.ImageConfigs.StartConfigs,image, 
+                            animationConfigs.ImageConfigs.AnimationType))
+                        .Append(tweenerCore)
+                        .Append(ReturnEndedSequence(animationConfigs.ImageConfigs.EndConfigs, image, imagePosition));
+                }
             }
         }
 
@@ -47,6 +72,14 @@ namespace UI.MVC.Presenters
                 .Insert(0, image.transform.DOMove(imagePosition, imageConfigsEndConfigs.RillRate))
                 .SetEase(imageConfigsEndConfigs.EaseType);
         }
+        
+        private Sequence ReturnEndedSequence(TweenConfigs imageConfigsEndConfigs,  Transform image,  Vector3 imagePosition)
+        {
+            return DOTween
+                .Sequence()
+                .Insert(0, image.transform.DOMove(imagePosition, imageConfigsEndConfigs.RillRate))
+                .SetEase(imageConfigsEndConfigs.EaseType);
+        }
 
         private Sequence ReturnStarterSequence(TweenConfigs imageStartConfigs, TweenConfigs textStartConfigs, 
             Transform text, Transform image, AnimationType animationType)
@@ -56,6 +89,15 @@ namespace UI.MVC.Presenters
                 .Append(ReturnAnimationByType(animationType,imageStartConfigs, image))
                 .SetEase(textStartConfigs.EaseType)
                 .Insert(0, (ReturnAnimationByType(animationType,textStartConfigs, text)))
+                .SetEase(imageStartConfigs.EaseType);
+        }
+        
+        private Sequence ReturnStarterSequence(TweenConfigs imageStartConfigs, 
+             Transform image, AnimationType animationType)
+        {
+            return DOTween
+                .Sequence()
+                .Append(ReturnAnimationByType(animationType,imageStartConfigs, image))
                 .SetEase(imageStartConfigs.EaseType);
         }
 

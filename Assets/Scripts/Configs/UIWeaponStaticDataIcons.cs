@@ -28,6 +28,7 @@ namespace Configs
         [Header("Duration if middle value is Active")]
         public float MiddleDuration;
         public ElementAnimationConfigs ImageConfigs;
+        public bool IsAnimatedText;
         public ElementAnimationConfigs TextConfigs;
     }
 

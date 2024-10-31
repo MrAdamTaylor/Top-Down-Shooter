@@ -27,7 +27,7 @@ namespace Infrastructure.StateMachine.States
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(LevelConfigs), levelConfigs);
 
             if (levelConfigs.IsTime)
-                RegisteredTimer(levelConfigs.PerSeconds);
+                RegisteredTimer(levelConfigs.PerSeconds, levelConfigs.TimeBeforeStartGame);
         
             if (levelConfigs.PlayerConfigs != null)
                 RegisterPlayerServices(levelConfigs.PlayerConfigs);
@@ -45,9 +45,9 @@ namespace Infrastructure.StateMachine.States
             _level = levelConfigs.LevelName;
         }
 
-        private void RegisteredTimer(int levelConfigsPerSeconds)
+        private void RegisteredTimer(int levelConfigsPerSeconds, int starSeconds)
         {
-            ServiceLocator.ServiceLocator.Instance.BindData(typeof(TimeData), new TimeData(levelConfigsPerSeconds));
+            ServiceLocator.ServiceLocator.Instance.BindData(typeof(TimeData), new TimeData(levelConfigsPerSeconds, starSeconds));
             Debug.Log("Timer Service Registered, Per seconds: "+levelConfigsPerSeconds);
         }
 
@@ -124,11 +124,13 @@ namespace Infrastructure.StateMachine.States
 
     public class TimeData
     {
-        public float Time { get; private set; }
+        public float BetweenWaveTime { get; private set; }
+        public float StartedTime { get; private set; }
 
-        public TimeData(int levelConfigsPerSeconds)
+        public TimeData(int betweenWaveBetweenWaveTime, int staredTime)
         {
-            Time = levelConfigsPerSeconds;
+            BetweenWaveTime = betweenWaveBetweenWaveTime;
+            StartedTime = staredTime;
         }
     
     

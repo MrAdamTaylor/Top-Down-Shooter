@@ -1,3 +1,4 @@
+using EnterpriceLogic.Constants;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,18 +10,11 @@ namespace UI.Menu
     {
         public GameObject panelSound;
         public GameObject panelPause;
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
 
-        // Update is called once per frame
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                // Переключаем активность панели
                 panelPause.SetActive(!panelPause.activeSelf);
             }
         }
@@ -36,7 +30,10 @@ namespace UI.Menu
         }
         public void LoadSceneMenu()
         {
-            //NOTE - Destroy FadeObject and GameObject
+            GameObject bootstraper = GameObject.Find(ConstantsSceneObjects.GAME_BOOTSTRAPER);
+            GameObject loadCurtain = GameObject.Find(ConstantsSceneObjects.GAME_LOAD_CURTAIN);
+            Destroy(bootstraper);
+            Destroy(loadCurtain);
             SceneManager.LoadScene(0);
         }
 
@@ -52,19 +49,16 @@ namespace UI.Menu
         }
 
         
-        // Подписываемся на событие открытия рекламы в OnEnable
         private void OnEnable()
         {
             YandexGame.RewardVideoEvent += Rewarded;
         }
 
-        // Отписываемся от события открытия рекламы в OnDisable
         private void OnDisable()
         {
             YandexGame.RewardVideoEvent -= Rewarded;
         }
 
-        // Подписанный метод получения награды
         void Rewarded(int id)
         {
             if (id == 1)
@@ -73,10 +67,8 @@ namespace UI.Menu
 
         }
 
-        // Метод для вызова видео рекламы
         public void ExampleOpenRewardAd(int id)
         {
-            // Вызываем метод открытия видео рекламы
             YandexGame.RewVideoShow(id);
         }
     }

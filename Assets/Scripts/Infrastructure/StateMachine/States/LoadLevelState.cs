@@ -57,12 +57,13 @@ namespace Infrastructure.StateMachine.States
             LoadPlayer();
             LoadEnemySpawner();
 
-            GameObject gameSystem = new GameObject(Constants.GAME_SYSTEM_NAME);
+            GameObject gameSystem = new GameObject(ConstantsSceneObjects.GAME_SYSTEM_NAME);
             GameSystem system = gameSystem.AddComponent<GameSystem>();
 
             GameObject resetButtonUI = _uiFactory.CreateResetButton(_canvas);
-            //Debug.Log(resetButtonUI);
-            system.Construct(resetButtonUI);
+            GameObject bootstraper = GameObject.Find(ConstantsSceneObjects.GAME_BOOTSTRAPER);
+            GameObject loadCurtain = GameObject.Find(ConstantsSceneObjects.GAME_LOAD_CURTAIN);
+            system.Construct(resetButtonUI, bootstraper, loadCurtain);
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(GameSystem), system);
             
             _stateMachine.Enter<GameLoopState>();
@@ -70,9 +71,9 @@ namespace Infrastructure.StateMachine.States
 
         private void LoadPlayer()
         {
-            _commonParent = GameObject.Find(Constants.PREFABS_SCENE_GAMEOBJECT_PARENT_NAME);
+            _commonParent = GameObject.Find(ConstantsSceneObjects.PREFABS_SCENE_GAMEOBJECT_PARENT_NAME);
             Camera camera = Object.FindObjectOfType<Camera>();
-            GameObject startPosition = GameObject.FindGameObjectWithTag(Constants.INITIAL_POSITION);
+            GameObject startPosition = GameObject.FindGameObjectWithTag(ConstantsSceneObjects.INITIAL_POSITION);
         
             GameObject player = _playerFactory.Create(startPosition.transform.position, camera);
             player.transform.parent =  _commonParent.transform;
@@ -84,7 +85,7 @@ namespace Infrastructure.StateMachine.States
                 _timer = CreateTimer(data);
             }
         
-            _canvas = GameObject.FindGameObjectWithTag(Constants.CANVAS_TAG);
+            _canvas = GameObject.FindGameObjectWithTag(ConstantsSceneObjects.CANVAS_TAG);
             GameObject ui = _uiFactory.CreateWithLoadConnect(PrefabPath.UI_PLAYER_PATH, _canvas, player);
             ConstructUI(ui);
             
@@ -93,13 +94,13 @@ namespace Infrastructure.StateMachine.States
 
         private GameObject CreateTimer(TimeData data)
         {
-            GameObject mainTimer = new GameObject(Constants.TIMER_NAME);
-            GameObject timerParent = GameObject.Find(Constants.PREFAB_SCENE_DEBUG_COMPONENT);
+            GameObject mainTimer = new GameObject(ConstantsSceneObjects.TIMER_NAME);
+            GameObject timerParent = GameObject.Find(ConstantsSceneObjects.PREFAB_SCENE_DEBUG_COMPONENT);
             mainTimer.transform.SetParent(timerParent.transform);
             TimeInvoker invoker = mainTimer.AddComponent<TimeInvoker>();
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(TimeInvoker),invoker);
             GameTimer gameTimer = mainTimer.AddComponent<GameTimer>();
-            gameTimer.Construct(data.Time, TimerType.OneSecTick, _timerManager);
+            gameTimer.Construct(data.StartedTime, data.BetweenWaveTime, TimerType.OneSecTick, _timerManager);
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(GameTimer), gameTimer);
             return mainTimer;
         }
@@ -177,15 +178,9 @@ namespace Infrastructure.StateMachine.States
             
             sums.OutputCollection("Sums of percent");
             PercentageCalculater.PercentageСhecker(sums,"percent sums");
-
-            //List<int> PercentsValueOfOneWave 
             
             for (int i = 0; i < percentValue.Count; i++)
             {
-                
-                //List<int> percent = percentValue[i].Where(i1 => i1 != 0).ToList();
-                //percent.OutputCollection("Only full percent");
-                //spawnCharacteristics[i].Construct();
                 for (int j = 0; j < percentValue[i].Count; j++)
                 {
                     int result = PercentageCalculater.CalculateValueInPercantage(percentValue[i][j],maxCounts[i]);
@@ -202,7 +197,6 @@ namespace Infrastructure.StateMachine.States
                 List<int> percent = percentsValueOfOneWave.Where(i1 => i1 != 0).ToList();
                 percent.OutputCollection("Only full percent");
                 spawnCharacteristics[i].Construct(spawnByTick, maxEnemiesOnWave, spawnInterval,  percent);
-                //spawnCharacteristics[i].Output(i);
             }
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(List<SpawnCharacteristics>),spawnCharacteristics);
 
@@ -255,7 +249,7 @@ namespace Infrastructure.StateMachine.States
 
         private void ConstructUI(GameObject ui)
         {
-            GameObject warning = GameObject.FindGameObjectWithTag(Constants.WARNING_CANVAS_MESSAGE);
+            GameObject warning = GameObject.FindGameObjectWithTag(ConstantsSceneObjects.WARNING_CANVAS_MESSAGE);
             warning.SetActive(false);
             UIHelper helper = ui.AddComponent<UIHelper>();
             helper.Construct();

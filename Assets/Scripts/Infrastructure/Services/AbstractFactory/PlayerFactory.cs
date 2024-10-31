@@ -29,11 +29,11 @@ namespace Infrastructure.Services.AbstractFactory
             Player.Player player = playerObject.AddComponent<Player.Player>();
             player.Construct(playerConfigs.Speed);
             
-            Transform visual = playerObject.transform.Find(Constants.PREFAB_MESH_COMPONENT_NAME);
+            Transform visual = playerObject.transform.Find(ConstantsSceneObjects.PREFAB_MESH_COMPONENT_NAME);
             PlayerAnimator playerAnimator = visual.AddComponent<PlayerAnimator>();
             playerAnimator.Construct();
         
-            Transform physic = player.transform.Find(Constants.PREFAB_PHYSIC_COMPONENT_NAME);
+            Transform physic = player.transform.Find(ConstantsSceneObjects.PREFAB_PHYSIC_COMPONENT_NAME);
             PlayLoopComponentProvider playLoopComponentProvider = physic.GetComponent<PlayLoopComponentProvider>();
         
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(Transform), player.transform);

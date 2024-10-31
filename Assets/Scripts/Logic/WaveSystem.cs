@@ -17,7 +17,7 @@ namespace Logic
         private List<EnemySpawnList> _enemySpawnLists;
         private List<SpawnCharacteristics> _spawnCharacteristics;
 
-        
+        private float _lastWaveTime;
         private int _maxWaveCount;
         private int _waweIndex = 0;
 
@@ -61,11 +61,16 @@ namespace Logic
             else if (1 == _waves.Count)
             {
                 WaveStruct wave = GetNextWave();
+                _lastWaveTime = wave.WaveTimePerSeconds;
                 WaveTimer.ReloadTimer(wave.WaveTimePerSeconds);
             }
             else if(0 == _waves.Count)
             {
                 Debug.Log("<color=red>Wawes Finish </color>");
+                List<string> accessPool = GetEnemiesList(_enemySpawnLists);
+                SpawnCharacteristics waveData = _spawnCharacteristics[_waweIndex-1];
+                _spawnManager.Configure( accessPool,waveData);
+                WaveTimer.ReloadTimer(_lastWaveTime);
             }
             else
             {

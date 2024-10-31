@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IcoConfigs:
   - AmmoPicture: {fileID: 21300000, guid: 5581bcdb21b9246468da0f375f593861, type: 3}
-    WeaponPicture: {fileID: 21300000, guid: d6a98cda48c99614dad8d009eb7afe0d, type: 3}
+    WeaponPicture: {fileID: 21300000, guid: f590adf1745f4a34c813fe66e1fefaca, type: 3}
     WeaponType: 0
     AnimationConfigs:
       AnimationSequenceType: 0
@@ -29,6 +29,7 @@ MonoBehaviour:
           Scale: {x: 0, y: 0, z: 0}
           RillRate: 0
           EaseType: 0
+      IsAnimatedText: 0
       TextConfigs:
         AnimationType: 0
         StartConfigs:
@@ -40,7 +41,7 @@ MonoBehaviour:
           RillRate: 0
           EaseType: 0
   - AmmoPicture: {fileID: 21300000, guid: 4a12a2d7e26ab9649882a3dcff5e103a, type: 3}
-    WeaponPicture: {fileID: 21300000, guid: 360594132a5160243a2697948fa11cf2, type: 3}
+    WeaponPicture: {fileID: 21300000, guid: 9322ec0ec79f3e840b67d01447933b41, type: 3}
     WeaponType: 2
     AnimationConfigs:
       AnimationSequenceType: 0
@@ -55,6 +56,7 @@ MonoBehaviour:
           Scale: {x: 0, y: 0, z: 0}
           RillRate: 0.1
           EaseType: 0
+      IsAnimatedText: 0
       TextConfigs:
         AnimationType: 1
         StartConfigs:
@@ -66,7 +68,7 @@ MonoBehaviour:
           RillRate: 0.1
           EaseType: 0
   - AmmoPicture: {fileID: 21300000, guid: ece73c2c2b32b8149958b8155c831e5d, type: 3}
-    WeaponPicture: {fileID: 21300000, guid: 1f53c5e6b9cc17844a7d65f085be233a, type: 3}
+    WeaponPicture: {fileID: 21300000, guid: 9c730fbd3c9449b42bff096be41b05c9, type: 3}
     WeaponType: 1
     AnimationConfigs:
       AnimationSequenceType: 3
@@ -81,6 +83,7 @@ MonoBehaviour:
           Scale: {x: 0, y: 0, z: 0}
           RillRate: 0.05
           EaseType: 0
+      IsAnimatedText: 0
       TextConfigs:
         AnimationType: 0
         StartConfigs:

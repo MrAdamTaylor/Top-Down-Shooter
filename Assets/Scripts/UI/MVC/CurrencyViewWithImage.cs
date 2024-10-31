@@ -14,7 +14,7 @@ namespace UI.MVC
         [SerializeField] private Image _weaponImage;
         [SerializeField] private StartScroolTween _startScroolTween;
         [SerializeField] private EndScroolTween _endScroolTween;
-        private Sprite _currentSprite;
+        //private Sprite _currentAmmoSprite;
         public Transform ImageTransform => _ammoImage.transform;
 
         public override void UpdateCurrency(long value)
@@ -22,10 +22,16 @@ namespace UI.MVC
             base.UpdateCurrency(value);
         }
 
-        public void UpdateImage(Sprite sprite)
+        public void UpdateAmmoImage(Sprite sprite)
         {
-            _currentSprite = sprite;
+            //_currentAmmoSprite = sprite;
             _ammoImage.sprite = sprite;
+        }
+        
+
+        public void UpdateWeaponImage(Sprite sprite)
+        {
+            _weaponImage.sprite = sprite;
         }
 
         public void SetDefaultCurrency()
@@ -37,16 +43,24 @@ namespace UI.MVC
         {
             return DOTween
                 .Sequence()
-                .Append(_text.transform.DOScale(_startScroolTween.Scale, _startScroolTween.Duration)).SetEase(_startScroolTween.AnimationLine)
-                .Insert(0,_ammoImage.transform.DOScale(_startScroolTween.Scale, _startScroolTween.Duration)).SetEase(_startScroolTween.AnimationLine);
+                .Append(_text.transform.DOScale(_startScroolTween.Scale, _startScroolTween.Duration))
+                .SetEase(_startScroolTween.AnimationLine)
+                .Insert(0, _ammoImage.transform.DOScale(_startScroolTween.Scale, _startScroolTween.Duration))
+                .SetEase(_startScroolTween.AnimationLine)
+                .Insert(0, _weaponImage.transform.DOScale(_startScroolTween.Scale, _startScroolTween.Duration))
+                .SetEase(_startScroolTween.AnimationLine);
         }
 
         public Sequence AnimateTextImageEnd()
         {
             return DOTween
                 .Sequence()
-                .Append(_text.transform.DOScale(_endScroolTween.Scale, _endScroolTween.Duration)).SetEase(_endScroolTween.AnimationLine)
-                .Insert(0,_ammoImage.transform.DOScale(_endScroolTween.Scale, _endScroolTween.Duration)).SetEase(_endScroolTween.AnimationLine);
+                .Append(_text.transform.DOScale(_endScroolTween.Scale, _endScroolTween.Duration))
+                .SetEase(_endScroolTween.AnimationLine)
+                .Insert(0, _ammoImage.transform.DOScale(_endScroolTween.Scale, _endScroolTween.Duration))
+                .SetEase(_endScroolTween.AnimationLine)
+                .Insert(0, _weaponImage.transform.DOScale(_endScroolTween.Scale, _endScroolTween.Duration))
+                .SetEase(_endScroolTween.AnimationLine);
         }
     }
 

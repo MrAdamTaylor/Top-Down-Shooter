@@ -80,8 +80,8 @@ namespace Infrastructure.Services.AbstractFactory
 
         private void CreateWalking(GameObject enemy, EnemyWalkingConfigs configs)
         {
-            Transform visual = enemy.transform.Find(Constants.PREFAB_MESH_COMPONENT_NAME);
-            Transform physic = enemy.transform.Find(Constants.PREFAB_PHYSIC_COMPONENT_NAME);
+            Transform visual = enemy.transform.Find(ConstantsSceneObjects.PREFAB_MESH_COMPONENT_NAME);
+            Transform physic = enemy.transform.Find(ConstantsSceneObjects.PREFAB_PHYSIC_COMPONENT_NAME);
             PlayLoopComponentProvider provider = physic.GetComponent<PlayLoopComponentProvider>();
             Player.Player player = (Player.Player)ServiceLocator.ServiceLocator.Instance.GetData(typeof(Player.Player));
 
@@ -93,7 +93,7 @@ namespace Infrastructure.Services.AbstractFactory
             IEnemyMoveSystem moveToPlayer = enemy.AddComponent<AgentMoveToPlayer>();
             moveToPlayer.Construct(enemy.transform, configs.Speed);
             EnemyRotateSystem enemyRotateSystem = enemy.AddComponent<EnemyRotateSystem>();
-            enemyRotateSystem.Construct(enemy.transform, player.transform, Constants.ROTATE_SPEED);
+            enemyRotateSystem.Construct(enemy.transform, player.transform);
             ReactionTrigger reactionTrigger = enemy.AddComponent<ReactionTrigger>();
             reactionTrigger.Construct(configs.RadiusDetection, player.transform);
         
