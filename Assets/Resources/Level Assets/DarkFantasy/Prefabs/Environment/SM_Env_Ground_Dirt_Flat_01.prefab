@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2436626345618726093}
   - component: {fileID: 1621147797442614120}
   - component: {fileID: 3574606983529605026}
-  - component: {fileID: -5889080053101839815}
+  - component: {fileID: 3518790041854709614}
   m_Layer: 0
   m_Name: SM_Env_Ground_Dirt_Flat_01
   m_TagString: Untagged
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &-5889080053101839815
-MeshCollider:
+--- !u!65 &3518790041854709614
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -102,7 +102,6 @@ MeshCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8969619324851929703, guid: 05882b86ea1d69d4094119a61f32aed3, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 5.0000105, y: 0.12474565, z: 5.0000095}
+  m_Center: {x: -2.4999945, y: 0.021010006, z: -2.4999945}
