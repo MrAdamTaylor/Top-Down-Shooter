@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using YG;
 
 namespace Infrastructure.StateMachine.States
 {
@@ -28,6 +29,7 @@ namespace Infrastructure.StateMachine.States
 
         public void ReloadGame()
         {
+            YandexGame.FullscreenShow();
             Debug.Log($"<color=green>Reload Game</color>");
         }
 
