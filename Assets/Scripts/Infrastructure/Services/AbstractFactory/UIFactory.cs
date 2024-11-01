@@ -20,7 +20,7 @@ namespace Infrastructure.Services.AbstractFactory
             _assertObj = builder.BuildAssertServiceByString<GameObject>();
         }
 
-        public GameObject CreateWithLoadConnect(object popupPath, object provider, object player)
+        public GameObject  CreateWithLoadConnect(object popupPath, object provider, object player)
         {
             if (popupPath is not string path)
             {

@@ -1,7 +1,6 @@
 using EnterpriceLogic.Constants;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using YG;
 
 namespace UI.Menu
@@ -11,10 +10,24 @@ namespace UI.Menu
         public GameObject panelSound;
         public GameObject panelPause;
 
+        private bool _isActive;
+        private float _currentTimeScale;
+
+        private void Awake()
+        {
+            _isActive = true;
+            _currentTimeScale = Time.timeScale;
+        }
+
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
+                if (_isActive)
+                    Time.timeScale = 0;
+                else
+                    Time.timeScale = _currentTimeScale;
+                _isActive = !_isActive;
                 panelPause.SetActive(!panelPause.activeSelf);
             }
         }
@@ -26,6 +39,8 @@ namespace UI.Menu
 
         public void ClosePanelSound()
         {
+            _isActive = true;
+            Time.timeScale = _currentTimeScale;
             panelSound.SetActive(false);
         }
         public void LoadSceneMenu()
@@ -45,6 +60,8 @@ namespace UI.Menu
 
         public void ClosePanelPause()
         {
+            _isActive = true;
+            Time.timeScale = _currentTimeScale;
             panelPause.SetActive(!panelPause.activeSelf);
         }
 
