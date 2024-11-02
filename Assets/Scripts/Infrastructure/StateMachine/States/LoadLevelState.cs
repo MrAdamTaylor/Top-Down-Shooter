@@ -10,6 +10,7 @@ using Infrastructure.StateMachine.Interfaces;
 using Logic;
 using Logic.Spawners;
 using Logic.Timer;
+using UI.MVC;
 using UI.MVC.Helper;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -87,9 +88,11 @@ namespace Infrastructure.StateMachine.States
         
             _canvas = GameObject.FindGameObjectWithTag(ConstantsSceneObjects.CANVAS_TAG);
             GameObject ui = _uiFactory.CreateWithLoadConnect(PrefabPath.UI_PLAYER_PATH, _canvas, player);
+            PlayerUIBinder playerUIBinder = new PlayerUIBinder(ui.transform.GetComponentInChildren<CurrencyProvider>());
+            playerUIBinder.BindMoney();
+            playerUIBinder.BindScores();
+            playerUIBinder.BindAmmo(player);
             ConstructUI(ui);
-            
-           
         }
 
         private GameObject CreateTimer(TimeData data)

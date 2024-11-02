@@ -1,9 +1,8 @@
-using UnityEngine;
 using UnityEngine.UI;
 
 namespace UI.MVC
 {
-    public class HpBar : MonoBehaviour
+    public class ImageFillAmountView : CurrencyView
     {
         public Image ImageCurrent;
 

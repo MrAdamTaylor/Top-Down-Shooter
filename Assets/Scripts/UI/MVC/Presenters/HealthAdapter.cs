@@ -5,17 +5,17 @@ namespace UI.MVC.Presenters
     public class HealthAdapter
     {
         private PlayerHealth _playerHealth;
-        private HpBar _hpBar;
+        private ImageFillAmountView _imageFillAmountView;
     
-        public HealthAdapter(PlayerHealth health, HpBar hpBar)
+        public HealthAdapter(PlayerHealth health, ImageFillAmountView imageFillAmountView)
         {
             _playerHealth = health;
-            _hpBar = hpBar;
+            _imageFillAmountView = imageFillAmountView;
         }
 
         public void UpdateValues(float current, float maxHp)
         {
-            _hpBar.SetValue(current, maxHp);
+            _imageFillAmountView.SetValue(current, maxHp);
         }
     }
 }

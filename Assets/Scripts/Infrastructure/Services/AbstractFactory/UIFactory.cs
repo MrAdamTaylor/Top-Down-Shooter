@@ -45,7 +45,8 @@ namespace Infrastructure.Services.AbstractFactory
 
             ui.transform.SetParent(parentTransform.transform, false); 
 
-            CurrencyProvider currencyProvider = ui.transform.GetComponentInChildren<CurrencyProvider>();
+            
+            /*CurrencyProvider currencyProvider = ui.transform.GetComponentInChildren<CurrencyProvider>();
             #region BindScores
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(ScoresStorage), new ScoresStorage(Constants.STANDART_UI_VALUE));
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(ScoresAdapter), new ScoresAdapter(
@@ -69,10 +70,11 @@ namespace Infrastructure.Services.AbstractFactory
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(AmmoAdapter), new AmmoAdapter(currencyProvider.AmmoView,icons, 
                 playerObject.GetComponent<WeaponController>()));
             #endregion
+            
             #region BindPlayerHP
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(HealthAdapter), 
                 new HealthAdapter(playerObject.GetComponent<PlayerHealth>(), currencyProvider.HpBar));
-            #endregion
+            #endregion*/
             return ui;
         }
 
