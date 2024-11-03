@@ -5,6 +5,7 @@ using Infrastructure.StateMachine.Interfaces;
 using Logic;
 using Logic.Timer;
 using Player;
+using UI.MVC.Presenters;
 using UnityEngine;
 
 namespace Infrastructure.StateMachine.States
@@ -33,6 +34,9 @@ namespace Infrastructure.StateMachine.States
         {
             _gameTimer = (GameTimer)ServiceLocator.ServiceLocator.Instance.GetData(typeof(GameTimer));
             _gameTimer.StartTimer();
+            TimerAdapter timerAdapter =
+                (TimerAdapter)ServiceLocator.ServiceLocator.Instance.GetData(typeof(TimerAdapter));
+            timerAdapter.Initialize();
 
             _playerDeath = (PlayerDeath)ServiceLocator.ServiceLocator.Instance.GetData(typeof(PlayerDeath));
             _waveSystem = (WaveSystem)ServiceLocator.ServiceLocator.Instance.GetData(typeof(WaveSystem));

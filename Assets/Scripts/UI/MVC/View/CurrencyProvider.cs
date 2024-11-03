@@ -6,7 +6,7 @@ namespace UI.MVC
     {
         [SerializeField] private CurrencyViewWithImage _ammoView;
         [SerializeField] private CurrencyView _scoresView;
-        [SerializeField] private CurrencyView _timerView;
+        [SerializeField] private ImageColorView _timerView;
         [SerializeField] private CurrencyView _waveView;
         [SerializeField] private ImageFillAmountView _imageFillAmountView;
 
@@ -14,7 +14,7 @@ namespace UI.MVC
     
         public CurrencyView ScoresView => _scoresView;
         public CurrencyViewWithImage AmmoView => _ammoView;
-        public CurrencyView TimerView => _timerView;
+        public ImageColorView TimerView => _timerView;
         public CurrencyView WaveView => _waveView;
     }
 }

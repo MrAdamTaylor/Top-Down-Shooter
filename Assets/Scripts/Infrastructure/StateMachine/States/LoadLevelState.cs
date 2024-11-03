@@ -29,6 +29,7 @@ namespace Infrastructure.StateMachine.States
         private GameObject _commonParent;
         private TimerManager _timerManager;
         private GameObject _canvas;
+        private PlayerUIBinder _playerUIBinder;
     
         public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingCurtain loadingCurtain,
             IPlayerFactory playerFactory, IUIFactory uiFactory)
@@ -87,11 +88,10 @@ namespace Infrastructure.StateMachine.States
             }
         
             _canvas = GameObject.FindGameObjectWithTag(ConstantsSceneObjects.CANVAS_TAG);
-            GameObject ui = _uiFactory.CreateWithLoadConnect(PrefabPath.UI_PLAYER_PATH, _canvas, player);
-            PlayerUIBinder playerUIBinder = new PlayerUIBinder(ui.transform.GetComponentInChildren<CurrencyProvider>());
-            playerUIBinder.BindMoney();
-            playerUIBinder.BindScores();
-            playerUIBinder.BindAmmo(player);
+            GameObject ui = _uiFactory.CreateWithLoadConnect(PrefabPath.UI_PLAYER_PATH, _canvas);
+            _playerUIBinder = new PlayerUIBinder(ui.transform.GetComponentInChildren<CurrencyProvider>());
+            _playerUIBinder.BindAmmo(player);
+            _playerUIBinder.BindHealth(player);
             ConstructUI(ui);
         }
 
@@ -134,6 +134,8 @@ namespace Infrastructure.StateMachine.States
                 waveSystem = new WaveSystem(spawnerConfigs.Waves, spawnerConfigs.SpawnList);
             }
 
+            _playerUIBinder.BindTimer(_timer.GetComponent<GameTimer>(), waveSystem.WaveTimer);
+            _playerUIBinder.BindWaves();
             if(waveSystem != null)
                 spawnController.Construct(enemyPools, waveSystem, _timerManager);
             else

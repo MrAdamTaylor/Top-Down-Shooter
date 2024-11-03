@@ -1,6 +1,7 @@
 using Configs;
 using EnterpriceLogic.Constants;
 using Infrastructure.ServiceLocator;
+using Logic.Timer;
 using Player;
 using Player.NewWeaponControllSystem;
 using UI.MVC;
@@ -27,14 +28,17 @@ public class PlayerUIBinder
         scoresAdapter.Initialize();
     }
 
-    public void BindMoney()
+    public void BindTimer(GameTimer gameTimer, WaveTimer waveTimer)
     {
-        ServiceLocator.Instance.BindData(typeof(MoneyStorage), new MoneyStorage(Constants.STANDART_UI_VALUE));
-        ServiceLocator.Instance.BindData(typeof(MoneyAdapter), new MoneyAdapter(
+        ServiceLocator.Instance.BindData(typeof(TimerAdapter), new TimerAdapter(_currencyProvider.TimerView,gameTimer, waveTimer));
+        TimerAdapter timerAdapter = (TimerAdapter)ServiceLocator.Instance.GetData(typeof(TimerAdapter));
+        timerAdapter.Initialize();
+        /*ServiceLocator.Instance.BindData(typeof(MoneyStorage), new MoneyStorage(Constants.STANDART_UI_VALUE));
+        ServiceLocator.Instance.BindData(typeof(TimerAdapter), new TimerAdapter(
             _currencyProvider.TimerView,
             (MoneyStorage)ServiceLocator.Instance.GetData(typeof(MoneyStorage))));
-        MoneyAdapter moneyAdapter = (MoneyAdapter)ServiceLocator.Instance.GetData(typeof(MoneyAdapter));
-        moneyAdapter.Initialize();
+        TimerAdapter timerAdapter = (TimerAdapter)ServiceLocator.Instance.GetData(typeof(TimerAdapter));
+        timerAdapter.Initialize();*/
     }
 
     public void BindAmmo(GameObject playerObject)
@@ -42,12 +46,18 @@ public class PlayerUIBinder
         UIWeaponStaticDataIcons icons = Resources.Load<UIWeaponStaticDataIcons>(PrefabPath.WEAPON_ICO_PATH);
         ServiceLocator.Instance.BindData(typeof(AmmoAdapter), new AmmoAdapter(_currencyProvider.AmmoView,icons, 
             playerObject.GetComponent<WeaponController>()));
-        
+    }
+
+    public void BindHealth(GameObject playerObject)
+    {
         ServiceLocator.Instance.BindData(typeof(HealthAdapter), 
             new HealthAdapter(playerObject.GetComponent<PlayerHealth>(), _currencyProvider.ImageFillAmountView));
     }
 
+    public void BindWaves()
+    {
+        
+    }
 
 
-    
 }

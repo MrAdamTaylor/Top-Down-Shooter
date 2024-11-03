@@ -5,12 +5,11 @@ namespace Logic.Timer
 {
     public class GameTimer : MonoBehaviour, ITimer
     {
-        //[SerializeField] private float _secondsByAuthor = Constants.TIMER_TEST;
+        public bool IsActive { get; private set; }
 
         public Action GameTimerFinish;
 
         private float _staticTime;
-        //private float _remainingSeconds;
         private Timer _timer;
         private TimerManager _timerManager;
     
@@ -18,7 +17,6 @@ namespace Logic.Timer
     
         public void Construct(float startedTime, float remainingTime, TimerType timerType, TimerManager manager)
         {
-            //_remainingSeconds = remainingTime;
             _staticTime = remainingTime;
             _timer = new Timer(timerType, startedTime);
             _timer.OnTimerValueChangedEvent += OnTimerValueChanged;
@@ -27,8 +25,19 @@ namespace Logic.Timer
             _timerManager.SubscribeGameTimer(this);
         }
 
+        public void Subscribe(Action<float> action)
+        {
+            _timer.OnTimerValueChangedEvent += action;
+        }
+        
+        public void Unsubscribe(Action<float> action)
+        {
+            _timer.OnTimerValueChangedEvent -= action;
+        }
+
         public void StartTimer()
         {
+            IsActive = true;
             _timer.Start();
         }
 
@@ -39,6 +48,7 @@ namespace Logic.Timer
 
         public void ReloadTimer(float time)
         {
+            IsActive = true;
             _timer.SetTime(time);
             _timer.Start();
         }
@@ -55,6 +65,7 @@ namespace Logic.Timer
     
         private void OnTimerFinished()
         {
+            IsActive = false;
             GameTimerFinish?.Invoke();
             Debug.Log($"Game Timer FINISHED");
         }

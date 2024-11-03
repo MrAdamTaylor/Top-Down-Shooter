@@ -1,4 +1,3 @@
-using EnterpriceLogic.Constants;
 using TMPro;
 using UnityEngine;
 
@@ -16,9 +15,15 @@ namespace UI.MVC
          _text.text = PrefabPath.DEFAULT_WEAPON_AMMO_TEXT;
       }*/
 
+      public void UpdateCurrency(string value)
+      {
+         _text.text = value;
+      }
+
       public virtual void UpdateCurrency(long value)
       {
-         if (value == -long.MaxValue)
+         _text.text = value.ToString();
+         /*if (value == -long.MaxValue)
          {
             _text.text = PrefabPath.DEFAULT_WEAPON_AMMO_TEXT;
          }
@@ -26,7 +31,7 @@ namespace UI.MVC
          {
             _currentValueUI = value;
             _text.text = _currentValueUI.ToString();
-         }
+         }*/
       }
    }
 }

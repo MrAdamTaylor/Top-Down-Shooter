@@ -14,8 +14,8 @@ namespace UI.MVC.Helper
 
         public void Construct()
         {
-            _moneyStorage = (MoneyStorage)ServiceLocator.Instance.GetData(typeof(MoneyStorage));
-            _scoresStorage = (ScoresStorage)ServiceLocator.Instance.GetData(typeof(ScoresStorage));
+            //_moneyStorage = (MoneyStorage)ServiceLocator.Instance.GetData(typeof(MoneyStorage));
+            //_scoresStorage = (ScoresStorage)ServiceLocator.Instance.GetData(typeof(ScoresStorage));
         }
     
 

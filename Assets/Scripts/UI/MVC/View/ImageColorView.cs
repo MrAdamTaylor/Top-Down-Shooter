@@ -12,6 +12,21 @@ namespace UI.MVC
         [SerializeField]private ScaleChange _scaleChange;
 
         private Color _originalColor;
+
+        private void Awake()
+        {
+            _originalColor = _text.color;
+        }
+
+        public void SwitchColor()
+        {
+            _text.color = _color;
+        }
+
+        public void ReturnOriginalColor()
+        {
+            _text.color = _originalColor;
+        }
     }
     [Serializable]
     public struct ScaleChange
