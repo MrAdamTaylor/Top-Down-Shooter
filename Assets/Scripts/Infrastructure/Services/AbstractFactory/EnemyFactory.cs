@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Configs;
 using Enemies;
+using Enemies.EnemyStateMachine;
 using EnterpriceLogic;
 using EnterpriceLogic.Constants;
 using Infrastructure.Services.AssertService;
@@ -97,7 +98,7 @@ namespace Infrastructure.Services.AbstractFactory
             ReactionTrigger reactionTrigger = enemy.AddComponent<ReactionTrigger>();
             reactionTrigger.Construct(configs.RadiusDetection, player.transform);
         
-            EnemyAttack enemyAttack = visual.AddComponent<EnemyAttack>();
+            IEnemyAttack enemyAttack = visual.AddComponent<EnemyAttack>();
             enemyAttack.Construct(enemyAnimator, configs.MinDamage, configs.MaxDamage);
             CheckAttack attackChecker = enemy.AddComponent<CheckAttack>();
             attackChecker.Construct(enemyAttack, reactionTrigger);

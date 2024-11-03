@@ -4,15 +4,15 @@ namespace Enemies.EnemyStateMachine
 {
     public class NPCStateMachine : MonoBehaviour
     {
-        public const string NO_STATE = "(no current state)";
-        private BaseState _currentState;
+        private const string NO_STATE = "(no current state)";
+        protected BaseState _currentState;
 
-        public void Start()
+        /*public void Start()
         {
             _currentState = GetDefaultState();
             if(_currentState != null)
                 _currentState.Enter();
-        }
+        }*/
 
         void Update()
         {

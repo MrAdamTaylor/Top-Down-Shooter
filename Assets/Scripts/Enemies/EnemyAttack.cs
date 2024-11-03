@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Enemies.EnemyStateMachine;
 using EnterpriceLogic;
 using EnterpriceLogic.Constants;
 using Logic;
@@ -10,7 +11,7 @@ using Random = UnityEngine.Random;
 
 namespace Enemies
 {
-    public class EnemyAttack : MonoBehaviour
+    public class EnemyAttack : MonoBehaviour, IEnemyAttack
     {
         private const string ANIMATION_ATACK_START = "Attack_Start";
         private const string ANIMATION_ATACK_END = "Attack_End";
@@ -33,6 +34,8 @@ namespace Enemies
         private bool _attackIsActive;
         private EnemyAnimationEvent _animationEvent;
         private bool _isActual;
+
+        public bool IsCanAttack { get; }
 
         public void Construct(EnemyAnimator enemyAnimator, float minDamage, float maxDamage)
         {
@@ -69,6 +72,7 @@ namespace Enemies
         {
             _attackIsActive = true;
         }
+
 
         public void DisableAttack()
         {

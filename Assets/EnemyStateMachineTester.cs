@@ -1,5 +1,6 @@
 using Enemies;
 using Enemies.EnemyStateMachine;
+using EnterpriceLogic;
 using EnterpriceLogic.Constants;
 using Infrastructure.ServiceLocator;
 using Logic;
@@ -36,8 +37,25 @@ public class EnemyStateMachineTester : MonoBehaviour
         EnemyAnimator enemyAnimator = visual.AddComponent<EnemyAnimator>();
         enemyAnimator.Construct();
         
-        EnemyStateMachine stateMachine = enemyObject.AddComponent<EnemyStateMachine>();
+        IEnemyMoveSystem moveToPlayer = enemyObject.AddComponent<AgentMoveToPlayer>();
+        moveToPlayer.Construct(enemyObject.transform, 4f);
 
-        stateMachine.Construct(enemyAnimator);
+        IEnemyAttack enemyAttack = visual.AddComponent<EnemySimpleAttack>();
+        enemyAttack.Construct(enemyAnimator, 10,20);
+        
+        EnemyRotateSystem enemyRotateSystem = enemyObject.AddComponent<EnemyRotateSystem>();
+        enemyRotateSystem.Construct(enemyObject.transform, player.transform);
+        
+        ReactionTrigger reactionTrigger = enemyObject.AddComponent<ReactionTrigger>();
+        reactionTrigger.Construct(1.5f, player.transform);
+        
+        CheckAttack attackChecker = enemyObject.AddComponent<CheckAttack>();
+        attackChecker.Construct(enemyAttack, reactionTrigger);
+
+        EnemyHealth enemyHealth = enemyObject.AddComponent<EnemyHealth>();
+        enemyHealth.Construct(20, enemyAnimator);
+        
+        EnemyStateMachine stateMachine = enemyObject.AddComponent<EnemyStateMachine>();
+        stateMachine.Construct(enemyAnimator, moveToPlayer,enemyRotateSystem, enemyAttack, enemyHealth);
     }
 }

@@ -6,12 +6,12 @@ namespace Enemies.EnemyStateMachine
 {
     public class IdleState : BaseState
     {
-        private PlayerDeath _playerDeath;
-        private EnemyStateMachine _enemyStateMachine;
+        private readonly PlayerDeath _playerDeath;
+        private readonly EnemyStateMachine _enemyStateMachine;
     
-        public IdleState(EnemyStateMachine npcStateMachineMachine) : base("IdleState", npcStateMachineMachine)
+        public IdleState(EnemyStateMachine npcStateMachine) : base("IdleState", npcStateMachine)
         {
-            _enemyStateMachine = npcStateMachineMachine;
+            _enemyStateMachine = npcStateMachine;
             _playerDeath = (PlayerDeath)ServiceLocator.Instance.GetData(typeof(PlayerDeath));
         }
 
@@ -25,7 +25,7 @@ namespace Enemies.EnemyStateMachine
         {
             base.UpdateLogic();
             if(!_playerDeath.IsDie)
-                NpcStateMachineMachine.ChangeState(_enemyStateMachine.MoveState);
+                NpcStateMachine.ChangeState(_enemyStateMachine.DecideState);
         }
     }
 }

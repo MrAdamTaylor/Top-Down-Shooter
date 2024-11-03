@@ -1,3 +1,4 @@
+using Enemies.EnemyStateMachine;
 using UnityEngine;
 
 namespace Enemies
@@ -29,14 +30,14 @@ namespace Enemies
         private bool _isAlive;
 
         public void Construct(IEnemyMoveSystem moveSystem, EnemyAnimator enemyAnimator, EnemyRotateSystem rotateSystem,
-            EnemyAttack enemyAttack,float minimalDistance, EnemyDeath death, GameObject physic, EnemyHealth enemyHealth)
+            IEnemyAttack enemyAttack,float minimalDistance, EnemyDeath death, GameObject physic, EnemyHealth enemyHealth)
         {
             //_moveToPlayer = moveToPlayer;
             _enemyMoveSystem = moveSystem;
             _enemyAnimator = enemyAnimator;
             _enemyRotateSystem = rotateSystem;
             _minimalDistance = minimalDistance;
-            _enemyAttack = enemyAttack;
+            _enemyAttack = (EnemyAttack)enemyAttack;
             _enemyAttack.ReadyForAction += ChangeActionState;
             _enemyDeath = death;
             _enemyDeath.DeathAction += StopAllComponents;

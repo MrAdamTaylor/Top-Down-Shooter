@@ -19,6 +19,8 @@ namespace Enemies.EnemyStateMachine
         private const float CLEAVE_RADIUS = 0.8f;
         private const float HIT_BOX_HIGH_SHIFTED = 0.6f;
 
+        public bool IsCanAttack { get; private set; }
+
         private int _layerMask;
         private float _minDamage;
         private float _maxDamage;
@@ -26,6 +28,10 @@ namespace Enemies.EnemyStateMachine
         private EnemyAnimationEvent _animationEvent;
         private Collider[] _hits = new Collider[1];
         private float _attackCooldown;
+        
+        private bool _isAttacking;
+        private bool _attackIsPosible;
+        
 
         public void Construct(EnemyAnimator enemyAnimator, float minDamage, float maxDamage)
         {
@@ -35,6 +41,28 @@ namespace Enemies.EnemyStateMachine
             _minDamage = minDamage;
             _animationEvent = transform.GetComponent<EnemyAnimationEvent>();
             _animationEvent.EnemyAnimEvent.AddListener(OnAnimationEvent);
+        }
+
+        private void Update()
+        {
+            UpdateCooldown();
+            IsCanAttack = _attackIsPosible && !_isAttacking && CooldownIsUp();
+        }
+
+        private void UpdateCooldown()
+        {
+            if (!CooldownIsUp())
+                _attackCooldown -= Time.deltaTime;
+        }
+
+        public void DisableAttack()
+        {
+            _attackIsPosible = false;
+        }
+
+        public void EnableAttack()
+        {
+            _attackIsPosible = true;
         }
 
         private void OnAnimationEvent(string eventName)
@@ -57,7 +85,7 @@ namespace Enemies.EnemyStateMachine
         {
             _attackCooldown = ATTACK_COOLDOWN;
         }
-        
+
         private bool Hit(out Collider hit)
         {
             var transformPosition = HitPointPosition();
@@ -76,10 +104,17 @@ namespace Enemies.EnemyStateMachine
                 //health.TakeDamage(Random.Range(_minDamage, _maxDamage));
             }
         }
-        
+
         private Vector3 HitPointPosition()
         {
             return new Vector3(transform.position.x, transform.position.y + HIT_BOX_HIGH_SHIFTED, transform.position.z) + transform.forward*SHIFTED_DISTANCE;
+        }
+        
+        
+
+        private bool CooldownIsUp()
+        {
+            return _attackCooldown <= 0f;
         }
     }
 }

@@ -1,3 +1,4 @@
+using Enemies.EnemyStateMachine;
 using EnterpriceLogic;
 using UnityEngine;
 
@@ -5,10 +6,11 @@ namespace Enemies
 {
     public class CheckAttack : MonoBehaviour
     {
-        private EnemyAttack _attack;
+        private IEnemyAttack _attack;
+        //private EnemyAttack _attack;
         private ReactionTrigger _reactionTrigger;
 
-        public void Construct(EnemyAttack enemyAttack, ReactionTrigger reactionTrigger)
+        public void Construct(IEnemyAttack enemyAttack, ReactionTrigger reactionTrigger)
         {
             _attack = enemyAttack;
             _reactionTrigger = reactionTrigger;
