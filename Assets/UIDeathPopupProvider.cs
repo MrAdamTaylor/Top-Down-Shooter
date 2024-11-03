@@ -1,5 +1,6 @@
 using System;
 using Infrastructure.StateMachine.States;
+using Logic;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -39,19 +40,19 @@ public class UIDeathPopupProvider : MonoBehaviour
         _mainMenuButton.onClick.AddListener(_gameSystem.MainMenu);
     }
 
-    // Подписываемся на событие открытия рекламы в OnEnable
+    // РџРѕРґРїРёСЃС‹РІР°РµРјСЃСЏ РЅР° СЃРѕР±С‹С‚РёРµ РѕС‚РєСЂС‹С‚РёСЏ СЂРµРєР»Р°РјС‹ РІ OnEnable
     private void OnEnable()
     {
         YandexGame.RewardVideoEvent += Rewarded;
     }
 
-    // Отписываемся от события открытия рекламы в OnDisable
+    // РћС‚РїРёСЃС‹РІР°РµРјСЃСЏ РѕС‚ СЃРѕР±С‹С‚РёСЏ РѕС‚РєСЂС‹С‚РёСЏ СЂРµРєР»Р°РјС‹ РІ OnDisable
     private void OnDisable()
     {
         YandexGame.RewardVideoEvent -= Rewarded;
     }
 
-    // Подписанный метод получения награды
+    // РџРѕРґРїРёСЃР°РЅРЅС‹Р№ РјРµС‚РѕРґ РїРѕР»СѓС‡РµРЅРёСЏ РЅР°РіСЂР°РґС‹
     void Rewarded(int id)
     {
         if (id == 1)
@@ -59,15 +60,15 @@ public class UIDeathPopupProvider : MonoBehaviour
 
     }
 
-    // Метод для вызова видео рекламы
+    // РњРµС‚РѕРґ РґР»СЏ РІС‹Р·РѕРІР° РІРёРґРµРѕ СЂРµРєР»Р°РјС‹
     public void ExampleOpenRewardAd(int id)
     {
-        // Вызываем метод открытия видео рекламы
+        // Р’С‹Р·С‹РІР°РµРј РјРµС‚РѕРґ РѕС‚РєСЂС‹С‚РёСЏ РІРёРґРµРѕ СЂРµРєР»Р°РјС‹
         YandexGame.RewVideoShow(id);
     }
     public void LoadSceneAgain()
     {
-        //Вот это убрать, и прописать потом закрытие окна и добавление хп
+        //Р’РѕС‚ СЌС‚Рѕ СѓР±СЂР°С‚СЊ, Рё РїСЂРѕРїРёСЃР°С‚СЊ РїРѕС‚РѕРј Р·Р°РєСЂС‹С‚РёРµ РѕРєРЅР° Рё РґРѕР±Р°РІР»РµРЅРёРµ С…Рї
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
     }

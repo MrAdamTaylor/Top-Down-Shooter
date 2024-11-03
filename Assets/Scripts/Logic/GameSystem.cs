@@ -1,8 +1,10 @@
+using Infrastructure.ServiceLocator;
+using Infrastructure.Services;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using YG;
 
-namespace Infrastructure.StateMachine.States
+namespace Logic
 {
     public class GameSystem : MonoBehaviour
     {
@@ -29,12 +31,16 @@ namespace Infrastructure.StateMachine.States
 
         public void ReloadGame()
         {
+            DataSaver dataSaver = (DataSaver)ServiceLocator.Instance.GetData(typeof(DataSaver));
+            dataSaver.SaveResult();
             YandexGame.FullscreenShow();
             Debug.Log($"<color=green>Reload Game</color>");
         }
 
         public void MainMenu()
         {
+            DataSaver dataSaver = (DataSaver)ServiceLocator.Instance.GetData(typeof(DataSaver));
+            dataSaver.SaveResult();
             Destroy(_bootstraper);
             Destroy(_loadCurtain);
             Debug.Log($"<color=green>Main Menu</color>");

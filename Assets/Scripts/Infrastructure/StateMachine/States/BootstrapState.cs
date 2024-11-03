@@ -5,6 +5,7 @@ using Infrastructure.Services;
 using Infrastructure.Services.AbstractFactory;
 using Infrastructure.Services.AssertService;
 using Infrastructure.StateMachine.Interfaces;
+using UI.MVC.Model;
 using UI.MVC.Presenters;
 using UnityEngine;
 
@@ -114,25 +115,11 @@ namespace Infrastructure.StateMachine.States
 
         private void RegisterServices()
         {
-        
+            ServiceLocator.ServiceLocator.Instance.BindData(typeof(ScoresStorage), new ScoresStorage(0));
+            ServiceLocator.ServiceLocator.Instance.BindData(typeof(DataSaver), new DataSaver((ScoresStorage)ServiceLocator.ServiceLocator.Instance.GetData(typeof(ScoresStorage))));
         }
 
         private void EnterLoadLevel() => 
             _stateMachine.Enter<LoadLevelState, string>(_level);
-    }
-
-
-    public class TimeData
-    {
-        public float BetweenWaveTime { get; private set; }
-        public float StartedTime { get; private set; }
-
-        public TimeData(int betweenWaveBetweenWaveTime, int staredTime)
-        {
-            BetweenWaveTime = betweenWaveBetweenWaveTime;
-            StartedTime = staredTime;
-        }
-    
-    
     }
 }

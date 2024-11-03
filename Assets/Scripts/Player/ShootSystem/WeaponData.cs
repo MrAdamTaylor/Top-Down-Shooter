@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using Player.ShootSystem;
 using Weapon;
 
-namespace Infrastructure.Services.AbstractFactory
+namespace Player.ShootSystem
 {
     public class WeaponData
     {

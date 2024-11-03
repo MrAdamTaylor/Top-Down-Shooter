@@ -10,6 +10,7 @@ using Infrastructure.Services.AbstractFactory;
 using Player.NewWeaponControllSystem;
 using Player.ShootSystem;
 using UI.MVC.Model;
+using UI.MVC.View;
 using UnityEngine;
 using Weapon;
 

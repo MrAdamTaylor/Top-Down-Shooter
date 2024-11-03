@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Configs;
 using EnterpriceLogic.Constants;
 using Infrastructure.ServiceLocator;
+using Logic.Spawners;
 using Logic.Timer;
 using UnityEngine;
 
@@ -20,6 +22,9 @@ namespace Logic
         private float _lastWaveTime;
         private int _maxWaveCount;
         private int _waweIndex = 0;
+        private int _lastIndex;
+
+        public Action<int> WaveChange;
 
         public WaveSystem(List<WaveStruct> spawnerConfigsWaves, List<EnemySpawnList> enemiesSpawnCharacteristics)
         {
@@ -60,6 +65,7 @@ namespace Logic
             }
             else if (1 == _waves.Count)
             {
+                _lastIndex = _waweIndex + 1;
                 WaveStruct wave = GetNextWave();
                 _lastWaveTime = wave.WaveTimePerSeconds;
                 WaveTimer.ReloadTimer(wave.WaveTimePerSeconds);
@@ -68,7 +74,9 @@ namespace Logic
             {
                 Debug.Log("<color=red>Wawes Finish </color>");
                 List<string> accessPool = GetEnemiesList(_enemySpawnLists);
-                SpawnCharacteristics waveData = _spawnCharacteristics[_waweIndex-1];
+                SpawnCharacteristics waveData = _spawnCharacteristics[_lastIndex];
+                _waweIndex++;
+                WaveChange.Invoke(_waweIndex);
                 _spawnManager.Configure( accessPool,waveData);
                 WaveTimer.ReloadTimer(_lastWaveTime);
             }
@@ -85,6 +93,7 @@ namespace Logic
             List<string> accessPool = GetEnemiesList(_enemySpawnLists);
             SpawnCharacteristics waveData = _spawnCharacteristics[_waweIndex];
             _waweIndex++;
+            WaveChange.Invoke(_waweIndex);
             _spawnManager.Configure( accessPool,waveData);
             return wave;
         }

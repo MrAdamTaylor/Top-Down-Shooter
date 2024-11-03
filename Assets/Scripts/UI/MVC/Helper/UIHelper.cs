@@ -30,13 +30,13 @@ namespace UI.MVC.Helper
         }
     
     
-        public void AddScores()
+        /*public void AddScores()
         {
             _scoresStorage.AddScores(_current);
         }
         public void SpendScores()
         {
             _scoresStorage.SpendScores(_current);
-        }
+        }*/
     }
 }

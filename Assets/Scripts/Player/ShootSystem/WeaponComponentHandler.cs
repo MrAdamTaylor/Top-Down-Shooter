@@ -1,11 +1,10 @@
 using System;
 using Player.MouseInput;
-using Player.ShootSystem;
 using UnityEngine;
 using Weapon;
 using Weapon.StaticData;
 
-namespace Infrastructure.Services.AbstractFactory
+namespace Player.ShootSystem
 {
     public class WeaponComponentHandler
     {

@@ -1,4 +1,6 @@
 using System;
+using Infrastructure.ServiceLocator;
+using UI.MVC.Model;
 using UnityEngine;
 
 namespace Enemies
@@ -15,13 +17,17 @@ namespace Enemies
         private EnemyController _enemyController;
         private float _deathCooldown;
         private bool _isDeathCooldown = false;
+        private ScoresStorage _scoresStorage;
+        private int _order;
 
-        public void Construct(EnemyHealth health,EnemyAnimator animator)
+        public void Construct(EnemyHealth health,EnemyAnimator animator, int order=1)
         {
+            _order = order;
             _deathCooldown = DEATH_COOLDOWN;
             _enemyHealth = health;
             _enemyHealth.NoHealthAction += Death;
             _animator = animator;
+            _scoresStorage = (ScoresStorage)ServiceLocator.Instance.GetData(typeof(ScoresStorage));
         }
 
         private void Update()
@@ -46,7 +52,8 @@ namespace Enemies
 
         private void Death()
         {
-            Debug.Log($"<color=red>Enemy Death </color>");
+            //Debug.Log($"<color=red>Enemy Death </color>");
+            _scoresStorage.AddScores(_order);
             DeathAction?.Invoke();
             _animator.PlayDeath();
             _isDeathCooldown = true;

@@ -5,6 +5,7 @@ using Enemies;
 using EnterpriceLogic;
 using EnterpriceLogic.Constants;
 using EnterpriceLogic.Math;
+using Infrastructure.Services;
 using Infrastructure.Services.AbstractFactory;
 using Infrastructure.StateMachine.Interfaces;
 using Logic;
@@ -12,6 +13,8 @@ using Logic.Spawners;
 using Logic.Timer;
 using UI.MVC;
 using UI.MVC.Helper;
+using UI.MVC.Model;
+using UI.MVC.View;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -57,8 +60,11 @@ namespace Infrastructure.StateMachine.States
         private void OnLoaded()
         {
             LoadPlayer();
+            
+
             LoadEnemySpawner();
 
+            
             GameObject gameSystem = new GameObject(ConstantsSceneObjects.GAME_SYSTEM_NAME);
             GameSystem system = gameSystem.AddComponent<GameSystem>();
 
@@ -135,7 +141,8 @@ namespace Infrastructure.StateMachine.States
             }
 
             _playerUIBinder.BindTimer(_timer.GetComponent<GameTimer>(), waveSystem.WaveTimer);
-            _playerUIBinder.BindWaves();
+            _playerUIBinder.BindScores();
+            _playerUIBinder.BindWaves(waveSystem);
             if(waveSystem != null)
                 spawnController.Construct(enemyPools, waveSystem, _timerManager);
             else

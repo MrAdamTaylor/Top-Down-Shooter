@@ -10,8 +10,8 @@ namespace Player
         private PlayerHealth _playerHealth;
         private PlayerAnimator _playerAnimator;
 
-        private bool _isDie;
-        
+        public bool IsDie { get; private set; }
+
         public void Construct(PlayerHealth playerHealth, PlayerAnimator playerAnimator)
         {
             _playerHealth = playerHealth;
@@ -22,9 +22,9 @@ namespace Player
 
         private void Death()
         {
-            if(_isDie)
+            if(IsDie)
                 return;
-            _isDie = true;
+            IsDie = true;
             PlayerDefeat?.Invoke();
             _playerAnimator.PlayDeath();
         }

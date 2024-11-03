@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.MVC
+namespace UI.MVC.View
 {
     public class ImageColorView : CurrencyView
     {
@@ -21,11 +21,13 @@ namespace UI.MVC
         public void SwitchColor()
         {
             _text.color = _color;
+            _image.color = _color;
         }
 
         public void ReturnOriginalColor()
         {
             _text.color = _originalColor;
+            _image.color = _originalColor;
         }
     }
     [Serializable]

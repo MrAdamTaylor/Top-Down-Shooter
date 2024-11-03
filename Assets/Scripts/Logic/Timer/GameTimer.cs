@@ -77,7 +77,7 @@ namespace Logic.Timer
 
         private void OnTimerValueChanged(float remainingSeconds)
         {
-            Debug.Log($"Timer ticked. Remaining seconds: {remainingSeconds}");
+            //Debug.Log($"Timer ticked. Remaining seconds: {remainingSeconds}");
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Utilities.Editor.UI
                 helper.SpendMoney();
             }
             
-            if (GUILayout.Button("Add Scores"))
+            /*if (GUILayout.Button("Add Scores"))
             {
                 helper.AddScores();
             }
@@ -31,7 +31,7 @@ namespace Utilities.Editor.UI
             if (GUILayout.Button("Spend Scores"))
             {
                 helper.SpendScores();
-            }
+            }*/
         }
     }
 }

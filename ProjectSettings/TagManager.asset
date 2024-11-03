@@ -7,6 +7,7 @@ TagManager:
   - InitialPoint
   - Warning
   - PlayerUI
+  - EnemyTestPosition
   layers:
   - Default
   - TransparentFX

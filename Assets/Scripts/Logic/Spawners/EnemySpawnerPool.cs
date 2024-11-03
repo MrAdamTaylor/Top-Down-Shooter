@@ -1,11 +1,10 @@
 using System;
 using Enemies;
 using EnterpriceLogic;
-using Logic.Spawners;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Logic
+namespace Logic.Spawners
 {
     public class EnemySpawnerPool : MonoBehaviour
     {

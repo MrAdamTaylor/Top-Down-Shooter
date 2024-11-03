@@ -2,10 +2,9 @@ using System;
 using DG.Tweening;
 using EnterpriceLogic.Constants;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace UI.MVC
+namespace UI.MVC.View
 {
     [Serializable]
     public class CurrencyViewWithImage : CurrencyView

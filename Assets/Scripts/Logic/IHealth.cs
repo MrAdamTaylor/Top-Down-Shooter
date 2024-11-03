@@ -1,6 +1,4 @@
-using Logic;
-
-namespace Enemies
+namespace Logic
 {
     public interface IHealth : IPlayableComponent
     {

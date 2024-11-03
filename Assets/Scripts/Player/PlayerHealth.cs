@@ -1,6 +1,7 @@
 using System;
 using Enemies;
 using Infrastructure.ServiceLocator;
+using Logic;
 using UI.MVC.Presenters;
 using UnityEngine;
 

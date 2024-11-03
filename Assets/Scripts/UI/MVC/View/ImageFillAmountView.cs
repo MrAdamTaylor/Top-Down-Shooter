@@ -1,6 +1,6 @@
 using UnityEngine.UI;
 
-namespace UI.MVC
+namespace UI.MVC.View
 {
     public class ImageFillAmountView : CurrencyView
     {

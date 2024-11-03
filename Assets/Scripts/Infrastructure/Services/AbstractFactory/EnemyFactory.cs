@@ -104,7 +104,7 @@ namespace Infrastructure.Services.AbstractFactory
             EnemyHealth enemyHealth = enemy.AddComponent<EnemyHealth>();
             enemyHealth.Construct(configs.Health, enemyAnimator);
             EnemyDeath enemyDeath = enemy.AddComponent<EnemyDeath>();
-            enemyDeath.Construct(enemyHealth, enemyAnimator);
+            enemyDeath.Construct(enemyHealth, enemyAnimator, configs.Reward);
             provider.AddToProvideComponent(enemyHealth);
         
             EnemyController enemyController = enemy.AddComponent<EnemyController>();
