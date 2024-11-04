@@ -1,4 +1,5 @@
 using System;
+using Infrastructure.ServiceLocator;
 using Infrastructure.Services.AbstractFactory;
 using UnityEngine;
 using Weapon;
@@ -20,6 +21,7 @@ namespace Player.ShootSystem
             _weaponDelay = data.SpeedFireRange;
             _shootSystem = shootSystem;
             _shootSystem.Construct(data, weaponEffectsConteiner);
+            
         }
 
         public void Shoot()
@@ -37,5 +39,11 @@ namespace Player.ShootSystem
             _weaponDelay = characteristics.FireSpeedRange;
             _shootSystem.UpdateValues(characteristics);
         }
+
+        /*public void AddSelfBlockList()
+        {
+            Player player = (Player)ServiceLocator.Instance.GetData(typeof(Player));
+            player.AddBlockList(this);
+        }*/
     }
 }

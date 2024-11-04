@@ -29,7 +29,6 @@ namespace Enemies.EnemyStateMachine
             _physic.SetActive(true);
             _health.ReloadHealth();
             _animator.PlayIdle();
-            Debug.Log("<color=cyan>Idle State</color>");
         }
 
         public override void UpdateLogic()

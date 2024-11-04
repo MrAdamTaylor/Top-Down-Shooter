@@ -14,9 +14,18 @@ namespace Configs
         public int Reward;
 
         public float RadiusDetection;
+        [Header("HitBox - Radius")]
+        [Range(1.5f, 5f)]
+        public float HitBoxRadius;
     
         public List<GameObject> Skins;
-    
-    
+
+        private void OnValidate()
+        {
+            if (Mathf.Approximately(HitBoxRadius, 0f))
+            {
+                HitBoxRadius = 1.5f;
+            }
+        }
     }
 }

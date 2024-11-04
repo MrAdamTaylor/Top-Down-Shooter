@@ -41,6 +41,7 @@ namespace Infrastructure.Services.AbstractFactory
                 ShootControlSystem shootControlSystem = weapon[i].AddComponent<ShootControlSystem>();
                 weapon[i].Construct(shootControlSystem, data);
                 _weaponComponentHandler.GetShootSystem(weapon[i].transform, data.WType);
+                
             
                 CoomoonShootSystem shootSystem = weapon[i].gameObject.GetComponent<CoomoonShootSystem>();
                 shootControlSystem.Construct(data, _weaponEffectsConteiner, shootSystem);

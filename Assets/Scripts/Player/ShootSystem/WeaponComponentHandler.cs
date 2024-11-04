@@ -13,13 +13,13 @@ namespace Player.ShootSystem
             switch (dataWType)
             {
                 case WeaponType.Pistol:
-                    obj.gameObject.AddComponent<ShootSystemOnly>();
+                    obj.gameObject.AddComponent<ShootSystemOnly>().AddSelfBlockList();
                     break;
                 case WeaponType.ShootGun:
-                    obj.gameObject.AddComponent<ShootSystemFraction>();
+                    obj.gameObject.AddComponent<ShootSystemFraction>().AddSelfBlockList();
                     break;
                 case WeaponType.Rifle:
-                    obj.gameObject.AddComponent<ShootSystemOnly>();
+                    obj.gameObject.AddComponent<ShootSystemOnly>().AddSelfBlockList();
                     break;
                 case WeaponType.Undefinded:
                     throw new Exception("Not find Weapon Type in WeaponFabric.WeaponHandler");
@@ -31,10 +31,12 @@ namespace Player.ShootSystem
             switch (dataInpType)
             {
                 case WeaponInputType.OnClickInput:
-                    transform.gameObject.AddComponent<MouseInputClick>();
+                    MouseInputClick inputClick = transform.gameObject.AddComponent<MouseInputClick>();
+                    inputClick.AddSelfBlockList();
                     break;
                 case WeaponInputType.OnTouchInput:
-                    transform.gameObject.AddComponent<MouseInputTouch>();
+                    MouseInputTouch inputTouch = transform.gameObject.AddComponent<MouseInputTouch>();
+                    inputTouch.AddSelfBlockList();
                     break;
                 case WeaponInputType.Undefinded:
                     throw new Exception("Not find Input System in WeaponFabric.WeaponHandler");

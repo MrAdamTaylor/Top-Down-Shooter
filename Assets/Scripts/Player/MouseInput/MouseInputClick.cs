@@ -1,4 +1,5 @@
 using System;
+using Infrastructure.ServiceLocator;
 using UnityEngine;
 
 namespace Player.MouseInput
@@ -23,6 +24,12 @@ namespace Player.MouseInput
         private void Fire()
         {
             this.OnFire?.Invoke();
+        }
+
+        public void AddSelfBlockList()
+        {
+            Player player = (Player)ServiceLocator.Instance.GetData(typeof(Player));
+            player.AddBlockList(this);
         }
     }
 }

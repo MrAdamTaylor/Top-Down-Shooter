@@ -35,7 +35,5 @@ namespace EnterpriceLogic.Math
             float value = counts * coefficient;
             return (int)value;
         }
-        
-        
     }
 }

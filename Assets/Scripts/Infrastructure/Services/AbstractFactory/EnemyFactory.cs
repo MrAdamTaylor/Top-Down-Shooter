@@ -90,22 +90,22 @@ namespace Infrastructure.Services.AbstractFactory
             enemyAnimator.Construct();
         
             IEnemyMoveSystem moveToPlayer = enemyObject.AddComponent<AgentMoveToPlayer>();
-            moveToPlayer.Construct(enemyObject.transform, 4f);
+            moveToPlayer.Construct(enemyObject.transform, configs.Speed);
 
             IEnemyAttack enemyAttack = visual.AddComponent<EnemySimpleAttack>();
-            enemyAttack.Construct(enemyAnimator, 10,20);
+            enemyAttack.Construct(enemyAnimator, configs.MinDamage,configs.MaxDamage, configs.HitBoxRadius);
         
             EnemyRotateSystem enemyRotateSystem = enemyObject.AddComponent<EnemyRotateSystem>();
             enemyRotateSystem.Construct(enemyObject.transform, player.transform);
         
             ReactionTrigger reactionTrigger = enemyObject.AddComponent<ReactionTrigger>();
-            reactionTrigger.Construct(1.5f, player.transform);
+            reactionTrigger.Construct(configs.MinimalToPlayerDistance, player.transform);
         
             CheckAttack attackChecker = enemyObject.AddComponent<CheckAttack>();
             attackChecker.Construct(enemyAttack, reactionTrigger);
 
             EnemyHealth enemyHealth = enemyObject.AddComponent<EnemyHealth>();
-            enemyHealth.Construct(20, enemyAnimator);
+            enemyHealth.Construct(configs.Health, enemyAnimator);
         
             EnemyDeath enemyDeath = enemyObject.AddComponent<EnemyDeath>();
             enemyDeath.Construct(enemyHealth, enemyAnimator, 1);

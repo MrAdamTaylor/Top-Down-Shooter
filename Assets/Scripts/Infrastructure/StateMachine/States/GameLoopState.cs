@@ -43,13 +43,16 @@ namespace Infrastructure.StateMachine.States
             _playerDeath = (PlayerDeath)ServiceLocator.ServiceLocator.Instance.GetData(typeof(PlayerDeath));
             GameObject playerUI = (GameObject)ServiceLocator.ServiceLocator.Instance.GetData(typeof(GameObject));
             Blocker blocker = new Blocker(_playerDeath, playerUI);
+            GameTimeStoper gameTimeStoper = new GameTimeStoper();
+            Player.Player player = (Player.Player)ServiceLocator.ServiceLocator.Instance.GetData(typeof(Player.Player));
             //_waveSystem = (WaveSystem)ServiceLocator.ServiceLocator.Instance.GetData(typeof(WaveSystem));
             /*_spawnController =
                 (EnemySpawnController)ServiceLocator.ServiceLocator.Instance.GetData(typeof(EnemySpawnController));
             */
             _gameSystem = (GameSystem)ServiceLocator.ServiceLocator.Instance.GetData(typeof(GameSystem));
-            
+            _playerDeath.PlayerDefeat += player.Blocked;
             _playerDeath.PlayerDefeatAction += _gameSystem.ShowResetMenu;
+            _playerDeath.PlayerDefeatAction += gameTimeStoper.StopTime;
             //_playerDeath.PlayerDefeat += _waveSystem.PauseWaveTimer;
             //_playerDeath.PlayerDefeat += _spawnController.PlayerDefeated;
             //_playerDeath.PlayerDefeat += _gameSystem.ShowResetMenu;
@@ -71,6 +74,20 @@ namespace Infrastructure.StateMachine.States
             //_playerDeath.PlayerDefeat -= _spawnController.PlayerDefeated;
             _playerDeath.PlayerDefeatAction -= _gameSystem.ShowResetMenu;
         }
+    }
+
+    public class GameTimeStoper
+    {
+        private float _innerSpeed;
+        
+        public void StopTime()
+        {
+            _innerSpeed = Time.timeScale;
+            Time.timeScale = 0;
+        }
+        
+        
+        
     }
 
     public class Blocker : IDisposable

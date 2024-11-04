@@ -8,7 +8,7 @@ namespace Enemies.EnemyStateMachine
         public bool IsCanAttack { get; }
         void DisableAttack();
         void EnableAttack();
-        void Construct(EnemyAnimator enemyAnimator, float configsMinDamage, float configsMaxDamage);
+        void Construct(EnemyAnimator enemyAnimator, float configsMinDamage, float configsMaxDamage, float hitBox);
         void Attack();
         public bool CooldownIsUp();
     }

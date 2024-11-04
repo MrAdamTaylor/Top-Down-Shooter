@@ -52,6 +52,7 @@ namespace Player.NewWeaponControllSystem
                 if (_mouseInputs[i].GetType() == type)
                 {
                     mouseInput = _mouseInputs[i];
+                    mouseInput.AddSelfBlockList();
                 }
             }
             return mouseInput;

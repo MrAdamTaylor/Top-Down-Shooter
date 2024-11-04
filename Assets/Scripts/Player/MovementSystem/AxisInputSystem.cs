@@ -1,4 +1,5 @@
 using System;
+using Infrastructure.ServiceLocator;
 using UnityEngine;
 
 namespace Player.MovementSystem
@@ -28,6 +29,12 @@ namespace Player.MovementSystem
         {
             _horizontalInput = Input.GetAxisRaw("Horizontal");
             _verticalInput = Input.GetAxisRaw("Vertical");
+        }
+
+        public void AddSelfBlockList()
+        {
+            Player player = (Player)ServiceLocator.Instance.GetData(typeof(Player));
+            player.AddBlockList((MonoBehaviour)this);
         }
     }
 }

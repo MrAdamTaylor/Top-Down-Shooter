@@ -30,7 +30,7 @@ namespace Player.ShootSystem
             _bulletPoint = staticData.BulletPoint;
             _specialEffectFactory = (ISpecialEffectFactory)ServiceLocator.Instance.GetData(typeof(ISpecialEffectFactory));
 
-            // Автоматически находим камеру
+            // РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё РЅР°С…РѕРґРёРј РєР°РјРµСЂСѓ
             _camera = Camera.main;
             if (_camera == null)
             {
@@ -61,12 +61,12 @@ namespace Player.ShootSystem
                 Vector3 hitPoint = ray.GetPoint(enter);
                 Vector3 direction = (hitPoint - _bulletPoint.position).normalized;
 
-                // Устанавливаем минимальную дистанцию
-                float minDistance = 2.0f; // Можно регулировать по необходимости
+                // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РјРёРЅРёРјР°Р»СЊРЅСѓСЋ РґРёСЃС‚Р°РЅС†РёСЋ
+                float minDistance = 2.0f; // РњРѕР¶РЅРѕ СЂРµРіСѓР»РёСЂРѕРІР°С‚СЊ РїРѕ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё
                 if (Vector3.Distance(_bulletPoint.position, hitPoint) < minDistance)
                 {
-                    // Если курсор слишком близко, стреляем прямо вперед от игрока
-                    direction = _bulletPoint.forward; // Вектор вперед относительно точки выстрела
+                    // Р•СЃР»Рё РєСѓСЂСЃРѕСЂ СЃР»РёС€РєРѕРј Р±Р»РёР·РєРѕ, СЃС‚СЂРµР»СЏРµРј РїСЂСЏРјРѕ РІРїРµСЂРµРґ РѕС‚ РёРіСЂРѕРєР°
+                    direction = _bulletPoint.forward; // Р’РµРєС‚РѕСЂ РІРїРµСЂРµРґ РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ С‚РѕС‡РєРё РІС‹СЃС‚СЂРµР»Р°
                 }
 
                 if (Physics.Raycast(_bulletPoint.position, direction, out RaycastHit hit, _distance, _layerMask))

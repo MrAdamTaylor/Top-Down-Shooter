@@ -55,7 +55,7 @@ public class EnemyStateMachineTester : MonoBehaviour
         moveToPlayer.Construct(enemyObject.transform, 4f);
 
         IEnemyAttack enemyAttack = visual.AddComponent<EnemySimpleAttack>();
-        enemyAttack.Construct(enemyAnimator, 10,20);
+        //enemyAttack.Construct(enemyAnimator, 10,20);
         
         EnemyRotateSystem enemyRotateSystem = enemyObject.AddComponent<EnemyRotateSystem>();
         enemyRotateSystem.Construct(enemyObject.transform, player.transform);

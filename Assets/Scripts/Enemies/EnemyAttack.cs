@@ -44,7 +44,7 @@ namespace Enemies
 
         public bool IsCanAttack { get; private set; }
 
-        public void Construct(EnemyAnimator enemyAnimator, float minDamage, float maxDamage)
+        public void Construct(EnemyAnimator enemyAnimator, float minDamage, float maxDamage, float hitbox = 0f)
         {
             _animator = enemyAnimator;
             _layerMask = 1 << LayerMask.NameToLayer("Player");

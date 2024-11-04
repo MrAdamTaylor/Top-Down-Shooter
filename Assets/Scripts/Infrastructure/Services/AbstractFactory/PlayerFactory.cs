@@ -38,9 +38,12 @@ namespace Infrastructure.Services.AbstractFactory
         
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(Transform), player.transform);
             playerObject.AddComponent<CameraFollower>().Construct(camera, player);
-            playerObject.AddComponent<MouseRotateController>().Construct(camera, player);
-            IInputSystem system = playerObject.AddComponent<AxisInputSystem>();
-            playerObject.AddComponent<MoveController>().Construct(player, system);
+            MouseRotateController rotateController = playerObject.AddComponent<MouseRotateController>();
+            rotateController.Construct(camera, player);
+            
+            IInputSystem axisInputSystem = playerObject.AddComponent<AxisInputSystem>();
+            playerObject.AddComponent<MoveController>().Construct(player, axisInputSystem);
+            axisInputSystem.AddSelfBlockList();
             
             WeaponSwitcher switcher = playerObject.AddComponent<WeaponSwitcher>();
             playerObject.AddComponent<WeaponController>();
@@ -60,6 +63,10 @@ namespace Infrastructure.Services.AbstractFactory
             playerDeath.Construct(playerHealth, playerAnimator);
             
             playLoopComponentProvider.AddToProvideComponent(playerHealth);
+            //player.AddBlockList(axisInputSystem);
+            player.AddBlockList(switcher);
+            player.AddBlockList(rotateController);
+            //player.AddBlockList(controller);
             return playerObject;
         }
     }

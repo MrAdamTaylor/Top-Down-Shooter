@@ -32,11 +32,12 @@ namespace Enemies.EnemyStateMachine
         private EnemyAnimationEvent _animationEvent;
         private Collider[] _hits = new Collider[1];
         private float _attackCooldown;
+        private float _hitBoxRadius;
         
         private bool _isAttacking;
         private bool _attackIsPosible;
 
-        public void Construct(EnemyAnimator enemyAnimator, float minDamage, float maxDamage)
+        public void Construct(EnemyAnimator enemyAnimator, float minDamage, float maxDamage, float hitBoxRadius)
         {
             _animator = enemyAnimator;
             _layerMask = 1 << LayerMask.NameToLayer("Player");
@@ -44,6 +45,7 @@ namespace Enemies.EnemyStateMachine
             _minDamage = minDamage;
             _animationEvent = transform.GetComponent<EnemyAnimationEvent>();
             _animationEvent.EnemyAnimEvent.AddListener(OnAnimationEvent);
+            _hitBoxRadius = hitBoxRadius;
         }
 
         void IEnemyAttack.Attack()
@@ -76,7 +78,7 @@ namespace Enemies.EnemyStateMachine
 
         private void OnAnimationEvent(string eventName)
         {
-            Debug.Log($"<color=yellow>Animation Event: {eventName}</color>");
+            //Debug.Log($"<color=yellow>Animation Event: {eventName}</color>");
             switch (eventName)
             {
                 case ANIMATION_ATACK_START:
@@ -100,7 +102,7 @@ namespace Enemies.EnemyStateMachine
         private bool Hit(out Collider hit)
         {
             var transformPosition = HitPointPosition();
-            int hitCount = Physics.OverlapSphereNonAlloc(transformPosition, CLEAVE_RADIUS, _hits, _layerMask);
+            int hitCount = Physics.OverlapSphereNonAlloc(transformPosition, _hitBoxRadius, _hits, _layerMask);
             hit = _hits.FirstOrDefault();
             return hitCount > 0;
         }
@@ -109,7 +111,7 @@ namespace Enemies.EnemyStateMachine
         {
             if (Hit(out Collider hit))
             {
-                PhysicsDebug.DrawDebugRaysFromPoint(HitPointPosition(), CLEAVE_RADIUS, Constants.DEBUG_RILLRATE_TIME);
+                PhysicsDebug.DrawDebugRaysFromPoint(HitPointPosition(), _hitBoxRadius, Constants.DEBUG_RILLRATE_TIME);
                 PlayLoopComponentProvider provider = hit.transform.GetComponent<PlayLoopComponentProvider>();
                 PlayerHealth health = (PlayerHealth)provider.TakeComponent(typeof(PlayerHealth));
                 health.TakeDamage(Random.Range(_minDamage, _maxDamage));

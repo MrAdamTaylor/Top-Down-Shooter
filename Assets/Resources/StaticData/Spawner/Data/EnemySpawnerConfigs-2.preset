@@ -6,7 +6,7 @@ Preset:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemySpawnerTestDataPreset
+  m_Name: EnemySpawnerConfigs-2
   m_TargetType:
     m_NativeTypeID: 114
     m_ManagedTypePPtr: {fileID: 11500000, guid: 46f3dda42c7741a3ae3725499a498248, type: 3}
@@ -62,7 +62,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: SpawnList.Array.data[0].PercantageForEachWaves.Array.data[4]
-    value: 0
+    value: 30
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: SpawnList.Array.data[1].EnemyConfigs
@@ -94,7 +94,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: SpawnList.Array.data[1].PercantageForEachWaves.Array.data[4]
-    value: 0
+    value: 40
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: SpawnList.Array.data[2].EnemyConfigs
@@ -126,7 +126,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: SpawnList.Array.data[2].PercantageForEachWaves.Array.data[4]
-    value: 0
+    value: 30
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: Waves.Array.size

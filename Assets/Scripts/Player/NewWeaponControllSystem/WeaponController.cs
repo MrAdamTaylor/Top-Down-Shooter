@@ -38,6 +38,8 @@ namespace Player.NewWeaponControllSystem
             _weapon = weapon;
             _ammoController = _weapon.GetComponent<AmmoController>();
             Type inputSystem = weapon.gameObject.GetComponent<IMouseInput>().GetType();
+            /*IPlayerSystem system = inputSystem as IPlayerSystem;
+            system.AddSelfBlockList();*/
             _mouseInput = _weaponInputHandler.FindEqual(inputSystem);
             _mouseInput.OnFire += OnShoot;
             if (_ammoAdapter != null)
