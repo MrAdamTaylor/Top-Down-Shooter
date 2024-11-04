@@ -100,6 +100,7 @@ namespace Infrastructure.StateMachine.States
             _playerUIBinder.BindAmmo(player);
             _playerUIBinder.BindHealth(player);
             ConstructUI(ui);
+            ServiceLocator.ServiceLocator.Instance.BindData(typeof(GameObject), ui);
         }
 
         private GameObject CreateTimer(TimeData data)

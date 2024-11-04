@@ -34,5 +34,10 @@ namespace Player
             _current -= damage;
             _healthAdapter.UpdateValues(_current, _maxValue);
         }
+
+        public void CanReload()
+        {
+            Debug.Log("Player can be reloaded!");
+        }
     }
 }

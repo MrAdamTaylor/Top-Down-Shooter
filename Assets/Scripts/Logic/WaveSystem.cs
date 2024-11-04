@@ -72,13 +72,13 @@ namespace Logic
             }
             else if(0 == _waves.Count)
             {
-                Debug.Log("<color=red>Wawes Finish </color>");
+                /*Debug.Log("<color=red>Wawes Finish </color>");
                 List<string> accessPool = GetEnemiesList(_enemySpawnLists);
                 SpawnCharacteristics waveData = _spawnCharacteristics[_lastIndex];
                 _waweIndex++;
                 WaveChange.Invoke(_waweIndex);
                 _spawnManager.Configure( accessPool,waveData);
-                WaveTimer.ReloadTimer(_lastWaveTime);
+                WaveTimer.ReloadTimer(_lastWaveTime);*/
             }
             else
             {

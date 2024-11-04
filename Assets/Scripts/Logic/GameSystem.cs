@@ -8,7 +8,6 @@ namespace Logic
 {
     public class GameSystem : MonoBehaviour
     {
-
         private GameObject _resetMenu;
 
         private GameObject _bootstraper;

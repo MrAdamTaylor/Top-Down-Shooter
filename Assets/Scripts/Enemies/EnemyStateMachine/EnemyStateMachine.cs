@@ -14,11 +14,12 @@ namespace Enemies.EnemyStateMachine
         public BaseState DecideState;
         public BaseState DeathState;
 
+        private bool _isConstructed;
+
         public void Construct(EnemyAnimator enemyAnimator, IEnemyMoveSystem enemyMoveSystem, 
             EnemyRotateSystem enemyRotateSystem, IEnemyAttack enemyAttack, EnemyHealth enemyHealth, 
             GameObject physic) 
         {
-            
             Animator = enemyAnimator;
             IdleState = new IdleState(this, enemyAnimator, physic, enemyHealth);
             MoveState = new FollowPlayerState(this, enemyMoveSystem, enemyHealth, enemyRotateSystem);
@@ -28,11 +29,13 @@ namespace Enemies.EnemyStateMachine
             _currentState = GetDefaultState();
             if(_currentState != null)
                 _currentState.Enter();
+            _isConstructed = true;
         }
 
         private void OnEnable()
         {
-            ChangeState(IdleState);
+            if(_isConstructed)
+                ChangeState(IdleState);
         }
 
         public void GoalIsDefeated()
