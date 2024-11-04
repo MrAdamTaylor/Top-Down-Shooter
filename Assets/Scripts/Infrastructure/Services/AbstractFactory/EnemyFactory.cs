@@ -79,42 +79,45 @@ namespace Infrastructure.Services.AbstractFactory
             Debug.Log($"<color=green>  {configs.Name} is Created Registered</color>");
         }
 
-        private void CreateWalking(GameObject enemy, EnemyWalkingConfigs configs)
+        private void CreateWalking(GameObject enemyObject, EnemyWalkingConfigs configs)
         {
-            Transform visual = enemy.transform.Find(ConstantsSceneObjects.PREFAB_MESH_COMPONENT_NAME);
-            Transform physic = enemy.transform.Find(ConstantsSceneObjects.PREFAB_PHYSIC_COMPONENT_NAME);
+            Transform visual = enemyObject.transform.Find(ConstantsSceneObjects.PREFAB_MESH_COMPONENT_NAME);
+            Transform physic = enemyObject.transform.Find(ConstantsSceneObjects.PREFAB_PHYSIC_COMPONENT_NAME);
             PlayLoopComponentProvider provider = physic.GetComponent<PlayLoopComponentProvider>();
             Player.Player player = (Player.Player)ServiceLocator.ServiceLocator.Instance.GetData(typeof(Player.Player));
-
+        
             EnemyAnimator enemyAnimator = visual.AddComponent<EnemyAnimator>();
             enemyAnimator.Construct();
-            //EnemyAnimationEvent enemyAnimationEvent = visual.AddComponent<EnemyAnimationEvent>();
         
-            //MoveToPlayer moveToPlayer = enemy.AddComponent<MoveToPlayer>();
-            IEnemyMoveSystem moveToPlayer = enemy.AddComponent<AgentMoveToPlayer>();
-            moveToPlayer.Construct(enemy.transform, configs.Speed);
-            EnemyRotateSystem enemyRotateSystem = enemy.AddComponent<EnemyRotateSystem>();
-            enemyRotateSystem.Construct(enemy.transform, player.transform);
-            ReactionTrigger reactionTrigger = enemy.AddComponent<ReactionTrigger>();
-            reactionTrigger.Construct(configs.RadiusDetection, player.transform);
+            IEnemyMoveSystem moveToPlayer = enemyObject.AddComponent<AgentMoveToPlayer>();
+            moveToPlayer.Construct(enemyObject.transform, 4f);
+
+            IEnemyAttack enemyAttack = visual.AddComponent<EnemySimpleAttack>();
+            enemyAttack.Construct(enemyAnimator, 10,20);
         
-            IEnemyAttack enemyAttack = visual.AddComponent<EnemyAttack>();
-            enemyAttack.Construct(enemyAnimator, configs.MinDamage, configs.MaxDamage);
-            CheckAttack attackChecker = enemy.AddComponent<CheckAttack>();
+            EnemyRotateSystem enemyRotateSystem = enemyObject.AddComponent<EnemyRotateSystem>();
+            enemyRotateSystem.Construct(enemyObject.transform, player.transform);
+        
+            ReactionTrigger reactionTrigger = enemyObject.AddComponent<ReactionTrigger>();
+            reactionTrigger.Construct(1.5f, player.transform);
+        
+            CheckAttack attackChecker = enemyObject.AddComponent<CheckAttack>();
             attackChecker.Construct(enemyAttack, reactionTrigger);
-            EnemyHealth enemyHealth = enemy.AddComponent<EnemyHealth>();
-            enemyHealth.Construct(configs.Health, enemyAnimator);
-            EnemyDeath enemyDeath = enemy.AddComponent<EnemyDeath>();
-            enemyDeath.Construct(enemyHealth, enemyAnimator, configs.Reward);
+
+            EnemyHealth enemyHealth = enemyObject.AddComponent<EnemyHealth>();
+            enemyHealth.Construct(20, enemyAnimator);
+        
+            EnemyDeath enemyDeath = enemyObject.AddComponent<EnemyDeath>();
+            enemyDeath.Construct(enemyHealth, enemyAnimator, 1);
             provider.AddToProvideComponent(enemyHealth);
         
-            EnemyController enemyController = enemy.AddComponent<EnemyController>();
-            enemyController.Construct(moveToPlayer, enemyAnimator, enemyRotateSystem, enemyAttack, 
-                configs.MinimalToPlayerDistance, enemyDeath, physic.gameObject, enemyHealth);
-
-            List<EnemyController> enemies =
-                (List<EnemyController>)ServiceLocator.ServiceLocator.Instance.GetData(typeof(List<EnemyController>));
-            enemies.Add(enemyController);
+            EnemyStateMachine stateMachine = enemyObject.AddComponent<EnemyStateMachine>();
+            stateMachine.Construct(enemyAnimator, moveToPlayer,enemyRotateSystem, enemyAttack, enemyHealth, physic.gameObject);
+            //return enemyObject;
+            List<EnemyStateMachine> enemies =
+                (List<EnemyStateMachine>)ServiceLocator.ServiceLocator.Instance.GetData(typeof(List<EnemyStateMachine>));
+            enemies.Add(stateMachine);
+            
         }
 
         private void CreateKamikaze(GameObject enemy, EnemyKamikazeConfigs configs)

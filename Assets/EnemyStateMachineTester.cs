@@ -12,6 +12,7 @@ public class EnemyStateMachineTester : MonoBehaviour
     public GameObject EnemyObject;
 
     private Vector3 _position;
+    private GameObject _enemy;
     public void Start()
     {
         GameObject gameObject = GameObject.FindWithTag("EnemyTestPosition");
@@ -22,11 +23,24 @@ public class EnemyStateMachineTester : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            CreateStateMachineEnemy();
+            if(_enemy == null)
+                _enemy = CreateStateMachineEnemy();
+        }
+
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            if(_enemy != null)
+                _enemy.SetActive(false);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            if(_enemy != null)
+                _enemy.SetActive(true);
         }
     }
 
-    private void CreateStateMachineEnemy()
+    private GameObject CreateStateMachineEnemy()
     {
         GameObject enemyObject = Instantiate(EnemyObject, _position, Quaternion.identity);
         Transform visual = enemyObject.transform.Find(ConstantsSceneObjects.PREFAB_MESH_COMPONENT_NAME);
@@ -55,7 +69,12 @@ public class EnemyStateMachineTester : MonoBehaviour
         EnemyHealth enemyHealth = enemyObject.AddComponent<EnemyHealth>();
         enemyHealth.Construct(20, enemyAnimator);
         
+        EnemyDeath enemyDeath = enemyObject.AddComponent<EnemyDeath>();
+        enemyDeath.Construct(enemyHealth, enemyAnimator, 1);
+        provider.AddToProvideComponent(enemyHealth);
+        
         EnemyStateMachine stateMachine = enemyObject.AddComponent<EnemyStateMachine>();
-        stateMachine.Construct(enemyAnimator, moveToPlayer,enemyRotateSystem, enemyAttack, enemyHealth);
+        stateMachine.Construct(enemyAnimator, moveToPlayer,enemyRotateSystem, enemyAttack, enemyHealth, physic.gameObject);
+        return enemyObject;
     }
 }

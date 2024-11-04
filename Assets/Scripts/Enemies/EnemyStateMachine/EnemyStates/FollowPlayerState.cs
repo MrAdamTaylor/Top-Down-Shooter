@@ -6,11 +6,6 @@ namespace Enemies.EnemyStateMachine
     {
         private IEnemyMoveSystem _moveSystem;
         
-        /*public FollowPlayerState(EnemyStateMachine enemyStateMachine) : base("Follow Player State",enemyStateMachine)
-        {
-       
-        }*/
-        
         public FollowPlayerState(EnemyStateMachine enemyStateMachine, IEnemyMoveSystem moveSystem, EnemyHealth health,
             EnemyRotateSystem rotateSystem) : base("Follow Player State",enemyStateMachine, health,rotateSystem)
         {
@@ -20,7 +15,23 @@ namespace Enemies.EnemyStateMachine
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("<color=cyan>Follow Player State</color>");
+            _moveSystem.Move();
+            EnemyStateMachine.Animator.Move(1f);
+        }
+        
+        public override void UpdateLogic()
+        {
+            base.UpdateLogic();
+            if(!_moveSystem.IsReached())
+                NpcStateMachine.ChangeState(EnemyStateMachine.DecideState);
+
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+            EnemyStateMachine.Animator.StopMoving();
+            _moveSystem.StopMove();
         }
     }
 }

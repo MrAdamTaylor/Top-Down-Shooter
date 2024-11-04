@@ -6,6 +6,7 @@ using Logic;
 using Logic.Animation;
 using Player;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Enemies.EnemyStateMachine
 {
@@ -16,8 +17,11 @@ namespace Enemies.EnemyStateMachine
     
         private const float ATTACK_COOLDOWN = 1f;
         private const float SHIFTED_DISTANCE = 0.5f;
-        private const float CLEAVE_RADIUS = 0.8f;
+        private const float CLEAVE_RADIUS = 1.7f;
         private const float HIT_BOX_HIGH_SHIFTED = 0.6f;
+
+        public Action ActionAttackEnd { get; set; }
+    
 
         public bool IsCanAttack { get; private set; }
 
@@ -31,7 +35,6 @@ namespace Enemies.EnemyStateMachine
         
         private bool _isAttacking;
         private bool _attackIsPosible;
-        
 
         public void Construct(EnemyAnimator enemyAnimator, float minDamage, float maxDamage)
         {
@@ -41,6 +44,12 @@ namespace Enemies.EnemyStateMachine
             _minDamage = minDamage;
             _animationEvent = transform.GetComponent<EnemyAnimationEvent>();
             _animationEvent.EnemyAnimEvent.AddListener(OnAnimationEvent);
+        }
+
+        void IEnemyAttack.Attack()
+        {
+            _animator.PlayAttack(Random.Range(Constants.MINIMAL_ATTACK_ANIMATION,Constants.MAXIMUM_ATTACK_ANIMATION));
+            _isAttacking = true;
         }
 
         private void Update()
@@ -71,7 +80,7 @@ namespace Enemies.EnemyStateMachine
             switch (eventName)
             {
                 case ANIMATION_ATACK_START:
-                    Attack();
+                    MakeHit();
                     break;
                 case ANIMATION_ATACK_END:
                     AttackEnd();
@@ -83,7 +92,9 @@ namespace Enemies.EnemyStateMachine
 
         private void AttackEnd()
         {
+            _isAttacking = false;
             _attackCooldown = ATTACK_COOLDOWN;
+            ActionAttackEnd?.Invoke();
         }
 
         private bool Hit(out Collider hit)
@@ -94,14 +105,14 @@ namespace Enemies.EnemyStateMachine
             return hitCount > 0;
         }
 
-        private void Attack()
+        private void MakeHit()
         {
             if (Hit(out Collider hit))
             {
                 PhysicsDebug.DrawDebugRaysFromPoint(HitPointPosition(), CLEAVE_RADIUS, Constants.DEBUG_RILLRATE_TIME);
                 PlayLoopComponentProvider provider = hit.transform.GetComponent<PlayLoopComponentProvider>();
                 PlayerHealth health = (PlayerHealth)provider.TakeComponent(typeof(PlayerHealth));
-                //health.TakeDamage(Random.Range(_minDamage, _maxDamage));
+                health.TakeDamage(Random.Range(_minDamage, _maxDamage));
             }
         }
 
@@ -109,10 +120,8 @@ namespace Enemies.EnemyStateMachine
         {
             return new Vector3(transform.position.x, transform.position.y + HIT_BOX_HIGH_SHIFTED, transform.position.z) + transform.forward*SHIFTED_DISTANCE;
         }
-        
-        
 
-        private bool CooldownIsUp()
+        public bool CooldownIsUp()
         {
             return _attackCooldown <= 0f;
         }

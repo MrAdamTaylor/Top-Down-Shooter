@@ -21,9 +21,15 @@ namespace Enemies.EnemyStateMachine
         protected ActionMoveState(string name, NPCStateMachine npcStateMachine, EnemyHealth health, EnemyRotateSystem rotateSystem) : base(name, npcStateMachine)
         {
             _health = health;
+            _health.NoHealthAction += ChangeStateToDie;
             _rotateSystem = rotateSystem;
             _playerDeath = (PlayerDeath)ServiceLocator.Instance.GetData(typeof(PlayerDeath));
             EnemyStateMachine = (EnemyStateMachine)NpcStateMachine;
+        }
+
+        private void ChangeStateToDie()
+        {
+            NpcStateMachine.ChangeState(EnemyStateMachine.DeathState);
         }
 
         public override void UpdateLogic()
@@ -31,6 +37,19 @@ namespace Enemies.EnemyStateMachine
             base.UpdateLogic();
             if(_playerDeath.IsDie)
                 NpcStateMachine.ChangeState(EnemyStateMachine.IdleState);
+        }
+        
+
+        public override void Enter()
+        {
+            base.Enter();
+            _rotateSystem.RotateStart();
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+            _rotateSystem.RotateStop();
         }
     }
 }

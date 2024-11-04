@@ -1,33 +1,54 @@
+using System;
 using UnityEngine;
 
 namespace Enemies.EnemyStateMachine
 {
-    public class AttackState : ActionMoveState
+    public class AttackState : ActionMoveState, IDisposable
     {
 
         private IEnemyAttack _enemyAttack;
-        
-        /*public AttackState(EnemyStateMachine enemyStateMachine) : base("AttackState", enemyStateMachine)
-        {
-        
-        }*/
         
         public AttackState(EnemyStateMachine enemyStateMachine, IEnemyAttack enemyAttack, EnemyHealth enemyHealth, 
             EnemyRotateSystem enemyRotateSystem) 
             : base("AttackState", enemyStateMachine, enemyHealth, enemyRotateSystem)
         {
             _enemyAttack = enemyAttack;
+            _enemyAttack.ActionAttackEnd += AttackEnd;
         }
 
         public override void Enter()
         {
             base.Enter();
-            Debug.Log("<color=cyan>Attack State Active</color>");
         }
-    
-        public override void UpdateLogic()
+
+        public override void Exit()
         {
             
+        }
+
+        public override void UpdateLogic()
+        {
+            base.UpdateLogic();
+            if (_enemyAttack.IsCanAttack)
+                _enemyAttack.Attack();
+            else
+            {
+                if (!_enemyAttack.CooldownIsUp())
+                {
+                    NpcStateMachine.ChangeState(EnemyStateMachine.DecideState);
+                }
+            }
+        }
+
+        private void AttackEnd()
+        {
+            NpcStateMachine.ChangeState(EnemyStateMachine.DecideState);
+        }
+        
+
+        public void Dispose()
+        {
+            _enemyAttack.ActionAttackEnd -= AttackEnd;
         }
     }
 }

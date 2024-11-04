@@ -7,13 +7,6 @@ namespace Enemies.EnemyStateMachine
         private const string NO_STATE = "(no current state)";
         protected BaseState _currentState;
 
-        /*public void Start()
-        {
-            _currentState = GetDefaultState();
-            if(_currentState != null)
-                _currentState.Enter();
-        }*/
-
         void Update()
         {
             if(_currentState!= null)
@@ -38,10 +31,10 @@ namespace Enemies.EnemyStateMachine
             return null;
         }
 
-        private void OnGUI()
+        /*private void OnGUI()
         {
             string content = _currentState != null ? _currentState.Name : NO_STATE;
             GUILayout.Label($"<color='black'><size=40>{content}</size></color>");
-        }
+        }*/
     }
 }

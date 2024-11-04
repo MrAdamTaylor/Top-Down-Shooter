@@ -785,6 +785,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -1049,6 +1057,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (36)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1182,6 +1198,10 @@ PrefabInstance:
     - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
@@ -1504,6 +1524,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Tree_Dead_04 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2266404328464906784, guid: 2eda3b6db64ebbf4aaa1513c37212954, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1535694899, guid: 2eda3b6db64ebbf4aaa1513c37212954, type: 3}
     - {fileID: 1535694898, guid: 2eda3b6db64ebbf4aaa1513c37212954, type: 3}
@@ -1651,6 +1675,14 @@ PrefabInstance:
     - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
@@ -2951,7 +2983,6 @@ Transform:
   - {fileID: 1724787002}
   - {fileID: 1720790080}
   - {fileID: 1651381426}
-  - {fileID: 1500194449}
   m_Father: {fileID: 1461863240}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3052,6 +3083,10 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (51)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -3560,7 +3595,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &109321184
 Transform:
   m_ObjectHideFlags: 0
@@ -3781,6 +3816,10 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (40)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -4202,6 +4241,10 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -5259,6 +5302,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (48)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -5343,6 +5390,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (50)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -5415,6 +5466,10 @@ PrefabInstance:
     - target: {fileID: 3605053844651805081, guid: 50f973547b0c12349b2a37ef98f03df2, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Boarded_Wood_04 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605053844651805081, guid: 50f973547b0c12349b2a37ef98f03df2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4128791453274002211, guid: 50f973547b0c12349b2a37ef98f03df2, type: 3}
       propertyPath: m_RootOrder
@@ -6013,6 +6068,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -6350,6 +6413,10 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (59)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -7617,6 +7684,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (47)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -7773,6 +7844,10 @@ PrefabInstance:
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Fence_Cemetary_01 (54)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_NavMeshLayer
@@ -7949,6 +8024,10 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -8153,6 +8232,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -8343,6 +8430,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (62)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -8421,6 +8512,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (58)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -8498,6 +8593,14 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -8924,6 +9027,14 @@ PrefabInstance:
     - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
@@ -9453,6 +9564,10 @@ PrefabInstance:
       value: SM_Bld_Fence_Cemetary_01 (52)
       objectReference: {fileID: 0}
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -9910,6 +10025,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (44)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -10142,6 +10261,10 @@ PrefabInstance:
       value: SM_Bld_Fence_Cemetary_02 (18)
       objectReference: {fileID: 0}
     - target: {fileID: 7276090184807176047, guid: 3039ac338f0bce74cb61ca91efcf8817, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276090184807176047, guid: 3039ac338f0bce74cb61ca91efcf8817, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -10291,6 +10414,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -10419,6 +10550,14 @@ PrefabInstance:
     - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
@@ -11038,6 +11177,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (47)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -11403,6 +11546,10 @@ PrefabInstance:
       value: SM_Bld_Fence_Cemetary_01 (49)
       objectReference: {fileID: 0}
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -11553,6 +11700,10 @@ PrefabInstance:
       value: SM_Bld_Fence_Cemetary_02 (12)
       objectReference: {fileID: 0}
     - target: {fileID: 7276090184807176047, guid: 3039ac338f0bce74cb61ca91efcf8817, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276090184807176047, guid: 3039ac338f0bce74cb61ca91efcf8817, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -11700,6 +11851,10 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -11915,15 +12070,27 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 85622182}
+    m_TransformParent: {fileID: 534063006}
     m_Modifications:
     - target: {fileID: 1611046470452428, guid: d49a5819228d16244a06a8f9c1200976, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Diner_01
       objectReference: {fileID: 0}
     - target: {fileID: 1611046470452428, guid: d49a5819228d16244a06a8f9c1200976, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611046470452428, guid: d49a5819228d16244a06a8f9c1200976, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611046470452428, guid: d49a5819228d16244a06a8f9c1200976, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806440392434304, guid: d49a5819228d16244a06a8f9c1200976, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1806440392434304, guid: d49a5819228d16244a06a8f9c1200976, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -11935,23 +12102,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4705000569198484, guid: d49a5819228d16244a06a8f9c1200976, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.0211
+      value: 1.0210998
       objectReference: {fileID: 0}
     - target: {fileID: 4705000569198484, guid: d49a5819228d16244a06a8f9c1200976, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.49296117
+      value: -4.828606
       objectReference: {fileID: 0}
     - target: {fileID: 4705000569198484, guid: d49a5819228d16244a06a8f9c1200976, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.15999997
+      value: -1.134
       objectReference: {fileID: 0}
     - target: {fileID: 4705000569198484, guid: d49a5819228d16244a06a8f9c1200976, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -35.637333
+      value: -0.43469858
       objectReference: {fileID: 0}
     - target: {fileID: 4705000569198484, guid: d49a5819228d16244a06a8f9c1200976, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 4705000569198484, guid: d49a5819228d16244a06a8f9c1200976, type: 3}
       propertyPath: m_LocalRotation.x
@@ -11959,7 +12126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4705000569198484, guid: d49a5819228d16244a06a8f9c1200976, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 4705000569198484, guid: d49a5819228d16244a06a8f9c1200976, type: 3}
       propertyPath: m_LocalRotation.z
@@ -12059,6 +12226,10 @@ PrefabInstance:
     - target: {fileID: 7990494909315212289, guid: 205bc7816f424ca478d0df206bb374d8, type: 3}
       propertyPath: m_Name
       value: SM_Env_Road_04 (73)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990494909315212289, guid: 205bc7816f424ca478d0df206bb374d8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7990494909315212289, guid: 205bc7816f424ca478d0df206bb374d8, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -12407,6 +12578,10 @@ PrefabInstance:
     - target: {fileID: 3605053844651805081, guid: 50f973547b0c12349b2a37ef98f03df2, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Boarded_Wood_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 3605053844651805081, guid: 50f973547b0c12349b2a37ef98f03df2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3605053844651805081, guid: 50f973547b0c12349b2a37ef98f03df2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -12802,6 +12977,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (60)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -12970,6 +13149,10 @@ PrefabInstance:
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Fence_Cemetary_01 (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_NavMeshLayer
@@ -13348,6 +13531,10 @@ PrefabInstance:
     - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (46)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
@@ -13871,6 +14058,14 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -14804,6 +14999,10 @@ PrefabInstance:
       value: SM_Bld_Fence_Pillar_Cemetary_01 (16)
       objectReference: {fileID: 0}
     - target: {fileID: 4547341904957719829, guid: ed3fa8df7e37ad04f8a8a0d222ae2754, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547341904957719829, guid: ed3fa8df7e37ad04f8a8a0d222ae2754, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -14926,6 +15125,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -15042,6 +15249,10 @@ PrefabInstance:
     - target: {fileID: 4547341904957719829, guid: ed3fa8df7e37ad04f8a8a0d222ae2754, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Fence_Pillar_Cemetary_01 (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547341904957719829, guid: ed3fa8df7e37ad04f8a8a0d222ae2754, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4547341904957719829, guid: ed3fa8df7e37ad04f8a8a0d222ae2754, type: 3}
       propertyPath: m_NavMeshLayer
@@ -15568,6 +15779,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (48)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -16020,6 +16235,10 @@ PrefabInstance:
     - target: {fileID: 4047619411423330996, guid: 9629320e0d4448e43aafe804522b3c22, type: 3}
       propertyPath: m_Name
       value: SM_Env_Rock_02 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047619411423330996, guid: 9629320e0d4448e43aafe804522b3c22, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4047619411423330996, guid: 9629320e0d4448e43aafe804522b3c22, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -17358,6 +17577,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (42)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -17747,7 +17970,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 822851469}
+    m_TransformParent: {fileID: 534063006}
     m_Modifications:
     - target: {fileID: 109516, guid: 92c18b2325a34b643ba3b07d2cfaac4a, type: 3}
       propertyPath: m_Layer
@@ -17867,19 +18090,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 434564, guid: 92c18b2325a34b643ba3b07d2cfaac4a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23
+      value: 57.948753
       objectReference: {fileID: 0}
     - target: {fileID: 434564, guid: 92c18b2325a34b643ba3b07d2cfaac4a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.25582695
+      value: -1.2298269
       objectReference: {fileID: 0}
     - target: {fileID: 434564, guid: 92c18b2325a34b643ba3b07d2cfaac4a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 27.14
+      value: 23.058266
       objectReference: {fileID: 0}
     - target: {fileID: 434564, guid: 92c18b2325a34b643ba3b07d2cfaac4a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.78509474
+      value: -0.11718111
       objectReference: {fileID: 0}
     - target: {fileID: 434564, guid: 92c18b2325a34b643ba3b07d2cfaac4a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -17887,7 +18110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 434564, guid: 92c18b2325a34b643ba3b07d2cfaac4a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.61937565
+      value: -0.9931106
       objectReference: {fileID: 0}
     - target: {fileID: 434564, guid: 92c18b2325a34b643ba3b07d2cfaac4a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -18026,6 +18249,14 @@ PrefabInstance:
     - target: {fileID: 3821567611340341316, guid: 8b4a85f9180c6b145834d5782453ffc1, type: 3}
       propertyPath: m_Name
       value: SM_Env_Tree_Cluster_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3821567611340341316, guid: 8b4a85f9180c6b145834d5782453ffc1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3821567611340341316, guid: 8b4a85f9180c6b145834d5782453ffc1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7077079115550236902, guid: 8b4a85f9180c6b145834d5782453ffc1, type: 3}
       propertyPath: m_RootOrder
@@ -18754,6 +18985,11 @@ Transform:
   - {fileID: 1351686002}
   - {fileID: 637273676}
   - {fileID: 694198258}
+  - {fileID: 622929232}
+  - {fileID: 508271898}
+  - {fileID: 1088768974}
+  - {fileID: 997087106}
+  - {fileID: 1500194449}
   m_Father: {fileID: 1461863240}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18768,6 +19004,10 @@ PrefabInstance:
     - target: {fileID: 7468453053722539627, guid: d46388ce1f854b24db247ac7b23e7d41, type: 3}
       propertyPath: m_Name
       value: SM_Env_Tree_Dead_02 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468453053722539627, guid: d46388ce1f854b24db247ac7b23e7d41, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7849377050755362001, guid: d46388ce1f854b24db247ac7b23e7d41, type: 3}
       propertyPath: m_RootOrder
@@ -19058,6 +19298,10 @@ PrefabInstance:
     - target: {fileID: 7276090184807176047, guid: 3039ac338f0bce74cb61ca91efcf8817, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Fence_Cemetary_02 (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276090184807176047, guid: 3039ac338f0bce74cb61ca91efcf8817, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7276090184807176047, guid: 3039ac338f0bce74cb61ca91efcf8817, type: 3}
       propertyPath: m_NavMeshLayer
@@ -19628,6 +19872,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Tree_Cluster_01 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3821567611340341316, guid: 8b4a85f9180c6b145834d5782453ffc1, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7077079115550236902, guid: 8b4a85f9180c6b145834d5782453ffc1, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -19737,6 +19985,10 @@ PrefabInstance:
     - target: {fileID: 6049709427490587786, guid: e66839f65cf76904fa4cab61af3555eb, type: 3}
       propertyPath: m_Name
       value: SM_Env_Road_01 (296)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049709427490587786, guid: e66839f65cf76904fa4cab61af3555eb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6049709427490587786, guid: e66839f65cf76904fa4cab61af3555eb, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -20651,6 +20903,10 @@ PrefabInstance:
     - target: {fileID: 4189578134408584881, guid: 649cfd5a63de1c14da210383152753da, type: 3}
       propertyPath: m_Name
       value: SM_Env_Tree_Dead_01 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4189578134408584881, guid: 649cfd5a63de1c14da210383152753da, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1196754140, guid: 649cfd5a63de1c14da210383152753da, type: 3}
@@ -21887,7 +22143,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 822851469}
+    m_TransformParent: {fileID: 534063006}
     m_Modifications:
     - target: {fileID: 109516, guid: 92c18b2325a34b643ba3b07d2cfaac4a, type: 3}
       propertyPath: m_Layer
@@ -22007,19 +22263,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 434564, guid: 92c18b2325a34b643ba3b07d2cfaac4a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.853994
+      value: 57.979317
       objectReference: {fileID: 0}
     - target: {fileID: 434564, guid: 92c18b2325a34b643ba3b07d2cfaac4a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.255826
+      value: -1.229826
       objectReference: {fileID: 0}
     - target: {fileID: 434564, guid: 92c18b2325a34b643ba3b07d2cfaac4a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 27.17056
+      value: 16.91225
       objectReference: {fileID: 0}
     - target: {fileID: 434564, guid: 92c18b2325a34b643ba3b07d2cfaac4a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7823591
+      value: 0.99361706
       objectReference: {fileID: 0}
     - target: {fileID: 434564, guid: 92c18b2325a34b643ba3b07d2cfaac4a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -22027,7 +22283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 434564, guid: 92c18b2325a34b643ba3b07d2cfaac4a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.62282765
+      value: 0.112805784
       objectReference: {fileID: 0}
     - target: {fileID: 434564, guid: 92c18b2325a34b643ba3b07d2cfaac4a, type: 3}
       propertyPath: m_LocalRotation.z
@@ -22796,6 +23052,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Tree_Dead_01 (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4189578134408584881, guid: 649cfd5a63de1c14da210383152753da, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1196754140, guid: 649cfd5a63de1c14da210383152753da, type: 3}
     - {fileID: 1196754139, guid: 649cfd5a63de1c14da210383152753da, type: 3}
@@ -23068,6 +23328,10 @@ PrefabInstance:
     - target: {fileID: 4047619411423330996, guid: 9629320e0d4448e43aafe804522b3c22, type: 3}
       propertyPath: m_Name
       value: SM_Env_Rock_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047619411423330996, guid: 9629320e0d4448e43aafe804522b3c22, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 491915174841502424, guid: 9629320e0d4448e43aafe804522b3c22, type: 3}
@@ -23659,6 +23923,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -23840,6 +24108,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -23998,6 +24274,10 @@ PrefabInstance:
     - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (52)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
@@ -25079,6 +25359,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (50)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -25231,6 +25515,10 @@ PrefabInstance:
     - target: {fileID: 4315946911482282824, guid: c7de88afe20e2364494a5054330bc0d5, type: 3}
       propertyPath: m_Name
       value: SM_Prop_TrashPile_06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4315946911482282824, guid: c7de88afe20e2364494a5054330bc0d5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26931,6 +27219,10 @@ PrefabInstance:
       value: SM_Env_Road_01 (297)
       objectReference: {fileID: 0}
     - target: {fileID: 6049709427490587786, guid: e66839f65cf76904fa4cab61af3555eb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049709427490587786, guid: e66839f65cf76904fa4cab61af3555eb, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -27115,6 +27407,10 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -28293,6 +28589,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (57)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -28686,6 +28986,10 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (41)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -29236,6 +29540,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -29297,6 +29605,14 @@ PrefabInstance:
     - target: {fileID: 6340004632353433311, guid: 9a0056bd1e8599342847c31a2a354975, type: 3}
       propertyPath: m_Name
       value: SM_Env_Tree_Pine_Cluster_01 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6340004632353433311, guid: 9a0056bd1e8599342847c31a2a354975, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6340004632353433311, guid: 9a0056bd1e8599342847c31a2a354975, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29407,8 +29723,6 @@ Transform:
   m_Children:
   - {fileID: 1131162221}
   - {fileID: 609101925}
-  - {fileID: 622929232}
-  - {fileID: 508271898}
   - {fileID: 3304357}
   - {fileID: 1735636555}
   - {fileID: 276174561}
@@ -29513,6 +29827,10 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (49)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -30275,6 +30593,10 @@ PrefabInstance:
       value: SM_Bld_Fence_Cemetary_01 (40)
       objectReference: {fileID: 0}
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -30791,6 +31113,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -30910,6 +31236,10 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (53)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -31120,6 +31450,14 @@ PrefabInstance:
     - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
@@ -31367,6 +31705,10 @@ PrefabInstance:
     - target: {fileID: 4547341904957719829, guid: ed3fa8df7e37ad04f8a8a0d222ae2754, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Fence_Pillar_Cemetary_01 (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547341904957719829, guid: ed3fa8df7e37ad04f8a8a0d222ae2754, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4547341904957719829, guid: ed3fa8df7e37ad04f8a8a0d222ae2754, type: 3}
       propertyPath: m_NavMeshLayer
@@ -33872,6 +34214,10 @@ PrefabInstance:
       value: SM_Bld_Fence_Cemetary_01 (47)
       objectReference: {fileID: 0}
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -35044,6 +35390,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -35398,6 +35748,10 @@ PrefabInstance:
     - target: {fileID: 4547341904957719829, guid: ed3fa8df7e37ad04f8a8a0d222ae2754, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Fence_Pillar_Cemetary_01 (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547341904957719829, guid: ed3fa8df7e37ad04f8a8a0d222ae2754, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4547341904957719829, guid: ed3fa8df7e37ad04f8a8a0d222ae2754, type: 3}
       propertyPath: m_NavMeshLayer
@@ -35878,7 +36232,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1878136810}
+    m_TransformParent: {fileID: 534063006}
     m_Modifications:
     - target: {fileID: 1086119704702546338, guid: 98f8489c229bb5e4bb4e5811edb98fcb, type: 3}
       propertyPath: m_CastShadows
@@ -35894,19 +36248,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3534725474391636505, guid: 98f8489c229bb5e4bb4e5811edb98fcb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.4871
+      value: 58.777145
       objectReference: {fileID: 0}
     - target: {fileID: 3534725474391636505, guid: 98f8489c229bb5e4bb4e5811edb98fcb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07417297
+      value: -1.2298269
       objectReference: {fileID: 0}
     - target: {fileID: 3534725474391636505, guid: 98f8489c229bb5e4bb4e5811edb98fcb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 44.9184
+      value: 20.805367
       objectReference: {fileID: 0}
     - target: {fileID: 3534725474391636505, guid: 98f8489c229bb5e4bb4e5811edb98fcb, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.00000008940697
+      value: 0.70710677
       objectReference: {fileID: 0}
     - target: {fileID: 3534725474391636505, guid: 98f8489c229bb5e4bb4e5811edb98fcb, type: 3}
       propertyPath: m_LocalRotation.x
@@ -35914,7 +36268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3534725474391636505, guid: 98f8489c229bb5e4bb4e5811edb98fcb, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1
+      value: -0.7071069
       objectReference: {fileID: 0}
     - target: {fileID: 3534725474391636505, guid: 98f8489c229bb5e4bb4e5811edb98fcb, type: 3}
       propertyPath: m_LocalRotation.z
@@ -36126,6 +36480,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -36249,6 +36611,10 @@ PrefabInstance:
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Fence_Cemetary_01 (51)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_NavMeshLayer
@@ -37937,6 +38303,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -38569,7 +38943,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1878136810}
+    m_TransformParent: {fileID: 534063006}
     m_Modifications:
     - target: {fileID: 805295612609667656, guid: 082e2a77b13e8574b81ca03afbc22a35, type: 3}
       propertyPath: m_RootOrder
@@ -38581,19 +38955,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 805295612609667656, guid: 082e2a77b13e8574b81ca03afbc22a35, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.4871
+      value: 58.777145
       objectReference: {fileID: 0}
     - target: {fileID: 805295612609667656, guid: 082e2a77b13e8574b81ca03afbc22a35, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.07417297
+      value: -1.2298269
       objectReference: {fileID: 0}
     - target: {fileID: 805295612609667656, guid: 082e2a77b13e8574b81ca03afbc22a35, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 44.9184
+      value: 20.805367
       objectReference: {fileID: 0}
     - target: {fileID: 805295612609667656, guid: 082e2a77b13e8574b81ca03afbc22a35, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.00000008940697
+      value: 0.70710677
       objectReference: {fileID: 0}
     - target: {fileID: 805295612609667656, guid: 082e2a77b13e8574b81ca03afbc22a35, type: 3}
       propertyPath: m_LocalRotation.x
@@ -38601,7 +38975,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 805295612609667656, guid: 082e2a77b13e8574b81ca03afbc22a35, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1
+      value: -0.7071069
       objectReference: {fileID: 0}
     - target: {fileID: 805295612609667656, guid: 082e2a77b13e8574b81ca03afbc22a35, type: 3}
       propertyPath: m_LocalRotation.z
@@ -39880,6 +40254,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Tree_Dead_04 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2266404328464906784, guid: 2eda3b6db64ebbf4aaa1513c37212954, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1535694899, guid: 2eda3b6db64ebbf4aaa1513c37212954, type: 3}
     - {fileID: 1535694898, guid: 2eda3b6db64ebbf4aaa1513c37212954, type: 3}
@@ -40198,6 +40576,14 @@ PrefabInstance:
     - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -41119,6 +41505,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -41386,6 +41776,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Tree_Cluster_01
       objectReference: {fileID: 0}
+    - target: {fileID: 3821567611340341316, guid: 8b4a85f9180c6b145834d5782453ffc1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7077079115550236902, guid: 8b4a85f9180c6b145834d5782453ffc1, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -41450,6 +41844,10 @@ PrefabInstance:
     - target: {fileID: 7276090184807176047, guid: 3039ac338f0bce74cb61ca91efcf8817, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Fence_Cemetary_02 (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276090184807176047, guid: 3039ac338f0bce74cb61ca91efcf8817, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7276090184807176047, guid: 3039ac338f0bce74cb61ca91efcf8817, type: 3}
       propertyPath: m_NavMeshLayer
@@ -41879,6 +42277,10 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -42337,6 +42739,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (43)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -42778,6 +43184,10 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -43789,6 +44199,10 @@ PrefabInstance:
       value: SM_Bld_Fence_Cemetary_01 (46)
       objectReference: {fileID: 0}
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -43918,6 +44332,14 @@ PrefabInstance:
     - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
@@ -44520,6 +44942,10 @@ PrefabInstance:
       value: SM_Env_Road_04 (74)
       objectReference: {fileID: 0}
     - target: {fileID: 7990494909315212289, guid: 205bc7816f424ca478d0df206bb374d8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990494909315212289, guid: 205bc7816f424ca478d0df206bb374d8, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -45018,6 +45444,10 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (61)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -45674,6 +46104,10 @@ PrefabInstance:
       value: SM_Bld_Fence_Cemetary_02 (17)
       objectReference: {fileID: 0}
     - target: {fileID: 7276090184807176047, guid: 3039ac338f0bce74cb61ca91efcf8817, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276090184807176047, guid: 3039ac338f0bce74cb61ca91efcf8817, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -46144,6 +46578,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -46346,6 +46784,10 @@ PrefabInstance:
     - target: {fileID: 6340004632353433311, guid: 9a0056bd1e8599342847c31a2a354975, type: 3}
       propertyPath: m_Name
       value: SM_Env_Tree_Pine_Cluster_01 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6340004632353433311, guid: 9a0056bd1e8599342847c31a2a354975, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -46809,6 +47251,10 @@ PrefabInstance:
     - target: {fileID: 4547341904957719829, guid: ed3fa8df7e37ad04f8a8a0d222ae2754, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Fence_Pillar_Cemetary_01 (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547341904957719829, guid: ed3fa8df7e37ad04f8a8a0d222ae2754, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4547341904957719829, guid: ed3fa8df7e37ad04f8a8a0d222ae2754, type: 3}
       propertyPath: m_NavMeshLayer
@@ -47458,6 +47904,10 @@ PrefabInstance:
       value: SM_Bld_Diner_Text_02
       objectReference: {fileID: 0}
     - target: {fileID: 1584507987924184, guid: b0d20a1651f80674fba9cf12bf779f7f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1584507987924184, guid: b0d20a1651f80674fba9cf12bf779f7f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -48008,6 +48458,10 @@ PrefabInstance:
     - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (51)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
@@ -48582,6 +49036,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (64)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -48659,6 +49117,10 @@ PrefabInstance:
     - target: {fileID: 7276090184807176047, guid: 3039ac338f0bce74cb61ca91efcf8817, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Fence_Cemetary_02 (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276090184807176047, guid: 3039ac338f0bce74cb61ca91efcf8817, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7276090184807176047, guid: 3039ac338f0bce74cb61ca91efcf8817, type: 3}
       propertyPath: m_NavMeshLayer
@@ -48898,6 +49360,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -49128,6 +49594,14 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -49651,6 +50125,10 @@ PrefabInstance:
     - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
@@ -50362,6 +50840,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -50553,6 +51035,10 @@ PrefabInstance:
     - target: {fileID: 1631526187575200309, guid: 5cb458dcaaf8d6d4d9b026ad394f0e71, type: 3}
       propertyPath: m_Name
       value: SM_Env_Tree_Dead_03 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1631526187575200309, guid: 5cb458dcaaf8d6d4d9b026ad394f0e71, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2157093109020397711, guid: 5cb458dcaaf8d6d4d9b026ad394f0e71, type: 3}
       propertyPath: m_RootOrder
@@ -51643,6 +52129,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -51790,6 +52284,10 @@ PrefabInstance:
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Fence_Cemetary_01 (38)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_NavMeshLayer
@@ -51940,6 +52438,10 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (52)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -52836,6 +53338,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Tree_Dead_01 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4189578134408584881, guid: 649cfd5a63de1c14da210383152753da, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1196754140, guid: 649cfd5a63de1c14da210383152753da, type: 3}
     - {fileID: 1196754139, guid: 649cfd5a63de1c14da210383152753da, type: 3}
@@ -53621,6 +54127,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -53916,6 +54430,10 @@ PrefabInstance:
     - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (40)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
@@ -54733,6 +55251,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (42)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -54969,6 +55495,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -55030,6 +55560,10 @@ PrefabInstance:
     - target: {fileID: 2266404328464906784, guid: 2eda3b6db64ebbf4aaa1513c37212954, type: 3}
       propertyPath: m_Name
       value: SM_Env_Tree_Dead_04 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266404328464906784, guid: 2eda3b6db64ebbf4aaa1513c37212954, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1535694899, guid: 2eda3b6db64ebbf4aaa1513c37212954, type: 3}
@@ -55220,6 +55754,10 @@ PrefabInstance:
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Fence_Cemetary_01 (41)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_NavMeshLayer
@@ -55840,6 +56378,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -56075,6 +56621,10 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -57009,6 +57559,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (55)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -57597,6 +58151,10 @@ PrefabInstance:
       value: SM_Bld_Fence_Cemetary_01 (39)
       objectReference: {fileID: 0}
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -57749,6 +58307,10 @@ PrefabInstance:
     - target: {fileID: 3821567611340341316, guid: 8b4a85f9180c6b145834d5782453ffc1, type: 3}
       propertyPath: m_Name
       value: SM_Env_Tree_Cluster_01 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3821567611340341316, guid: 8b4a85f9180c6b145834d5782453ffc1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7077079115550236902, guid: 8b4a85f9180c6b145834d5782453ffc1, type: 3}
       propertyPath: m_RootOrder
@@ -58496,6 +59058,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Tree_Cluster_01 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3821567611340341316, guid: 8b4a85f9180c6b145834d5782453ffc1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7077079115550236902, guid: 8b4a85f9180c6b145834d5782453ffc1, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -58923,6 +59489,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -59279,6 +59849,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -59590,6 +60168,14 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -61247,6 +61833,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Tree_Dead_04 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2266404328464906784, guid: 2eda3b6db64ebbf4aaa1513c37212954, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1535694899, guid: 2eda3b6db64ebbf4aaa1513c37212954, type: 3}
     - {fileID: 1535694898, guid: 2eda3b6db64ebbf4aaa1513c37212954, type: 3}
@@ -61370,51 +61960,6 @@ Transform:
   - {fileID: 1073974420}
   m_Father: {fileID: 1461863240}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1748628885
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1748628887}
-  - component: {fileID: 1748628886}
-  m_Layer: 0
-  m_Name: EnemyStateMachineTester
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1748628886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1748628885}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9ee74703d179384095d9d80a153a10b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnemyObject: {fileID: 8458607664213075487, guid: 02718a9c50f93394abdcf61a9dd9e182, type: 3}
---- !u!4 &1748628887
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1748628885}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 560, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1754988574
 PrefabInstance:
@@ -61628,6 +62173,14 @@ PrefabInstance:
     - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
@@ -62004,6 +62557,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (46)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -62155,6 +62712,10 @@ PrefabInstance:
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_Name
       value: SM_Bld_Fence_Cemetary_01 (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_NavMeshLayer
@@ -62982,6 +63543,10 @@ PrefabInstance:
       value: SM_Bld_Fence_Cemetary_01 (50)
       objectReference: {fileID: 0}
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -63519,6 +64084,10 @@ PrefabInstance:
       value: SM_Bld_Fence_Pillar_Cemetary_01 (15)
       objectReference: {fileID: 0}
     - target: {fileID: 4547341904957719829, guid: ed3fa8df7e37ad04f8a8a0d222ae2754, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4547341904957719829, guid: ed3fa8df7e37ad04f8a8a0d222ae2754, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -63769,6 +64338,10 @@ PrefabInstance:
     - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (49)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
@@ -65194,6 +65767,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Tree_Dead_01 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 4189578134408584881, guid: 649cfd5a63de1c14da210383152753da, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1196754140, guid: 649cfd5a63de1c14da210383152753da, type: 3}
     - {fileID: 1196754139, guid: 649cfd5a63de1c14da210383152753da, type: 3}
@@ -65568,8 +66145,6 @@ Transform:
   - {fileID: 457586490}
   - {fileID: 1283985538}
   - {fileID: 2049590166}
-  - {fileID: 1088768974}
-  - {fileID: 997087106}
   - {fileID: 1929843871}
   - {fileID: 1346490494}
   - {fileID: 1973112136}
@@ -65736,6 +66311,10 @@ PrefabInstance:
     - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
@@ -66723,6 +67302,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -67150,6 +67733,10 @@ PrefabInstance:
     - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
@@ -68602,6 +69189,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (44)
       objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
     m_RemovedGameObjects: []
@@ -69142,6 +69733,10 @@ PrefabInstance:
       value: SM_Bld_Fence_Cemetary_01 (48)
       objectReference: {fileID: 0}
     - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2874609165872275067, guid: 32defebcf751e0e478a8d613aa4d5b80, type: 3}
       propertyPath: m_NavMeshLayer
       value: 1
       objectReference: {fileID: 0}
@@ -69393,6 +69988,10 @@ PrefabInstance:
     - target: {fileID: 7468453053722539627, guid: d46388ce1f854b24db247ac7b23e7d41, type: 3}
       propertyPath: m_Name
       value: SM_Env_Tree_Dead_02 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468453053722539627, guid: d46388ce1f854b24db247ac7b23e7d41, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7849377050755362001, guid: d46388ce1f854b24db247ac7b23e7d41, type: 3}
       propertyPath: m_RootOrder
@@ -70200,6 +70799,14 @@ PrefabInstance:
     - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (34)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
@@ -71729,6 +72336,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Env_Ground_Grass_Small_01 (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 7183517861263943440, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7564688119056825770, guid: 474effde2f4970e469119b8d70eddc30, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -71857,6 +72468,14 @@ PrefabInstance:
     - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
       propertyPath: m_Name
       value: SM_Env_Ground_Dirt_Small_01 (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037260582944974019, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -6248414971649902868, guid: fa94614456c8b1d40bd51fd3e8c9b071, type: 3}
@@ -72564,7 +73183,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2082098098
 PrefabInstance:
@@ -73282,6 +73901,10 @@ PrefabInstance:
     - target: {fileID: 559240393733708229, guid: 1f9b3d496336e4444b63acbec9de81e7, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Boarded_Wood_03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 559240393733708229, guid: 1f9b3d496336e4444b63acbec9de81e7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 903255950356136831, guid: 1f9b3d496336e4444b63acbec9de81e7, type: 3}
       propertyPath: m_RootOrder
@@ -74566,6 +75189,10 @@ PrefabInstance:
     - target: {fileID: 559240393733708229, guid: 1f9b3d496336e4444b63acbec9de81e7, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Boarded_Wood_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 559240393733708229, guid: 1f9b3d496336e4444b63acbec9de81e7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 559240393733708229, guid: 1f9b3d496336e4444b63acbec9de81e7, type: 3}
       propertyPath: m_StaticEditorFlags

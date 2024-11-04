@@ -34,8 +34,15 @@ namespace Enemies
         private bool _attackIsActive;
         private EnemyAnimationEvent _animationEvent;
         private bool _isActual;
+        private Action _attackEnd;
 
-        public bool IsCanAttack { get; }
+        Action IEnemyAttack.ActionAttackEnd
+        {
+            get => _attackEnd;
+            set => _attackEnd = value;
+        }
+
+        public bool IsCanAttack { get; private set; }
 
         public void Construct(EnemyAnimator enemyAnimator, float minDamage, float maxDamage)
         {
@@ -46,6 +53,11 @@ namespace Enemies
             _animationEvent = transform.GetComponent<EnemyAnimationEvent>();
             _animationEvent.EnemyAnimEvent.AddListener(OnAnimationEvent);
             _isActual = true;
+        }
+
+        void IEnemyAttack.Attack()
+        {
+            Attack();
         }
 
         private void Update()
@@ -142,7 +154,7 @@ namespace Enemies
             return _attackIsActive && !_isAttacking && CooldownIsUp() && _isActual;
         }
 
-        private bool CooldownIsUp()
+        public bool CooldownIsUp()
         {
             return _attackCooldown <= 0;
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Enemies;
+using Enemies.EnemyStateMachine;
 using Infrastructure.StateMachine.Interfaces;
 using Logic;
 using Logic.Timer;
@@ -48,8 +49,10 @@ namespace Infrastructure.StateMachine.States
             _playerDeath.PlayerDefeat += _spawnController.PlayerDefeated;
             _playerDeath.PlayerDefeat += _gameSystem.ShowResetMenu;
             
-            List<EnemyController> enemyList =
-                (List<EnemyController>)ServiceLocator.ServiceLocator.Instance.GetData(typeof(List<EnemyController>));
+            /*List<EnemyController> enemyList =
+                (List<EnemyController>)ServiceLocator.ServiceLocator.Instance.GetData(typeof(List<EnemyController>));*/
+            List<EnemyStateMachine> enemyList =
+                (List<EnemyStateMachine>)ServiceLocator.ServiceLocator.Instance.GetData(typeof(List<EnemyStateMachine>));
             for (int i = 0; i < enemyList.Count; i++)
             {
                 _playerDeath.PlayerDefeat += enemyList[i].GoalIsDefeated;

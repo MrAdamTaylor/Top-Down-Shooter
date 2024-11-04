@@ -1,4 +1,5 @@
 using Infrastructure.ServiceLocator;
+using Logic;
 using Player;
 using UnityEngine;
 
@@ -6,11 +7,18 @@ namespace Enemies.EnemyStateMachine
 {
     public class IdleState : BaseState
     {
-        private readonly PlayerDeath _playerDeath;
+        readonly PlayerDeath _playerDeath;
         private readonly EnemyStateMachine _enemyStateMachine;
+        private readonly EnemyAnimator _animator;
+        private readonly GameObject _physic;
+        private readonly EnemyHealth _health;
     
-        public IdleState(EnemyStateMachine npcStateMachine) : base("IdleState", npcStateMachine)
+        public IdleState(EnemyStateMachine npcStateMachine, EnemyAnimator enemyAnimator, 
+            GameObject physic, EnemyHealth health) : base("IdleState", npcStateMachine)
         {
+            _physic = physic;
+            _health = health;
+            _animator = enemyAnimator;
             _enemyStateMachine = npcStateMachine;
             _playerDeath = (PlayerDeath)ServiceLocator.Instance.GetData(typeof(PlayerDeath));
         }
@@ -18,6 +26,9 @@ namespace Enemies.EnemyStateMachine
         public override void Enter()
         {
             base.Enter();
+            _physic.SetActive(true);
+            _health.ReloadHealth();
+            _animator.PlayIdle();
             Debug.Log("<color=cyan>Idle State</color>");
         }
 

@@ -56,12 +56,16 @@ namespace Enemies
         public void Move(float speed)
         {
             _animator.SetBool(IsMoving, true);
+            State = AnimatorState.Walking;
+            //_animator.SetTrigger(IsMoving);
             _animator.SetFloat(Speed, speed);
         }
 
         public void StopMoving()
         {
             _animator.SetBool(IsMoving, false);
+            State = AnimatorState.Idle;
+            //_animator.SetTrigger(Idle);
         }
 
         public void PlayAttack(int value)

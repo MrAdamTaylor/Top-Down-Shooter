@@ -22,7 +22,7 @@ namespace Enemies
         private void OnDestroy()
         {
             _reactionTrigger.TriggerAction -= TriggerAttack;
-            _reactionTrigger.TriggerAction -= TriggerEndAttack;
+            _reactionTrigger.TriggerEndAction -= TriggerEndAttack;
         }
 
         private void TriggerAttack()

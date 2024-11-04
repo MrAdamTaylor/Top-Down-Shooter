@@ -1,4 +1,5 @@
 using EnterpriceLogic.Constants;
+using Infrastructure.ServiceLocator;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using YG;
@@ -17,6 +18,7 @@ namespace UI.Menu
         {
             _isActive = true;
             _currentTimeScale = Time.timeScale;
+            ServiceLocator.Instance.BindData(typeof(UIPauseManager), this);
         }
 
         void Update()

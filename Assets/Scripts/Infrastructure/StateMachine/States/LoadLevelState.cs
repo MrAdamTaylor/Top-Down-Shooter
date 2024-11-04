@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Configs;
 using Enemies;
+using Enemies.EnemyStateMachine;
 using EnterpriceLogic;
 using EnterpriceLogic.Constants;
 using EnterpriceLogic.Math;
@@ -129,8 +130,11 @@ namespace Infrastructure.StateMachine.States
 
             List<int> maximumEnemies = CalculateWaveCharacteristics(spawnerConfigs);
 
-            List<EnemyController> enemyList = new List<EnemyController>();
-            ServiceLocator.ServiceLocator.Instance.BindData(typeof(List<EnemyController>), enemyList);
+            /*List<EnemyController> enemyList = new List<EnemyController>();
+            ServiceLocator.ServiceLocator.Instance.BindData(typeof(List<EnemyController>), enemyList);*/
+            
+            List<EnemyStateMachine> enemyList = new List<EnemyStateMachine>();
+            ServiceLocator.ServiceLocator.Instance.BindData(typeof(List<EnemyStateMachine>), enemyList);
             
             List<EnemySpawnerPool> enemyPools = CreatePools(spawnerConfigs, factory, spawnPoints, spawnController, maximumEnemies);
 

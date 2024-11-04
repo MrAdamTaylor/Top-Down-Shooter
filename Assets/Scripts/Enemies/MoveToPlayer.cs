@@ -2,7 +2,6 @@ using System.Collections;
 using EnterpriceLogic.Constants;
 using Infrastructure.ServiceLocator;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Enemies
 {
@@ -51,6 +50,10 @@ namespace Enemies
         }
 
         public bool IsTarget() => _goal != null;
+        public bool IsReached()
+        {
+            throw new System.NotImplementedException();
+        }
 
         private IEnumerator MakeStep()
         {
@@ -70,52 +73,5 @@ namespace Enemies
             Vector3 velocity = _direction.normalized * _speed;
             _followedTransform.position += velocity * Time.deltaTime;
         }
-    }
-
-    public class AgentMoveToPlayer : MonoBehaviour, IEnemyMoveSystem
-    {
-        private NavMeshAgent _navMeshAgent;
-        private Transform _goal;
-        private float _speed;
-        private Transform _followedTransform;
-        //private bool _isMoving;
-
-        public void Construct(Transform followedTransform, float speed)
-        {
-            _navMeshAgent = transform.GetComponent<NavMeshAgent>();
-            Player.Player player = (Player.Player)ServiceLocator.Instance.GetData(typeof(Player.Player));
-            _goal = player.transform;
-            _speed = speed * Constants.NPC_SPEED_MULTIPLYER;
-            _followedTransform = followedTransform;
-            _navMeshAgent.speed = _speed;
-        }
-
-        /*
-    private void Update()
-    {
-        
-    }*/
-
-        public Vector3 GoalPos()
-        {
-            return _goal.transform.position;
-        }
-
-        public Vector3 AgentPos()
-        {
-            return _followedTransform.position;
-        }
-
-        public void Move()
-        {
-            _navMeshAgent.SetDestination(_goal.transform.position);
-        }
-
-        public void StopMove()
-        {
-            _navMeshAgent.ResetPath();
-        }
-
-        public bool IsTarget() => _goal != null;
     }
 }
