@@ -33,6 +33,7 @@ namespace Infrastructure.StateMachine.States
         private TimerManager _timerManager;
         private GameObject _canvas;
         private PlayerUIBinder _playerUIBinder;
+        private GameObject _player;
     
         public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingCurtain loadingCurtain,
             IPlayerFactory playerFactory, IUIFactory uiFactory)
@@ -64,6 +65,7 @@ namespace Infrastructure.StateMachine.States
 
             LoadEnemySpawner();
 
+            LoadBafSpawner();
             
             GameObject gameSystem = new GameObject(ConstantsSceneObjects.GAME_SYSTEM_NAME);
             GameSystem system = gameSystem.AddComponent<GameSystem>();
@@ -77,6 +79,32 @@ namespace Infrastructure.StateMachine.States
             _stateMachine.Enter<GameLoopState>();
         }
 
+        private void LoadBafSpawner()
+        {
+            if (ServiceLocator.ServiceLocator.Instance.IsGetData(typeof(IBafFactory)))
+            {
+                GameObject spawner = new GameObject("Spawner");
+                BafSpawner bafSpawner = spawner.AddComponent<BafSpawner>();
+                IBafFactory bafFactory =
+                    (IBafFactory)ServiceLocator.ServiceLocator.Instance.GetData(typeof(IBafFactory));
+                BafSpawnerConfigs bafSpawnerConfigs =
+                    (BafSpawnerConfigs)ServiceLocator.ServiceLocator.Instance.GetData(typeof(BafSpawnerConfigs));
+                RingTrigger trigger = _player.AddComponent<RingTrigger>();
+                trigger.Construct(_player.transform, 
+                    bafSpawnerConfigs.InnerRadius, bafSpawnerConfigs.MaximusSpawnRadius);
+                
+                bafSpawner.Construct(bafFactory, bafSpawnerConfigs, trigger);
+                
+                
+                
+                Debug.Log("<color=green>Baf Spawner Added</color>");
+            }
+            else
+            {
+                Debug.Log("<color=green> Not Baf Spawner</color>");
+            }
+        }
+
         private void LoadPlayer()
         {
             _commonParent = GameObject.Find(ConstantsSceneObjects.PREFABS_SCENE_GAMEOBJECT_PARENT_NAME);
@@ -85,8 +113,8 @@ namespace Infrastructure.StateMachine.States
             GameObject startPosition = GameObject.FindGameObjectWithTag(ConstantsSceneObjects.INITIAL_POSITION);
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(Vector3), startPosition.transform.position);
             
-            GameObject player = _playerFactory.Create(startPosition.transform.position, camera);
-            player.transform.parent =  _commonParent.transform;
+            _player = _playerFactory.Create(startPosition.transform.position, camera);
+            _player.transform.parent =  _commonParent.transform;
 
             TimeData data = (TimeData)ServiceLocator.ServiceLocator.Instance.GetData(typeof(TimeData));
             if (data != null)
@@ -98,8 +126,8 @@ namespace Infrastructure.StateMachine.States
             _canvas = GameObject.FindGameObjectWithTag(ConstantsSceneObjects.CANVAS_TAG);
             GameObject ui = _uiFactory.CreateWithLoadConnect(PrefabPath.UI_PLAYER_PATH, _canvas);
             _playerUIBinder = new PlayerUIBinder(ui.transform.GetComponentInChildren<CurrencyProvider>());
-            _playerUIBinder.BindAmmo(player);
-            _playerUIBinder.BindHealth(player);
+            _playerUIBinder.BindAmmo(_player);
+            _playerUIBinder.BindHealth(_player);
             ConstructUI(ui);
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(GameObject), ui);
         }

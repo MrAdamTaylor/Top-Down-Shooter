@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9326a09a0444c06895dabb6ef96e915, type: 3}
   m_Name: BafSpawner
   m_EditorClassIdentifier: 
-  StartSpawnInterval: 0
+  InnerRadius: 4
+  MaximusSpawnRadius: 10
+  BafConfigsList:
+  - {fileID: 11400000, guid: 063667089edbf4b41aa02ff26ce66216, type: 2}
+  - {fileID: 11400000, guid: 325466583dff0bf49bf3de907f11b2e6, type: 2}
+  FirstTimeWait: 5
+  SpawnInterval: 2
+  IncreaseSpawnTime: 1
+  PerSecTimeIncrease: 0

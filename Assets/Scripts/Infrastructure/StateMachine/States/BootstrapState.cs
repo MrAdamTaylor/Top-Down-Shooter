@@ -78,7 +78,8 @@ namespace Infrastructure.StateMachine.States
 
         private void RegisterBafService(BafSpawnerConfigs bafSpawner)
         {
-        
+            ServiceLocator.ServiceLocator.Instance.BindData(typeof(IBafFactory), new BafFactory(_assertBuilder));
+            ServiceLocator.ServiceLocator.Instance.BindData(typeof(BafSpawnerConfigs), bafSpawner);
         }
 
         private void RegisterEnemyesServices(EnemySpawnerConfigs levelConfigsSpawnerConfigs)
@@ -86,11 +87,7 @@ namespace Infrastructure.StateMachine.States
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(IEnemyFactory), new EnemyFactory(_assertBuilder));
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(EnemySpawnerConfigs), levelConfigsSpawnerConfigs);
         }
-
-        private void RegisterSpawnerServices(List<SpawnerConfigs> levelConfigsSpawnerConfigsList)
-        {
-            Debug.Log("Spawners count is "+levelConfigsSpawnerConfigsList.Count);
-        }
+        
 
         private void RegisterPlayerServices(PlayerConfigs levelConfigsPlayerConfigs)
         {
@@ -116,7 +113,8 @@ namespace Infrastructure.StateMachine.States
         private void RegisterServices()
         {
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(ScoresStorage), new ScoresStorage(0));
-            ServiceLocator.ServiceLocator.Instance.BindData(typeof(DataSaver), new DataSaver((ScoresStorage)ServiceLocator.ServiceLocator.Instance.GetData(typeof(ScoresStorage))));
+            ServiceLocator.ServiceLocator.Instance.BindData(typeof(DataSaver), 
+                new DataSaver((ScoresStorage)ServiceLocator.ServiceLocator.Instance.GetData(typeof(ScoresStorage))));
         }
 
         private void EnterLoadLevel() => 
