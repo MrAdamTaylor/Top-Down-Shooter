@@ -50,5 +50,24 @@ namespace Player
         {
             _isReadyForRevive = true;
         }
+
+        public void AddHealth(float healthUp)
+        {
+            if(Mathf.Approximately(_current, _maxValue))
+                return;
+
+            _healthAdapter ??= (HealthAdapter)ServiceLocator.Instance.GetData(typeof(HealthAdapter));
+            if (_current + healthUp >= _maxValue)
+            {
+                _current = _maxValue;
+                _healthAdapter.UpdateValues(_current, _maxValue);
+            }
+            else
+            {
+                _current += healthUp;
+                _healthAdapter.UpdateValues(_current, _maxValue);
+            }
+
+        }
     }
 }

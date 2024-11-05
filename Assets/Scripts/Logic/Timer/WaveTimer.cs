@@ -70,7 +70,6 @@ namespace Logic.Timer
 
         private void OnTimerValueChanged(float remainingSeconds)
         {
-            Debug.Log($"Wave Timer ticked. Remaining seconds: {remainingSeconds}");
         }
     }
 }

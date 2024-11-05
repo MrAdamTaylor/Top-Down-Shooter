@@ -1,5 +1,7 @@
 using System;
 using Configs;
+using Enemies;
+using EnterpriceLogic;
 using Infrastructure.Services.AssertService;
 using UnityEngine;
 
@@ -7,6 +9,8 @@ namespace Infrastructure.StateMachine.States
 {
     public class BafFactory : IBafFactory
     {
+        private const float DETECT_PLAYER_RADIUS = 1f;
+        
         private readonly IAssertByObj<GameObject> _bafAssert;
 
         public BafFactory(AssertBuilder assertBuilder)
@@ -38,12 +42,31 @@ namespace Infrastructure.StateMachine.States
 
         private void CreateHealth(GameObject baff, HealthBaffConfigs healthBaffConfigs)
         {
+            Player.Player player = (Player.Player)ServiceLocator.ServiceLocator.Instance.GetData(typeof(Player.Player));
             
+            ReactionTrigger reactionTrigger = baff.AddComponent<ReactionTrigger>();
+            reactionTrigger.Construct(DETECT_PLAYER_RADIUS, player.transform);
+
+            IBaffComponent baffComponent = baff.AddComponent<HealthBaffComponent>();
+            baffComponent.Construct(player, healthBaffConfigs);
+            
+            CheckPlayerOnBaff checkPlayerOnBaff = baff.AddComponent<CheckPlayerOnBaff>();
+            checkPlayerOnBaff.Construct(baffComponent, reactionTrigger);
+
         }
 
         private void CreateAmmo(GameObject baff, AmmoBaffConfigs ammoBaffConfigs)
         {
+            Player.Player player = (Player.Player)ServiceLocator.ServiceLocator.Instance.GetData(typeof(Player.Player));
             
+            ReactionTrigger reactionTrigger = baff.AddComponent<ReactionTrigger>();
+            reactionTrigger.Construct(DETECT_PLAYER_RADIUS, player.transform);
+
+            IBaffComponent baffComponent = baff.AddComponent<AmmoBaffComponent>();
+            baffComponent.Construct(player, ammoBaffConfigs);
+            
+            CheckPlayerOnBaff checkPlayerOnBaff = baff.AddComponent<CheckPlayerOnBaff>();
+            checkPlayerOnBaff.Construct(baffComponent, reactionTrigger);
         }
     }
 }

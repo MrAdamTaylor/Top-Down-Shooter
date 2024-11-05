@@ -17,7 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 76ffe8238abb9544bbd467d095b18e68, type: 2}
   - {fileID: 11400000, guid: 68a0a19d92ab68149a14328ff8a17962, type: 2}
   PlayerConfigs: {fileID: 11400000, guid: 8c3706afde652a542b7633a503709a62, type: 2}
-  TimeBeforeStartGame: 250
+  TimeBeforeStartGame: 2
   WalkToEnd: 0
   KillAllMobs: 0
   MobsCount: 0

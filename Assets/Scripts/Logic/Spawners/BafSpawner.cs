@@ -41,7 +41,6 @@ namespace Infrastructure.StateMachine.States
         {
             _timer = new Timer(TimerType.OneSecTick, bafSpawnerConfigs.FirstTimeWait);
             _timer.OnTimerFinishEvent += SpawnObject;
-            _timer.OnTimerValueChangedEvent += Output;
             _timer.Start();
             _innerSpawnInterval = bafSpawnerConfigs.SpawnInterval;
             _ringTrigger = ringTrigger;
@@ -69,11 +68,6 @@ namespace Infrastructure.StateMachine.States
                 Gizmos.color = Color.magenta;
                 Gizmos.DrawWireCube(_center, _regizonSize);
             }
-        }
-
-        private void Output(float time)
-        {
-            Debug.Log($"Seconds before spawn is {time}");
         }
 
         private void SpawnObject()

@@ -111,7 +111,7 @@ namespace Enemies.EnemyStateMachine
         {
             if (Hit(out Collider hit))
             {
-                PhysicsDebug.DrawDebugRaysFromPoint(HitPointPosition(), _hitBoxRadius, Constants.DEBUG_RILLRATE_TIME);
+                //PhysicsDebug.DrawDebugRaysFromPoint(HitPointPosition(), _hitBoxRadius, Constants.DEBUG_RILLRATE_TIME);
                 PlayLoopComponentProvider provider = hit.transform.GetComponent<PlayLoopComponentProvider>();
                 PlayerHealth health = (PlayerHealth)provider.TakeComponent(typeof(PlayerHealth));
                 health.TakeDamage(Random.Range(_minDamage, _maxDamage));

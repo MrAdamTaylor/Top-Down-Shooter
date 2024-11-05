@@ -8,7 +8,7 @@ namespace Configs
     [CreateAssetMenu(fileName = "BaffAmmo", menuName = "Baff/Ammo")]
     public class AmmoBaffConfigs : BafConfigs
     {
-        [SerializeField] private List<AmmoStructConfig> AmmoStructConfigs;
+        public List<AmmoStructConfig> AmmoStructConfigs;
     }
     
     [Serializable]

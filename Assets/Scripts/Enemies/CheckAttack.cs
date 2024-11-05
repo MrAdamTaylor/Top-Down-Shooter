@@ -7,7 +7,6 @@ namespace Enemies
     public class CheckAttack : MonoBehaviour
     {
         private IEnemyAttack _attack;
-        //private EnemyAttack _attack;
         private ReactionTrigger _reactionTrigger;
 
         public void Construct(IEnemyAttack enemyAttack, ReactionTrigger reactionTrigger)

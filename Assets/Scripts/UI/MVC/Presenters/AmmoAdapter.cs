@@ -39,6 +39,7 @@ namespace UI.MVC.Presenters
             WeaponData data = (WeaponData)ServiceLocator.Instance.GetData(typeof(WeaponData));
             Dictionary<int, (WeaponType, AmmoController)> dictionary = data.GetAmmoData();
             _dataDictionary = dictionary.ToDictionary(x => x.Value.Item1, y => y.Value.Item2.ReturnStorage());
+            ServiceLocator.Instance.BindData(typeof(Dictionary<WeaponType,AmmoStorage>), _dataDictionary);
             controller.ConstructUI(this);
             _animationPlayer = (UIAnimationPlayer)ServiceLocator.Instance.GetData(typeof(UIAnimationPlayer));
         }

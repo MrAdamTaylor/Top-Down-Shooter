@@ -1,4 +1,3 @@
-using System;
 using EnterpriceLogic.Constants;
 using Infrastructure.ServiceLocator;
 using UI.MVC.Model;
@@ -10,7 +9,6 @@ namespace Player.ShootSystem
     [RequireComponent(typeof(ShootControlSystem), typeof(Weapon.Weapon))]
     public class AmmoController : MonoBehaviour
     {
-        public Action<long, bool> ChangeAmmo;
     
         private long _ammoCount;
         private bool _isIfinity;
@@ -28,7 +26,13 @@ namespace Player.ShootSystem
             _isIfinity = characteristics.IsInfinity;
             _currentAmmo = _isIfinity ? -long.MaxValue : characteristics.StarterAmmo;
             _ammoStorage.Construct(_currentAmmo);
+            _ammoStorage.OnAmmoChanged += SetAmmo;
             _shootControlSystem.ShootAction += WasteAmmo;
+        }
+
+        private void SetAmmo(long obj)
+        {
+            _currentAmmo = obj;
         }
 
         private void OnDestroy()
@@ -52,8 +56,6 @@ namespace Player.ShootSystem
                 return;
         
             _currentAmmo -= _ammoWaste;
-            Debug.Log("Current Ammo: "+_currentAmmo);
-            ChangeAmmo?.Invoke(_currentAmmo, _isIfinity);
             _ammoStorage.SpendAmmo(_ammoWaste);
         }
     }
