@@ -1,5 +1,6 @@
 using System;
 using Enemies;
+using Infrastructure.ServiceLocator;
 using Logic.Animation;
 using UnityEngine;
 
@@ -13,26 +14,61 @@ namespace Player
         
         public event Action<AnimatorState> StateExited;
 
-        private static readonly int DeathTrigger = Animator.StringToHash("deathTrigger");
+        #region Transition Naming
+        private  static readonly int DeathTrigger = Animator.StringToHash("deathTrigger");
+        private static readonly int XAxis = Animator.StringToHash("InputX");
+        private  static readonly int YAxis = Animator.StringToHash("InputY");
+        private  static readonly int IsAlive = Animator.StringToHash("IsAlive");
+        #endregion
+        
+        #region State Naming
+        private readonly int _deathState = Animator.StringToHash("Death");
+        private readonly int _idleState = Animator.StringToHash("Locomotion");
+        #endregion
+        
+        
 
-        private  readonly int _deathState = Animator.StringToHash("Death");
-        private  readonly int _idleState = Animator.StringToHash("Locomotion");
         private Animator _animator;
         
+        private Vector2 _input;
+        public float smoothBlend = 0.1f;
+
         public void Construct()
         {
             _animator = GetComponent<Animator>();
+            ServiceLocator.Instance.BindData(typeof(PlayerAnimator), this);
+            _animator.SetBool(_idleState, true);
         }
-        
+
+        private void Update()
+        {
+            if(State == AnimatorState.Idle)
+                Move(_input.x = Input.GetAxis("Horizontal"), _input.y = Input.GetAxis("Vertical"));
+        }
+
+        private void Move(float x, float y)
+        {
+            Vector3 direction = new Vector3(x, 0, y);
+            direction = transform.InverseTransformDirection(direction);
+
+            _animator.SetFloat(XAxis, direction.x, smoothBlend, Time.deltaTime);
+            _animator.SetFloat(YAxis, direction.z, smoothBlend, Time.deltaTime);
+        }
+
         public void PlayIdle()
         {
             State = AnimatorState.Idle;
-            _animator.SetTrigger(_deathState);
+            _animator.SetTrigger(IsAlive);
+            _animator.SetBool(_idleState, true);
         }
 
         public void PlayDeath()
         {
+            //_animator.SetBool(_idleState, true);
+            _animator.SetBool(_idleState, false);
+            State = AnimatorState.Died;
             _animator.SetTrigger(DeathTrigger);
+            //_animator.SetFloat(Speed, speed);
         }
         
         public void EnteredState(int stateHash)

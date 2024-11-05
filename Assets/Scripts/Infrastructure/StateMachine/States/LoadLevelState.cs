@@ -14,7 +14,6 @@ using Logic.Spawners;
 using Logic.Timer;
 using UI.MVC;
 using UI.MVC.Helper;
-using UI.MVC.Model;
 using UI.MVC.View;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -82,8 +81,10 @@ namespace Infrastructure.StateMachine.States
         {
             _commonParent = GameObject.Find(ConstantsSceneObjects.PREFABS_SCENE_GAMEOBJECT_PARENT_NAME);
             Camera camera = Object.FindObjectOfType<Camera>();
+            
             GameObject startPosition = GameObject.FindGameObjectWithTag(ConstantsSceneObjects.INITIAL_POSITION);
-        
+            ServiceLocator.ServiceLocator.Instance.BindData(typeof(Vector3), startPosition.transform.position);
+            
             GameObject player = _playerFactory.Create(startPosition.transform.position, camera);
             player.transform.parent =  _commonParent.transform;
 
@@ -130,9 +131,6 @@ namespace Infrastructure.StateMachine.States
             IEnemyFactory factory = (IEnemyFactory)ServiceLocator.ServiceLocator.Instance.GetData(typeof(IEnemyFactory));
 
             List<int> maximumEnemies = CalculateWaveCharacteristics(spawnerConfigs);
-
-            /*List<EnemyController> enemyList = new List<EnemyController>();
-            ServiceLocator.ServiceLocator.Instance.BindData(typeof(List<EnemyController>), enemyList);*/
             
             List<EnemyStateMachine> enemyList = new List<EnemyStateMachine>();
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(List<EnemyStateMachine>), enemyList);

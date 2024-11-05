@@ -46,6 +46,11 @@ namespace Player
             }
         }
 
+        public void Alive()
+        {
+            IsDie = false;
+        }
+
         private void Death()
         {
             if(IsDie)

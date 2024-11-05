@@ -7,6 +7,7 @@ namespace Enemies
 {
     public class EnemyAnimator : MonoBehaviour, IAnimationStateReader
     {
+        #region Value Namimg
         private static readonly int Attack1 = Animator.StringToHash("Attack_1");
         private static readonly int Attack2 = Animator.StringToHash("Attack_2");
         private static readonly int Attack3 = Animator.StringToHash("Attack_3");
@@ -15,14 +16,16 @@ namespace Enemies
         private static readonly int Die = Animator.StringToHash("Die");
         private static readonly int Idle = Animator.StringToHash("ZombieIdle");
         private static readonly int Hit = Animator.StringToHash("HitAnim");
+        #endregion
 
+        #region State Naming
         private readonly int _idleStateHash = Animator.StringToHash("ZombieIdle");
         private readonly int _attackOneStateHash = Animator.StringToHash("ZombieAttack1");
         private readonly int _attackTwoStateHash = Animator.StringToHash("ZombieAttack2");
         private readonly int _attackThreeStateHash = Animator.StringToHash("ZombieAttack3");
         private readonly int _moveToHash = Animator.StringToHash("Move");
         private readonly int _deathToHash = Animator.StringToHash("DeathOfAZombie");
-    
+        #endregion
         private Animator _animator;
 
         public event Action<AnimatorState> StateEntered;
@@ -44,6 +47,7 @@ namespace Enemies
 
         public void PlayDeath()
         {
+            State = AnimatorState.Died;
             _animator.SetTrigger(Die);
         }
 
@@ -70,6 +74,7 @@ namespace Enemies
 
         public void PlayAttack(int value)
         {
+            State = AnimatorState.Attack;
             switch (value)
             {
                 case 1:

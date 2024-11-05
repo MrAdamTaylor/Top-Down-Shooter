@@ -17,9 +17,9 @@ MonoBehaviour:
   MinDamage: 6
   MaxDamage: 12
   Reward: 2
-  RadiusDetection: 1.5
+  RadiusDetection: 2
   HitBoxRadius: 2.03
   Skins:
   - {fileID: 1226099902062958282, guid: d33f2662ad59bda429a7f2b99236f679, type: 3}
   Speed: 8
-  MinimalToPlayerDistance: 1
+  MinimalToPlayerDistance: 1.5

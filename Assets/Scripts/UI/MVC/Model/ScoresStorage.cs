@@ -12,22 +12,16 @@ namespace UI.MVC.Model
         {
             Scores = ammo;
         }
-    
-        /*public void AddScores(long current)
+
+        public void AddScores(int current)
         {
             Scores += current;
             OnScoresChanged?.Invoke(Scores);
         }
 
-        public void SpendScores(long current)
+        public void Reset()
         {
-            Scores -= current;
-            OnScoresChanged?.Invoke(Scores);
-        }*/
-
-        public void AddScores(int current)
-        {
-            Scores += current;
+            Scores = 0;
             OnScoresChanged?.Invoke(Scores);
         }
     }

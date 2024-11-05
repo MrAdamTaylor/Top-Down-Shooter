@@ -26,13 +26,13 @@ public class UIDeathPopupProvider : MonoBehaviour
 
     private void OnDestroy()
     {
-        _restartButton.onClick.RemoveListener(_gameSystem.ReloadGame);
+        _restartButton.onClick.RemoveListener(_gameSystem.ReloadGameButtonAction);
         _mainMenuButton.onClick.RemoveListener(_gameSystem.MainMenu);
     }
 
     private void SubscribeRestart()
     {
-        _restartButton.onClick.AddListener(_gameSystem.ReloadGame);
+        _restartButton.onClick.AddListener(_gameSystem.ReloadGameButtonAction);
     }
 
     private void SubscribeMainMenu()
@@ -66,11 +66,15 @@ public class UIDeathPopupProvider : MonoBehaviour
         // Вызываем метод открытия видео рекламы
         YandexGame.RewVideoShow(id);
     }
+    
+    
     public void LoadSceneAgain()
     {
+        
         //Вот это убрать, и прописать потом закрытие окна и добавление хп
-        Scene currentScene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(currentScene.buildIndex);
+        /*Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.buildIndex);*/
+        _gameSystem.ResumeAll();
     }
 }
     

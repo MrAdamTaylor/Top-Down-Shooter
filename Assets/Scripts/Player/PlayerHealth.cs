@@ -1,5 +1,4 @@
 using System;
-using Enemies;
 using Infrastructure.ServiceLocator;
 using Logic;
 using UI.MVC.Presenters;
@@ -15,11 +14,23 @@ namespace Player
         public Action DeathAction;
         public Action<float> HealthChange;
         private HealthAdapter _healthAdapter;
+        private bool _isReadyForRevive;
     
         public void Construct(float value)
         {
             _maxValue = value;
             _current = _maxValue;
+            ServiceLocator.Instance.BindData(typeof(PlayerHealth), this);
+        }
+
+        public void Revive()
+        {
+            if (!_isReadyForRevive) 
+                return;
+            
+            _current = _maxValue;
+            _healthAdapter.UpdateValues(_current, _maxValue);
+            _isReadyForRevive = false;
         }
 
         public void TakeDamage(float damage)
@@ -37,7 +48,7 @@ namespace Player
 
         public void CanReload()
         {
-            Debug.Log("Player can be reloaded!");
+            _isReadyForRevive = true;
         }
     }
 }

@@ -8,7 +8,9 @@ namespace UI.Menu
 		public GameObject panelSound;
 		public GameObject panelHelp;
 		public GameObject FadeObject;
+
 		
+
 		public void OpenPanelCredits()
 		{
 			panelCredits.SetActive(true);

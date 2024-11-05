@@ -1,3 +1,4 @@
+using System;
 using Infrastructure.ServiceLocator;
 using Infrastructure.Services;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace Logic
 
         private GameObject _bootstraper;
         private GameObject _loadCurtain;
+
+        public Action GameResumeAction;
         
         public void Construct(GameObject resetMenu, GameObject bootstraper, GameObject loadCurtain)
         {
@@ -28,12 +31,10 @@ namespace Logic
             _resetMenu.SetActive(true);
         }
 
-        public void ReloadGame()
+        public void ReloadGameButtonAction()
         {
             DataSaver dataSaver = (DataSaver)ServiceLocator.Instance.GetData(typeof(DataSaver));
             dataSaver.SaveResult();
-            YandexGame.FullscreenShow();
-            Debug.Log($"<color=green>Reload Game</color>");
         }
 
         public void MainMenu()
@@ -42,8 +43,13 @@ namespace Logic
             dataSaver.SaveResult();
             Destroy(_bootstraper);
             Destroy(_loadCurtain);
-            Debug.Log($"<color=green>Main Menu</color>");
             SceneManager.LoadScene(0);
+        }
+
+        public void ResumeAll()
+        {
+            _resetMenu.SetActive(false);
+            GameResumeAction?.Invoke();
         }
     }
 }

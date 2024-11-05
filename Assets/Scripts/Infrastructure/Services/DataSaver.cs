@@ -15,8 +15,7 @@ namespace Infrastructure.Services
         public void SaveResult()
         {
             int scores = (int)_scoresStorage.Scores;
-
-
+            _scoresStorage.Reset();
             int bestScore = PlayerPrefs.GetInt("BestScore", 0);
             if (scores > bestScore)
             {

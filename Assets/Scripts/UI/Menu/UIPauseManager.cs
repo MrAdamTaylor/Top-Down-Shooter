@@ -13,6 +13,12 @@ namespace UI.Menu
 
         private bool _isActive;
         private float _currentTimeScale;
+        private Player.Player _player;
+
+        public void Construct()
+        {
+            _player = (Player.Player)ServiceLocator.Instance.GetData(typeof(Player.Player));
+        }
 
         private void Awake()
         {
@@ -20,22 +26,45 @@ namespace UI.Menu
             _currentTimeScale = Time.timeScale;
             ServiceLocator.Instance.BindData(typeof(UIPauseManager), this);
         }
+        
+        private bool _isBlocking;
+
+        public void BlockAll()
+        {
+            _isBlocking = true;
+			
+			if(panelPause.activeSelf)
+                panelPause.SetActive(false);
+            
+            if(panelSound.activeSelf)
+                panelSound.SetActive(false);
+        }
 
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
+                if(_isBlocking)
+                    return;
+                
                 if (_isActive)
                     Time.timeScale = 0;
                 else
                     Time.timeScale = _currentTimeScale;
                 _isActive = !_isActive;
+                /*if(panelPause.activeSelf)
+                    _player.Blocked();
+                else
+                    _player.UnBlocked();*/
                 panelPause.SetActive(!panelPause.activeSelf);
             }
         }
 
         public void OpenPanelSound()
-        {
+        {   
+            if(_isBlocking)
+                return;
+            
             panelSound.SetActive(true);
         }
 
@@ -56,8 +85,8 @@ namespace UI.Menu
 
         public void LoadSceneAgain()
         {
-            Scene currentScene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(currentScene.buildIndex);
+            /*Scene currentScene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(currentScene.buildIndex);*/
         }
 
         public void ClosePanelPause()
@@ -82,13 +111,18 @@ namespace UI.Menu
         {
             if (id == 1)
                 LoadSceneAgain();
-            Debug.Log($"<color=green>YGYGYG Reload Game</color>");
+            //Debug.Log($"<color=green>YGYGYG Reload Game</color>");
 
         }
 
-        public void ExampleOpenRewardAd(int id)
+        /*public void ExampleOpenRewardAd(int id)
         {
             YandexGame.RewVideoShow(id);
+        }*/
+
+        public void UnblockAll()
+        {
+            _isBlocking = false;
         }
     }
 }
