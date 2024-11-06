@@ -1,0 +1,395 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: EnemySpawnerConfigsWW8
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 46f3dda42c7741a3ae3725499a498248, type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.size
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[0].EnemyConfigs
+    value: 
+    objectReference: {fileID: 11400000, guid: 049dd4946a831964dbb44fd71afcc82d, type: 2}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[0].FirstAppearanceWave
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[0].PercantageForEachWaves.Array.size
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[0].PercantageForEachWaves.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[0].PercantageForEachWaves.Array.data[1]
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[0].PercantageForEachWaves.Array.data[2]
+    value: 20
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[0].PercantageForEachWaves.Array.data[3]
+    value: 30
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[0].PercantageForEachWaves.Array.data[4]
+    value: 20
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[0].PercantageForEachWaves.Array.data[5]
+    value: 20
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[0].PercantageForEachWaves.Array.data[6]
+    value: 30
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[0].PercantageForEachWaves.Array.data[7]
+    value: 25
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[0].PercantageForEachWaves.Array.data[8]
+    value: 30
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[0].PercantageForEachWaves.Array.data[9]
+    value: 25
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[1].EnemyConfigs
+    value: 
+    objectReference: {fileID: 11400000, guid: 4fc057d046fd4ae4b8f4909a5c1ec48a, type: 2}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[1].FirstAppearanceWave
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[1].PercantageForEachWaves.Array.size
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[1].PercantageForEachWaves.Array.data[0]
+    value: 100
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[1].PercantageForEachWaves.Array.data[1]
+    value: 90
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[1].PercantageForEachWaves.Array.data[2]
+    value: 80
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[1].PercantageForEachWaves.Array.data[3]
+    value: 70
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[1].PercantageForEachWaves.Array.data[4]
+    value: 60
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[1].PercantageForEachWaves.Array.data[5]
+    value: 50
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[1].PercantageForEachWaves.Array.data[6]
+    value: 40
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[1].PercantageForEachWaves.Array.data[7]
+    value: 40
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[1].PercantageForEachWaves.Array.data[8]
+    value: 30
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[1].PercantageForEachWaves.Array.data[9]
+    value: 40
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[2].EnemyConfigs
+    value: 
+    objectReference: {fileID: 11400000, guid: c6b4fbee5873af04497c78448e8689a5, type: 2}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[2].FirstAppearanceWave
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[2].PercantageForEachWaves.Array.size
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[2].PercantageForEachWaves.Array.data[0]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[2].PercantageForEachWaves.Array.data[1]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[2].PercantageForEachWaves.Array.data[2]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[2].PercantageForEachWaves.Array.data[3]
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[2].PercantageForEachWaves.Array.data[4]
+    value: 20
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[2].PercantageForEachWaves.Array.data[5]
+    value: 30
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[2].PercantageForEachWaves.Array.data[6]
+    value: 30
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[2].PercantageForEachWaves.Array.data[7]
+    value: 35
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[2].PercantageForEachWaves.Array.data[8]
+    value: 40
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: SpawnList.Array.data[2].PercantageForEachWaves.Array.data[9]
+    value: 35
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.size
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[0].WaveName
+    value: Wave 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[0].CountSpawnByTick
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[0].WaveTimePerSeconds
+    value: 20
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[0].MaxEnemyCountOnScreen
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[0].EnemySpawnIntervalPerSeconds
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[1].WaveName
+    value: Wave 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[1].CountSpawnByTick
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[1].WaveTimePerSeconds
+    value: 20
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[1].MaxEnemyCountOnScreen
+    value: 11
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[1].EnemySpawnIntervalPerSeconds
+    value: 6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[2].WaveName
+    value: Wave 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[2].CountSpawnByTick
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[2].WaveTimePerSeconds
+    value: 30
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[2].MaxEnemyCountOnScreen
+    value: 12
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[2].EnemySpawnIntervalPerSeconds
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[3].WaveName
+    value: Wave 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[3].CountSpawnByTick
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[3].WaveTimePerSeconds
+    value: 30
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[3].MaxEnemyCountOnScreen
+    value: 13
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[3].EnemySpawnIntervalPerSeconds
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[4].WaveName
+    value: Wave 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[4].CountSpawnByTick
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[4].WaveTimePerSeconds
+    value: 30
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[4].MaxEnemyCountOnScreen
+    value: 14
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[4].EnemySpawnIntervalPerSeconds
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[5].WaveName
+    value: Wave 6
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[5].CountSpawnByTick
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[5].WaveTimePerSeconds
+    value: 30
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[5].MaxEnemyCountOnScreen
+    value: 15
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[5].EnemySpawnIntervalPerSeconds
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[6].WaveName
+    value: Wave 7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[6].CountSpawnByTick
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[6].WaveTimePerSeconds
+    value: 30
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[6].MaxEnemyCountOnScreen
+    value: 16
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[6].EnemySpawnIntervalPerSeconds
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[7].WaveName
+    value: Wave 8
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[7].CountSpawnByTick
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[7].WaveTimePerSeconds
+    value: 30
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[7].MaxEnemyCountOnScreen
+    value: 17
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[7].EnemySpawnIntervalPerSeconds
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[8].WaveName
+    value: Wave 9
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[8].CountSpawnByTick
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[8].WaveTimePerSeconds
+    value: 30
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[8].MaxEnemyCountOnScreen
+    value: 18
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[8].EnemySpawnIntervalPerSeconds
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[9].WaveName
+    value: Wave 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[9].CountSpawnByTick
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[9].WaveTimePerSeconds
+    value: 30
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[9].MaxEnemyCountOnScreen
+    value: 18
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: Waves.Array.data[9].EnemySpawnIntervalPerSeconds
+    value: 4
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: RepeatLastWave
+    value: 1
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []

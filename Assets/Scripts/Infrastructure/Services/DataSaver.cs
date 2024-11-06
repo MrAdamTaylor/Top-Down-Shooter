@@ -1,5 +1,6 @@
 using UI.MVC.Model;
 using UnityEngine;
+using YG;
 
 namespace Infrastructure.Services
 {
@@ -14,12 +15,12 @@ namespace Infrastructure.Services
 
         public void SaveResult()
         {
-            int scores = (int)_scoresStorage.Scores;
-            _scoresStorage.Reset();
+            long scores = _scoresStorage.Scores;
             int bestScore = PlayerPrefs.GetInt("BestScore", 0);
             if (scores > bestScore)
             {
                 PlayerPrefs.SetInt("BestScore", (int)scores);
+                YandexGame.NewLeaderboardScores("LBbestScore", scores);
                 Debug.Log($"<color=yellow>New high score: {scores}</color>");
             }
 
@@ -28,6 +29,10 @@ namespace Infrastructure.Services
             PlayerPrefs.Save();
 
             Debug.Log($"<color=green>Result is {scores}</color>");
+        }
+        public void ResetResult()
+        {
+            _scoresStorage.Reset();
         }
 
     }

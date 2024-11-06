@@ -41,6 +41,7 @@ namespace Logic
         {
             DataSaver dataSaver = (DataSaver)ServiceLocator.Instance.GetData(typeof(DataSaver));
             dataSaver.SaveResult();
+            dataSaver.ResetResult();
             Destroy(_bootstraper);
             Destroy(_loadCurtain);
             SceneManager.LoadScene(0);

@@ -20,11 +20,11 @@ namespace EnterpriceLogic
             _goalTransform = goalTransform;
         }
 
-        private void OnDrawGizmos()
+        /*private void OnDrawGizmos()
         {
             Handles.color = CheckTrigger(_goalTransform.position)? Color.green: Color.red;
             Handles.DrawWireDisc(this.transform.position, Vector3.up, _radius);
-        }
+        }*/
        
         private void FixedUpdate()
         {

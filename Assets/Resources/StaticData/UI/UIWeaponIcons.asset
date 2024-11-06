@@ -88,7 +88,7 @@ MonoBehaviour:
         AnimationType: 0
         StartConfigs:
           Scale: {x: 1, y: 0, z: 0}
-          RillRate: 0.05
+          RillRate: 0.04
           EaseType: 0
         EndConfigs:
           Scale: {x: 0, y: 0, z: 0}

@@ -27,7 +27,7 @@ MonoBehaviour:
     WastedAmmo: 1
   BulletPoint: {fileID: 0}
   ShootPosition: {x: 9.354944, y: 1.1401031, z: -10.983404}
-  AmountOfRaction: 3
+  AmountOfFraction: 5
   FovAngle: 10
-  Distance: 7
-  FadeDuration: 0.1
+  Distance: 8
+  FadeDuration: 0.07

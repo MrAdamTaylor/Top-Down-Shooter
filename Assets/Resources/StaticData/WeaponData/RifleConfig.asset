@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: RifleConfig
   m_EditorClassIdentifier: 
   WType: 1
-  Damage: 10
-  SpeedFireRange: 0.15
+  Damage: 25
+  SpeedFireRange: 0.2
   InpType: 1
   ShootSound:
   - {fileID: 8300000, guid: 4a99d67d237c7a749a371c7909808a2b, type: 3}
@@ -26,4 +26,4 @@ MonoBehaviour:
     StarterAmmo: 150
     WastedAmmo: 1
   BulletPoint: {fileID: 0}
-  ShootPosition: {x: 8.158671, y: 1.2141013, z: -9.976075}
+  ShootPosition: {x: 8.158671, y: 1.2141016, z: -9.976075}

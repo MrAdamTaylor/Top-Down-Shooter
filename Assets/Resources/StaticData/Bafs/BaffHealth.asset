@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BaffHealth
   m_EditorClassIdentifier: Assembly-CSharp:Configs:HealthBaffConfigs
   Visual: {fileID: 3108074758479068141, guid: 52ff5159d1db2ca419ca5adb4acef6c8, type: 3}
-  HealthUp: 40
+  HealthUp: 20

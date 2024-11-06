@@ -12,41 +12,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f3dda42c7741a3ae3725499a498248, type: 3}
   m_Name: EnemySpawner
   m_EditorClassIdentifier: 
-  StartSpawnInterval: 2
   SpawnList:
   - EnemyConfigs: {fileID: 11400000, guid: 049dd4946a831964dbb44fd71afcc82d, type: 2}
     FirstAppearanceWave: 1
-    PercantageForEachWaves: 00000000140000001e0000001e0000001e000000
+    PercantageForEachWaves: 000000000a000000140000001e00000014000000140000001e000000190000001e00000019000000
   - EnemyConfigs: {fileID: 11400000, guid: 4fc057d046fd4ae4b8f4909a5c1ec48a, type: 2}
     FirstAppearanceWave: 0
-    PercantageForEachWaves: 6400000050000000460000003200000028000000
+    PercantageForEachWaves: 640000005a00000050000000460000003c0000003200000028000000280000001e00000028000000
   - EnemyConfigs: {fileID: 11400000, guid: c6b4fbee5873af04497c78448e8689a5, type: 2}
-    FirstAppearanceWave: 3
-    PercantageForEachWaves: 000000000000000000000000140000001e000000
+    FirstAppearanceWave: 4
+    PercantageForEachWaves: 00000000000000000000000000000000140000001e0000001e000000230000002800000023000000
   Waves:
   - WaveName: Wave 1
     CountSpawnByTick: 2
-    WaveTimePerSeconds: 30
-    MaxEnemyCountOnScreen: 12
-    EnemySpawnIntervalPerSeconds: 8
+    WaveTimePerSeconds: 20
+    MaxEnemyCountOnScreen: 10
+    EnemySpawnIntervalPerSeconds: 3
   - WaveName: Wave 2
     CountSpawnByTick: 3
     WaveTimePerSeconds: 20
-    MaxEnemyCountOnScreen: 15
+    MaxEnemyCountOnScreen: 11
     EnemySpawnIntervalPerSeconds: 6
   - WaveName: Wave 3
     CountSpawnByTick: 4
-    WaveTimePerSeconds: 20
-    MaxEnemyCountOnScreen: 18
+    WaveTimePerSeconds: 30
+    MaxEnemyCountOnScreen: 12
     EnemySpawnIntervalPerSeconds: 5
   - WaveName: Wave 4
     CountSpawnByTick: 5
-    WaveTimePerSeconds: 20
-    MaxEnemyCountOnScreen: 20
+    WaveTimePerSeconds: 30
+    MaxEnemyCountOnScreen: 13
     EnemySpawnIntervalPerSeconds: 4
-  - WaveName: Wave 4
+  - WaveName: Wave 5
     CountSpawnByTick: 5
-    WaveTimePerSeconds: 20
-    MaxEnemyCountOnScreen: 20
+    WaveTimePerSeconds: 30
+    MaxEnemyCountOnScreen: 14
     EnemySpawnIntervalPerSeconds: 4
+  - WaveName: Wave 6
+    CountSpawnByTick: 5
+    WaveTimePerSeconds: 30
+    MaxEnemyCountOnScreen: 15
+    EnemySpawnIntervalPerSeconds: 4
+  - WaveName: Wave 7
+    CountSpawnByTick: 7
+    WaveTimePerSeconds: 30
+    MaxEnemyCountOnScreen: 15
+    EnemySpawnIntervalPerSeconds: 4
+  - WaveName: Wave 8
+    CountSpawnByTick: 5
+    WaveTimePerSeconds: 30
+    MaxEnemyCountOnScreen: 17
+    EnemySpawnIntervalPerSeconds: 4
+  - WaveName: Wave 9
+    CountSpawnByTick: 6
+    WaveTimePerSeconds: 30
+    MaxEnemyCountOnScreen: 17
+    EnemySpawnIntervalPerSeconds: 4
+  - WaveName: Wave 10
+    CountSpawnByTick: 6
+    WaveTimePerSeconds: 40
+    MaxEnemyCountOnScreen: 15
+    EnemySpawnIntervalPerSeconds: 3
   RepeatLastWave: 1
