@@ -38,7 +38,6 @@ namespace Player.ShootSystem
             }
         }
 
-
         public override void Shoot()
         {
             if (_camera == null)
@@ -61,32 +60,85 @@ namespace Player.ShootSystem
                 Vector3 hitPoint = ray.GetPoint(enter);
                 Vector3 direction = (hitPoint - _bulletPoint.position).normalized;
 
-                // Устанавливаем минимальную дистанцию
-                float minDistance = 2.0f; // Можно регулировать по необходимости
+                // Set a minimum shooting distance
+                float minDistance = 2.0f;
                 if (Vector3.Distance(_bulletPoint.position, hitPoint) < minDistance)
                 {
-                    // Если курсор слишком близко, стреляем прямо вперед от игрока
-                    direction = _bulletPoint.forward; // Вектор вперед относительно точки выстрела
+                    direction = _bulletPoint.forward;
                 }
 
-                if (Physics.Raycast(_bulletPoint.position, direction, out RaycastHit hit, _distance, _layerMask))
+                if (Physics.Raycast(_bulletPoint.position, direction, out RaycastHit hit, _distance, Constants.WEAPON_LAYER_MASK))
                 {
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer(Constants.ENEMY_LAYER))
+                    int hitLayer = hit.collider.gameObject.layer;
+
+                    if (hitLayer == LayerMask.NameToLayer("Enemy"))
                     {
-                        PlayLoopComponentProvider enemyComponentProvider =
-                            hit.collider.gameObject.GetComponent<PlayLoopComponentProvider>();
+                        PlayLoopComponentProvider enemyComponentProvider = hit.collider.gameObject.GetComponent<PlayLoopComponentProvider>();
                         EnemyHealth enemyHealth = (EnemyHealth)enemyComponentProvider.TakeComponent(typeof(EnemyHealth));
                         enemyHealth.TakeDamage(_damage);
                     }
 
-                    _specialEffectFactory.CreateBullet(this, _bulletPoint.position, hit.point, hit.normal, _bulletSpeed, Constants.MADE_IMPACT);
+                    _specialEffectFactory.CreateBullet(this, _bulletPoint.position, hit.point, hit.normal, _bulletSpeed, Constants.MADE_IMPACT, hitLayer);
                 }
                 else
                 {
-                    _specialEffectFactory.CreateBullet(this, _bulletPoint.position, _bulletPoint.position + direction * _distance, Vector3.zero, _bulletSpeed, Constants.NON_MADE_IMPACT);
+                    _specialEffectFactory.CreateBullet(this, _bulletPoint.position, _bulletPoint.position + direction * _distance, Vector3.zero, _bulletSpeed, Constants.NON_MADE_IMPACT, LayerMask.NameToLayer("Default"));
                 }
+
             }
         }
+
+        //public override void Shoot()
+        //{
+        //    if (_camera == null)
+        //    {
+        //        Debug.LogError("Camera not initialized in ShootSystemOnly. Please ensure Construct is called.");
+        //        return;
+        //    }
+
+        //    if (_bulletPoint == null)
+        //    {
+        //        Debug.LogError("Bullet point not set in ShootSystemOnly. Ensure WeaponStaticData has BulletPoint assigned.");
+        //        return;
+        //    }
+
+        //    Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
+        //    Plane plane = new Plane(Vector3.up, _bulletPoint.position);
+
+        //    if (plane.Raycast(ray, out float enter))
+        //    {
+        //        Vector3 hitPoint = ray.GetPoint(enter);
+        //        Vector3 direction = (hitPoint - _bulletPoint.position).normalized;
+
+        //        // Устанавливаем минимальную дистанцию
+        //        float minDistance = 2.0f; // Можно регулировать по необходимости
+        //        if (Vector3.Distance(_bulletPoint.position, hitPoint) < minDistance)
+        //        {
+        //            // Если курсор слишком близко, стреляем прямо вперед от игрока
+        //            direction = _bulletPoint.forward; // Вектор вперед относительно точки выстрела
+        //        }
+
+        //        if (Physics.Raycast(_bulletPoint.position, direction, out RaycastHit hit, _distance, _layerMask))
+        //        {
+        //            int hitLayer = hit.collider.gameObject.layer;
+
+        //            if (hitLayer == LayerMask.NameToLayer(Constants.ENEMY_LAYER))
+        //            {
+        //                PlayLoopComponentProvider enemyComponentProvider =
+        //                    hit.collider.gameObject.GetComponent<PlayLoopComponentProvider>();
+        //                EnemyHealth enemyHealth = (EnemyHealth)enemyComponentProvider.TakeComponent(typeof(EnemyHealth));
+        //                enemyHealth.TakeDamage(_damage);
+        //            }
+
+        //            _specialEffectFactory.CreateBullet(this, _bulletPoint.position, hit.point, hit.normal, _bulletSpeed, Constants.MADE_IMPACT, hitLayer);
+        //        }
+        //        else
+        //        {
+        //            _specialEffectFactory.CreateBullet(this, _bulletPoint.position, _bulletPoint.position + direction * _distance, Vector3.zero, _bulletSpeed, Constants.NON_MADE_IMPACT, LayerMask.NameToLayer(Constants.DEFAULT_LAYER));
+        //        }
+
+        //    }
+        //}
 
 
 

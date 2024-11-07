@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 288068092859224074}
   - component: {fileID: 2601843834089333952}
   - component: {fileID: 8883085863629411271}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SM_Bld_Fence_Pillar_Cemetary_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &3769715139191807919
@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 39
+  m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &288068092859224074
 MeshFilter:

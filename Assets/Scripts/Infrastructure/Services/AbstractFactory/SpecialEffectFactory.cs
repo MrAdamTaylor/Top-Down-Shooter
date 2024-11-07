@@ -28,12 +28,15 @@ namespace Infrastructure.Services.AbstractFactory
             behaviour.StartCoroutine(FadeLaser(lr, lineRenderer, fadeDuration));
         }
 
-        public void CreateBullet(MonoBehaviour behaviour, Vector3 bulletPointPosition, Vector3 startPoint, 
-            Vector3 endPoint, float bulletSpeed, bool madeImpact)
+        public void CreateBullet(MonoBehaviour behaviour, Vector3 bulletPointPosition, Vector3 startPoint,
+                             Vector3 endPoint, float bulletSpeed, bool madeImpact, int hitLayer)
         {
             TrailRenderer trail = _bulletAssert.Assert(PrefabPath.HOT_TRAIL_PATH, bulletPointPosition);
-            behaviour.StartCoroutine(SpawnTrail(trail, startPoint, endPoint, bulletSpeed, madeImpact));
+            behaviour.StartCoroutine(SpawnTrail(trail, startPoint, endPoint, bulletSpeed, madeImpact, hitLayer));
         }
+
+
+
 
         private IEnumerator FadeLaser(LineRenderer lr, LineRenderer laser, float fadeDuration)
         {
@@ -47,7 +50,7 @@ namespace Infrastructure.Services.AbstractFactory
             }
         }
 
-        private IEnumerator SpawnTrail(TrailRenderer trail, Vector3 hitPoint, Vector3 hitNormal, float bulletSpeed, bool madeImpact)
+        private IEnumerator SpawnTrail(TrailRenderer trail, Vector3 hitPoint, Vector3 hitNormal, float bulletSpeed, bool madeImpact, int hitLayer)
         {
             Vector3 startPosition = trail.transform.position;
             float distance = Vector3.Distance(trail.transform.position, hitPoint);
@@ -56,17 +59,47 @@ namespace Infrastructure.Services.AbstractFactory
             while (remainingDistance > 0)
             {
                 trail.transform.position = Vector3.Lerp(startPosition, hitPoint, 1 - (remainingDistance / distance));
-
                 remainingDistance -= bulletSpeed * Time.deltaTime;
-
                 yield return null;
             }
             trail.transform.position = hitPoint;
+
             if (madeImpact)
             {
-                _particleAssert.Assert(PrefabPath.IMPACT_PARTICLE_EFFECT, hitPoint, Quaternion.LookRotation(hitNormal));
+                if (hitLayer == LayerMask.NameToLayer("Obstacle"))
+                {
+                    _particleAssert.Assert(PrefabPath.IMPACT_PARTICLE_EFFECT, hitPoint, Quaternion.LookRotation(hitNormal));
+                }
+                else if (hitLayer == LayerMask.NameToLayer("Enemy"))
+                {
+                    _particleAssert.Assert(PrefabPath.BLOOD_PARTICLE_EFFECT, hitPoint, Quaternion.LookRotation(hitNormal));
+                }
             }
+
             Object.Destroy(trail.gameObject, trail.time);
         }
+
+
+        //private IEnumerator SpawnTrail(TrailRenderer trail, Vector3 hitPoint, Vector3 hitNormal, float bulletSpeed, bool madeImpact)
+        //{
+        //    Vector3 startPosition = trail.transform.position;
+        //    float distance = Vector3.Distance(trail.transform.position, hitPoint);
+        //    float remainingDistance = distance;
+
+        //    while (remainingDistance > 0)
+        //    {
+        //        trail.transform.position = Vector3.Lerp(startPosition, hitPoint, 1 - (remainingDistance / distance));
+
+        //        remainingDistance -= bulletSpeed * Time.deltaTime;
+
+        //        yield return null;
+        //    }
+        //    trail.transform.position = hitPoint;
+        //    if (madeImpact)
+        //    {
+        //        _particleAssert.Assert(PrefabPath.IMPACT_PARTICLE_EFFECT, hitPoint, Quaternion.LookRotation(hitNormal));
+        //    }
+        //    Object.Destroy(trail.gameObject, trail.time);
+        //}
     }
 }

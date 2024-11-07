@@ -33,7 +33,7 @@ Transform:
   - {fileID: 2916691732495669988}
   - {fileID: 91843881216368101}
   m_Father: {fileID: 0}
-  m_RootOrder: 86
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &2501283380535483118
 ParticleSystem:
@@ -45,7 +45,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
