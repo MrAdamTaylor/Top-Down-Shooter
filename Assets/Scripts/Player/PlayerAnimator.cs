@@ -25,14 +25,18 @@ namespace Player
         private readonly int _deathState = Animator.StringToHash("Death");
         private readonly int _idleState = Animator.StringToHash("Locomotion");
         #endregion
-        
-        
+        private static readonly int IsBigGun = Animator.StringToHash("isBigGun");
+        private static readonly int IsSmallGun = Animator.StringToHash("isSmallGun");
+
+
 
         private Animator _animator;
         
         private Vector2 _input;
         public float smoothBlend = 0.1f;
+        
 
+        
         public void Construct()
         {
             _animator = GetComponent<Animator>();
@@ -55,11 +59,18 @@ namespace Player
             _animator.SetFloat(YAxis, direction.z, smoothBlend, Time.deltaTime);
         }
 
+        public void SetWeaponType(bool isBigGun)
+        {
+           _animator.SetBool(IsBigGun, isBigGun);
+            _animator.SetBool(IsSmallGun, !isBigGun);
+            Debug.Log(IsSmallGun);
+        }
         public void PlayIdle()
         {
             State = AnimatorState.Idle;
             _animator.SetTrigger(IsAlive);
             _animator.SetBool(_idleState, true);
+            
         }
 
         public void PlayDeath()
@@ -81,6 +92,8 @@ namespace Player
         {
             StateExited?.Invoke(State);
         }
+
+        
         
         private AnimatorState StateFor(int stateHash)
         {

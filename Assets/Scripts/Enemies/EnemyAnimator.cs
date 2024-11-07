@@ -14,6 +14,7 @@ namespace Enemies
         private static readonly int Speed = Animator.StringToHash("Speed");
         private static readonly int IsMoving = Animator.StringToHash("IsMoving");
         private static readonly int Die = Animator.StringToHash("Die");
+        private static readonly int DieVariant = Animator.StringToHash("DieVariant");
         private static readonly int Idle = Animator.StringToHash("ZombieIdle");
         private static readonly int Hit = Animator.StringToHash("HitAnim");
         #endregion
@@ -42,12 +43,14 @@ namespace Enemies
         public void PlayIdle()
         {
             State = AnimatorState.Idle;
-            _animator.SetTrigger(Idle);
+            //_animator.SetTrigger(Idle);
         }
 
         public void PlayDeath()
         {
             State = AnimatorState.Died;
+            int variant = UnityEngine.Random.Range(0, 3);
+            _animator.SetInteger(DieVariant, variant);
             _animator.SetTrigger(Die);
         }
 

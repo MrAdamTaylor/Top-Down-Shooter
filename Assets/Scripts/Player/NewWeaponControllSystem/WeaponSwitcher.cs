@@ -7,10 +7,11 @@ namespace Player.NewWeaponControllSystem
     {
         private CurrentWeaponConstructor _currentWeaponConstructor;
         private WeaponConteiner _conteiner;
+        private PlayerAnimator _playerAnimator;
         private int _selectedWeapon;
 
         private bool _isConstructed = false;
-        
+
         public void Construct(WeaponProvider provider, CurrentWeaponConstructor constructor)
         {
             _currentWeaponConstructor = constructor;
@@ -18,7 +19,10 @@ namespace Player.NewWeaponControllSystem
             _conteiner.IsNullWithException("Error on load WeaponConteiner");
             _isConstructed = true;
         }
-
+        private void Awake()
+        {
+            _playerAnimator = FindObjectOfType<PlayerAnimator>();
+        }
         private void Update()
         {
             if (_isConstructed)
@@ -39,7 +43,7 @@ namespace Player.NewWeaponControllSystem
                 {
                     if (_selectedWeapon <= 0)
                     {
-                        _selectedWeapon = _conteiner.Count-1;
+                        _selectedWeapon = _conteiner.Count - 1;
                     }
                     else
                     {
@@ -67,6 +71,17 @@ namespace Player.NewWeaponControllSystem
                     Weapon.Weapon weapon = _conteiner.GetByIndex(i);
                     weapon.gameObject.SetActive(true);
                     _currentWeaponConstructor.SwitchInput(weapon);
+
+                    // Установка параметров анимации в зависимости от типа оружия
+                    if (_playerAnimator != null)
+                    {
+                        bool isBigGun = weapon.TypeWeapon == Weapon.WeaponType.ShootGun || weapon.TypeWeapon == Weapon.WeaponType.Rifle;
+                        _playerAnimator.SetWeaponType(isBigGun);
+                    }
+                    else
+                    {
+                        Debug.LogError("_playerAnimator is not assigned in WeaponSwitcher.");
+                    }
                 }
                 else
                 {
@@ -75,5 +90,6 @@ namespace Player.NewWeaponControllSystem
                 }
             }
         }
+
     }
 }
