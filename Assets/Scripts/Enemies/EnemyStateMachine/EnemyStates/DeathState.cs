@@ -1,4 +1,3 @@
-using Logic;
 using UnityEngine;
 
 namespace Enemies.EnemyStateMachine

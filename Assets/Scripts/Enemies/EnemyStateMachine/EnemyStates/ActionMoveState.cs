@@ -48,8 +48,8 @@ namespace Enemies.EnemyStateMachine
 
         public override void Exit()
         {
-            base.Exit();
             _rotateSystem.RotateStop();
+            base.Exit();
         }
     }
 }

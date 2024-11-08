@@ -51,7 +51,6 @@ namespace Infrastructure.StateMachine.States
         private void RegisteredTimer(int levelConfigsPerSeconds, int starSeconds)
         {
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(TimeData), new TimeData(levelConfigsPerSeconds, starSeconds));
-            Debug.Log("Timer Service Registered, Per seconds: "+levelConfigsPerSeconds);
         }
 
         private void BindServicesByType(SpawnerConfigs levelConfigsSpawnerConfigs)
@@ -60,14 +59,11 @@ namespace Infrastructure.StateMachine.States
             {
                 case BafSpawnerConfigs bafSpawner:
                     RegisterBafService(bafSpawner);
-                    Debug.Log($"<color=green> Baf Spawner Services Registered</color>");
                     break;
                 case EnemySpawnerConfigs enemySpawner:
-                    Debug.Log($"<color=green> Enemy Spawner Services Registered</color>");
                     RegisterEnemyesServices(enemySpawner);
                     break;
                 case DebafSpawnerConfigs debafSpawnerConfigs:
-                    Debug.Log($"<color=green> Debaf Spawner Services Registered</color>");
                     break;
                 case null:
                     throw new ArgumentNullException();
@@ -105,10 +101,8 @@ namespace Infrastructure.StateMachine.States
 
         public void Enter()
         {
-            //_sceneLoader.Load(Constants.INTERMEDIATE_SCENE, EnterLoadLevel);
             _sceneLoader.Load(Constants.INTERMEDIATE_SCENE);
             _stateMachine.Enter<LoadLevelState, string>(_level);
-            //_sceneLoader.Load(_level, onLoaded: EnterLoadLevel);
         }
 
         public void Exit()
@@ -121,8 +115,5 @@ namespace Infrastructure.StateMachine.States
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(DataSaver), 
                 new DataSaver((ScoresStorage)ServiceLocator.ServiceLocator.Instance.GetData(typeof(ScoresStorage))));
         }
-
-        private void EnterLoadLevel() => 
-            _stateMachine.Enter<LoadLevelState, string>(_level);
     }
 }

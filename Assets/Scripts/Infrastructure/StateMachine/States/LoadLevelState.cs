@@ -68,12 +68,8 @@ namespace Infrastructure.StateMachine.States
             GameSystem system = gameSystem.AddComponent<GameSystem>();
 
             GameObject resetButtonUI = _uiFactory.CreateResetButton(_canvas);
-            //GameObject bootstraper = GameObject.Find(ConstantsSceneObjects.GAME_BOOTSTRAPER);
-            //LoadingCurtain loadCurtain = GameObject.FindObjectOfType<LoadingCurtain>();
             system.Construct(resetButtonUI);
-            Debug.Log("<color=red>Before Error </color>");
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(GameSystem), system);
-            Debug.Log("<color=red>After Error </color>");
             _stateMachine.Enter<GameLoopState>();
         }
 
@@ -92,14 +88,6 @@ namespace Infrastructure.StateMachine.States
                     bafSpawnerConfigs.InnerRadius, bafSpawnerConfigs.MaximusSpawnRadius);
                 
                 bafSpawner.Construct(bafFactory, bafSpawnerConfigs, trigger);
-                
-                
-                
-                Debug.Log("<color=green>Baf Spawner Added</color>");
-            }
-            else
-            {
-                Debug.Log("<color=green> Not Baf Spawner</color>");
             }
         }
 

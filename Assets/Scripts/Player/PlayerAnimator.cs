@@ -35,8 +35,6 @@ namespace Player
         private Vector2 _input;
         public float smoothBlend = 0.1f;
         
-
-        
         public void Construct()
         {
             _animator = GetComponent<Animator>();

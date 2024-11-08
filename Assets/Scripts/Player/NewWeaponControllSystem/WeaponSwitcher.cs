@@ -1,4 +1,5 @@
 using EnterpriceLogic.Utilities;
+using Infrastructure.ServiceLocator;
 using UnityEngine;
 
 namespace Player.NewWeaponControllSystem
@@ -18,11 +19,12 @@ namespace Player.NewWeaponControllSystem
             _conteiner = new WeaponConteiner(provider.ReturnWeapons());
             _conteiner.IsNullWithException("Error on load WeaponConteiner");
             _isConstructed = true;
+            _playerAnimator = (PlayerAnimator)ServiceLocator.Instance.GetData(typeof(PlayerAnimator));
         }
-        private void Awake()
+        /*private void Awake()
         {
             _playerAnimator = FindObjectOfType<PlayerAnimator>();
-        }
+        }*/
         private void Update()
         {
             if (_isConstructed)
@@ -71,8 +73,7 @@ namespace Player.NewWeaponControllSystem
                     Weapon.Weapon weapon = _conteiner.GetByIndex(i);
                     weapon.gameObject.SetActive(true);
                     _currentWeaponConstructor.SwitchInput(weapon);
-
-                    // Установка параметров анимации в зависимости от типа оружия
+                    
                     if (_playerAnimator != null)
                     {
                         bool isBigGun = weapon.TypeWeapon == Weapon.WeaponType.ShootGun || weapon.TypeWeapon == Weapon.WeaponType.Rifle;

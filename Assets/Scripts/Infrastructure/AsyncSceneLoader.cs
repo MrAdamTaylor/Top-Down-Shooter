@@ -29,15 +29,16 @@ namespace Infrastructure
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            /*if (Input.GetKeyDown(KeyCode.Space))
             {
-                Debug.Log("<color=green>Move</color>");
-                if (_isLoaded)
+                Debug.Log("<color=green>Move</color>");*/
+                if (_isLoaded && !_isFinal)
                 {
                     _asyncOperation.allowSceneActivation = true;
                     _action?.Invoke();
+                    _isFinal = true;
                 }
-            }
+            //}
         }
 
         public void Load(string gameScene)
