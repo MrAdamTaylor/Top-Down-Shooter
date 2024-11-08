@@ -115,38 +115,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7123742799500824015}
     m_Modifications:
-    - target: {fileID: 1522345048467659622, guid: 12d19848e1548d64d94685f900921d13, type: 3}
-      propertyPath: ShapeModule.type
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1522345048467659622, guid: 12d19848e1548d64d94685f900921d13, type: 3}
-      propertyPath: ShapeModule.m_Mesh
-      value: 
-      objectReference: {fileID: -2873343121851320465, guid: 724228af0045d99499fde655af867fbe, type: 3}
-    - target: {fileID: 1522345048467659622, guid: 12d19848e1548d64d94685f900921d13, type: 3}
-      propertyPath: ShapeModule.m_Scale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1522345048467659622, guid: 12d19848e1548d64d94685f900921d13, type: 3}
-      propertyPath: ShapeModule.m_Scale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1522345048467659622, guid: 12d19848e1548d64d94685f900921d13, type: 3}
-      propertyPath: ShapeModule.m_Scale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1522345048467659622, guid: 12d19848e1548d64d94685f900921d13, type: 3}
-      propertyPath: ShapeModule.radiusThickness
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1522345048467659622, guid: 12d19848e1548d64d94685f900921d13, type: 3}
-      propertyPath: ShapeModule.m_MeshSpawn.mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1522345048467659622, guid: 12d19848e1548d64d94685f900921d13, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 1722020378972503864, guid: 12d19848e1548d64d94685f900921d13, type: 3}
       propertyPath: m_Name
       value: FX_Candle_Flame_Vert_01 (12)

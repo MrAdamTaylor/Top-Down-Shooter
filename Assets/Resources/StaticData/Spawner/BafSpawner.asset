@@ -17,7 +17,7 @@ MonoBehaviour:
   BafConfigsList:
   - {fileID: 11400000, guid: 063667089edbf4b41aa02ff26ce66216, type: 2}
   - {fileID: 11400000, guid: 325466583dff0bf49bf3de907f11b2e6, type: 2}
-  FirstTimeWait: 15
+  FirstTimeWait: 20
   SpawnInterval: 10
   IncreaseSpawnTime: 1
-  PerSecTimeIncrease: 3
+  PerSecTimeIncrease: 2
