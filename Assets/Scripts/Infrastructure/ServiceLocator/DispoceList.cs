@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
-using UnityEngine;
 
-public class DispoceList 
+namespace Infrastructure.ServiceLocator
 {
+    public class DispoceList 
+    {
         [CanBeNull] private static DispoceList _instance;
 
         private readonly Stack<IDisposable> _disposables = new();
@@ -28,12 +29,11 @@ public class DispoceList
 
         public void RemoveAll()
         {
-            Debug.Log("Disposable Count"+_disposables.Count);
             while (_disposables.Count > 0)
             {
                 IDisposable disposable = _disposables.Pop();
-                Debug.Log($"<color=cyan>Destroing object is {disposable}</color>");
                 disposable.Dispose();
             }
         }
+    }
 }

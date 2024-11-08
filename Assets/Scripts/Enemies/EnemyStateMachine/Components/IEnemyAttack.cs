@@ -1,6 +1,6 @@
 using System;
 
-namespace Enemies.EnemyStateMachine
+namespace Enemies.EnemyStateMachine.Components
 {
     public interface IEnemyAttack
     {

@@ -1,10 +1,9 @@
 using System;
-using Logic;
 using Player;
 using UI.Menu;
 using UnityEngine;
 
-namespace Infrastructure.StateMachine.States
+namespace Logic
 {
     public class Blocker : IDisposable
     {

@@ -1,7 +1,7 @@
 using System;
-using UnityEngine;
+using Enemies.EnemyStateMachine.Components;
 
-namespace Enemies.EnemyStateMachine
+namespace Enemies.EnemyStateMachine.EnemyStates
 {
     public class AttackState : ActionMoveState, IDisposable
     {

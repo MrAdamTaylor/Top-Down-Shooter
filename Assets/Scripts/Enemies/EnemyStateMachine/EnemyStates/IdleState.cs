@@ -1,9 +1,8 @@
 using Infrastructure.ServiceLocator;
-using Logic;
 using Player;
 using UnityEngine;
 
-namespace Enemies.EnemyStateMachine
+namespace Enemies.EnemyStateMachine.EnemyStates
 {
     public class IdleState : BaseState
     {

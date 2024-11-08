@@ -1,6 +1,4 @@
-using UnityEngine;
-
-namespace Enemies.EnemyStateMachine
+namespace Enemies.EnemyStateMachine.EnemyStates
 {
     public class FollowPlayerState : ActionMoveState
     {

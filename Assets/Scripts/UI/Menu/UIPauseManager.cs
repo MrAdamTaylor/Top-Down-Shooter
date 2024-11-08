@@ -2,6 +2,7 @@ using EnterpriceLogic.Constants;
 using Infrastructure;
 using Infrastructure.ServiceLocator;
 using Infrastructure.StateMachine.States;
+using Logic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;

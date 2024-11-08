@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using Configs;
-using Enemies;
 using UI.MVC.Model;
 using UnityEngine;
 using Weapon;
 
-namespace Infrastructure.StateMachine.States
+namespace Logic.Bafs
 {
     internal class AmmoBaffComponent : MonoBehaviour, IBaffComponent
     {
@@ -17,7 +16,7 @@ namespace Infrastructure.StateMachine.States
         {
             _ammoBaffConfigs = (AmmoBaffConfigs)bafConfigs;
             _playerGameObj = player.gameObject;
-            _dictionary = (Dictionary<WeaponType, AmmoStorage>)ServiceLocator.ServiceLocator.Instance.
+            _dictionary = (Dictionary<WeaponType, AmmoStorage>)Infrastructure.ServiceLocator.ServiceLocator.Instance.
                 GetData(typeof(Dictionary<WeaponType, AmmoStorage>));
         }
 

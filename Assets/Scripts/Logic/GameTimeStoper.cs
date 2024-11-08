@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Infrastructure.StateMachine.States
+namespace Logic
 {
     public class GameTimeStoper
     {

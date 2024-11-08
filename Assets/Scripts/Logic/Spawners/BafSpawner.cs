@@ -1,9 +1,10 @@
 using Configs;
 using EnterpriceLogic;
+using Infrastructure.Services.AbstractFactory;
 using Logic.Timer;
 using UnityEngine;
 
-namespace Infrastructure.StateMachine.States
+namespace Logic.Spawners
 {
     public class BafSpawner : MonoBehaviour
     {
@@ -19,7 +20,7 @@ namespace Infrastructure.StateMachine.States
         private IBafFactory _bafFactory;
         private BafSpawnerConfigs _bafSpawnerConfigs;
         private RingTrigger _ringTrigger;
-        private Timer _timer;
+        private Timer.Timer _timer;
 
         private Vector3 _center;
         private Vector3 _regizonSize;
@@ -39,14 +40,14 @@ namespace Infrastructure.StateMachine.States
         private Collider[] _hitColliders;
         public void Construct(IBafFactory bafFactory, BafSpawnerConfigs bafSpawnerConfigs, RingTrigger ringTrigger)
         {
-            _timer = new Timer(TimerType.OneSecTick, bafSpawnerConfigs.FirstTimeWait);
+            _timer = new Timer.Timer(TimerType.OneSecTick, bafSpawnerConfigs.FirstTimeWait);
             _timer.OnTimerFinishEvent += SpawnObject;
             _timer.Start();
             _innerSpawnInterval = bafSpawnerConfigs.SpawnInterval;
             _ringTrigger = ringTrigger;
             _bafFactory = bafFactory;
             _bafSpawnerConfigs = bafSpawnerConfigs;
-            Player.Player player = (Player.Player)ServiceLocator.ServiceLocator.Instance.GetData(typeof(Player.Player));
+            Player.Player player = (Player.Player)Infrastructure.ServiceLocator.ServiceLocator.Instance.GetData(typeof(Player.Player));
             _playerTransform = player.transform;
 
             _center = new Vector3(XCenterPosition, YCenterPosition, ZCenterPosition);

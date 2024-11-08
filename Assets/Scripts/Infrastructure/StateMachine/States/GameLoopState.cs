@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Enemies.EnemyStateMachine;
+using Infrastructure.ServiceLocator;
 using Infrastructure.StateMachine.Interfaces;
 using Logic;
 using Logic.Timer;
@@ -33,6 +34,23 @@ namespace Infrastructure.StateMachine.States
             DispoceList.Instance.Add(this);
             _sceneLoader = sceneLoader;
             _stateMachine = gameStateMachine;
+        }
+        
+        public void Dispose()
+        {
+            _playerDeath.PlayerDefeatAction -= _gameSystem.ShowResetMenu;
+
+            _gameTimer = null;
+            _playerDeath = null;
+            _waveSystem = null;
+            _gameSystem = null;
+            _spawnController = null;
+            _player = null;
+            _pauseManager = null;
+            _sceneLoader = null;
+            _blocker = null;
+            _gameTimeStoper = null;
+            GC.SuppressFinalize(this);
         }
 
         public void Exit()
@@ -86,21 +104,6 @@ namespace Infrastructure.StateMachine.States
             _playerDeath.gameObject.transform.position = _respawnPosition;
         }
 
-        public void Dispose()
-        {
-            _playerDeath.PlayerDefeatAction -= _gameSystem.ShowResetMenu;
-
-            _gameTimer = null;
-            _playerDeath = null;
-            _waveSystem = null;
-            _gameSystem = null;
-            _spawnController = null;
-            _player = null;
-            _pauseManager = null;
-            _sceneLoader = null;
-            _blocker = null;
-            _gameTimeStoper = null;
-            
-        }
+        
     }
 }

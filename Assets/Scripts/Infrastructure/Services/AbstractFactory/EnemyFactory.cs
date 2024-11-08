@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Configs;
 using Enemies;
 using Enemies.EnemyStateMachine;
+using Enemies.EnemyStateMachine.Components;
 using EnterpriceLogic;
 using EnterpriceLogic.Constants;
 using Infrastructure.Services.AssertService;

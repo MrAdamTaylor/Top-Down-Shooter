@@ -1,4 +1,6 @@
 using System;
+using Enemies.EnemyStateMachine.Components;
+using Enemies.EnemyStateMachine.EnemyStates;
 using Logic;
 using UnityEngine;
 

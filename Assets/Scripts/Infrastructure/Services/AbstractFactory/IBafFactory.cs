@@ -1,7 +1,7 @@
 using Configs;
 using UnityEngine;
 
-namespace Infrastructure.StateMachine.States
+namespace Infrastructure.Services.AbstractFactory
 {
     public interface IBafFactory
     {

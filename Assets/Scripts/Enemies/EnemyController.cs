@@ -1,4 +1,5 @@
 using Enemies.EnemyStateMachine;
+using Enemies.EnemyStateMachine.Components;
 using UnityEngine;
 
 namespace Enemies

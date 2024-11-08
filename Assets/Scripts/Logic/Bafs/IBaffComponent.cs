@@ -1,6 +1,6 @@
 using Configs;
 
-namespace Enemies
+namespace Logic.Bafs
 {
     public interface IBaffComponent
     {

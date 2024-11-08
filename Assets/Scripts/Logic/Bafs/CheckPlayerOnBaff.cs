@@ -1,7 +1,7 @@
 using EnterpriceLogic;
 using UnityEngine;
 
-namespace Enemies
+namespace Logic.Bafs
 {
     public class CheckPlayerOnBaff : MonoBehaviour
     {

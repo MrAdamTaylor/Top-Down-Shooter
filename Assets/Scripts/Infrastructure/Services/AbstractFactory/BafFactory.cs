@@ -1,11 +1,11 @@
 using System;
 using Configs;
-using Enemies;
 using EnterpriceLogic;
 using Infrastructure.Services.AssertService;
+using Logic.Bafs;
 using UnityEngine;
 
-namespace Infrastructure.StateMachine.States
+namespace Infrastructure.Services.AbstractFactory
 {
     public class BafFactory : IBafFactory
     {

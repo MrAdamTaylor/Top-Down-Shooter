@@ -1,9 +1,8 @@
 using Configs;
-using Enemies;
 using Player;
 using UnityEngine;
 
-namespace Infrastructure.StateMachine.States
+namespace Logic.Bafs
 {
     public class HealthBaffComponent : MonoBehaviour, IBaffComponent
     {

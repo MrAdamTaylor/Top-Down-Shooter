@@ -7,6 +7,7 @@ using Enemies.EnemyStateMachine;
 using EnterpriceLogic;
 using EnterpriceLogic.Constants;
 using EnterpriceLogic.Math;
+using Infrastructure.ServiceLocator;
 using Infrastructure.Services;
 using Infrastructure.Services.AbstractFactory;
 using Infrastructure.StateMachine.Interfaces;
@@ -57,18 +58,25 @@ namespace Infrastructure.StateMachine.States
             _sceneLoader = sceneLoader;
             _uiFactory = uiFactory;
         }
+        
+        public void Dispose()
+        {
+            _playerFactory = null;
+            _uiFactory = null;
+        
+            _timerManager = null;
+            _playerUIBinder = null;
+            GC.SuppressFinalize(this);
+        }
     
         public void Enter(string sceneName)
         {
-            /*var canvas = _loadingCurtain.GetComponent<Canvas>();
-            canvas.enabled = true;
-            _loadingCurtain.Show();*/
             _sceneLoader.Load(sceneName, OnLoaded);
         }
 
         public void Exit()
         {
-            //_loadingCurtain.Hide();
+            
         }
 
         private void OnLoaded()
@@ -298,14 +306,6 @@ namespace Infrastructure.StateMachine.States
             helper.Construct();
         }
 
-        public void Dispose()
-        {
-           _playerFactory = null;
-           _uiFactory = null;
         
-           _timerManager = null;
-           _playerUIBinder = null;
-
-        }
     }
 }

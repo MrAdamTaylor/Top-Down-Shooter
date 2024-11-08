@@ -1,6 +1,7 @@
 using System;
 using Configs;
 using EnterpriceLogic.Constants;
+using Infrastructure.ServiceLocator;
 using Infrastructure.Services;
 using Infrastructure.Services.AbstractFactory;
 using Infrastructure.Services.AssertService;
@@ -17,7 +18,7 @@ namespace Infrastructure.StateMachine.States
         private readonly ISceneLoader _sceneLoader;
         private readonly AllServices _services;
         private readonly string _level;
-        private readonly AssertBuilder _assertBuilder;
+        private AssertBuilder _assertBuilder;
     
         public BootstrapState(GameStateMachine stateMachine, ISceneLoader sceneLoader, AllServices services, LevelConfigs levelConfigs)
         {
@@ -46,6 +47,13 @@ namespace Infrastructure.StateMachine.States
             RegisterServices();
             _level = levelConfigs.LevelName;
             _sceneLoader.Construct(_level);
+        }
+
+        public void Dispose()
+        {
+            _assertBuilder = null;
+            _services.Dispose();
+            GC.SuppressFinalize(this);
         }
 
         private void RegisteredTimer(int levelConfigsPerSeconds, int starSeconds)
@@ -85,7 +93,7 @@ namespace Infrastructure.StateMachine.States
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(IEnemyFactory), new EnemyFactory(_assertBuilder));
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(EnemySpawnerConfigs), levelConfigsSpawnerConfigs);
         }
-        
+
 
         private void RegisterPlayerServices(PlayerConfigs levelConfigsPlayerConfigs)
         {
@@ -114,12 +122,6 @@ namespace Infrastructure.StateMachine.States
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(ScoresStorage), new ScoresStorage(0));
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(DataSaver), 
                 new DataSaver((ScoresStorage)ServiceLocator.ServiceLocator.Instance.GetData(typeof(ScoresStorage))));
-        }
-
-        public void Dispose()
-        {
-            //_assertBuilder = null;
-            _services.Dispose();
         }
     }
 }

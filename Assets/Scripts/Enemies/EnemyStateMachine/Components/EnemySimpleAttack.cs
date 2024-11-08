@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using EnterpriceLogic;
 using EnterpriceLogic.Constants;
 using Logic;
 using Logic.Animation;
@@ -8,7 +7,7 @@ using Player;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Enemies.EnemyStateMachine
+namespace Enemies.EnemyStateMachine.Components
 {
     public class EnemySimpleAttack : MonoBehaviour, IEnemyAttack
     {
