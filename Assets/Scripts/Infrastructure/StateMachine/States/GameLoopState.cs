@@ -51,6 +51,7 @@ namespace Infrastructure.StateMachine.States
             _playerDeath = (PlayerDeath)ServiceLocator.ServiceLocator.Instance.GetData(typeof(PlayerDeath));
             GameObject playerUI = (GameObject)ServiceLocator.ServiceLocator.Instance.GetData(typeof(GameObject));
             _gameTimeStoper = new GameTimeStoper();
+            _gameTimeStoper.Construct();
             _player = (Player.Player)ServiceLocator.ServiceLocator.Instance.GetData(typeof(Player.Player));
             _gameSystem = (GameSystem)ServiceLocator.ServiceLocator.Instance.GetData(typeof(GameSystem));
             _pauseManager = (UIPauseManager)ServiceLocator.ServiceLocator.Instance.GetData(typeof(UIPauseManager));

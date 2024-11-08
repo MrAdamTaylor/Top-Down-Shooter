@@ -5,7 +5,12 @@ namespace Infrastructure.StateMachine.States
     public class GameTimeStoper
     {
         private float _innerSpeed;
-        
+
+        public void Construct()
+        {
+            _innerSpeed = Time.timeScale;
+        }
+
         public void StopTime()
         {
             _innerSpeed = Time.timeScale;

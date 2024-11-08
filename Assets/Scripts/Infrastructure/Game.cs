@@ -9,10 +9,10 @@ namespace Infrastructure
     {
         public GameStateMachine StateMachine;
     
-        public Game(ISceneLoader sceneLoader, LoadingCurtain curtain, LevelConfigs levelConfigs)
+        public Game(ISceneLoader sceneLoader, LevelConfigs levelConfigs)
         {
             DispoceList.Instance.Add(this);
-            StateMachine = new GameStateMachine(sceneLoader, curtain, AllServices.Container,levelConfigs);
+            StateMachine = new GameStateMachine(sceneLoader,  AllServices.Container,levelConfigs);
         }
 
         public void Dispose()

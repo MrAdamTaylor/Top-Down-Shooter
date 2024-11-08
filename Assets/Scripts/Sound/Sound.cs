@@ -22,11 +22,11 @@ namespace Sound
         [HideInInspector]
         public AudioSource[] audioSources;
 
-        public static Sound Instance;
+        //public static Sound Instance;
 
         private Coroutine currentTrackCoroutine;
 
-        void Awake()
+        /*void Awake()
         {
             if (Instance == null)
             {
@@ -38,7 +38,24 @@ namespace Sound
                 Destroy(gameObject);
             }
             audioSources = GetComponents<AudioSource>();
+        }*/
+        
+       public static  Sound  Instance;
+
+        void Awake()
+        {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Instance = this;
+                audioSources = GetComponents<AudioSource>();
+                DontDestroyOnLoad(gameObject);
+            }
         }
+        
 
         void OnEnable()
         {

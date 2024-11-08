@@ -18,6 +18,7 @@ namespace UI.Menu
 
         private bool _isActive;
         private float _currentTimeScale;
+        private bool _coolDownIsEnd;
 
         private GameTimeStoper _gameTimeStoper;
 
@@ -33,7 +34,7 @@ namespace UI.Menu
         private void Awake()
         {
             _unworkingCooldown = TIME_BEFORE_WORKING;
-            _isActive = true;
+            _isActive = false;
             _currentTimeScale = Time.timeScale;
             ServiceLocator.Instance.BindData(typeof(UIPauseManager), this);
         }
@@ -53,6 +54,14 @@ namespace UI.Menu
 
         void Update()
         {
+            UpdateCooldown();
+            if (_unworkingCooldown <= 0f)
+            {
+                _coolDownIsEnd = true;
+                _isActive = true;
+            }
+
+            
             if (Input.GetKeyDown(KeyCode.Tab))
             {
                 if(_isBlocking)
@@ -67,13 +76,10 @@ namespace UI.Menu
             }
         }
 
-        private bool UpCooldown()
+        private void UpdateCooldown()
         {
-            return _unworkingCooldown <= 0f;
-        }
-
-        private void CoolDown()
-        {
+            if (_coolDownIsEnd)
+                return;
             _unworkingCooldown -= Time.deltaTime;
         }
 
@@ -93,10 +99,10 @@ namespace UI.Menu
         }
         public void LoadSceneMenu()
         {
-            GameObject bootstraper = GameObject.Find(ConstantsSceneObjects.GAME_BOOTSTRAPER);
+            GameBootstraper gameBootstraper = (GameBootstraper)ServiceLocator.Instance.GetData(typeof(GameBootstraper));
             
             _gameTimeStoper.ResumeTime();
-            _sceneLoader.LoadWithFinish(Constants.MAIN_MENU_SCENE, bootstraper);
+            _sceneLoader.LoadWithFinish(Constants.MAIN_MENU_SCENE, gameBootstraper.gameObject);
         }
 
         /*public void LoadSceneAgain()

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -9,9 +10,9 @@ namespace Infrastructure
         private const float FADE_DURATION = 0.03f;
         [SerializeField] private CanvasGroup _curtain;
 
-        private static LoadingCurtain _instance;
+        //private static LoadingCurtain _instance;
 
-        void Awake()
+        /*void Awake()
         {
             if (_instance != null && _instance != this)
             {
@@ -21,21 +22,16 @@ namespace Infrastructure
             {
                 _instance = this;
             }
-        }
+        }*/
 
-        private void Start()
+        private void Awake()
         {
-            DontDestroyOnLoad(this);
+            Hide();
+            StartCoroutine(SelfDestruct());
+            //DontDestroyOnLoad(this);
         }
 
-        public void Show()
-        {
-            
-            gameObject.SetActive(true);
-            _curtain.alpha = 1;
-        }
-
-        public void Hide() => FadeInCurtainAsync().Forget();
+        private void Hide() => FadeInCurtainAsync().Forget();
 
         private async UniTaskVoid FadeInCurtainAsync()
         {
@@ -45,6 +41,11 @@ namespace Infrastructure
                 await UniTask.WaitForSeconds(FADE_DURATION);
             }
             //gameObject.SetActive(false);
+        }
+        
+        IEnumerator SelfDestruct()
+        {
+            yield return new WaitForSeconds(5f);
             Destroy(gameObject);
         }
     }

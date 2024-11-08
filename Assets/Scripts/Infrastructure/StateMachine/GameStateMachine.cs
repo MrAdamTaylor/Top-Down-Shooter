@@ -26,6 +26,19 @@ namespace Infrastructure.StateMachine
                 [typeof(GameLoopState)] = new GameLoopState(this, sceneLoader),
             };
         }
+        
+        public GameStateMachine(ISceneLoader sceneLoader,  AllServices services, LevelConfigs levelConfigs)
+        {
+            DispoceList.Instance.Add(this);
+            _states = new Dictionary<Type, IExitableState>
+            {
+                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services, levelConfigs),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, 
+                    services.Single<IPlayerFactory>(), 
+                    services.Single<IUIFactory>()),
+                [typeof(GameLoopState)] = new GameLoopState(this, sceneLoader),
+            };
+        }
 
         public void Dispose()
         {

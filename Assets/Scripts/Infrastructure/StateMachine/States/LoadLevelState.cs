@@ -47,18 +47,28 @@ namespace Infrastructure.StateMachine.States
             _loadingCurtain = loadingCurtain;
             _uiFactory = uiFactory;
         }
+        
+        public LoadLevelState(GameStateMachine gameStateMachine, ISceneLoader sceneLoader,
+            IPlayerFactory playerFactory, IUIFactory uiFactory)
+        {
+            DispoceList.Instance.Add(this);
+            _playerFactory = playerFactory;
+            _stateMachine = gameStateMachine;
+            _sceneLoader = sceneLoader;
+            _uiFactory = uiFactory;
+        }
     
         public void Enter(string sceneName)
         {
-            var canvas = _loadingCurtain.GetComponent<Canvas>();
+            /*var canvas = _loadingCurtain.GetComponent<Canvas>();
             canvas.enabled = true;
-            _loadingCurtain.Show();
+            _loadingCurtain.Show();*/
             _sceneLoader.Load(sceneName, OnLoaded);
         }
 
         public void Exit()
         {
-            _loadingCurtain.Hide();
+            //_loadingCurtain.Hide();
         }
 
         private void OnLoaded()
