@@ -78,24 +78,31 @@ namespace UI.MVC.Presenters
 
         private void OnAmmoChange(long value)
         {
-            if (_animationConfigs[_currentWeaponType].MiddleDuration.Equals(0) ||
-                _animationConfigs[_currentWeaponType].AnimationSequenceType == AnimationSequenceType.Start_End)
+            if (_currentWeaponType == WeaponType.Rifle)
             {
-                if (_animationConfigs[_currentWeaponType].IsAnimatedText == false)
-                {
-                    Setter(value);
-                    _animationPlayer.Play(_animationConfigs[_currentWeaponType],_currencyView.ImageTransform);
-                }
-                else
-                {
-                    Setter(value);
-                    _animationPlayer.Play(_animationConfigs[_currentWeaponType],_currencyView.ImageTransform, _currencyView.TextTransform);
-                }
+                Setter(value);
             }
             else
             {
-                TweenerCore<long,long, NoOptions> tweenerCore = DOTween.To(() => _lastCurrency, Setter, value, _animationConfigs[_currentWeaponType].MiddleDuration);
-                _animationPlayer.Play(_animationConfigs[_currentWeaponType],_currencyView.ImageTransform, _currencyView.TextTransform, tweenerCore);
+                if (_animationConfigs[_currentWeaponType].MiddleDuration.Equals(0) ||
+                    _animationConfigs[_currentWeaponType].AnimationSequenceType == AnimationSequenceType.Start_End)
+                {
+                    if (_animationConfigs[_currentWeaponType].IsAnimatedText == false)
+                    {
+                        Setter(value);
+                        _animationPlayer.Play(_animationConfigs[_currentWeaponType],_currencyView.ImageTransform);
+                    }
+                    else
+                    {
+                        Setter(value);
+                        _animationPlayer.Play(_animationConfigs[_currentWeaponType],_currencyView.ImageTransform, _currencyView.TextTransform);
+                    }
+                }
+                else
+                {
+                    TweenerCore<long,long, NoOptions> tweenerCore = DOTween.To(() => _lastCurrency, Setter, value, _animationConfigs[_currentWeaponType].MiddleDuration);
+                    _animationPlayer.Play(_animationConfigs[_currentWeaponType],_currencyView.ImageTransform, _currencyView.TextTransform, tweenerCore);
+                }
             }
         }
     

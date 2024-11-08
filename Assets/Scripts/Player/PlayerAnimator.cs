@@ -61,7 +61,6 @@ namespace Player
         {
            _animator.SetBool(IsBigGun, isBigGun);
             _animator.SetBool(IsSmallGun, !isBigGun);
-            Debug.Log(IsSmallGun);
         }
         public void PlayIdle()
         {

@@ -67,7 +67,6 @@ namespace Infrastructure
                 yield return true;
             }
             _isLoaded = true;
-            Debug.Log("<color=yellow>Load is Ended!</color>");
         }
         
     }

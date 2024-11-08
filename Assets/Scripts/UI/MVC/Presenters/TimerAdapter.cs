@@ -18,17 +18,11 @@ namespace UI.MVC.Presenters
         private WaveTimer _waveTimer;
 
         private StringBuilder _stringBuilder;
-        //private readonly MoneyStorage _moneyStorage;
-        /*public TimerAdapter(CurrencyView view, MoneyStorage ammoStorage)
-        {
-            _currencyView = view;
-            //_moneyStorage = ammoStorage;
-        }*/
+
 
         public TimerAdapter(ImageColorView view, GameTimer gameTimer, WaveTimer waveTimer)
         {
             _stringBuilder = new StringBuilder();
-            //_stringBuilder.Append("");
             _currencyView = view;
             _gameTimer = gameTimer;
             _waveTimer = waveTimer;
@@ -85,7 +79,6 @@ namespace UI.MVC.Presenters
             
             if(value < MIN_TIME)
                 _currencyView.SwitchColor();
-            //_currencyView.UpdateCurrency((long)value);
         }
 
         private string GetRowSeconds(int seconds)

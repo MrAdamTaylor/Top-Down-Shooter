@@ -27,14 +27,12 @@ namespace Logic.Timer
 
         private void LaunchWaweTimer()
         {
-            Debug.Log("<color=green>GameTimer EndWork, Start Wave Timer</color>");
             _enemySpawnController.IsWaveEnd = false;
             _waveSystem.StartNextWave();
         }
 
         private void ReloadGameTimer()
         {
-            //Debug.Log("<color=green>Wawe Timer End Work, Restart GameTimer Timer</color>");
             _enemySpawnController.IsWaveEnd = true;
             _gameTimer.ReloadTimer();
         }

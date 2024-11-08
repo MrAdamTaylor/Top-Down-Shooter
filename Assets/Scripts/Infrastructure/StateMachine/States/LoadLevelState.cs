@@ -199,13 +199,12 @@ namespace Infrastructure.StateMachine.States
 
                 for (int j = 0; j < spawnerConfigs.SpawnList[i].PercantageForEachWaves.Count; j++)
                 {
-                    Debug.Log($"Sum element in <color=red> I{i} J{j} - {spawnerConfigs.SpawnList[i].PercantageForEachWaves[j]}</color>");
                     percentValue[i].Add(spawnerConfigs.SpawnList[i].PercantageForEachWaves[j]);
                     sums[j] += spawnerConfigs.SpawnList[i].PercantageForEachWaves[j];
                 }
             }
             
-            sums.OutputCollection("Sums of percent");
+            //sums.OutputCollection("Sums of percent");
             PercentageCalculater.PercentageСhecker(sums,"percent sums");
             
             for (int i = 0; i < percentValue.Count; i++)
@@ -224,18 +223,18 @@ namespace Infrastructure.StateMachine.States
                 int spawnInterval = spawnerConfigs.Waves[i].EnemySpawnIntervalPerSeconds;
                 List<int> percentsValueOfOneWave = percentValue.GetArrayByIndex(i);
                 List<int> percent = percentsValueOfOneWave.Where(i1 => i1 != 0).ToList();
-                percent.OutputCollection("Only full percent");
+                //percent.OutputCollection("Only full percent");
                 spawnCharacteristics[i].Construct(spawnByTick, maxEnemiesOnWave, spawnInterval,  percent);
             }
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(List<SpawnCharacteristics>),spawnCharacteristics);
 
             for (int i = 0; i < calculatedResults.Count; i++)
             {
-                calculatedResults[i].OutputCollection("Max Value in Each Wave");
+                //calculatedResults[i].OutputCollection("Max Value in Each Wave");
                 List<int> values = calculatedResults[i];
                 int max = values.DefaultIfEmpty().Max();
                 maxValue.Add(max);
-                Debug.Log("Maximum Enemies: "+max);
+                //Debug.Log("Maximum Enemies: "+max);
             }
 
             List<int> wavesCoefficient = new();

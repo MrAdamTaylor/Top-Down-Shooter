@@ -194,7 +194,6 @@ namespace Logic
                     {
                         if (_maximumPools[i].name == whiteBoardPool[j])
                         {
-                            Debug.Log("Pool Name"+_maximumPools[i].name + "WhiteBoardName: "+whiteBoardPool[j]);
                             enemySpawnerPools.Add(_maximumPools[i]);
                         }
                     }

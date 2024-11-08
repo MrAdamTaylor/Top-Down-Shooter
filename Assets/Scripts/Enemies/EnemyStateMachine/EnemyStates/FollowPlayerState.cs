@@ -15,7 +15,6 @@ namespace Enemies.EnemyStateMachine
         public override void Enter()
         {
             base.Enter();
-            Debug.Log($"<color=yellow>State Attack</color>");
             _moveSystem.Move();
             EnemyStateMachine.Animator.Move(1f);
         }

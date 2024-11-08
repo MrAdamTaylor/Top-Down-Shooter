@@ -67,7 +67,6 @@ namespace Logic.Timer
         {
             IsActive = false;
             GameTimerFinish?.Invoke();
-            Debug.Log($"Game Timer FINISHED");
         }
 
         public void StopTimer()
