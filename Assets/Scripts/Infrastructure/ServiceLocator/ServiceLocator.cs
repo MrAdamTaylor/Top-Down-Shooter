@@ -62,5 +62,10 @@ namespace Infrastructure.ServiceLocator
         {
             _servicesDataBase.Remove(type);
         }
+
+        public void CleanAllData()
+        {
+            _servicesDataBase.Clear();
+        }
     }
 }

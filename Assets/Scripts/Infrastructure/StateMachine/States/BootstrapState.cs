@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Configs;
 using EnterpriceLogic.Constants;
 using Infrastructure.Services;
@@ -12,7 +11,7 @@ using UnityEngine;
 
 namespace Infrastructure.StateMachine.States
 {
-    public class BootstrapState : IState
+    public class BootstrapState : IState, IDisposable
     {
         private readonly GameStateMachine _stateMachine;
         private readonly ISceneLoader _sceneLoader;
@@ -22,6 +21,7 @@ namespace Infrastructure.StateMachine.States
     
         public BootstrapState(GameStateMachine stateMachine, ISceneLoader sceneLoader, AllServices services, LevelConfigs levelConfigs)
         {
+            DispoceList.Instance.Add(this);
             _services = services;
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
@@ -114,6 +114,12 @@ namespace Infrastructure.StateMachine.States
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(ScoresStorage), new ScoresStorage(0));
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(DataSaver), 
                 new DataSaver((ScoresStorage)ServiceLocator.ServiceLocator.Instance.GetData(typeof(ScoresStorage))));
+        }
+
+        public void Dispose()
+        {
+            //_assertBuilder = null;
+            _services.Dispose();
         }
     }
 }

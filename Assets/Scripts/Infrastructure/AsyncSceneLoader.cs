@@ -22,6 +22,20 @@ namespace Infrastructure
             _nextScene = nextScene;
         }
 
+        private static AsyncSceneLoader _instance;
+
+        void Awake()
+        {
+            if (_instance != null && _instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                _instance = this;
+            }
+        }
+
         private void Start()
         {
             DontDestroyOnLoad(this);
@@ -29,23 +43,19 @@ namespace Infrastructure
 
         private void Update()
         {
-            /*if (Input.GetKeyDown(KeyCode.Space))
-            {
-                Debug.Log("<color=green>Move</color>");*/
                 if (_isLoaded && !_isFinal)
                 {
                     _asyncOperation.allowSceneActivation = true;
                     _action?.Invoke();
                     _isFinal = true;
                 }
-            //}
         }
 
         public void Load(string gameScene)
         {
             if (gameScene == Constants.INTERMEDIATE_SCENE)
             {
-                SceneManager.LoadScene("Intermediate_Scene");
+                SceneManager.LoadScene(Constants.INTERMEDIATE_SCENE, LoadSceneMode.Single);
             }
         }
 
@@ -57,10 +67,20 @@ namespace Infrastructure
                 _routine = StartCoroutine(nameof(LoadPressKey));
             }
         }
-        
+
+        public void LoadWithFinish(string mainMenuScene, GameObject bootstraper)
+        {
+            SceneManager.LoadScene(Constants.INTERMEDIATE_SCENE, LoadSceneMode.Single);
+            DispoceList.Instance.RemoveAll();
+            ServiceLocator.ServiceLocator.Instance.CleanAllData();
+            Destroy(bootstraper);
+            SceneManager.LoadScene(Constants.MAIN_MENU_SCENE, LoadSceneMode.Single);
+            Destroy(gameObject);
+        }
+
         private IEnumerator LoadPressKey()
         {
-            _asyncOperation = SceneManager.LoadSceneAsync(_nextScene);
+            _asyncOperation = SceneManager.LoadSceneAsync(_nextScene, LoadSceneMode.Single);
             _asyncOperation.allowSceneActivation = false;
             while (_asyncOperation.progress < 0.9f)
             {

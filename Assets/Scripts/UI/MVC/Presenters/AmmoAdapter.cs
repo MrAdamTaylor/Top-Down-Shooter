@@ -6,7 +6,6 @@ using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using Infrastructure.ServiceLocator;
-using Infrastructure.Services.AbstractFactory;
 using Player.NewWeaponControllSystem;
 using Player.ShootSystem;
 using UI.MVC.Model;

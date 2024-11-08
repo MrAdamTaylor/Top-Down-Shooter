@@ -19,6 +19,7 @@ namespace Infrastructure
 
         public void StartGame()
         {
+            ServiceLocator.ServiceLocator.Instance.BindData(typeof(GameBootstraper), this);
             _game = new Game(_sceneLoader, _curtain, _levelConfigs);
             _game.StateMachine.Enter<BootstrapState>();
             DontDestroyOnLoad(this);

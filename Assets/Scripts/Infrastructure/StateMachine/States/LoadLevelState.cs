@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Configs;
@@ -20,13 +21,14 @@ using Object = UnityEngine.Object;
 
 namespace Infrastructure.StateMachine.States
 {
-    public class LoadLevelState : IPayloadedState<string>
+    public class LoadLevelState : IPayloadedState<string>, IDisposable
     {
         private readonly GameStateMachine _stateMachine;
         private readonly ISceneLoader _sceneLoader;
         private readonly LoadingCurtain _loadingCurtain;
-        private readonly IPlayerFactory _playerFactory;
-        private readonly IUIFactory _uiFactory;
+        
+        private IPlayerFactory _playerFactory;
+        private IUIFactory _uiFactory;
 
         private GameObject _timer;
         private GameObject _commonParent;
@@ -38,6 +40,7 @@ namespace Infrastructure.StateMachine.States
         public LoadLevelState(GameStateMachine gameStateMachine, ISceneLoader sceneLoader, LoadingCurtain loadingCurtain,
             IPlayerFactory playerFactory, IUIFactory uiFactory)
         {
+            DispoceList.Instance.Add(this);
             _playerFactory = playerFactory;
             _stateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
@@ -63,14 +66,20 @@ namespace Infrastructure.StateMachine.States
             LoadPlayer();
             LoadEnemySpawner();
             LoadBafSpawner();
+            CreateGameSystem();
             
+            _stateMachine.Enter<GameLoopState>();
+        }
+
+        private void CreateGameSystem()
+        {
             GameObject gameSystem = new GameObject(ConstantsSceneObjects.GAME_SYSTEM_NAME);
             GameSystem system = gameSystem.AddComponent<GameSystem>();
 
             GameObject resetButtonUI = _uiFactory.CreateResetButton(_canvas);
-            system.Construct(resetButtonUI);
+            GameBootstraper gameBootstraper = (GameBootstraper)ServiceLocator.ServiceLocator.Instance.GetData(typeof(GameBootstraper));
+            system.Construct(resetButtonUI, _sceneLoader, gameBootstraper.gameObject);
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(GameSystem), system);
-            _stateMachine.Enter<GameLoopState>();
         }
 
         private void LoadBafSpawner()
@@ -204,7 +213,6 @@ namespace Infrastructure.StateMachine.States
                 }
             }
             
-            //sums.OutputCollection("Sums of percent");
             PercentageCalculater.PercentageСhecker(sums,"percent sums");
             
             for (int i = 0; i < percentValue.Count; i++)
@@ -223,18 +231,15 @@ namespace Infrastructure.StateMachine.States
                 int spawnInterval = spawnerConfigs.Waves[i].EnemySpawnIntervalPerSeconds;
                 List<int> percentsValueOfOneWave = percentValue.GetArrayByIndex(i);
                 List<int> percent = percentsValueOfOneWave.Where(i1 => i1 != 0).ToList();
-                //percent.OutputCollection("Only full percent");
                 spawnCharacteristics[i].Construct(spawnByTick, maxEnemiesOnWave, spawnInterval,  percent);
             }
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(List<SpawnCharacteristics>),spawnCharacteristics);
 
             for (int i = 0; i < calculatedResults.Count; i++)
             {
-                //calculatedResults[i].OutputCollection("Max Value in Each Wave");
                 List<int> values = calculatedResults[i];
                 int max = values.DefaultIfEmpty().Max();
                 maxValue.Add(max);
-                //Debug.Log("Maximum Enemies: "+max);
             }
 
             List<int> wavesCoefficient = new();
@@ -281,6 +286,16 @@ namespace Infrastructure.StateMachine.States
             warning.SetActive(false);
             UIHelper helper = ui.AddComponent<UIHelper>();
             helper.Construct();
+        }
+
+        public void Dispose()
+        {
+           _playerFactory = null;
+           _uiFactory = null;
+        
+           _timerManager = null;
+           _playerUIBinder = null;
+
         }
     }
 }

@@ -1,6 +1,8 @@
+using System;
+
 namespace Infrastructure.Services
 {
-    public class AllServices
+    public class AllServices : IDisposable
     {
         private static AllServices _instance;
         public static AllServices Container => _instance ?? (_instance = new AllServices());
@@ -18,6 +20,11 @@ namespace Infrastructure.Services
         private static class Implementation<TService>
         {
             public static TService ServiceInstance;
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
 }

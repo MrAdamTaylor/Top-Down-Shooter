@@ -11,7 +11,7 @@ namespace Infrastructure.StateMachine.States
     {
         private const float DETECT_PLAYER_RADIUS = 1f;
         
-        private readonly IAssertByObj<GameObject> _bafAssert;
+        private IAssertByObj<GameObject> _bafAssert;
 
         public BafFactory(AssertBuilder assertBuilder)
         {

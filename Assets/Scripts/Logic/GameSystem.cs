@@ -1,10 +1,10 @@
 using System;
+using EnterpriceLogic.Constants;
 using Infrastructure;
 using Infrastructure.ServiceLocator;
 using Infrastructure.Services;
+using Infrastructure.StateMachine.States;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using YG;
 
 namespace Logic
 {
@@ -13,24 +13,15 @@ namespace Logic
         private GameObject _resetMenu;
 
         private GameObject _bootstraper;
-        private LoadingCurtain _loadCurtain;
+        private ISceneLoader _sceneLoader;
+        private GameTimeStoper _gameTimeStoper;
 
         public Action GameResumeAction;
         
-        public void Construct(GameObject resetMenu, GameObject bootstraper, LoadingCurtain loadCurtain)
+        public void Construct(GameObject resetMenu, ISceneLoader sceneLoader, GameObject bootstraper)
         {
             _bootstraper = bootstraper;
-            _loadCurtain = loadCurtain;
-            _resetMenu = resetMenu;
-            UIDeathPopupProvider resetPopup = resetMenu.GetComponent<UIDeathPopupProvider>();
-            resetPopup.Construct(this);
-            _resetMenu.SetActive(false);
-        }
-        
-        public void Construct(GameObject resetMenu)
-        {
-            //_bootstraper = bootstraper;
-            //_loadCurtain = loadCurtain;
+            _sceneLoader = sceneLoader;
             _resetMenu = resetMenu;
             UIDeathPopupProvider resetPopup = resetMenu.GetComponent<UIDeathPopupProvider>();
             resetPopup.Construct(this);
@@ -53,15 +44,20 @@ namespace Logic
             DataSaver dataSaver = (DataSaver)ServiceLocator.Instance.GetData(typeof(DataSaver));
             dataSaver.SaveResult();
             dataSaver.ResetResult();
-            //Destroy(_bootstraper);
-            //Destroy(_loadCurtain);
-            SceneManager.LoadScene(0);
+
+            _gameTimeStoper.ResumeTime();
+            _sceneLoader.LoadWithFinish(Constants.MAIN_MENU_SCENE, _bootstraper);
         }
 
         public void ResumeAll()
         {
             _resetMenu.SetActive(false);
             GameResumeAction?.Invoke();
+        }
+
+        public void AddTimeStoper(GameTimeStoper gameTimeStoper)
+        {
+            _gameTimeStoper = gameTimeStoper;
         }
     }
 }

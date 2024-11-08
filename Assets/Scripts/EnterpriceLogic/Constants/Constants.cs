@@ -34,6 +34,8 @@ namespace EnterpriceLogic.Constants
         public static float DEBUG_RILLRATE_TIME = 1f;
         public static float EPSILON_BETWEEN_RDETECTION_MINDISTANCE = 0.5f;
         public const string INTERMEDIATE_SCENE = "Intermediate_Scene";
+        public const string MAIN_MENU_SCENE = "StartScene";
+
 
         #region Animation
         public const int MINIMAL_ATTACK_ANIMATION = 1;
@@ -41,7 +43,6 @@ namespace EnterpriceLogic.Constants
         public const float ENEMY_ANIMATION_SPEED = 1.5f;
        
         public const string POOL_PREFIX = " Pool";
-
 
         #endregion
     }

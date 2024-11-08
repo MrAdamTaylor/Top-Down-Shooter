@@ -8,21 +8,30 @@ using Infrastructure.StateMachine.States;
 
 namespace Infrastructure.StateMachine
 {
-    public class GameStateMachine
+    public class GameStateMachine : IDisposable
     {
     
         private Dictionary<Type, IExitableState> _states;
         private IExitableState _activeState;
+
         public GameStateMachine(ISceneLoader sceneLoader, LoadingCurtain curtain, AllServices services, LevelConfigs levelConfigs)
         {
+            DispoceList.Instance.Add(this);
             _states = new Dictionary<Type, IExitableState>
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services, levelConfigs),
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, 
                     services.Single<IPlayerFactory>(), 
                     services.Single<IUIFactory>()),
-                [typeof(GameLoopState)] = new GameLoopState(this),
+                [typeof(GameLoopState)] = new GameLoopState(this, sceneLoader),
             };
+        }
+
+        public void Dispose()
+        {
+            _states.Clear();
+            _activeState = null;
+            GC.SuppressFinalize(this);
         }
 
         public void Enter<TState>() where TState : class, IState
@@ -46,7 +55,7 @@ namespace Infrastructure.StateMachine
       
             return state;
         }
-    
+
         private TState GetState<TState>() where TState : class, IExitableState => 
             _states[typeof(TState)] as TState;
     }

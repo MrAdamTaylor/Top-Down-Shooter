@@ -1,3 +1,4 @@
+using System;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -8,13 +9,28 @@ namespace Infrastructure
         private const float FADE_DURATION = 0.03f;
         [SerializeField] private CanvasGroup _curtain;
 
-        private void Awake()
+        private static LoadingCurtain _instance;
+
+        void Awake()
+        {
+            if (_instance != null && _instance != this)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                _instance = this;
+            }
+        }
+
+        private void Start()
         {
             DontDestroyOnLoad(this);
         }
 
         public void Show()
         {
+            
             gameObject.SetActive(true);
             _curtain.alpha = 1;
         }

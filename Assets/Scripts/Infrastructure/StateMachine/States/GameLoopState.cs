@@ -21,17 +21,23 @@ namespace Infrastructure.StateMachine.States
         private GameSystem _gameSystem;
         private EnemySpawnController _spawnController;
         private Player.Player _player;
+        private UIPauseManager _pauseManager;
+        private ISceneLoader _sceneLoader;
+        private Blocker _blocker;
+        private GameTimeStoper _gameTimeStoper;
 
         private Vector3 _respawnPosition;
 
-        public GameLoopState(GameStateMachine gameStateMachine)
+        public GameLoopState(GameStateMachine gameStateMachine, ISceneLoader sceneLoader)
         {
+            DispoceList.Instance.Add(this);
+            _sceneLoader = sceneLoader;
             _stateMachine = gameStateMachine;
         }
 
         public void Exit()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void Enter()
@@ -44,17 +50,20 @@ namespace Infrastructure.StateMachine.States
             
             _playerDeath = (PlayerDeath)ServiceLocator.ServiceLocator.Instance.GetData(typeof(PlayerDeath));
             GameObject playerUI = (GameObject)ServiceLocator.ServiceLocator.Instance.GetData(typeof(GameObject));
-            GameTimeStoper gameTimeStoper = new GameTimeStoper();
+            _gameTimeStoper = new GameTimeStoper();
             _player = (Player.Player)ServiceLocator.ServiceLocator.Instance.GetData(typeof(Player.Player));
             _gameSystem = (GameSystem)ServiceLocator.ServiceLocator.Instance.GetData(typeof(GameSystem));
-            Blocker blocker = new Blocker(_playerDeath, playerUI, _gameSystem);
+            _pauseManager = (UIPauseManager)ServiceLocator.ServiceLocator.Instance.GetData(typeof(UIPauseManager));
+            _pauseManager.Construct(_sceneLoader, _gameTimeStoper);
+            _gameSystem.AddTimeStoper(_gameTimeStoper);
+            _blocker = new Blocker(_playerDeath, playerUI, _gameSystem, _pauseManager);
             _respawnPosition = (Vector3)ServiceLocator.ServiceLocator.Instance.GetData(typeof(Vector3));
 
             #region Player Death Subscribe
             
             _playerDeath.PlayerDefeat += _player.Blocked;
             _playerDeath.PlayerDefeatAction += _gameSystem.ShowResetMenu;
-            _playerDeath.PlayerDefeatAction += gameTimeStoper.StopTime;
+            _playerDeath.PlayerDefeatAction += _gameTimeStoper.StopTime;
             List<EnemyStateMachine> enemyList =
                 (List<EnemyStateMachine>)ServiceLocator.ServiceLocator.Instance.GetData(typeof(List<EnemyStateMachine>));
             for (int i = 0; i < enemyList.Count; i++) 
@@ -64,10 +73,9 @@ namespace Infrastructure.StateMachine.States
 
             #region Game Resume Subscribe
 
-            //player.gameObject.transform.position = position;
             _gameSystem.GameResumeAction += PlayerTeleport;
             _gameSystem.GameResumeAction += _player.Revive;
-            _gameSystem.GameResumeAction += gameTimeStoper.ResumeTime;
+            _gameSystem.GameResumeAction += _gameTimeStoper.ResumeTime;
 
             #endregion
         }
@@ -80,59 +88,18 @@ namespace Infrastructure.StateMachine.States
         public void Dispose()
         {
             _playerDeath.PlayerDefeatAction -= _gameSystem.ShowResetMenu;
-        }
-    }
 
-    public class GameTimeStoper
-    {
-        private float _innerSpeed;
-        
-        public void StopTime()
-        {
-            _innerSpeed = Time.timeScale;
-            Time.timeScale = 0;
-        }
-        
-        public void ResumeTime()
-        {
-            Time.timeScale = _innerSpeed;
-        }
-    }
-
-    public class Blocker : IDisposable
-    {
-        private UIPauseManager _pauseManager;
-        private PlayerDeath _playerDeath;
-        private GameObject _playerCanvas;
-        private GameSystem _gameSystem;
-        
-        public Blocker(PlayerDeath playerDeath, GameObject playerCanvas, GameSystem gameSystem)
-        {
-            _playerCanvas = playerCanvas;
-            _playerDeath = playerDeath;
-            _playerDeath.PlayerDefeat += HideMenu;
-            _gameSystem = gameSystem;
-            _gameSystem.GameResumeAction += ShowMenu;
-            _pauseManager = (UIPauseManager)ServiceLocator.ServiceLocator.Instance.GetData(typeof(UIPauseManager));
-            _pauseManager.Construct();
-        }
-
-        private void HideMenu()
-        {
-            _playerCanvas.SetActive(false);
-            _pauseManager.BlockAll();
-        }
-
-        private void ShowMenu()
-        {
-            _playerCanvas.SetActive(true);
-            _pauseManager.UnblockAll();
-            _playerDeath.Alive();
-        }
-
-        public void Dispose()
-        {
-            _playerDeath.PlayerDefeat -= HideMenu;
+            _gameTimer = null;
+            _playerDeath = null;
+            _waveSystem = null;
+            _gameSystem = null;
+            _spawnController = null;
+            _player = null;
+            _pauseManager = null;
+            _sceneLoader = null;
+            _blocker = null;
+            _gameTimeStoper = null;
+            
         }
     }
 }

@@ -1,0 +1,20 @@
+using UnityEngine;
+
+namespace Infrastructure.StateMachine.States
+{
+    public class GameTimeStoper
+    {
+        private float _innerSpeed;
+        
+        public void StopTime()
+        {
+            _innerSpeed = Time.timeScale;
+            Time.timeScale = 0;
+        }
+        
+        public void ResumeTime()
+        {
+            Time.timeScale = _innerSpeed;
+        }
+    }
+}

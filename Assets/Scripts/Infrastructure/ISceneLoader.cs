@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace Infrastructure
 {
@@ -8,5 +9,6 @@ namespace Infrastructure
 
         public void Load(string gameScene);
         public void Load(string gameScene, Action onLoaded);
+        void LoadWithFinish(string mainMenuScene, GameObject bootstraper);
     }
 }
