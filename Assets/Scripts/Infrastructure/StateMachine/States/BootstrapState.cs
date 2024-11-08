@@ -23,10 +23,10 @@ namespace Infrastructure.StateMachine.States
         public BootstrapState(GameStateMachine stateMachine, ISceneLoader sceneLoader, AllServices services, LevelConfigs levelConfigs)
         {
             DispoceList.Instance.Add(this);
+            _assertBuilder = new AssertBuilder();
             _services = services;
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
-            _assertBuilder = new AssertBuilder();
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(LevelConfigs), levelConfigs);
 
             if (levelConfigs.IsTime)

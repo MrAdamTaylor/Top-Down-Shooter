@@ -4,6 +4,7 @@ using Enemies.EnemyStateMachine;
 using Infrastructure.ServiceLocator;
 using Infrastructure.StateMachine.Interfaces;
 using Logic;
+using Logic.Spawners;
 using Logic.Timer;
 using Player;
 using UI.Menu;
@@ -21,6 +22,7 @@ namespace Infrastructure.StateMachine.States
         private WaveSystem _waveSystem;
         private GameSystem _gameSystem;
         private EnemySpawnController _spawnController;
+        private BafSpawner _bafSpawner;
         private Player.Player _player;
         private UIPauseManager _pauseManager;
         private ISceneLoader _sceneLoader;
@@ -50,6 +52,7 @@ namespace Infrastructure.StateMachine.States
             _sceneLoader = null;
             _blocker = null;
             _gameTimeStoper = null;
+            _bafSpawner = null;
             GC.SuppressFinalize(this);
         }
 
@@ -65,6 +68,12 @@ namespace Infrastructure.StateMachine.States
             TimerAdapter timerAdapter =
                 (TimerAdapter)ServiceLocator.ServiceLocator.Instance.GetData(typeof(TimerAdapter));
             timerAdapter.Initialize();
+            
+            if(ServiceLocator.ServiceLocator.Instance.IsGetData(typeof(BafSpawner)))
+            {
+                _bafSpawner = (BafSpawner)ServiceLocator.ServiceLocator.Instance.GetData(typeof(BafSpawner));
+            }
+        
             
             _playerDeath = (PlayerDeath)ServiceLocator.ServiceLocator.Instance.GetData(typeof(PlayerDeath));
             GameObject playerUI = (GameObject)ServiceLocator.ServiceLocator.Instance.GetData(typeof(GameObject));

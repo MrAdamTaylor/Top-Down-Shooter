@@ -1,5 +1,6 @@
 using Configs;
 using EnterpriceLogic;
+using Infrastructure.ServiceLocator;
 using Infrastructure.Services.AbstractFactory;
 using Logic.Timer;
 using UnityEngine;
@@ -60,6 +61,7 @@ namespace Logic.Spawners
             _downBorder = ZCenterPosition - ZAxisSize/2;
 
             _hitColliders = new Collider[MAX_COLLIDERS_COUNT];
+            ServiceLocator.Instance.BindData(typeof(BafSpawner), this);
         }
 
         private void OnDrawGizmos()

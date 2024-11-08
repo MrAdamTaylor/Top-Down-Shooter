@@ -10,25 +10,10 @@ namespace Infrastructure
         private const float FADE_DURATION = 0.03f;
         [SerializeField] private CanvasGroup _curtain;
 
-        //private static LoadingCurtain _instance;
-
-        /*void Awake()
-        {
-            if (_instance != null && _instance != this)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                _instance = this;
-            }
-        }*/
-
         private void Awake()
         {
             Hide();
             StartCoroutine(SelfDestruct());
-            //DontDestroyOnLoad(this);
         }
 
         private void Hide() => FadeInCurtainAsync().Forget();
@@ -40,7 +25,6 @@ namespace Infrastructure
                 _curtain.alpha -= FADE_DURATION;
                 await UniTask.WaitForSeconds(FADE_DURATION);
             }
-            //gameObject.SetActive(false);
         }
         
         IEnumerator SelfDestruct()

@@ -20,7 +20,8 @@ namespace Infrastructure.Services.AbstractFactory
 
         public void Create(BafConfigs bafConfigs, Vector3 position)
         {
-            GameObject baff = _bafAssert.Assert(bafConfigs.Visual, position);
+            GameObject baff;
+            baff = _bafAssert.Assert(bafConfigs.Visual, position);
             switch (bafConfigs)
             {
                 case AmmoBaffConfigs ammoBaffConfigs:
