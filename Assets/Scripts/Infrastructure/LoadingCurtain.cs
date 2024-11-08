@@ -28,7 +28,8 @@ namespace Infrastructure
                 _curtain.alpha -= FADE_DURATION;
                 await UniTask.WaitForSeconds(FADE_DURATION);
             }
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+            Destroy(gameObject);
         }
     }
 }

@@ -1,4 +1,5 @@
 using EnterpriceLogic.Constants;
+using Infrastructure;
 using Infrastructure.ServiceLocator;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -77,9 +78,11 @@ namespace UI.Menu
         public void LoadSceneMenu()
         {
             GameObject bootstraper = GameObject.Find(ConstantsSceneObjects.GAME_BOOTSTRAPER);
-            GameObject loadCurtain = GameObject.Find(ConstantsSceneObjects.GAME_LOAD_CURTAIN);
-            Destroy(bootstraper);
-            Destroy(loadCurtain);
+            //LoadingCurtain loadCurtain = GameObject.FindObjectOfType<LoadingCurtain>();
+            //Debug.Log(loadCurtain +"<color=cyan> Is finded </color>");
+            //GameObject loadCurtain = GameObject.Find(ConstantsSceneObjects.GAME_LOAD_CURTAIN);
+            //Destroy(bootstraper);
+            //Destroy(loadCurtain);
             SceneManager.LoadScene(0);
         }
 

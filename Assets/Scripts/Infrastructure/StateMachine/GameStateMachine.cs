@@ -13,7 +13,7 @@ namespace Infrastructure.StateMachine
     
         private Dictionary<Type, IExitableState> _states;
         private IExitableState _activeState;
-        public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain curtain, AllServices services, LevelConfigs levelConfigs)
+        public GameStateMachine(ISceneLoader sceneLoader, LoadingCurtain curtain, AllServices services, LevelConfigs levelConfigs)
         {
             _states = new Dictionary<Type, IExitableState>
             {

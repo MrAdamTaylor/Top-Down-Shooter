@@ -4,11 +4,21 @@ using UnityEngine.SceneManagement;
 
 namespace Infrastructure
 {
-    public class SceneLoader
+    public class SceneLoader : ISceneLoader
     {
-        public void Load(string name, Action onLoaded = null)
+        public void Construct(string sceneName)
         {
-            _ = LoadScene(name, onLoaded);
+            throw new NotImplementedException();
+        }
+
+        public void Load(string gameScene)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Load(string gameScene, Action onLoaded = null)
+        {
+            _ = LoadScene(gameScene, onLoaded);
         }
 
         private async UniTaskVoid LoadScene(string nextScene, Action onLoaded = null)
@@ -20,9 +30,10 @@ namespace Infrastructure
             }
 
             await SceneManager.LoadSceneAsync(nextScene);
-      
+
             onLoaded?.Invoke();
         }
-    
+
+        
     }
 }

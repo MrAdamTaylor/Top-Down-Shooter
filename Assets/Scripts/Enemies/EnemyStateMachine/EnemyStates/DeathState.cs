@@ -17,6 +17,7 @@ namespace Enemies.EnemyStateMachine
         public override void Enter()
         {
             base.Enter();
+            Debug.Log($"<color=red>Death State</color>");
             _physic.SetActive(false);
         }
     }

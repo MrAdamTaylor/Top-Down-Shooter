@@ -8,16 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartScene.unity
     guid: ed1092152cafac5418df01f6830bdac0
-  - enabled: 0
-    path: Assets/Scenes/GameScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 0
-    path: Assets/Scenes/Level2.unity
-    guid: 7011ed7912a51574b9d5fd44ad3f6daa
-  - enabled: 0
-    path: Assets/Scenes/Level3.unity
-    guid: 30f1b071425fec14496d8456f5e27d53
   - enabled: 1
     path: Assets/Scenes/ArenaGraveYard.unity
     guid: fd0d456d549129549bb6a054ea59c133
+  - enabled: 1
+    path: Assets/Scenes/Intermediate_Scene.unity
+    guid: 261b34fad43ac2b4d998c1419f7741a8
   m_configObjects: {}

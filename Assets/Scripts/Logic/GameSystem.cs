@@ -1,4 +1,5 @@
 using System;
+using Infrastructure;
 using Infrastructure.ServiceLocator;
 using Infrastructure.Services;
 using UnityEngine;
@@ -12,14 +13,24 @@ namespace Logic
         private GameObject _resetMenu;
 
         private GameObject _bootstraper;
-        private GameObject _loadCurtain;
+        private LoadingCurtain _loadCurtain;
 
         public Action GameResumeAction;
         
-        public void Construct(GameObject resetMenu, GameObject bootstraper, GameObject loadCurtain)
+        public void Construct(GameObject resetMenu, GameObject bootstraper, LoadingCurtain loadCurtain)
         {
             _bootstraper = bootstraper;
             _loadCurtain = loadCurtain;
+            _resetMenu = resetMenu;
+            UIDeathPopupProvider resetPopup = resetMenu.GetComponent<UIDeathPopupProvider>();
+            resetPopup.Construct(this);
+            _resetMenu.SetActive(false);
+        }
+        
+        public void Construct(GameObject resetMenu)
+        {
+            //_bootstraper = bootstraper;
+            //_loadCurtain = loadCurtain;
             _resetMenu = resetMenu;
             UIDeathPopupProvider resetPopup = resetMenu.GetComponent<UIDeathPopupProvider>();
             resetPopup.Construct(this);
@@ -42,8 +53,8 @@ namespace Logic
             DataSaver dataSaver = (DataSaver)ServiceLocator.Instance.GetData(typeof(DataSaver));
             dataSaver.SaveResult();
             dataSaver.ResetResult();
-            Destroy(_bootstraper);
-            Destroy(_loadCurtain);
+            //Destroy(_bootstraper);
+            //Destroy(_loadCurtain);
             SceneManager.LoadScene(0);
         }
 

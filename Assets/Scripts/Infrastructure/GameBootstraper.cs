@@ -8,6 +8,7 @@ namespace Infrastructure
     {
         [SerializeField] private LevelConfigs _levelConfigs;
         [SerializeField] private LoadingCurtain _curtain;
+        [SerializeField] private AsyncSceneLoader _sceneLoader;
         private Game _game;
 
         public void Awake()
@@ -18,7 +19,7 @@ namespace Infrastructure
 
         public void StartGame()
         {
-            _game = new Game(_curtain, _levelConfigs);
+            _game = new Game(_sceneLoader, _curtain, _levelConfigs);
             _game.StateMachine.Enter<BootstrapState>();
             DontDestroyOnLoad(this);
         }

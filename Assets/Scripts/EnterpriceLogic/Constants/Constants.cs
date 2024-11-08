@@ -33,7 +33,7 @@ namespace EnterpriceLogic.Constants
         
         public static float DEBUG_RILLRATE_TIME = 1f;
         public static float EPSILON_BETWEEN_RDETECTION_MINDISTANCE = 0.5f;
-        
+        public const string INTERMEDIATE_SCENE = "Intermediate_Scene";
 
         #region Animation
         public const int MINIMAL_ATTACK_ANIMATION = 1;

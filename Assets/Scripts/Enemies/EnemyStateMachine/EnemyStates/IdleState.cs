@@ -26,6 +26,7 @@ namespace Enemies.EnemyStateMachine
         public override void Enter()
         {
             base.Enter();
+            Debug.Log($"<color=green>Idle State</color>");
             _physic.SetActive(true);
             _health.ReloadHealth();
             _animator.PlayIdle();

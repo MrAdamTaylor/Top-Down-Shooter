@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Configs;
+using EnterpriceLogic.Constants;
 using Infrastructure.Services;
 using Infrastructure.Services.AbstractFactory;
 using Infrastructure.Services.AssertService;
@@ -14,12 +15,12 @@ namespace Infrastructure.StateMachine.States
     public class BootstrapState : IState
     {
         private readonly GameStateMachine _stateMachine;
-        private readonly SceneLoader _sceneLoader;
+        private readonly ISceneLoader _sceneLoader;
         private readonly AllServices _services;
         private readonly string _level;
         private readonly AssertBuilder _assertBuilder;
     
-        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, AllServices services, LevelConfigs levelConfigs)
+        public BootstrapState(GameStateMachine stateMachine, ISceneLoader sceneLoader, AllServices services, LevelConfigs levelConfigs)
         {
             _services = services;
             _stateMachine = stateMachine;
@@ -44,6 +45,7 @@ namespace Infrastructure.StateMachine.States
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(PlayerConfigs), levelConfigs.PlayerConfigs);
             RegisterServices();
             _level = levelConfigs.LevelName;
+            _sceneLoader.Construct(_level);
         }
 
         private void RegisteredTimer(int levelConfigsPerSeconds, int starSeconds)
@@ -103,7 +105,10 @@ namespace Infrastructure.StateMachine.States
 
         public void Enter()
         {
-            _sceneLoader.Load(_level, onLoaded: EnterLoadLevel);
+            //_sceneLoader.Load(Constants.INTERMEDIATE_SCENE, EnterLoadLevel);
+            _sceneLoader.Load(Constants.INTERMEDIATE_SCENE);
+            _stateMachine.Enter<LoadLevelState, string>(_level);
+            //_sceneLoader.Load(_level, onLoaded: EnterLoadLevel);
         }
 
         public void Exit()

@@ -8,9 +8,9 @@ namespace Infrastructure
     {
         public GameStateMachine StateMachine;
     
-        public Game(LoadingCurtain curtain, LevelConfigs levelConfigs)
+        public Game(ISceneLoader sceneLoader, LoadingCurtain curtain, LevelConfigs levelConfigs)
         {
-            StateMachine = new GameStateMachine(new SceneLoader(), curtain, AllServices.Container,levelConfigs);
+            StateMachine = new GameStateMachine(sceneLoader, curtain, AllServices.Container,levelConfigs);
         }
     }
 }

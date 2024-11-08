@@ -18,6 +18,7 @@ namespace Enemies.EnemyStateMachine
 
         public override void Enter()
         {
+            Debug.Log($"<color=red>State Attack</color>");
             base.Enter();
         }
 

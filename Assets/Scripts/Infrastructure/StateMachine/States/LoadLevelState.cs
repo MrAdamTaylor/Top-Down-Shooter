@@ -23,7 +23,7 @@ namespace Infrastructure.StateMachine.States
     public class LoadLevelState : IPayloadedState<string>
     {
         private readonly GameStateMachine _stateMachine;
-        private readonly SceneLoader _sceneLoader;
+        private readonly ISceneLoader _sceneLoader;
         private readonly LoadingCurtain _loadingCurtain;
         private readonly IPlayerFactory _playerFactory;
         private readonly IUIFactory _uiFactory;
@@ -35,7 +35,7 @@ namespace Infrastructure.StateMachine.States
         private PlayerUIBinder _playerUIBinder;
         private GameObject _player;
     
-        public LoadLevelState(GameStateMachine gameStateMachine, SceneLoader sceneLoader, LoadingCurtain loadingCurtain,
+        public LoadLevelState(GameStateMachine gameStateMachine, ISceneLoader sceneLoader, LoadingCurtain loadingCurtain,
             IPlayerFactory playerFactory, IUIFactory uiFactory)
         {
             _playerFactory = playerFactory;
@@ -61,21 +61,19 @@ namespace Infrastructure.StateMachine.States
         private void OnLoaded()
         {
             LoadPlayer();
-            
-
             LoadEnemySpawner();
-
             LoadBafSpawner();
             
             GameObject gameSystem = new GameObject(ConstantsSceneObjects.GAME_SYSTEM_NAME);
             GameSystem system = gameSystem.AddComponent<GameSystem>();
 
             GameObject resetButtonUI = _uiFactory.CreateResetButton(_canvas);
-            GameObject bootstraper = GameObject.Find(ConstantsSceneObjects.GAME_BOOTSTRAPER);
-            GameObject loadCurtain = GameObject.Find(ConstantsSceneObjects.GAME_LOAD_CURTAIN);
-            system.Construct(resetButtonUI, bootstraper, loadCurtain);
+            //GameObject bootstraper = GameObject.Find(ConstantsSceneObjects.GAME_BOOTSTRAPER);
+            //LoadingCurtain loadCurtain = GameObject.FindObjectOfType<LoadingCurtain>();
+            system.Construct(resetButtonUI);
+            Debug.Log("<color=red>Before Error </color>");
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(GameSystem), system);
-            
+            Debug.Log("<color=red>After Error </color>");
             _stateMachine.Enter<GameLoopState>();
         }
 
