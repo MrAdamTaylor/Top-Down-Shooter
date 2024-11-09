@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 7af62cf92d5f499ab8302724c146dad9, type: 3}
   m_Name: BaffHealth
-  m_EditorClassIdentifier: Assembly-CSharp:Configs:HealthBaffConfigs
+  m_EditorClassIdentifier: 
   Visual: {fileID: 3108074758479068141, guid: 52ff5159d1db2ca419ca5adb4acef6c8, type: 3}
   HealthUp: 30

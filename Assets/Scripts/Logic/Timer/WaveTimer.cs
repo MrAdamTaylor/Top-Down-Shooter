@@ -47,7 +47,6 @@ namespace Logic.Timer
 
         public void PauseResume()
         {
-            Debug.Log("<color=red> Timer Pause/Resume </color>");
             if(_timer.IsPaused)
                 _timer.UnPause();
             else
@@ -65,7 +64,6 @@ namespace Logic.Timer
         private void OnTimerFinished()
         {
             EndWaveAction?.Invoke();
-            Debug.Log($"Wave Finished: {_remainingSeconds}");
         }
 
         private void OnTimerValueChanged(float remainingSeconds)
