@@ -104,13 +104,10 @@ namespace UI.Menu
             
             _gameTimeStoper.ResumeTime();
             _sceneLoader.LoadWithFinish(Constants.MAIN_MENU_SCENE, gameBootstraper.gameObject);
+            YandexGame.FullscreenShow();
         }
 
-        /*public void LoadSceneAgain()
-        {
-            /*Scene currentScene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(currentScene.buildIndex);#1#
-        }*/
+
 
         public void ClosePanelPause()
         {
@@ -120,28 +117,7 @@ namespace UI.Menu
         }
 
         
-        private void OnEnable()
-        {
-            YandexGame.RewardVideoEvent += Rewarded;
-        }
-
-        private void OnDisable()
-        {
-            YandexGame.RewardVideoEvent -= Rewarded;
-        }
-
-        void Rewarded(int id)
-        {
-            //if (id == 1)
-                //LoadSceneAgain();
-            //Debug.Log($"<color=green>YGYGYG Reload Game</color>");
-
-        }
-
-        /*public void ExampleOpenRewardAd(int id)
-        {
-            YandexGame.RewVideoShow(id);
-        }*/
+      
 
         public void UnblockAll()
         {

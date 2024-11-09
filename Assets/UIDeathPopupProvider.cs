@@ -15,6 +15,7 @@ public class UIDeathPopupProvider : MonoBehaviour
     public void Start()
     {
         _restartButton.onClick.AddListener(delegate { ExampleOpenRewardAd(1); });
+        _mainMenuButton.onClick.AddListener(delegate { YandexGame.FullscreenShow(); });
     }
 
     public void Construct(GameSystem gameSystem)
@@ -66,6 +67,7 @@ public class UIDeathPopupProvider : MonoBehaviour
         // Вызываем метод открытия видео рекламы
         YandexGame.RewVideoShow(id);
     }
+    
     
     
     public void LoadSceneAgain()

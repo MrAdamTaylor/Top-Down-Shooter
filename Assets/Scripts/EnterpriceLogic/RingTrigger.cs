@@ -22,14 +22,14 @@ namespace EnterpriceLogic
             _isConstructed = true;
         }
 
-        void OnDrawGizmos()
-        {
-            if(!_isConstructed)
-                return;
-            Handles.color = Color.cyan;
-            Handles.DrawWireDisc(_centerTransform.position, Vector3.up, _minimalRadiusDiaposone);
-            Handles.DrawWireDisc(_centerTransform.position, Vector3.up, _maximumRadiusDiaposone);
-        }
+        //void OnDrawGizmos()
+        //{
+        //    if(!_isConstructed)
+        //        return;
+        //    Handles.color = Color.cyan;
+        //    Handles.DrawWireDisc(_centerTransform.position, Vector3.up, _minimalRadiusDiaposone);
+        //    Handles.DrawWireDisc(_centerTransform.position, Vector3.up, _maximumRadiusDiaposone);
+        //}
         
         public bool IsInRing(Vector3 triggerActivator)
         {
