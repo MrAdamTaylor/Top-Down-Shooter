@@ -15,8 +15,6 @@ namespace EnterpriceLogic
         private Queue<T> _pool = new();
         private List<T> _active = new();
 
-        
-
         protected PoolBase(Func<T> preloadFunc, Action<T> getAction, Action<T> returnAction, int preloadCount)
         {
             _preloadFunc = preloadFunc;
@@ -29,7 +27,6 @@ namespace EnterpriceLogic
                 Debug.LogError("Preload function is null");
                 return;
             }
-        
             for(int i = 0; i < preloadCount; i++)
                 Return(preloadFunc());
         }

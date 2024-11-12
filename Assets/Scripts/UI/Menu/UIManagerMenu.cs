@@ -1,25 +1,27 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace UI.Menu
 {
 	public class UIManagerMenu : MonoBehaviour
 	{
-		public GameObject panelCredits;
+		
+		
+		public GameObject PanelCredits;
 		public GameObject panelSound;
 		public GameObject panelHelp;
 		public GameObject FadeObject;
-
 		
-
+		
 		public void OpenPanelCredits()
 		{
-			panelCredits.SetActive(true);
+			PanelCredits.SetActive(true);
 			ShowFadeObject();
 		}
 
 		public void ClosePanelCredits()
 		{
-			panelCredits.SetActive(false);
+			PanelCredits.SetActive(false);
 			HideFadeObject();
 		}
 

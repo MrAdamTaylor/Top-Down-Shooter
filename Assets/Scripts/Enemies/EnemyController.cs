@@ -1,4 +1,3 @@
-using Enemies.EnemyStateMachine;
 using Enemies.EnemyStateMachine.Components;
 using UnityEngine;
 
@@ -13,7 +12,6 @@ namespace Enemies
         private EnemyAnimator _enemyAnimator;
 
         private IEnemyMoveSystem _enemyMoveSystem;
-        //private MoveToPlayer _moveToPlayer;
         private EnemyRotateSystem _enemyRotateSystem;
         private EnemyAttack _enemyAttack;
         private CheckAttack _checkAttack;
@@ -33,7 +31,6 @@ namespace Enemies
         public void Construct(IEnemyMoveSystem moveSystem, EnemyAnimator enemyAnimator, EnemyRotateSystem rotateSystem,
             IEnemyAttack enemyAttack,float minimalDistance, EnemyDeath death, GameObject physic, EnemyHealth enemyHealth)
         {
-            //_moveToPlayer = moveToPlayer;
             _enemyMoveSystem = moveSystem;
             _enemyAnimator = enemyAnimator;
             _enemyRotateSystem = rotateSystem;
@@ -53,7 +50,6 @@ namespace Enemies
             if (_isDeath)
             {
                 _enemyAttack.Reset();
-                //_enemyAttack.DisableAttack();
                 _enemyHealth.ReloadHealth();
                 _enemyAnimator.PlayIdle();
                 _physic.SetActive(true);
@@ -64,7 +60,6 @@ namespace Enemies
             if (_isConstructed)
             {
                 _enemyMoveSystem.Move();
-                //_moveToPlayer.Move();
                 _enemyRotateSystem.RotateStart();
                 _enemyAnimator.Move(1f);
             }
@@ -77,7 +72,6 @@ namespace Enemies
             if (CanMove())
             {
                 _enemyMoveSystem.Move();
-                //_moveToPlayer.Move();
                 _enemyAnimator.Move(1f);
             }
 
@@ -86,7 +80,6 @@ namespace Enemies
             {
                 _enemyMoveSystem.StopMove();
                 _enemyAnimator.StopMoving();
-                //_moveToPlayer.StopMove();
             }
         }
 
@@ -113,20 +106,21 @@ namespace Enemies
         private bool CheckSubjectOnNull()
         {
             return _enemyMoveSystem.IsTarget() && _isAlive;
-            //return _moveToPlayer.IsTarget();
         }
 
 
         private bool SubjectNotReached()
         {
-            //float distance = Vector3.Distance(_moveToPlayer.AgentPos(), _moveToPlayer.GoalPos());
             float distance = Vector3.Distance(_enemyMoveSystem.AgentPos(), _enemyMoveSystem.GoalPos());
             if (distance - _minimalDistance >= TOLERANCE)
                 return true;
             else
                 return false;
-
         }
+        
+        
+        
+        
 
         private bool CanMove() =>
             !_isBusy && CooldownIsUp() && SubjectNotReached() && CheckSubjectOnNull();
@@ -148,7 +142,6 @@ namespace Enemies
         {
             _physic.SetActive(false);
             _enemyMoveSystem.StopMove();
-            //_moveToPlayer.StopMove();
             _enemyRotateSystem.RotateStop();
             _isBusy = true;
             _isDeath = true;

@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using Enemies.EnemyStateMachine;
 using Enemies.EnemyStateMachine.Components;
 using EnterpriceLogic;
 using EnterpriceLogic.Constants;
@@ -23,13 +22,14 @@ namespace Enemies
         private const float HIT_BOX_HIGH_SHIFTED = 0.6f;
     
         public Action<bool> ReadyForAction;
-    
+        public bool IsCanAttack { get; private set; }
+
         private int _layerMask;
         private float _minDamage;
         private float _maxDamage;
         private EnemyAnimator _animator;
 
-        private Collider[] _hits = new Collider[1];
+        private readonly Collider[] _hits = new Collider[1];
         private float _attackCooldown;
         private bool _isAttacking;
         private bool _attackIsActive;
@@ -42,8 +42,6 @@ namespace Enemies
             get => _attackEnd;
             set => _attackEnd = value;
         }
-
-        public bool IsCanAttack { get; private set; }
 
         public void Construct(EnemyAnimator enemyAnimator, float minDamage, float maxDamage, float hitbox = 0f)
         {
@@ -73,7 +71,7 @@ namespace Enemies
         {
             _attackIsActive = false;
             _isAttacking = false;
-            _attackCooldown = ATTACK_COOLDOWN;
+            _attackCooldown = 1f;
         }
 
         private void OnDestroy()
