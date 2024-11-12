@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Infrastructure.Services.AssertService
 {
-    public interface IAssertByString<out T> : IAssert<T,string> where T : Object 
+    public interface IAssertByString<out T> : IAssert<T,string> where T : Object
     {
         public new T Assert(string objPath);
 

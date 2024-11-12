@@ -1,4 +1,6 @@
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Infrastructure.Services.AssertService
 {
@@ -17,6 +19,11 @@ namespace Infrastructure.Services.AssertService
         public AssertLoader<T> LoadService<T>() where T : Object
         {
             return new AssertLoader<T>();
+        }
+
+        public AssertServiceAddressableObj<GameObject,T> BuildAssertServiceByAddressable<T>() where T : AssetReferenceGameObject
+        {
+            return new AssertServiceAddressableObj<GameObject,T>();
         }
     }
 }

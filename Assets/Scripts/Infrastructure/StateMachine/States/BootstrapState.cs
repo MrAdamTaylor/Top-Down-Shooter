@@ -88,10 +88,11 @@ namespace Infrastructure.StateMachine.States
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(BafSpawnerConfigs), bafSpawner);
         }
 
-        private void RegisterEnemyesServices(EnemySpawnerConfigs levelConfigsSpawnerConfigs)
+        private void RegisterEnemyesServices(EnemySpawnerConfigs enemySpawnerConfigs)
         {
-            ServiceLocator.ServiceLocator.Instance.BindData(typeof(IEnemyFactory), new EnemyFactory(_assertBuilder));
-            ServiceLocator.ServiceLocator.Instance.BindData(typeof(EnemySpawnerConfigs), levelConfigsSpawnerConfigs);
+            EnemyConfigs[] enemyConfigs = Resources.LoadAll<EnemyConfigs>("StaticData/Enemy/Actual");
+            ServiceLocator.ServiceLocator.Instance.BindData(typeof(IEnemyFactory), new EnemyFactory(_assertBuilder, enemyConfigs));
+            ServiceLocator.ServiceLocator.Instance.BindData(typeof(EnemySpawnerConfigs), enemySpawnerConfigs);
         }
 
 

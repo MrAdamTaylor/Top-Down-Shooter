@@ -37,7 +37,8 @@ namespace Infrastructure.StateMachine.States
         private GameObject _canvas;
         private PlayerUIBinder _playerUIBinder;
         private GameObject _player;
-    
+        private IEnemyFactory _factory;
+
         public LoadLevelState(GameStateMachine gameStateMachine, ISceneLoader sceneLoader, LoadingCurtain loadingCurtain,
             IPlayerFactory playerFactory, IUIFactory uiFactory)
         {
@@ -169,14 +170,14 @@ namespace Infrastructure.StateMachine.States
             enemySpawner.transform.parent =  _commonParent.transform;
             EnemySpawnerConfigs spawnerConfigs = (EnemySpawnerConfigs)ServiceLocator.ServiceLocator.Instance.
                 GetData(typeof(EnemySpawnerConfigs));
-            IEnemyFactory factory = (IEnemyFactory)ServiceLocator.ServiceLocator.Instance.GetData(typeof(IEnemyFactory));
+            _factory = (IEnemyFactory)ServiceLocator.ServiceLocator.Instance.GetData(typeof(IEnemyFactory));
 
             List<int> maximumEnemies = CalculateWaveCharacteristics(spawnerConfigs);
             
             List<EnemyStateMachine> enemyList = new List<EnemyStateMachine>();
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(List<EnemyStateMachine>), enemyList);
             
-            List<EnemySpawnerPool> enemyPools = CreatePools(spawnerConfigs, factory, spawnPoints, spawnController, maximumEnemies);
+            List<EnemySpawnerPool> enemyPools = CreatePools(spawnerConfigs, _factory, spawnPoints, spawnController, maximumEnemies);
 
             WaveSystem waveSystem = null;
             if (spawnerConfigs.Waves.Count != null)
@@ -288,6 +289,7 @@ namespace Infrastructure.StateMachine.States
                 var i1 = i;
 
                 
+                //pool.Construct(maximumsEnemies[i],() => FactoryMethod(spawnerConfigs.SpawnList[i1].EnemyConfigs, spawnPoints, enemyPool), spawnPoints);
                 pool.Construct(maximumsEnemies[i],()=>factory.Create(spawnerConfigs.SpawnList[i1].EnemyConfigs, spawnPoints, enemyPool), spawnPoints);
                 enemyPool.transform.SetParent(spawnController.transform);
                 EnemyDeath[] enemyDeaths = enemyPool.GetComponentsInChildren<EnemyDeath>(true);
@@ -298,6 +300,11 @@ namespace Infrastructure.StateMachine.States
             return spawnerPools;
         }
 
+        /*private GameObject FactoryMethod(EnemyConfigs enemyConfigs, EnemySpawnPoint[] spawnPoints, GameObject enemyPool)
+        {
+            return  _factory.CreateAsync(enemyConfigs, spawnPoints,enemyPool).Result;
+        }*/
+        
         private void ConstructUI(GameObject ui)
         {
             GameObject warning = GameObject.FindGameObjectWithTag(ConstantsSceneObjects.WARNING_CANVAS_MESSAGE);

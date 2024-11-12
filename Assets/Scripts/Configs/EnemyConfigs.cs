@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Configs
 {
@@ -19,6 +20,8 @@ namespace Configs
         public float HitBoxRadius;
     
         public List<GameObject> Skins;
+
+        public List<AssetReferenceGameObject> SkinsReference;
 
         private void OnValidate()
         {

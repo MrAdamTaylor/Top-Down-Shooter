@@ -22,5 +22,14 @@ MonoBehaviour:
   Skins:
   - {fileID: 1226099902062958282, guid: d33f2662ad59bda429a7f2b99236f679, type: 3}
   - {fileID: 944804097235881886, guid: 8a72d1ee6cc339e49868052a0b45e3a3, type: 3}
+  SkinsReference:
+  - m_AssetGUID: d33f2662ad59bda429a7f2b99236f679
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
+  - m_AssetGUID: 8a72d1ee6cc339e49868052a0b45e3a3
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 1
   Speed: 5
   MinimalToPlayerDistance: 1.5

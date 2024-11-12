@@ -16,7 +16,42 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: e7e9c588565be814d9c361c7ab3830a9
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 210869eddaa399d4c8b860750dc00be4
+    m_Address: UsualEnemy(Skeleton)2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4f4bf4b02e7693745bc6bdf661168444
+    m_Address: UsualEnemy(Skeleton) 1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 02718a9c50f93394abdcf61a9dd9e182
+    m_Address: UsualEnemy(Skeleton)
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6b18a4f623531d468df746a473cc256
+    m_Address: TankEnemy(Gargoule) 1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f76b9ed814e3fa4fa211cc5132c7d3f
+    m_Address: TankEnemy(Gargoule)
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8a72d1ee6cc339e49868052a0b45e3a3
+    m_Address: FastEnemy(Skeleton2)
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d33f2662ad59bda429a7f2b99236f679
+    m_Address: FastEnemy(Skeleton)
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4ef6cf34212b09648862992c8d507036, type: 2}
   m_SchemaSet:

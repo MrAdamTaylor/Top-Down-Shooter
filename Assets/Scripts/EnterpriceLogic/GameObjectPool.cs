@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace EnterpriceLogic
@@ -8,6 +9,17 @@ namespace EnterpriceLogic
     
         public GameObjectPool(Func<GameObject> func, int preloadCount)
             :base(()=> NonCreatePreload(func),GetAction, ReturnAction, preloadCount) {}
+        
+        /*public GameObjectPool(Func<Task<GameObject>> func, int preloadCount)
+            :base(()=> NonCreatePreload(func),GetAction, ReturnAction, preloadCount) {}*/
+
+        /*private GameObject NonCreatePreload(Func<Task<GameObject>> callbackOnCreated)
+        {
+            Task<GameObject> prefab = callbackOnCreated.Invoke();
+
+            
+            return obj;
+        }*/
 
         private static GameObject NonCreatePreload(Func<GameObject> func)
         {
