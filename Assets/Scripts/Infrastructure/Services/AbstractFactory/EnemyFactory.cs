@@ -8,6 +8,7 @@ using Enemies.EnemyStateMachine.Components;
 using EnterpriceLogic;
 using EnterpriceLogic.Constants;
 using Infrastructure.Services.AssertService;
+using Infrastructure.StateMachine.States;
 using Logic;
 using Logic.Spawners;
 using Unity.VisualScripting;
@@ -17,14 +18,20 @@ using Random = UnityEngine.Random;
 
 namespace Infrastructure.Services.AbstractFactory
 {
-    internal class EnemyFactory : IEnemyFactory 
+    internal class EnemyFactory : IEnemyFactory, ISubscrible
     {
+        public Action EndAsyncSkinLoad;
+        
         private IAssertByObj<GameObject> _enemySkinsAssert;
         private  IAsserByAddressableObj<GameObject, AssetReferenceGameObject> _enemySkinsAssertAddressable;
         private List<List<GameObject>> _allEnemiesSkins = new();
+        private List<(GameObject,int)> _fullSkins = new();
+        private List<(int,int)> _scinsNumber = new();
         private List<int> _counts = new();
-        private EnemyConfigs _enemyConfigs;
+        private List<EnemyConfigs> _enemyConfigs = new();
         private Dictionary<EnemyConfigs, List<GameObject>> _skinDictionary = new();
+
+        private int _configsCounts;
 
         public EnemyFactory(AssertBuilder builder, EnemyConfigs[] configs)
         {
@@ -32,68 +39,36 @@ namespace Infrastructure.Services.AbstractFactory
             _enemySkinsAssertAddressable = builder.BuildAssertServiceByAddressable<AssetReferenceGameObject>();
             for (int i = 0; i < configs.Length; i++)
             {
+                _enemyConfigs.Add(configs[i]);
+                for (int j = 0; j < configs[i].SkinsReference.Count; j++)
+                {
+                    _scinsNumber.Add((i,j));
+                }
+
                 List<GameObject> skins = new();
                 _allEnemiesSkins.Add(skins);
                 _counts.Add(configs[i].SkinsReference.Count);
                 _skinDictionary.Add(configs[i], skins);
             }
 
-            //for (int i = 0; i < _allEnemiesSkins.Count; i++)
-            //{
-                //_enemyConfigs = configs[i];
-                LoadSkins(_allEnemiesSkins[0], _counts[0]);
-            //}
-            //Debug.Log($"Finish Factory: ");
-        }
-        
-        /*public async Task<bool> Init()
-        {
-            var series = Enumerable.Range(1, 5).ToList();
-            var tasks = new List<Task<Tuple<int, bool>>>();
-            foreach (var i in series)
-            {
-                Console.WriteLine("Starting Process {0}", i);
-                tasks.Add(DoWorkAsync(i));
-            }
-            foreach (var task in await Task.WhenAll(tasks))
-            {
-                if (task.Item2)
-                {
-                    Console.WriteLine("Ending Process {0}", task.Item1);
-                }
-            }
-            return true;
+            //_enemyConfigs = configs[0];
+            Debug.Log($"<color=cyan>End Construct</color>");
         }
 
-        public async Task<Tuple<int, bool>> DoWorkAsync(int i)
+        public void Subscribe(object subscriber)
         {
-            Console.WriteLine("working..{0}", i);
-            await Task.Delay(1000);
-            return Tuple.Create(i, true);
-        }*/
-
-        private async void LoadSkins(List<GameObject> gameObjects, int counts)
-        {
-            List<Task<Tuple<GameObject, bool>>> tasks = new();
-            for (int i = 0; i < counts; i++)
+            if (subscriber is not LoadAsyncLevelState levelState)
             {
-                Debug.Log($"Starting Process LoadSkins {i}");
-                tasks.Add(CreateAsynSkin(i));
+                throw new Exception($"Not suitable object for Subscriber in factory");
             }
-            foreach (var task in await Task.WhenAll(tasks))
-            {
-                if (task.Item2)
-                {
-                    gameObjects.Add(task.Item1);
-                    Debug.Log($"Ending Process LoadSking{task.Item1}");
-                }
-            }
+            EndAsyncSkinLoad += levelState.EndAsyncLoad;
+            LoadSkins(_allEnemiesSkins[0], _counts[0]);
+            Debug.Log($"<color=cyan>End Loading all skins</color>");
         }
 
-        private async Task<Tuple<GameObject, bool>> CreateAsynSkin(int i)
+        public void Unsubscribe()
         {
-            GameObject gameObject = await _enemySkinsAssertAddressable.Assert(_enemyConfigs.SkinsReference[i]);
-            return Tuple.Create(gameObject, true);
+            throw new NotImplementedException();
         }
 
 
@@ -134,7 +109,37 @@ namespace Infrastructure.Services.AbstractFactory
         
             return enemy;
         }
-        
+
+        private async void LoadSkins(List<GameObject> gameObjects, int counts)
+        {
+            List<Task<Tuple<GameObject, bool>>> tasks = new();
+            /*for (int i = 0; i < counts; i++)
+            {
+                Debug.Log($"Starting Process LoadSkins {i}");
+                tasks.Add(CreateAsynSkin(i));
+            }*/
+            for (int i = 0; i < _scinsNumber.Count; i++)
+            {
+                tasks.Add(CreateAsynSkin(_scinsNumber[i].Item1, _scinsNumber[i].Item2));
+            }
+            foreach (var task in await Task.WhenAll(tasks))
+            {
+                if (task.Item2)
+                {
+                    gameObjects.Add(task.Item1);
+                }
+            }
+            EndAsyncSkinLoad?.Invoke();
+            Debug.Log($"<color=cyan>End Await Method LoadSkin</color>");
+        }
+
+        private async Task<Tuple<GameObject, bool>> CreateAsynSkin(int enemyIndex, int skinIndex)
+        {
+            GameObject gameObject = await _enemySkinsAssertAddressable.Assert(_enemyConfigs[enemyIndex].SkinsReference[skinIndex]);
+            Debug.Log($"Is created");
+            return Tuple.Create(gameObject, true);
+        }
+
 
         private GameObject ChoseSkin(EnemyConfigs configs, Vector3 position, Transform parent)
         {
@@ -182,8 +187,8 @@ namespace Infrastructure.Services.AbstractFactory
             Transform physic = enemyObject.transform.Find(ConstantsSceneObjects.PREFAB_PHYSIC_COMPONENT_NAME);
             PlayLoopComponentProvider provider = physic.GetComponent<PlayLoopComponentProvider>();
             Player.Player player = (Player.Player)ServiceLocator.ServiceLocator.Instance.GetData(typeof(Player.Player));
-        
-            EnemyAnimator enemyAnimator = visual.AddComponent<EnemyAnimator>();
+
+            EnemyAnimator enemyAnimator = visual.GetComponent<EnemyAnimator>();
             enemyAnimator.Construct();
         
             IEnemyMoveSystem moveToPlayer = enemyObject.AddComponent<AgentMoveToPlayer>();

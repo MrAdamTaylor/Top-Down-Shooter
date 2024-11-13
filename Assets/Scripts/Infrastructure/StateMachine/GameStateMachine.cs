@@ -21,7 +21,7 @@ namespace Infrastructure.StateMachine
             _states = new Dictionary<Type, IExitableState>
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services, levelConfigs),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, curtain, 
+                [typeof(LoadAsyncLevelState)] = new LoadAsyncLevelState(this, sceneLoader, curtain, 
                     services.Single<IPlayerFactory>(), 
                     services.Single<IUIFactory>()),
                 [typeof(GameLoopState)] = new GameLoopState(this, sceneLoader),
@@ -34,9 +34,10 @@ namespace Infrastructure.StateMachine
             _states = new Dictionary<Type, IExitableState>
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services, levelConfigs),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, 
+                [typeof(LoadAsyncLevelState)] = new LoadAsyncLevelState(this, sceneLoader, 
                     services.Single<IPlayerFactory>(), 
                     services.Single<IUIFactory>()),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, levelConfigs),
                 [typeof(GameLoopState)] = new GameLoopState(this, sceneLoader),
             };
         }

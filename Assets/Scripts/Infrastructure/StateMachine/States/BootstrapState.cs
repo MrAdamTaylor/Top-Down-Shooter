@@ -92,6 +92,7 @@ namespace Infrastructure.StateMachine.States
         {
             EnemyConfigs[] enemyConfigs = Resources.LoadAll<EnemyConfigs>("StaticData/Enemy/Actual");
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(IEnemyFactory), new EnemyFactory(_assertBuilder, enemyConfigs));
+            Debug.Log("<color=cyan>Bind Enemy Factory</color>");
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(EnemySpawnerConfigs), enemySpawnerConfigs);
         }
 
@@ -111,7 +112,7 @@ namespace Infrastructure.StateMachine.States
         public void Enter()
         {
             _sceneLoader.Load(Constants.INTERMEDIATE_SCENE);
-            _stateMachine.Enter<LoadLevelState, string>(_level);
+            _stateMachine.Enter<LoadAsyncLevelState, string>(_level);
         }
 
         public void Exit()
