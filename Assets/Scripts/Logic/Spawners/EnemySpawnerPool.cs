@@ -21,13 +21,6 @@ namespace Logic.Spawners
             _objectCount = enemyCount;
             _pool = new GameObjectPool(action, _objectCount);
         }
-        
-        /*public void Construct(int enemyCount, Func<Task<GameObject>> action, EnemySpawnPoint[] enemySpawnPoints)
-        {
-            _enemySpawnPoints = enemySpawnPoints;
-            _objectCount = enemyCount;
-            _pool = new GameObjectPool(action, _objectCount);
-        }*/
 
         public void SubscribeDeathAction(EnemyDeath[] enemyDeaths)
         {

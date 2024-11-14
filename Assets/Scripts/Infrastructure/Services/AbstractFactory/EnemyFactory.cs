@@ -20,22 +20,23 @@ namespace Infrastructure.Services.AbstractFactory
 {
     internal class EnemyFactory : IEnemyFactory, ISubscrible
     {
-        public Action EndAsyncSkinLoad;
+        private static Vector3 ENEMY_DEFAULT_SPAWN = new Vector3(0,-50,0);
         
-        private IAssertByObj<GameObject> _enemySkinsAssert;
+        private Action _endAsyncSkinLoad;
+        
         private  IAsserByAddressableObj<GameObject, AssetReferenceGameObject> _enemySkinsAssertAddressable;
         private List<List<GameObject>> _allEnemiesSkins = new();
-        private List<(GameObject,int)> _fullSkins = new();
+        private List<(GameObject,int,int)> _fullSkins = new();
         private List<(int,int)> _scinsNumber = new();
         private List<int> _counts = new();
         private List<EnemyConfigs> _enemyConfigs = new();
         private Dictionary<EnemyConfigs, List<GameObject>> _skinDictionary = new();
+        private LoadAsyncLevelState _loadLevelState;
 
         private int _configsCounts;
 
         public EnemyFactory(AssertBuilder builder, EnemyConfigs[] configs)
         {
-            _enemySkinsAssert = builder.BuildAssertServiceByObj<GameObject>();
             _enemySkinsAssertAddressable = builder.BuildAssertServiceByAddressable<AssetReferenceGameObject>();
             for (int i = 0; i < configs.Length; i++)
             {
@@ -50,9 +51,6 @@ namespace Infrastructure.Services.AbstractFactory
                 _counts.Add(configs[i].SkinsReference.Count);
                 _skinDictionary.Add(configs[i], skins);
             }
-
-            //_enemyConfigs = configs[0];
-            Debug.Log($"<color=cyan>End Construct</color>");
         }
 
         public void Subscribe(object subscriber)
@@ -61,14 +59,15 @@ namespace Infrastructure.Services.AbstractFactory
             {
                 throw new Exception($"Not suitable object for Subscriber in factory");
             }
-            EndAsyncSkinLoad += levelState.EndAsyncLoad;
-            LoadSkins(_allEnemiesSkins[0], _counts[0]);
-            Debug.Log($"<color=cyan>End Loading all skins</color>");
+
+            _loadLevelState = levelState;
+            _endAsyncSkinLoad += levelState.EndAsyncLoad;
+            LoadSkins();
         }
 
         public void Unsubscribe()
         {
-            throw new NotImplementedException();
+            _endAsyncSkinLoad -= _loadLevelState.EndAsyncLoad;
         }
 
 
@@ -110,67 +109,52 @@ namespace Infrastructure.Services.AbstractFactory
             return enemy;
         }
 
-        private async void LoadSkins(List<GameObject> gameObjects, int counts)
+        private async void LoadSkins()
         {
             List<Task<Tuple<GameObject, bool>>> tasks = new();
-            /*for (int i = 0; i < counts; i++)
-            {
-                Debug.Log($"Starting Process LoadSkins {i}");
-                tasks.Add(CreateAsynSkin(i));
-            }*/
             for (int i = 0; i < _scinsNumber.Count; i++)
             {
                 tasks.Add(CreateAsynSkin(_scinsNumber[i].Item1, _scinsNumber[i].Item2));
             }
+
+            int index = 0;
             foreach (var task in await Task.WhenAll(tasks))
             {
                 if (task.Item2)
                 {
-                    gameObjects.Add(task.Item1);
+                    _fullSkins.Add((task.Item1, _scinsNumber[index].Item2, _scinsNumber[index].Item1));
+                    index++;
                 }
             }
-            EndAsyncSkinLoad?.Invoke();
-            Debug.Log($"<color=cyan>End Await Method LoadSkin</color>");
+            for (int i = 0; i < _fullSkins.Count; i++)
+            {
+                _allEnemiesSkins[_fullSkins[i].Item3].Add(_fullSkins[i].Item1);
+            }
+
+            _endAsyncSkinLoad?.Invoke();
         }
 
         private async Task<Tuple<GameObject, bool>> CreateAsynSkin(int enemyIndex, int skinIndex)
         {
-            GameObject gameObject = await _enemySkinsAssertAddressable.Assert(_enemyConfigs[enemyIndex].SkinsReference[skinIndex]);
-            Debug.Log($"Is created");
+            GameObject gameObject = await _enemySkinsAssertAddressable.Assert(_enemyConfigs[enemyIndex].SkinsReference[skinIndex], ENEMY_DEFAULT_SPAWN);
             return Tuple.Create(gameObject, true);
         }
 
 
         private GameObject ChoseSkin(EnemyConfigs configs, Vector3 position, Transform parent)
         {
+            List<GameObject> skins = _skinDictionary[configs];
             GameObject objSkin;
             switch (configs.Skins.Count)
             {
                 case 0:
                     throw new Exception("Enemy Count is null");
                 case 1:
-                    objSkin = _enemySkinsAssert.Assert(configs.Skins[0], position, parent.transform);
+                    objSkin = UnityEngine.Object.Instantiate(skins[0], position, Quaternion.identity, parent);
                     return objSkin;
                 case > 1:
-                    objSkin = _enemySkinsAssert.Assert(configs.Skins[Random.Range(0, configs.Skins.Count)], position, parent.transform);
+                    objSkin = UnityEngine.Object.Instantiate(skins[Random.Range(0, configs.Skins.Count)], position, Quaternion.identity, parent);
                     return objSkin;
-                default:
-                    throw new Exception("Cannot add skin in EnemyFactory");
-            }
-        }
-
-        private async Task<GameObject> ChoseAsyncSkin(EnemyConfigs configs, Vector3 position, Transform parent)
-        {
-            switch (configs.Skins.Count)
-            {
-                case 0:
-                    throw new Exception("Enemy Count is null");
-                case 1:
-                    GameObject skin = await _enemySkinsAssertAddressable.Assert(configs.SkinsReference[0], position, parent.transform);
-                    return skin;
-                case > 1:
-                    GameObject skinMore = await _enemySkinsAssertAddressable.Assert(configs.SkinsReference[Random.Range(0, configs.Skins.Count)], position, parent.transform);
-                    return skinMore;
                 default:
                     throw new Exception("Cannot add skin in EnemyFactory");
             }
@@ -215,7 +199,6 @@ namespace Infrastructure.Services.AbstractFactory
         
             EnemyStateMachine stateMachine = enemyObject.AddComponent<EnemyStateMachine>();
             stateMachine.Construct(enemyAnimator, moveToPlayer,enemyRotateSystem, enemyAttack, enemyHealth, physic.gameObject);
-            //return enemyObject;
             List<EnemyStateMachine> enemies =
                 (List<EnemyStateMachine>)ServiceLocator.ServiceLocator.Instance.GetData(typeof(List<EnemyStateMachine>));
             enemies.Add(stateMachine);
