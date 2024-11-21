@@ -14,10 +14,13 @@ namespace Infrastructure.StateMachine
     
         private Dictionary<Type, IExitableState> _states;
         private IExitableState _activeState;
+        private GameInjector _gameInjector;
 
-        public GameStateMachine(ISceneLoader sceneLoader, LoadingCurtain curtain, AllServices services, LevelConfigs levelConfigs)
+        public GameStateMachine(ISceneLoader sceneLoader, LoadingCurtain curtain, AllServices services, 
+            LevelConfigs levelConfigs)
         {
             DispoceList.Instance.Add(this);
+            
             _states = new Dictionary<Type, IExitableState>
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services, levelConfigs),
@@ -28,9 +31,11 @@ namespace Infrastructure.StateMachine
             };
         }
         
-        public GameStateMachine(ISceneLoader sceneLoader,  AllServices services, LevelConfigs levelConfigs)
+        public GameStateMachine(ISceneLoader sceneLoader,  AllServices services, 
+            LevelConfigs levelConfigs, GameInjector gameInjector)
         {
             DispoceList.Instance.Add(this);
+            _gameInjector = gameInjector;
             _states = new Dictionary<Type, IExitableState>
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services, levelConfigs),

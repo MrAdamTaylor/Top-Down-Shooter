@@ -6,14 +6,14 @@ namespace EnterpriceLogic
 {
     public class ReactionTrigger : MonoBehaviour
     {
+        public Action TriggerAction;
+        public Action TriggerEndAction;
+        
         private Transform _goalTransform;
         [SerializeField] private float _radius;
         private bool _isTriggered;
 
-        public Action TriggerAction;
-        public Action TriggerEndAction;
 
-    
         public void Construct(float radius, Transform goalTransform)
         {
             _radius = radius;

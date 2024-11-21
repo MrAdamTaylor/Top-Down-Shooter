@@ -1,12 +1,6 @@
 using System.IO;
-using Configs;
 using EnterpriceLogic.Constants;
 using Infrastructure.Services.AssertService;
-using Player;
-using Player.NewWeaponControllSystem;
-using UI.MVC;
-using UI.MVC.Model;
-using UI.MVC.Presenters;
 using UnityEngine;
 
 namespace Infrastructure.Services.AbstractFactory

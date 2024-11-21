@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Configs;
 using Enemies.EnemyStateMachine;
 using Infrastructure.ServiceLocator;
 using Infrastructure.StateMachine.Interfaces;
@@ -63,6 +64,12 @@ namespace Infrastructure.StateMachine.States
 
         public void Enter()
         {
+            LevelConfigs levelConfigs =
+                (LevelConfigs)ServiceLocator.ServiceLocator.Instance.GetData(typeof(LevelConfigs));
+            
+            if(levelConfigs.IsTime == false)
+                return;
+            
             _gameTimer = (GameTimer)ServiceLocator.ServiceLocator.Instance.GetData(typeof(GameTimer));
             _gameTimer.StartTimer();
             TimerAdapter timerAdapter =
@@ -73,7 +80,6 @@ namespace Infrastructure.StateMachine.States
             {
                 _bafSpawner = (BafSpawner)ServiceLocator.ServiceLocator.Instance.GetData(typeof(BafSpawner));
             }
-        
             
             _playerDeath = (PlayerDeath)ServiceLocator.ServiceLocator.Instance.GetData(typeof(PlayerDeath));
             GameObject playerUI = (GameObject)ServiceLocator.ServiceLocator.Instance.GetData(typeof(GameObject));

@@ -41,6 +41,7 @@ namespace Infrastructure.StateMachine.States
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _levelConfigs = levelConfigs;
+            
         }
 
         public void Exit()
@@ -50,21 +51,40 @@ namespace Infrastructure.StateMachine.States
         public void Enter()
         {
             DispoceList.Instance.Add(this);
+
+            LevelConfigs levelConfigs =
+                (LevelConfigs)ServiceLocator.ServiceLocator.Instance.GetData(typeof(LevelConfigs));
+            if (levelConfigs.IsTime)
+            {
+                _playerUIBinder = (PlayerUIBinder)ServiceLocator.ServiceLocator.Instance.GetData(typeof(PlayerUIBinder));
+                _timerManager = (TimerManager)ServiceLocator.ServiceLocator.Instance.GetData(typeof(TimerManager));
+                _gameTimer = (GameTimer)ServiceLocator.ServiceLocator.Instance.GetData(typeof(GameTimer));
+                _uiFactory = (IUIFactory)ServiceLocator.ServiceLocator.Instance.GetData(typeof(IUIFactory));
+            }
+            
+            CreateEnemies();
+
+            if (_levelConfigs.IsTime)
+            {
+                BindUI();
+                if(_waveSystem != null)
+                    _spawnController.Construct(_enemyPools, _waveSystem, _timerManager);
+                CreateGameSystem();
+            }
+            _stateMachine.Enter<GameLoopState>();
+        }
+
+        private void CreateEnemies()
+        {
+            if (!ServiceLocator.ServiceLocator.Instance.IsGetData(typeof(EnemySpawnerConfigs)))
+            {
+                return;
+            }
             _factory = (IEnemyFactory)ServiceLocator.ServiceLocator.Instance.GetData(typeof(IEnemyFactory));
-            _playerUIBinder = (PlayerUIBinder)ServiceLocator.ServiceLocator.Instance.GetData(typeof(PlayerUIBinder));
-            _timerManager = (TimerManager)ServiceLocator.ServiceLocator.Instance.GetData(typeof(TimerManager));
-            _gameTimer = (GameTimer)ServiceLocator.ServiceLocator.Instance.GetData(typeof(GameTimer));
-            _uiFactory = (IUIFactory)ServiceLocator.ServiceLocator.Instance.GetData(typeof(IUIFactory));
             EnemySpawnerConfigs spawnerConfigs = (EnemySpawnerConfigs)ServiceLocator.ServiceLocator.Instance.
                 GetData(typeof(EnemySpawnerConfigs));
             List<int> maximumEnemies = CalculateWaveCharacteristics(spawnerConfigs);
-        
             EnemySpawnerCreator(spawnerConfigs, maximumEnemies);
-            BindUI();
-            if(_waveSystem != null)
-                _spawnController.Construct(_enemyPools, _waveSystem, _timerManager);
-            CreateGameSystem();
-            _stateMachine.Enter<GameLoopState>();
         }
 
         public void Dispose()
@@ -94,6 +114,8 @@ namespace Infrastructure.StateMachine.States
 
         private void EnemySpawnerCreator(EnemySpawnerConfigs spawnerConfigs, List<int> maximumEnemies)
         {
+           
+
             _commonParent = GameObject.Find(ConstantsSceneObjects.PREFABS_SCENE_GAMEOBJECT_PARENT_NAME);
             EnemySpawnPoint[] spawnPoints = Object.FindObjectsByType<EnemySpawnPoint>(FindObjectsSortMode.None);
             

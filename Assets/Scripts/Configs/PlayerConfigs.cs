@@ -12,5 +12,7 @@ namespace Configs
         public int Health;
 
         public LayerMask ShootLayer;
+
+        public bool IsTested;
     }
 }

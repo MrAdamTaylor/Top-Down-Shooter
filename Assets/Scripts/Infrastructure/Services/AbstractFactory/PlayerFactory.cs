@@ -22,7 +22,7 @@ namespace Infrastructure.Services.AbstractFactory
             _weaponFactory = weaponFactory;
         }
 
-        public GameObject Create(Vector3 position, Camera camera)
+        public GameObject  Create(Vector3 position, Camera camera)
         {
             PlayerConfigs playerConfigs = (PlayerConfigs)ServiceLocator.ServiceLocator.Instance.GetData(typeof(PlayerConfigs));
             GameObject playerObject = _objAssert.Assert(playerConfigs.PathToPlayer, position);
@@ -37,6 +37,8 @@ namespace Infrastructure.Services.AbstractFactory
             PlayLoopComponentProvider playLoopComponentProvider = physic.GetComponent<PlayLoopComponentProvider>();
         
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(Transform), player.transform);
+            
+            #region Player Movement System
             playerObject.AddComponent<CameraFollower>().Construct(camera, player);
             MouseRotateController rotateController = playerObject.AddComponent<MouseRotateController>();
             rotateController.Construct(camera, player);
@@ -44,6 +46,18 @@ namespace Infrastructure.Services.AbstractFactory
             IInputSystem axisInputSystem = playerObject.AddComponent<AxisInputSystem>();
             playerObject.AddComponent<MoveController>().Construct(player, axisInputSystem);
             axisInputSystem.AddSelfBlockList();
+            #endregion
+            
+            
+            #region Create WeaponLogic
+            PlayerHealth playerHealth = playerObject.AddComponent<PlayerHealth>();
+            playerHealth.Construct(playerConfigs.Health);
+
+            PlayerDeath playerDeath = playerObject.AddComponent<PlayerDeath>();
+            playerDeath.Construct(playerHealth, playerAnimator);
+            #endregion
+            
+            
             
             WeaponSwitcher switcher = playerObject.AddComponent<WeaponSwitcher>();
             playerObject.AddComponent<WeaponController>();
@@ -56,17 +70,11 @@ namespace Infrastructure.Services.AbstractFactory
             switcher.Construct(provider, currentWeaponConstructor);
             controller.Construct(provider.ReturnWeapons(), switcher);
         
-            PlayerHealth playerHealth = playerObject.AddComponent<PlayerHealth>();
-            playerHealth.Construct(playerConfigs.Health);
-
-            PlayerDeath playerDeath = playerObject.AddComponent<PlayerDeath>();
-            playerDeath.Construct(playerHealth, playerAnimator);
+            
             
             playLoopComponentProvider.AddToProvideComponent(playerHealth);
-            //player.AddBlockList(axisInputSystem);
             player.AddBlockList(switcher);
             player.AddBlockList(rotateController);
-            //player.AddBlockList(controller);
             return playerObject;
         }
     }

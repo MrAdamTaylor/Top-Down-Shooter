@@ -20,15 +20,15 @@ namespace Player.MovementSystem
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
-            _rb.constraints = RigidbodyConstraints.FreezeRotation; // предотвращает вращение при столкновении
+            _rb.constraints = RigidbodyConstraints.FreezeRotation; // РїСЂРµРґРѕС‚РІСЂР°С‰Р°РµС‚ РІСЂР°С‰РµРЅРёРµ РїСЂРё СЃС‚РѕР»РєРЅРѕРІРµРЅРёРё
         }
 
         private void OnMove(Vector2 direction)
         {
-            Vector3 moveDirection = new Vector3(direction.x, 0, direction.y).normalized; // нормализуем направление
-            Vector3 targetVelocity = moveDirection * moveSpeed; // создаем целевую скорость
+            Vector3 moveDirection = new Vector3(direction.x, 0, direction.y).normalized; // РЅРѕСЂРјР°Р»РёР·СѓРµРј РЅР°РїСЂР°РІР»РµРЅРёРµ
+            Vector3 targetVelocity = moveDirection * moveSpeed; // СЃРѕР·РґР°РµРј С†РµР»РµРІСѓСЋ СЃРєРѕСЂРѕСЃС‚СЊ
 
-            _rb.velocity = new Vector3(targetVelocity.x, _rb.velocity.y, targetVelocity.z); // применяем постоянную скорость к Rigidbody
+            _rb.velocity = new Vector3(targetVelocity.x, _rb.velocity.y, targetVelocity.z); // РїСЂРёРјРµРЅСЏРµРј РїРѕСЃС‚РѕСЏРЅРЅСѓСЋ СЃРєРѕСЂРѕСЃС‚СЊ Рє Rigidbody
         }
     }
 }

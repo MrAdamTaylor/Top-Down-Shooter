@@ -97,13 +97,24 @@ namespace Infrastructure.StateMachine.States
         }
 
 
-        private void RegisterPlayerServices(PlayerConfigs levelConfigsPlayerConfigs)
+        private void RegisterPlayerServices(PlayerConfigs playerConfigs)
         {
             _services.RegisterSingle<ISpecialEffectFactory>
                 (new SpecialEffectFactory(_assertBuilder));
             _services.RegisterSingle<IWeaponFactory>(new WeaponFactory(_assertBuilder));
-            _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_assertBuilder, 
-                _services.Single<IWeaponFactory>()));
+
+            if (playerConfigs.name == "TestPlayer")
+            {
+                Debug.Log("Test Player");
+                _services.RegisterSingle<IPlayerFactory>(new PlayerFactoryWithInjection(_assertBuilder, 
+                    _services.Single<IWeaponFactory>(), playerConfigs));
+            }
+            else
+            {
+                _services.RegisterSingle<IPlayerFactory>(new PlayerFactory(_assertBuilder,
+                    _services.Single<IWeaponFactory>()));
+            }
+            
             _services.RegisterSingle<IUIFactory>(new UIFactory(_assertBuilder));
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(ISpecialEffectFactory),_services.Single<ISpecialEffectFactory>());
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(UIAnimationPlayer), new UIAnimationPlayer());

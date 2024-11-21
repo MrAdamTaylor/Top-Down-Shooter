@@ -91,24 +91,24 @@ namespace Infrastructure.StateMachine.States
 
         private void LoadBafSpawner()
         {
-            if (ServiceLocator.ServiceLocator.Instance.IsGetData(typeof(IBafFactory)))
-            {
-                GameObject spawner = new GameObject("Spawner");
-                BafSpawner bafSpawner = spawner.AddComponent<BafSpawner>();
-                IBafFactory bafFactory =
-                    (IBafFactory)ServiceLocator.ServiceLocator.Instance.GetData(typeof(IBafFactory));
-                BafSpawnerConfigs bafSpawnerConfigs =
-                    (BafSpawnerConfigs)ServiceLocator.ServiceLocator.Instance.GetData(typeof(BafSpawnerConfigs));
-                RingTrigger trigger = _player.AddComponent<RingTrigger>();
-                trigger.Construct(_player.transform, 
-                    bafSpawnerConfigs.InnerRadius, bafSpawnerConfigs.MaximusSpawnRadius);
-                bafSpawner.Construct(bafFactory, bafSpawnerConfigs, trigger);
-            }
+            if (!ServiceLocator.ServiceLocator.Instance.IsGetData(typeof(IBafFactory))) 
+                return;
+            
+            GameObject spawner = new GameObject("Spawner");
+            BafSpawner bafSpawner = spawner.AddComponent<BafSpawner>();
+            IBafFactory bafFactory =
+                (IBafFactory)ServiceLocator.ServiceLocator.Instance.GetData(typeof(IBafFactory));
+            BafSpawnerConfigs bafSpawnerConfigs =
+                (BafSpawnerConfigs)ServiceLocator.ServiceLocator.Instance.GetData(typeof(BafSpawnerConfigs));
+            RingTrigger trigger = _player.AddComponent<RingTrigger>();
+            trigger.Construct(_player.transform, 
+                bafSpawnerConfigs.InnerRadius, bafSpawnerConfigs.MaximusSpawnRadius);
+            bafSpawner.Construct(bafFactory, bafSpawnerConfigs, trigger);
         }
 
         private void LoadPlayer()
         {
-            
+            ConstructUI();
             Camera camera = Object.FindObjectOfType<Camera>();
             
             GameObject startPosition = GameObject.FindGameObjectWithTag(ConstantsSceneObjects.INITIAL_POSITION);
@@ -116,7 +116,12 @@ namespace Infrastructure.StateMachine.States
             
             _player = _playerFactory.Create(startPosition.transform.position, camera);
             _player.transform.parent =  _commonParent.transform;
+            PlayerConfigs playerConfigs =
+                (PlayerConfigs)ServiceLocator.ServiceLocator.Instance.GetData(typeof(PlayerConfigs));
 
+            if (playerConfigs.IsTested)
+                return;
+            
             TimeData data = (TimeData)ServiceLocator.ServiceLocator.Instance.GetData(typeof(TimeData));
             if (data != null)
             {
@@ -132,7 +137,7 @@ namespace Infrastructure.StateMachine.States
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(PlayerUIBinder), _playerUIBinder);
             _playerUIBinder.BindAmmo(_player);
             _playerUIBinder.BindHealth(_player);
-            ConstructUI(ui);
+                //ConstructUI();
             ServiceLocator.ServiceLocator.Instance.BindData(typeof(GameObject), ui);
         }
 
@@ -151,15 +156,20 @@ namespace Infrastructure.StateMachine.States
 
         private void LoadEnemySpawner()
         {
-            if (!ServiceLocator.ServiceLocator.Instance.IsGetData(typeof(EnemySpawnerConfigs))) 
-                return;
-            _enemyFactory = (IEnemyFactory)ServiceLocator.ServiceLocator.Instance.GetData(typeof(IEnemyFactory));
+            if (!ServiceLocator.ServiceLocator.Instance.IsGetData(typeof(EnemySpawnerConfigs)))
+            {
+                _stateMachine.Enter<LoadLevelState>();
+            }
+            else
+            {
+                _enemyFactory = (IEnemyFactory)ServiceLocator.ServiceLocator.Instance.GetData(typeof(IEnemyFactory));
             
-            ISubscrible asyncSubscriber = (ISubscrible)_enemyFactory;
-            asyncSubscriber.Subscribe(this);
+                ISubscrible asyncSubscriber = (ISubscrible)_enemyFactory;
+                asyncSubscriber.Subscribe(this);
+            }
         }
         
-        private void ConstructUI(GameObject ui)
+        private void ConstructUI()
         {
             GameObject warning = GameObject.FindGameObjectWithTag(ConstantsSceneObjects.WARNING_CANVAS_MESSAGE);
             warning.SetActive(false);
