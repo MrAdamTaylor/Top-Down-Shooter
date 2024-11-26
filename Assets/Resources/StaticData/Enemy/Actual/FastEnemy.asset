@@ -22,5 +22,5 @@ MonoBehaviour:
   Skins:
   - {fileID: 1226099902062958282, guid: d33f2662ad59bda429a7f2b99236f679, type: 3}
   - {fileID: 944804097235881886, guid: 8a72d1ee6cc339e49868052a0b45e3a3, type: 3}
-  Speed: 5
+  Speed: 4
   MinimalToPlayerDistance: 1.5

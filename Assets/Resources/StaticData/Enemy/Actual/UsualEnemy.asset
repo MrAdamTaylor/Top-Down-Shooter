@@ -23,5 +23,5 @@ MonoBehaviour:
   - {fileID: 8458607664213075487, guid: 02718a9c50f93394abdcf61a9dd9e182, type: 3}
   - {fileID: 1226099902062958282, guid: 210869eddaa399d4c8b860750dc00be4, type: 3}
   - {fileID: 8458607664213075487, guid: 4f4bf4b02e7693745bc6bdf661168444, type: 3}
-  Speed: 3
+  Speed: 2
   MinimalToPlayerDistance: 2.5

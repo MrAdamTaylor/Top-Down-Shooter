@@ -15,6 +15,6 @@ MonoBehaviour:
   Visual: {fileID: 6448985891962602916, guid: 8267bc0dff47c604898b3efd71e9e10a, type: 3}
   AmmoStructConfigs:
   - WeaponT: 1
-    AmmoCount: 50
+    AmmoCount: 80
   - WeaponT: 2
-    AmmoCount: 20
+    AmmoCount: 40

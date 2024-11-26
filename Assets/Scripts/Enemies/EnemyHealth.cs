@@ -30,7 +30,6 @@ namespace Enemies
             _animator.TriggerHitAnimation();
             _current -= damage;
             TakeDamageAction?.Invoke();
-            //Debug.Log($"<color=green>Enemy current is {_current} </color>");
         }
 
         public void ReloadHealth()
