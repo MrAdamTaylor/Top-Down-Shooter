@@ -10,6 +10,6 @@ public class ScreenLoader : MonoBehaviour
     public void SetProgress(string text, float progress)
     {
         progressImage.fillAmount = progress;
-        loadingText.text = text;
+        loadingText.text = text + " :" +progress+"%";
     }
 }
