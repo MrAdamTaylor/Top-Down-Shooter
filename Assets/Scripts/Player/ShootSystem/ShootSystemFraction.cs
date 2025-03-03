@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Enemies;
 using EnterpriceLogic.Constants;
 using EnterpriceLogic.Utilities;
+using Infrastructure.BootstrapLogic;
 using Infrastructure.ServiceLocator;
 using Infrastructure.Services.AbstractFactory;
 using Logic;

@@ -1,9 +1,12 @@
 using System;
 
-public class GameLocator
+namespace Infrastructure.DIConteiner
 {
-    public object GetService(Type type)
+    public class GameLocator
     {
-        throw new NotImplementedException();
+        public object GetService(Type type)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

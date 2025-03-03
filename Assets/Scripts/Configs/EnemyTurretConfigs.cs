@@ -1,5 +1,6 @@
 using System;
 using EnterpriceLogic.Constants;
+using Infrastructure.BootstrapLogic;
 using UnityEngine;
 
 namespace Configs

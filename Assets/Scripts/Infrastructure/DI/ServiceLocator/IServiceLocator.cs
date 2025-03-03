@@ -1,6 +1,6 @@
 using System;
 
-namespace Infrastructure.DI
+namespace Infrastructure.DI.ServiceLocator
 {
     public interface IServiceLocator
     {

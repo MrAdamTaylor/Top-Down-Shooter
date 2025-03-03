@@ -4,11 +4,13 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Infrastructure.DI;
-using Infrastructure.DI2.Model;
+using Infrastructure.DI.Injector;
+using Infrastructure.DI.Model;
+using Infrastructure.DI.ServiceLocator;
 using UnityEngine;
+using ServiceDescriptor = Infrastructure.DI.ServiceLocator.ServiceDescriptor;
 
-namespace Infrastructure.DI2.Container
+namespace Infrastructure.DI.Container
 {
     public class Container : IContainer
     {

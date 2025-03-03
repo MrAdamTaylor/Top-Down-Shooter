@@ -1,6 +1,7 @@
 using System;
 using Configs;
 using EnterpriceLogic.Constants;
+using Infrastructure.BootstrapLogic;
 using Infrastructure.ServiceLocator;
 using Infrastructure.Services;
 using Infrastructure.Services.AbstractFactory;

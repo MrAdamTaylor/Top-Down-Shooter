@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-public abstract class GameModule : MonoBehaviour
+namespace Infrastructure.DIConteiner
 {
-    public virtual IEnumerable<object> GetServices()
+    public abstract class GameModule : MonoBehaviour
     {
-        Type type = this.GetType();
-        FieldInfo[] fields = type.GetFields(
-            BindingFlags.Instance |
-            BindingFlags.Public |
-            BindingFlags.NonPublic |
-            BindingFlags.DeclaredOnly
-        );
-        
-        foreach (var field in fields)
+        public virtual IEnumerable<object> GetServices()
         {
-            if (field.IsDefined(typeof(Service)))
+            Type type = this.GetType();
+            FieldInfo[] fields = type.GetFields(
+                BindingFlags.Instance |
+                BindingFlags.Public |
+                BindingFlags.NonPublic |
+                BindingFlags.DeclaredOnly
+            );
+        
+            foreach (var field in fields)
             {
-                yield return field.GetValue(this);
+                if (field.IsDefined(typeof(Service)))
+                {
+                    yield return field.GetValue(this);
+                }
             }
         }
     }

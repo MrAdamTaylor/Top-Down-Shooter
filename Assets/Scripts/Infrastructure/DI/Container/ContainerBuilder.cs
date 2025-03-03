@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using Infrastructure.DI2.Model;
+using Infrastructure.DI.Model;
 
-namespace Infrastructure.DI2.Container
+namespace Infrastructure.DI.Container
 {
     public class ContainerBuilder : IContainerBuilder
     {

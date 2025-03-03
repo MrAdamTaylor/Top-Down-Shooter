@@ -1,6 +1,9 @@
-public interface ISubscrible
+namespace Infrastructure.Services
 {
-    public void Subscribe(object subscriber);
+    public interface ISubscrible
+    {
+        public void Subscribe(object subscriber);
 
-    public void Unsubscribe();
+        public void Unsubscribe();
+    }
 }

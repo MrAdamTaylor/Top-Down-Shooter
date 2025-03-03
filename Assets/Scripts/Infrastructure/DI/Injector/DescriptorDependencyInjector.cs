@@ -1,19 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Infrastructure.DI2;
-using Infrastructure.DI2.Container;
+using Infrastructure.DI.ServiceLocator;
 using UnityEngine;
 
-namespace Infrastructure.DI
+namespace Infrastructure.DI.Injector
 {
     public class DescriptorDependencyInjector : IInjector
     {
         private ServiceDescriptor _serviceDescriptor;
         private IServiceLocator _serviceLocator;
-        private Container _container;
+        private Container.Container _container;
 
-        public DescriptorDependencyInjector(ServiceDescriptor service, IServiceLocator serviceLocator, Container container)
+        public DescriptorDependencyInjector(ServiceDescriptor service, IServiceLocator serviceLocator, Container.Container container)
         {
             _serviceLocator = serviceLocator;
             _serviceDescriptor = service;
@@ -71,7 +70,7 @@ namespace Infrastructure.DI
                 
                 if (service == null)
                 {
-                    DI2.Model.ServiceDescriptor descriptor = _serviceDescriptor.GetDescriptor(type);
+                    Model.ServiceDescriptor descriptor = _serviceDescriptor.GetDescriptor(type);
                     service = _container.ReturnInjectArgument(descriptor, type);
                 }
                 

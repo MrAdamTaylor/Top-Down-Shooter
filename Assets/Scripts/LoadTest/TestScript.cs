@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TestScript : MonoBehaviour
+namespace LoadTest
 {
-    public void TestButton()
+    public class TestScript : MonoBehaviour
     {
-        SceneManager.LoadScene("Scripts/LoadTest/LoadingScene");
+        public void TestButton()
+        {
+            SceneManager.LoadScene("Scripts/LoadTest/LoadingScene");
+        }
     }
 }

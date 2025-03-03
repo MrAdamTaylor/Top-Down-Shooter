@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace Infrastructure.DI2.Model
+namespace Infrastructure.DI.Model
 {
     public static class ContainerExtensions
     {

@@ -2,7 +2,7 @@ using Player.ShootSystem;
 using UnityEngine;
 using Weapon.StaticData;
 
-namespace Infrastructure.Services.AbstractFactory
+namespace Logic
 {
     public class AudioPlayerComponent : MonoBehaviour
     {

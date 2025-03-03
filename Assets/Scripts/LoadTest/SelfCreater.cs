@@ -1,21 +1,21 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SelfCreater : MonoBehaviour
+namespace LoadTest
 {
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    static void Init()
+    public class SelfCreater : MonoBehaviour
     {
-        Debug.Log("BeforeSceneLoaded");
-        var obj = Instantiate(Resources.Load("SelfCreater"));
-        obj.name = obj.name.Replace("(Clone)", string.Empty);
-        DontDestroyOnLoad(obj);
-    }
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void Init()
+        {
+            Debug.Log("BeforeSceneLoaded");
+            var obj = Instantiate(Resources.Load("SelfCreater"));
+            obj.name = obj.name.Replace("(Clone)", string.Empty);
+            DontDestroyOnLoad(obj);
+        }
 
-    public void Awake()
-    {
-        Debug.Log($"Is created");
+        public void Awake()
+        {
+            Debug.Log($"Is created");
+        }
     }
 }

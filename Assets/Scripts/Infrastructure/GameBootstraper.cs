@@ -1,4 +1,5 @@
 using Configs;
+using Infrastructure.DIConteiner;
 using Infrastructure.StateMachine.States;
 using UnityEngine;
 

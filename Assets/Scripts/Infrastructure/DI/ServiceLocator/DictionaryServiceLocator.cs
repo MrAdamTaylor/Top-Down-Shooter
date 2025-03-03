@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Infrastructure.DI
+namespace Infrastructure.DI.ServiceLocator
 {
     public class DictionaryServiceLocator : IServiceLocator
     {

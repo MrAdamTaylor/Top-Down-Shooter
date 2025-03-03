@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Configs;
+using Infrastructure.DIConteiner;
 using Infrastructure.ServiceLocator;
 using Infrastructure.Services;
 using Infrastructure.Services.AbstractFactory;

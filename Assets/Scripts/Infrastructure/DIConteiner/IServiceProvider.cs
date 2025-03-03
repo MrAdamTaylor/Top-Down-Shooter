@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 
-public interface IServiceProvider
+namespace Infrastructure.DIConteiner
 {
-    IEnumerable<(Type, object)> ProvideServices();
+    public interface IServiceProvider
+    {
+        IEnumerable<(Type, object)> ProvideServices();
+    }
 }

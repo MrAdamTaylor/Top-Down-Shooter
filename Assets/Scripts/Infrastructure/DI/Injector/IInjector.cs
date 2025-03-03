@@ -1,4 +1,4 @@
-namespace Infrastructure.DI
+namespace Infrastructure.DI.Injector
 {
     public interface IInjector
     {

@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using Infrastructure.DI;
-using Infrastructure.DI2.Model;
 
-namespace Infrastructure.DI2
+namespace Infrastructure.DI.ServiceLocator
 {
     public class ServiceDescriptor 
     {

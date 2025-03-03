@@ -1,6 +1,6 @@
 using System;
 
-namespace Infrastructure.DI2.Model
+namespace Infrastructure.DI.Model
 {
     public enum LifeTime
     {

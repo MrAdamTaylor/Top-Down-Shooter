@@ -4,6 +4,7 @@ using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
 using EnterpriceLogic.Constants;
+using Infrastructure.BootstrapLogic;
 using UnityEngine;
 
 namespace UI.MVC.Presenters

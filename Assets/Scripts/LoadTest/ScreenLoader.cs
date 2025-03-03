@@ -1,15 +1,17 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScreenLoader : MonoBehaviour
+namespace LoadTest
 {
-    [SerializeField] private Image progressImage;
-    [SerializeField] private Text loadingText;
-
-    public void SetProgress(string text, float progress)
+    public class ScreenLoader : MonoBehaviour
     {
-        progressImage.fillAmount = progress;
-        loadingText.text = text + " :" +progress+"%";
+        [SerializeField] private Image progressImage;
+        [SerializeField] private Text loadingText;
+
+        public void SetProgress(string text, float progress)
+        {
+            progressImage.fillAmount = progress;
+            loadingText.text = text + " :" +progress+"%";
+        }
     }
 }

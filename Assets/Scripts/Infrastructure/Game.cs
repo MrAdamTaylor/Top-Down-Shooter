@@ -1,5 +1,6 @@
 using System;
 using Configs;
+using Infrastructure.DIConteiner;
 using Infrastructure.ServiceLocator;
 using Infrastructure.Services;
 using Infrastructure.StateMachine;
