@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks.Triggers;
 using UnityEngine;
 
 public class MainMenuConfigurator : MonoBehaviour
@@ -16,13 +17,15 @@ public class MainMenuConfigurator : MonoBehaviour
     private GameObject _gameBootstraper;
     
     
-    public void Init(GameObject mainMenuCanvas, GameObject additionalMenuCanvasLoaded)
+    public void Init(GameObject mainMenuCanvas, GameObject additionalMenuCanvasLoaded, MainMenuController menuController)
     {
         
         Transform modal = FindDeepChild(additionalMenuCanvasLoaded.transform, ButtonsName.MODAL);
         Transform panelSound =  FindDeepChild(additionalMenuCanvasLoaded.transform, ButtonsName.PANEL_SOUND);
         Transform panelHelp =  FindDeepChild(additionalMenuCanvasLoaded.transform, ButtonsName.PANEL_HELP);
         Transform panelCreators =  FindDeepChild(additionalMenuCanvasLoaded.transform, ButtonsName.PANEL_CREATORS);
+
+        menuController.Init(modal, panelSound, panelHelp, panelCreators);
         
         Debug.Log($"Loaded transform:  modal: {modal.gameObject.name}, panelSound {panelSound.gameObject.name}, " +
                   $"panelHelp {panelHelp.gameObject.name}, panelCreators {panelCreators.gameObject.name}");

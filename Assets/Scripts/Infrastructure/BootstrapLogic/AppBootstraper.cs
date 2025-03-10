@@ -22,20 +22,18 @@ namespace Infrastructure.BootstrapLogic
         private static void CreateUI()
         {
             GameObject uiController = new GameObject(BootConstants.UI_CONTROLLER_NAME);
-            uiController.AddComponent<MainMenuController>();
+            MainMenuController menuController = uiController.AddComponent<MainMenuController>();
             MainMenuConfigurator configurator = uiController.AddComponent<MainMenuConfigurator>();
+            
             
             GameObject mainMenuCanvasLoaded = Resources.Load<GameObject>(BootConstants.PATH_TO_MAIN_CANVAS) ;
             GameObject additionalMenuCanvasLoaded = Resources.Load<GameObject>(BootConstants.PATH_TO_ADDITIONAL_CANVAS);
             
-            GameObject mainMenuResource = Instantiate(mainMenuCanvasLoaded);
-            GameObject additionalMenuResource = Instantiate(additionalMenuCanvasLoaded);
-            
-            
-            mainMenuResource.transform.SetParent(uiController.transform, false);
-            additionalMenuResource.transform.SetParent(uiController.transform, false);
-            
-            configurator.Init(mainMenuResource, additionalMenuResource);
+            GameObject mainMenuResource = Instantiate(mainMenuCanvasLoaded, uiController.transform, false);
+            GameObject additionalMenuResource = Instantiate(additionalMenuCanvasLoaded, uiController.transform, false);
+
+
+            configurator.Init(mainMenuResource, additionalMenuResource, menuController);
         }
     }
 }
