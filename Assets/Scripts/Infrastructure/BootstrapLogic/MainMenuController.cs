@@ -9,15 +9,15 @@ public class MainMenuController : MonoBehaviour
     private GameObject _panelHelp;
     private GameObject _fadeObject;
     
-    public void Init(Transform modal, Transform panelSound, Transform panelHelp, Transform panelCreators)
+    public void Init(Transform modal, Transform panelSound, Transform panelHelp, Transform panelCreators, PanelResourceProvider provider)
     {
         _fadeObject = modal.gameObject;
         _panelSound = panelSound.gameObject;   
         _panelHelp = panelHelp.gameObject;
         _panelCreators = panelCreators.gameObject;
-        
-        
-        
+
+
+        provider.AddMethods(ClosePanelCredits ,ClosePanelSound,ClosePanelHelp);
     }
     
     
@@ -51,7 +51,7 @@ public class MainMenuController : MonoBehaviour
         ShowFadeObject();
     }
 
-    public void ClosePanelHlp()
+    public void ClosePanelHelp()
     {
         _panelHelp.SetActive(false);
         HideFadeObject();

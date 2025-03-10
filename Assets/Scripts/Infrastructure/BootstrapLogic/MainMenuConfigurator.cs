@@ -19,13 +19,21 @@ public class MainMenuConfigurator : MonoBehaviour
     
     public void Init(GameObject mainMenuCanvas, GameObject additionalMenuCanvasLoaded, MainMenuController menuController)
     {
+
+        #region LoadPanels
         
         Transform modal = FindDeepChild(additionalMenuCanvasLoaded.transform, ButtonsName.MODAL);
         Transform panelSound =  FindDeepChild(additionalMenuCanvasLoaded.transform, ButtonsName.PANEL_SOUND);
         Transform panelHelp =  FindDeepChild(additionalMenuCanvasLoaded.transform, ButtonsName.PANEL_HELP);
         Transform panelCreators =  FindDeepChild(additionalMenuCanvasLoaded.transform, ButtonsName.PANEL_CREATORS);
 
-        menuController.Init(modal, panelSound, panelHelp, panelCreators);
+        PanelResourceProvider provider = additionalMenuCanvasLoaded.GetComponentInChildren<PanelResourceProvider>();
+        
+        #endregion
+        
+        
+        
+        menuController.Init(modal, panelSound, panelHelp, panelCreators, provider);
         
         Debug.Log($"Loaded transform:  modal: {modal.gameObject.name}, panelSound {panelSound.gameObject.name}, " +
                   $"panelHelp {panelHelp.gameObject.name}, panelCreators {panelCreators.gameObject.name}");
